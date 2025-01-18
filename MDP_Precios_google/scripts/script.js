@@ -1,6 +1,6 @@
 // ID de la hoja de Google Sheets
 const sheetID = '1F8TibB9l16OybjfHvVJI3rbCQc6PXI8rwHvlqpT1c38'; // Reemplaza con tu propio ID
-const sheetURL = `https://spreadsheets.google.com/feeds/list/${sheetID}/1/public/values?alt=json`;
+const sheetURL = 'https://docs.google.com/spreadsheets/d/1F8TibB9l16OybjfHvVJI3rbCQc6PXI8rwHvlqpT1c38/gviz/tq?tqx=out:json&gid=0';
 
 // Función para cargar y procesar los datos desde Google Sheets
 async function loadGoogleSheetData() {
