@@ -1,28 +1,40 @@
-// ID de la hoja de Google Sheets
-const sheetID = '1F8TibB9l16OybjfHvVJI3rbCQc6PXI8rwHvlqpT1c38'; // Reemplaza con tu propio ID
-const sheetURL = 'https://docs.google.com/spreadsheets/d/1F8TibB9l16OybjfHvVJI3rbCQc6PXI8rwHvlqpT1c38/gviz/tq?tqx=out:json&gid=0';
+// ID de la hoja de Google Sheets y clave de API
+const sheetID = '1F8TibB9l16OybjfHvVJI3rbCQc6PXI8rwHvlqpT1c38'; // Reemplaza con tu ID de hoja
+const apiKey = 'AIzaSyAtl_Qk6w93Dk-7SeUfMGEW9DsEAmyDzpk'; // Reemplaza con tu clave de API
+const sheetRange = 'Hoja1'; // Nombre de la hoja o rango específico
 
-// Función para cargar y procesar los datos desde Google Sheets
+// URL de la API de Google Sheets
+const sheetURL = `https://sheets.googleapis.com/v4/spreadsheets/${sheetID}/values/${sheetRange}?key=${apiKey}`;
+
+// Función para cargar los datos desde Google Sheets
 async function loadGoogleSheetData() {
     try {
         const response = await fetch(sheetURL);
         const data = await response.json();
+        console.log(data); // Ver los datos devueltos por la API
 
-        // Procesar los datos
-        const entries = data.feed.entry; // Datos de la hoja
+        if (!data.values || data.values.length < 2) {
+            console.error('Datos insuficientes o mal estructurados en la hoja.');
+            return;
+        }
+
+        const rows = data.values; // Filas de la hoja
+        const headers = rows[0]; // Encabezados
         const pricingContainer = document.getElementById('pricing');
-        pricingContainer.innerHTML = ''; // Limpiar contenido previo
+        pricingContainer.innerHTML = ''; // Limpia el contenido previo
 
-        entries.forEach((entry, index) => {
-            const producto = entry['gsx$producto']['$t'];
-            const descripcion = entry['gsx$descripción']['$t'];
-            const precioUSD = entry['gsx$preciousd']['$t'];
-            const precioPesos = entry['gsx$preciopesos']['$t'];
+        rows.slice(1).forEach((row, index) => {
+            // Validar si las columnas necesarias existen
+            const producto = row[headers.indexOf('Producto')] || 'Producto no definido';
+            const descripcion = row[headers.indexOf('Descripción')] || 'Descripción no disponible';
+            const precioUSD = row[headers.indexOf('PrecioUSD')] || '0';
+            const precioPesos = row[headers.indexOf('PrecioPesos')] || '0';
 
             // Crear un contenedor para las imágenes
             let imagesHTML = `<div class="image-gallery" id="gallery-${index}">`;
             for (let i = 1; i <= 3; i++) {
-                const imagen = entry[`gsx$imagen${i}`]?.['$t'];
+                const imagenIndex = headers.indexOf(`Imagen${i}`);
+                const imagen = imagenIndex !== -1 ? row[imagenIndex] : null;
                 if (imagen) {
                     imagesHTML += `
                         <img src="${imagen}" alt="${producto}" class="product-image hidden" />
@@ -75,5 +87,5 @@ function changeImage(galleryIndex, direction) {
     images[currentIndex].classList.remove('hidden');
 }
 
-// Cargar los datos de Google Sheets al cargar la página
+// Cargar los datos al iniciar la página
 document.addEventListener('DOMContentLoaded', loadGoogleSheetData);
