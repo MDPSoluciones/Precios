@@ -1,7 +1,7 @@
 // ID de la hoja de Google Sheets y clave de API
 const sheetID = '1F8TibB9l16OybjfHvVJI3rbCQc6PXI8rwHvlqpT1c38'; // Reemplaza con tu ID de hoja
 const apiKey = 'AIzaSyAtl_Qk6w93Dk-7SeUfMGEW9DsEAmyDzpk'; // Reemplaza con tu clave de API
-const sheetRange = 'Hoja1'; // Nombre de la hoja o rango específico
+const sheetRange = 'Form'; // Nombre de la hoja o rango específico
 
 // URL de la API de Google Sheets
 const sheetURL = `https://sheets.googleapis.com/v4/spreadsheets/${sheetID}/values/${sheetRange}?key=${apiKey}`;
