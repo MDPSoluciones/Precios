@@ -13,6 +13,21 @@ header {
     color: white;
 }
 
+
+/* Contenedor del logo */
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px; /* Espaciado entre el logo y el título */
+}
+
+/* Estilo para el logo */
+.logo {
+    max-width: 100px; /* Ajusta el tamaño del logo */
+    height: auto;
+}
+
 .pricing {
     display: flex;
     flex-wrap: wrap;
