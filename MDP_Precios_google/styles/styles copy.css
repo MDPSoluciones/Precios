@@ -19,26 +19,21 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 20px;
-    /* Espaciado entre el logo y el título */
+    gap: 20px; /* Espaciado entre el logo y el título */
 }
 
 /* Estilo para el logo */
 .logo {
-    max-width: 100px;
-    /* Ajusta el tamaño del logo */
+    max-width: 100px; /* Ajusta el tamaño del logo */
     height: auto;
 }
 
 .pricing {
     display: flex;
-    flex-direction: column;
-    /* Apila los productos verticalmente */
-    gap: 20px;
-    /* Espacio entre filas */
-    align-items: center;
-    /* Centra horizontalmente los productos (opcional) */
+    flex-wrap: wrap;
+    justify-content: center;
     padding: 20px;
+    gap: 20px;
 }
 
 .pricing-item {
@@ -46,14 +41,10 @@ header {
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 20px;
-    width: 100%;
-    /* Cada producto ocupa todo el ancho del contenedor */
-    max-width: 600px;
-    /* Tamaño máximo para productos (opcional) */
+    width: 300px;
     text-align: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-
 
 .pricing-item h2 {
     margin-top: 10px;
