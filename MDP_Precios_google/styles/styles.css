@@ -22,15 +22,15 @@ header {
 
 /* Estilo para el logo */
 .logo {
-    max-width: 100px;
+    max-width: 150px;
     height: auto;
 }
 
 .pricing {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    padding: 20px;
+    gap: 15px; /* Reducir espacio entre filas */
+    padding: 15px; /* Reducir padding del contenedor */
     align-items: center;
 }
 
@@ -38,10 +38,10 @@ header {
     background: white;
     border: 1px solid #ddd;
     border-radius: 8px;
-    padding: 20px;
+    padding: 15px; /* Reducir padding del contenedor de cada producto */
     width: 100%;
-    max-width: 800px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 90%; /* Reducir tamaño máximo */
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1); /* Ajustar sombra */
 }
 
 /* Fila principal que organiza las columnas */
@@ -49,7 +49,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 20px;
+    gap: 15px;
 }
 
 .image-column {
@@ -69,7 +69,7 @@ header {
 
 .product-image {
     max-width: 100%;
-    max-height: 150px;
+    max-height: 120px; /* Reducir altura máxima de la imagen */
     display: block;
     border-radius: 5px;
     object-fit: cover;
@@ -77,23 +77,23 @@ header {
 }
 
 .pricing-item h2 {
-    margin-top: 10px;
+    margin-top: 5px; /* Reducir margen superior */
     color: #333;
 }
 
 .pricing-item p {
     color: #666;
-    font-size: 14px;
+    font-size: 13px; /* Reducir tamaño de fuente */
 }
 
 .prices {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 10px; /* Reducir espacio entre precios */
 }
 
 .price {
-    font-size: 16px;
+    font-size: 14px; /* Reducir tamaño de fuente */
     font-weight: bold;
 }
 
