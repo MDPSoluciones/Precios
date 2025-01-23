@@ -1,3 +1,6 @@
+
+document.addEventListener('DOMContentLoaded', loadGoogleSheetData);
+
 // ID de la hoja de Google Sheets y clave de API
 const sheetID = '1W7aJMPe00ORHGjVnRzScIg6KVnjTQvddm63SLHrsAJM'; // Reemplaza con tu ID de hoja
 const apiKey = 'AIzaSyCdutMi4aKT3vJHaOabTtKUERoYv1-UBmM'; // Reemplaza con tu clave de API
@@ -6,86 +9,60 @@ const sheetRange = 'Form'; // Nombre de la hoja o rango específico
 // URL de la API de Google Sheets
 const sheetURL = `https://sheets.googleapis.com/v4/spreadsheets/${sheetID}/values/${sheetRange}?key=${apiKey}`;
 
-// Función para cargar los datos desde Google Sheets
 async function loadGoogleSheetData() {
     try {
         const response = await fetch(sheetURL);
         const data = await response.json();
-        console.log(data); // Ver los datos devueltos por la API
+        console.log(data);
 
         if (!data.values || data.values.length < 2) {
             console.error('Datos insuficientes o mal estructurados en la hoja.');
             return;
         }
 
-        const rows = data.values; // Filas de la hoja
-        const headers = rows[0]; // Encabezados
+        const rows = data.values;
+        const headers = rows[0];
         const pricingContainer = document.getElementById('pricing');
-        pricingContainer.innerHTML = ''; // Limpia el contenido previo
+        pricingContainer.innerHTML = '';
 
         rows.slice(1).forEach((row, index) => {
-            // Validar si las columnas necesarias existen
             const producto = row[headers.indexOf('Producto')] || 'Producto no definido';
             const descripcion = row[headers.indexOf('Descripción')] || 'Descripción no disponible';
             const precioUSD = row[headers.indexOf('PrecioUSD')] || '0';
             const precioPesos = row[headers.indexOf('PrecioPesos')] || '0';
 
-            // Crear un contenedor para las imágenes
-            let imagesHTML = `<div class="image-gallery" id="gallery-${index}">`;
+            let imagesHTML = '';
             for (let i = 1; i <= 3; i++) {
                 const imagenIndex = headers.indexOf(`Imagen${i}`);
                 const imagen = imagenIndex !== -1 ? row[imagenIndex] : null;
                 if (imagen) {
-                    imagesHTML += `
-                        <img src="${imagen}" alt="${producto}" class="product-image hidden" />
-                    `;
+                    imagesHTML += `<img src="${imagen}" alt="${producto}" class="product-image" />`;
+                    break; // Solo usamos la primera imagen para esta disposición
                 }
             }
-            imagesHTML += `
-                <button class="prev-btn" onclick="changeImage(${index}, -1)">&#10094;</button>
-                <button class="next-btn" onclick="changeImage(${index}, 1)">&#10095;</button>
-            </div>`;
 
-            // Crear el contenido del producto
             const item = document.createElement('div');
             item.classList.add('pricing-item');
             item.innerHTML = `
-                ${imagesHTML}
-                <h2>${producto}</h2>
-                <p>${descripcion}</p>
-                <div class="prices">
-                    <span class="price usd">USD: $${parseFloat(precioUSD).toFixed(2)}</span>
-                    <span class="price pesos">Pesos: $${parseFloat(precioPesos).toFixed(2)}</span>
+                <div class="product-row">
+                    <div class="image-column">
+                        ${imagesHTML}
+                    </div>
+                    <div class="details-column">
+                        <h2>${producto}</h2>
+                        <p>${descripcion}</p>
+                    </div>
+                    <div class="price-column">
+                        <div class="prices">
+                            <span class="price usd">USD: $${parseFloat(precioUSD).toFixed(2)}</span>
+                            <span class="price pesos">Pesos: $${parseFloat(precioPesos).toFixed(2)}</span>
+                        </div>
+                    </div>
                 </div>
             `;
             pricingContainer.appendChild(item);
-
-            // Mostrar la primera imagen
-            const gallery = document.querySelector(`#gallery-${index}`);
-            if (gallery) {
-                gallery.querySelector('.product-image').classList.remove('hidden');
-            }
         });
     } catch (error) {
         console.error('Error al cargar los datos de Google Sheets:', error);
     }
 }
-
-// Función para cambiar las imágenes
-function changeImage(galleryIndex, direction) {
-    const gallery = document.querySelector(`#gallery-${galleryIndex}`);
-    const images = gallery.querySelectorAll('.product-image');
-    let currentIndex = Array.from(images).findIndex(img => !img.classList.contains('hidden'));
-
-    // Ocultar la imagen actual
-    images[currentIndex].classList.add('hidden');
-
-    // Calcular el índice de la siguiente imagen
-    currentIndex = (currentIndex + direction + images.length) % images.length;
-
-    // Mostrar la nueva imagen
-    images[currentIndex].classList.remove('hidden');
-}
-
-// Cargar los datos al iniciar la página
-document.addEventListener('DOMContentLoaded', loadGoogleSheetData);
