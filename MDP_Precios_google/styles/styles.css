@@ -29,8 +29,8 @@ header {
 .pricing {
     display: flex;
     flex-direction: column;
-    gap: 15px; /* Reducir espacio entre filas */
-    padding: 15px; /* Reducir padding del contenedor */
+    gap: 8px; /* Reducido aún más para disminuir el espacio entre filas */
+    padding: 10px; /* Reducido para compactar más */
     align-items: center;
 }
 
@@ -38,10 +38,10 @@ header {
     background: white;
     border: 1px solid #ddd;
     border-radius: 8px;
-    padding: 15px; /* Reducir padding del contenedor de cada producto */
+    padding: 8px; /* Reducido para hacer las filas aún más compactas */
     width: 100%;
-    max-width: 90%; /* Reducir tamaño máximo */
-    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1); /* Ajustar sombra */
+    max-width: 95%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* Fila principal que organiza las columnas */
@@ -49,7 +49,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 15px;
+    gap: 8px; /* Reducido para compactar las columnas */
 }
 
 .image-column {
@@ -69,7 +69,7 @@ header {
 
 .product-image {
     max-width: 100%;
-    max-height: 120px; /* Reducir altura máxima de la imagen */
+    max-height: 50px; /* Reducido a la mitad del tamaño actual */
     display: block;
     border-radius: 5px;
     object-fit: cover;
@@ -77,23 +77,24 @@ header {
 }
 
 .pricing-item h2 {
-    margin-top: 5px; /* Reducir margen superior */
+    margin-top: 4px; /* Reducido para compactar más */
     color: #333;
+    font-size: 16px; /* Reducido para disminuir aún más el tamaño del texto */
 }
 
 .pricing-item p {
     color: #666;
-    font-size: 13px; /* Reducir tamaño de fuente */
+    font-size: 12px; /* Reducido para disminuir aún más el tamaño del texto */
 }
 
 .prices {
     display: flex;
     flex-direction: column;
-    gap: 10px; /* Reducir espacio entre precios */
+    gap: 8px; /* Reducido para compactar los precios más */
 }
 
 .price {
-    font-size: 14px; /* Reducir tamaño de fuente */
+    font-size: 12px; /* Reducido para disminuir el tamaño del texto */
     font-weight: bold;
 }
 
