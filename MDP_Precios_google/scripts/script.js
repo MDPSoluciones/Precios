@@ -13,7 +13,6 @@ async function loadGoogleSheetData() {
     try {
         const response = await fetch(sheetURL);
         const data = await response.json();
-        console.log(data);
 
         if (!data.values || data.values.length < 2) {
             console.error('Datos insuficientes o mal estructurados en la hoja.');
@@ -25,44 +24,64 @@ async function loadGoogleSheetData() {
         const pricingContainer = document.getElementById('pricing');
         pricingContainer.innerHTML = '';
 
-        rows.slice(1).forEach((row, index) => {
+        const productsByCategory = {};
+
+        rows.slice(1).forEach(row => {
+            const tipoProducto = row[headers.indexOf('Tipo de Producto')] || 'Otros';
             const producto = row[headers.indexOf('Producto')] || 'Producto no definido';
             const descripcion = row[headers.indexOf('Descripción')] || 'Descripción no disponible';
             const precioUSD = row[headers.indexOf('PrecioUSD')] || '0';
             const precioPesos = row[headers.indexOf('PrecioPesos')] || '0';
+            const imagen = row[headers.indexOf('Imagen1')] || 'images/default.png';
 
-            let imagesHTML = '';
-            for (let i = 1; i <= 3; i++) {
-                const imagenIndex = headers.indexOf(`Imagen${i}`);
-                const imagen = imagenIndex !== -1 ? row[imagenIndex] : null;
-                if (imagen) {
-                    imagesHTML += `<img src="${imagen}" alt="${producto}" class="product-image" />`;
-                    break; // Solo usamos la primera imagen para esta disposición
-                }
+            if (!productsByCategory[tipoProducto]) {
+                productsByCategory[tipoProducto] = [];
             }
 
-            const item = document.createElement('div');
-            item.classList.add('pricing-item');
-            item.innerHTML = `
-                <div class="product-row">
-                    <div class="image-column">
-                        ${imagesHTML}
-                    </div>
-                    <div class="details-column">
-                        <h2>${producto}</h2>
-                        <p>${descripcion}</p>
-                    </div>
-                    <div class="price-column">
-                        <div class="prices">
-                            <span class="price usd">USD: $${parseFloat(precioUSD).toFixed(2)}</span>
-                            <span class="price pesos">Pesos: $${parseFloat(precioPesos).toFixed(2)}</span>
+            productsByCategory[tipoProducto].push({
+                producto,
+                descripcion,
+                precioUSD: parseFloat(precioUSD).toFixed(2),
+                precioPesos: parseFloat(precioPesos).toFixed(2),
+                imagen
+            });
+        });
+
+        // Ordenar las categorías alfabéticamente
+        const sortedCategories = Object.keys(productsByCategory).sort();
+
+        sortedCategories.forEach(category => {
+            // Ordenar los productos dentro de cada categoría alfabéticamente
+            productsByCategory[category].sort((a, b) => a.producto.localeCompare(b.producto));
+
+            pricingContainer.innerHTML += `<h2 class="category-title">${category}</h2>`;
+
+            productsByCategory[category].forEach(product => {
+                pricingContainer.innerHTML += `
+                    <div class="pricing-item">
+                        <div class="product-row">
+                            <div class="image-column">
+                                <img src="${product.imagen}" alt="${product.producto}" class="product-image" />
+                            </div>
+                            <div class="details-column">
+                                <h2>${product.producto}</h2>
+                                <p>${product.descripcion}</p>
+                            </div>
+                            <div class="price-column">
+                                <div class="prices">
+                                    <span class="price usd">USD: $${product.precioUSD}</span>
+                                    <span class="price pesos">Pesos: $${product.precioPesos}</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            `;
-            pricingContainer.appendChild(item);
+                `;
+            });
         });
+
     } catch (error) {
         console.error('Error al cargar los datos de Google Sheets:', error);
     }
 }
+
+document.addEventListener('DOMContentLoaded', loadGoogleSheetData);
