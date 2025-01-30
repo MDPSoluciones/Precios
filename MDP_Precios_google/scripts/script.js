@@ -63,9 +63,8 @@ async function loadGoogleSheetData() {
                 const sortedCategories = Object.keys(productsByCondition[condition]).sort();
                 
                 sortedCategories.forEach(category => {
-                    
-                // Ordenar los productos dentro de cada categoría alfabéticamente
-                productsByCondition[condition][category].sort((a, b) => a.producto.localeCompare(b.producto));
+                    // Ordenar los productos dentro de cada categoría alfabéticamente
+                    productsByCondition[condition][category].sort((a, b) => a.producto.localeCompare(b.producto));
         
                  // Mostrar la categoría solo si la condición es "Accesorios"
                 if (condition === "Accesorios") {
