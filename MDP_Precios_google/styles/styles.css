@@ -113,3 +113,7 @@ header {
 .price.pesos {
     color: #FF5722;
 }
+
+.price.transf {
+    color: #2196F3; /* Cambia el color según prefieras */
+}
