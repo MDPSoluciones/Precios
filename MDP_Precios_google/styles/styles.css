@@ -48,7 +48,7 @@ header {
     border-radius: 8px;
     padding: 8px; /* Reducido para hacer las filas aún más compactas */
     width: 100%;
-    max-width: 95%;
+    max-width: 800px; /* Ancho del contenedor de cada producto */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
