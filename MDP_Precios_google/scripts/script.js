@@ -27,6 +27,7 @@ async function loadGoogleSheetData() {
         const productsByCondition = {};
         const conditionOrder = ["Apple Nuevos", "Apple Usados", "Android Nuevos", "Android Usados", "Accesorios"];
 
+
         rows.slice(1).forEach(row => {
             const condicionProducto = row[headers.indexOf('Condición del Producto')] || 'Otros';
             const tipoProducto = row[headers.indexOf('Tipo de Producto')] || 'Otros';
@@ -34,8 +35,10 @@ async function loadGoogleSheetData() {
             const descripcion = row[headers.indexOf('Descripción')] || 'Descripción no disponible';
             const precioUSD = row[headers.indexOf('PrecioUSD')] || '0';
             const precioPesos = row[headers.indexOf('PrecioPesos')] || '0';
-            const precioTransf = row[headers.indexOf('PrecioTransf')] || '0'; // Nueva columna
-            const imagen = row[headers.indexOf('Imagen1')] || 'images/default.png';
+            const precioTransf = row[headers.indexOf('PrecioTransf')] || '0';
+            const imagen1 = row[headers.indexOf('Imagen1')] || 'images/logoNew.PNG';
+            const imagen2 = row[headers.indexOf('Imagen2')] || 'images/logoNew.PNG';
+            const imagen3 = row[headers.indexOf('Imagen3')] || 'images/logoNew.PNG';
 
             if (!productsByCondition[condicionProducto]) {
                 productsByCondition[condicionProducto] = {};
@@ -50,12 +53,13 @@ async function loadGoogleSheetData() {
                 descripcion,
                 precioUSD: parseFloat(precioUSD).toFixed(2),
                 precioPesos: parseFloat(precioPesos).toFixed(2),
-                precioTransf: parseFloat(precioTransf).toFixed(2), // Añadir precioTransf
-                imagen
+                precioTransf: parseFloat(precioTransf).toFixed(2),
+                imagen1,
+                imagen2,
+                imagen3
             });
         });
 
-        // Ordenar condiciones según el orden predefinido
         conditionOrder.forEach(condition => {
             if (productsByCondition[condition]) {
                 pricingContainer.innerHTML += `<h1 class="condition-title">${condition}</h1>`;
@@ -63,23 +67,18 @@ async function loadGoogleSheetData() {
                 const sortedCategories = Object.keys(productsByCondition[condition]).sort();
                 
                 sortedCategories.forEach(category => {
-                    // Ordenar los productos dentro de cada categoría alfabéticamente
-                    productsByCondition[condition][category].sort((a, b) => a.producto.localeCompare(b.producto));
-        
-                 // Mostrar la categoría solo si la condición es "Accesorios"
-                if (condition === "Accesorios") {
-                    pricingContainer.innerHTML += `<h2 class="category-title" style="background-color:rgb(180, 180, 180); padding: 10px; border-radius: 5px;">${category}</h2>`;
-                }
+                    if (condition === "Accesorios") {
+                        pricingContainer.innerHTML += `<h2 class="category-title" style="background-color:rgb(180, 180, 180); padding: 10px; border-radius: 5px;">${category}</h2>`;
+                    }
 
-                    
-                    // Mostrar los productos dentro de esa categoría
-        
                     productsByCondition[condition][category].forEach(product => {
                         pricingContainer.innerHTML += `
                             <div class="pricing-item">
                                 <div class="product-row">
-                                    <div class="image-column">
-                                        <img src="${product.imagen}" alt="${product.producto}" class="product-image" />
+                                    <div class="image-gallery">
+                                        <img src="${product.imagen1}" alt="${product.producto} 1" class="product-image" />
+                                        <img src="${product.imagen2}" alt="${product.producto} 2" class="product-image" />
+                                        <img src="${product.imagen3}" alt="${product.producto} 3" class="product-image" />
                                     </div>
                                     <div class="details-column">
                                         <h2>${product.producto}</h2>
@@ -93,7 +92,7 @@ async function loadGoogleSheetData() {
                                         : `
                                             <span class="price usd">USD: $${product.precioUSD}</span>
                                             <span class="price pesos">Efectivo: $${product.precioPesos}</span>
-                                            <span class="price transf">Transferencia: $${product.precioTransf}</span>`} <!-- Nueva línea -->
+                                            <span class="price transf">Transferencia: $${product.precioTransf}</span>`}
                                         </div>
                                     </div>
                                 </div>

@@ -2,7 +2,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #bea286; /* bea286 */
+    background-color: #bea286;
 }
 
 header {
@@ -12,7 +12,6 @@ header {
     color: white;
 }
 
-/* Contenedor del logo */
 .logo-container {
     display: flex;
     align-items: center;
@@ -20,7 +19,6 @@ header {
     gap: 20px;
 }
 
-/* Estilo para el logo */
 .logo {
     max-width: 100px;
     height: auto;
@@ -29,8 +27,8 @@ header {
 .pricing {
     display: flex;
     flex-direction: column;
-    gap: 8px; /* Reducido aún más para disminuir el espacio entre filas */
-    padding: 10px; /* Reducido para compactar más */
+    gap: 8px;
+    padding: 10px;
     align-items: center;
 }
 
@@ -46,24 +44,32 @@ header {
     background: white;
     border: 1px solid #ddd;
     border-radius: 8px;
-    padding: 8px; /* Reducido para hacer las filas aún más compactas */
+    padding: 8px;
     width: 100%;
-    max-width: 95%;
+    max-width: 800px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Fila principal que organiza las columnas */
 .product-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 8px; /* Reducido para compactar las columnas */
+    gap: 8px;
 }
 
-.image-column {
-    flex: 1;
-    text-align: center;
+.image-gallery {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
 }
+
+.image-gallery img {
+    max-width: 30%;
+    max-height: 75px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
 
 .details-column {
     flex: 2;
