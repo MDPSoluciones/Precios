@@ -2,7 +2,8 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #bea286; /* bea286 */
+    background-color: #edece8;
+    /* bea286 */
 }
 
 header {
@@ -29,8 +30,10 @@ header {
 .pricing {
     display: flex;
     flex-direction: column;
-    gap: 8px; /* Reducido aún más para disminuir el espacio entre filas */
-    padding: 10px; /* Reducido para compactar más */
+    gap: 8px;
+    /* Reducido aún más para disminuir el espacio entre filas */
+    padding: 10px;
+    /* Reducido para compactar más */
     align-items: center;
 }
 
@@ -46,9 +49,11 @@ header {
     background: white;
     border: 1px solid #ddd;
     border-radius: 8px;
-    padding: 8px; /* Reducido para hacer las filas aún más compactas */
+    padding: 8px;
+    /* Reducido para hacer las filas aún más compactas */
     width: 100%;
-    max-width: 800px; /* Ancho del contenedor de cada producto */
+    max-width: 800px;
+    /* Ancho del contenedor de cada producto */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -57,7 +62,8 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 8px; /* Reducido para compactar las columnas */
+    gap: 8px;
+    /* Reducido para compactar las columnas */
 }
 
 .image-column {
@@ -77,7 +83,8 @@ header {
 
 .product-image {
     max-width: 100%;
-    max-height: 50px; /* Reducido a la mitad del tamaño actual */
+    max-height: 50px;
+    /* Reducido a la mitad del tamaño actual */
     display: block;
     border-radius: 5px;
     object-fit: cover;
@@ -85,24 +92,29 @@ header {
 }
 
 .pricing-item h2 {
-    margin-top: 4px; /* Reducido para compactar más */
+    margin-top: 4px;
+    /* Reducido para compactar más */
     color: #333;
-    font-size: 16px; /* Reducido para disminuir aún más el tamaño del texto */
+    font-size: 16px;
+    /* Reducido para disminuir aún más el tamaño del texto */
 }
 
 .pricing-item p {
     color: #666;
-    font-size: 12px; /* Reducido para disminuir aún más el tamaño del texto */
+    font-size: 12px;
+    /* Reducido para disminuir aún más el tamaño del texto */
 }
 
 .prices {
     display: flex;
     flex-direction: column;
-    gap: 8px; /* Reducido para compactar los precios más */
+    gap: 8px;
+    /* Reducido para compactar los precios más */
 }
 
 .price {
-    font-size: 12px; /* Reducido para disminuir el tamaño del texto */
+    font-size: 12px;
+    /* Reducido para disminuir el tamaño del texto */
     font-weight: bold;
 }
 
@@ -115,5 +127,6 @@ header {
 }
 
 .price.transf {
-    color: #2196F3; /* Cambia el color según prefieras */
+    color: #2196F3;
+    /* Cambia el color según prefieras */
 }
