@@ -15,9 +15,16 @@ body {
     /* bea286 */
 }
 
-h1 {
+header h1 {
     font-family: "Lucidity Expand", Arial, sans-serif;
+    font-size: 20px;
 }
+
+header h2 {
+    font-family: "Lucidity Expand", Arial, sans-serif;
+    font-size: 15px;
+}
+
 
 header {
     font-family: "Lucidity Expand", Arial, sans-serif;
@@ -41,6 +48,11 @@ header {
     height: auto;
 }
 
+.pricing h1 {
+    font-family: "Lucidity Expand", Arial, sans-serif;
+    font-size: 15px;
+}
+
 .pricing {
     display: flex;
     flex-direction: column;
@@ -53,9 +65,9 @@ header {
 
 .category-title {
     font-family: "Lucidity Expand", Arial, sans-serif;
-    font-size: 18px;
+    font-size: 14px;
     font-weight: bold;
-    margin-top: 20px;
+    margin-top: 15px;
     color: #222;
     text-align: center;
 }
@@ -111,7 +123,7 @@ header {
     margin-top: 4px;
     /* Reducido para compactar más */
     color: #333;
-    font-size: 16px;
+    font-size: 14px;
     /* Reducido para disminuir aún más el tamaño del texto */
 }
 
