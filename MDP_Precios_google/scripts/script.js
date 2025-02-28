@@ -48,9 +48,10 @@ async function loadGoogleSheetData() {
             productsByCondition[condicionProducto][tipoProducto].push({
                 producto,
                 descripcion,
-                precioUSD: parseFloat(precioUSD).toFixed(2),
-                precioPesos: parseFloat(precioPesos).toFixed(2),
-                precioTransf: parseFloat(precioTransf).toFixed(2), // Añadir precioTransf
+                precioUSD: parseFloat(precioUSD).toLocaleString('es-AR', { minimumFractionDigits: 0 }),
+                precioPesos: parseFloat(precioPesos).toLocaleString('es-AR', { minimumFractionDigits: 0 }),
+                precioTransf: parseFloat(precioTransf).toLocaleString('es-AR', { minimumFractionDigits: 0 }),
+
                 imagen
             });
         });
