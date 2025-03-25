@@ -119,24 +119,24 @@ header {
     margin: 0 auto;
 }
 
-.pricing-item h2 {
+.pricing-item h2 { /* Título del producto */
     margin-top: 4px;
     /* Reducido para compactar más */
     color: #333;
-    font-size: 14px;
+    font-size: 13px;
     /* Reducido para disminuir aún más el tamaño del texto */
 }
 
-.pricing-item p {
+.pricing-item p { /* Descripción del producto */
     color: #666;
-    font-size: 12px;
+    font-size: 11px;
     /* Reducido para disminuir aún más el tamaño del texto */
 }
 
-.prices {
+.prices { /* Contenedor de los precios */
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 9px;
     /* Reducido para compactar los precios más */
 }
 
