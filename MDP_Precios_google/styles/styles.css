@@ -136,12 +136,12 @@ header {
 .prices { /* Contenedor de los precios */
     display: flex;
     flex-direction: column;
-    gap: 9px;
+    gap: 8px;
     /* Reducido para compactar los precios más */
 }
 
-.price {
-    font-size: 12px;
+.price { /* Precio del producto */
+    font-size: 12.5px;
     /* Reducido para disminuir el tamaño del texto */
     font-weight: bold;
 }
