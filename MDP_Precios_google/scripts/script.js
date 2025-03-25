@@ -35,7 +35,7 @@ async function loadGoogleSheetData() {
             const precioUSD = row[headers.indexOf('PrecioUSD')] || '0';
             const precioPesos = row[headers.indexOf('PrecioPesos')] || '0';
             const precioTransf = row[headers.indexOf('PrecioTransf')] || '0'; // Nueva columna
-            const imagen = row[headers.indexOf('Imagen1')] || 'images/default.png';
+            const imagen = row[headers.indexOf('Imagen2')] || 'images/default.png';
 
             if (!productsByCondition[condicionProducto]) {
                 productsByCondition[condicionProducto] = {};
