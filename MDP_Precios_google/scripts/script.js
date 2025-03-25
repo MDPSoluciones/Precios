@@ -28,6 +28,9 @@ async function loadGoogleSheetData() {
         const conditionOrder = ["Apple Nuevos", "Apple Usados", "Android Nuevos", "Android Usados", "Accesorios"];
 
         rows.slice(1).forEach(row => {
+            const status = row[headers.indexOf('Status')] || 'No disponible';
+            if (status !== 'Disponible') return; // Filtrar solo productos disponibles
+
             const condicionProducto = row[headers.indexOf('Condición del Producto')] || 'Otros';
             const tipoProducto = row[headers.indexOf('Tipo de Producto')] || 'Otros';
             const producto = row[headers.indexOf('Producto')] || 'Producto no definido';
