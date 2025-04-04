@@ -119,7 +119,8 @@ header {
     margin: 0 auto;
 }
 
-.pricing-item h2 { /* Título del producto */
+.pricing-item h2 {
+    /* Título del producto */
     margin-top: 4px;
     /* Reducido para compactar más */
     color: #333;
@@ -127,20 +128,23 @@ header {
     /* Reducido para disminuir aún más el tamaño del texto */
 }
 
-.pricing-item p { /* Descripción del producto */
+.pricing-item p {
+    /* Descripción del producto */
     color: #666;
     font-size: 11px;
     /* Reducido para disminuir aún más el tamaño del texto */
 }
 
-.prices { /* Contenedor de los precios */
+.prices {
+    /* Contenedor de los precios */
     display: flex;
     flex-direction: column;
     gap: 8px;
     /* Reducido para compactar los precios más */
 }
 
-.price { /* Precio del producto */
+.price {
+    /* Precio del producto */
     font-size: 12.5px;
     /* Reducido para disminuir el tamaño del texto */
     font-weight: bold;
@@ -157,4 +161,29 @@ header {
 .price.transf {
     color: #2196F3;
     /* Cambia el color según prefieras */
+}
+
+
+
+.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 20px;
+    right: 20px;
+    z-index: 100;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+}
+
+.whatsapp-float img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
