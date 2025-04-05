@@ -164,6 +164,7 @@ header {
 }
 
 
+/* Estilo para el botón de WhatsApp flotante */
 
 .whatsapp-float {
     position: fixed;
@@ -187,3 +188,5 @@ header {
     border-radius: 50%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
+
+/* Fin Estilo para el botón de WhatsApp */
