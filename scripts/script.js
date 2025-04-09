@@ -82,11 +82,9 @@ async function loadGoogleSheetData() {
                         pricingContainer.innerHTML += `
                             <div class="pricing-item">
                                 <div class="product-row">
-                                    <!-- Imagen con Lightbox -->
+                                    <!-- Imagen del producto -->
                                     <div class="image-column">
-                                        <a href="${product.imagen}" data-lightbox="${product.producto}" data-title="${product.producto}">
-                                            <img src="${product.imagen}" alt="${product.producto}" class="product-image" />
-                                        </a>
+                                        <img src="${product.imagen}" alt="${product.producto}" class="product-image" />
                                     </div>
                                     <!-- Detalles del producto -->
                                     <div class="details-column">

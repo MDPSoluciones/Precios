@@ -192,11 +192,3 @@ header {
 /* Fin Estilo para el botón de WhatsApp */
 
 
-.product-image {
-    cursor: pointer;
-    transition: transform 0.2s ease;
-}
-
-.product-image:hover {
-    transform: scale(1.05);
-}
