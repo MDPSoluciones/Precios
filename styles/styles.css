@@ -1,9 +1,15 @@
+@font-face {
+    font-family: 'GlacialIndifference';
+    src: url('../Res/GlacialIndifference-Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     background-color: #edece8;
-    /* bea286 */
 }
 
 header h1 {
@@ -15,7 +21,6 @@ header h2 {
     font-family: "Lucidity Expand", Arial, sans-serif;
     font-size: 15px;
 }
-
 
 header {
     font-family: "Lucidity Expand", Arial, sans-serif;
@@ -48,9 +53,7 @@ header {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    /* Reducido aún más para disminuir el espacio entre filas */
     padding: 10px;
-    /* Reducido para compactar más */
     align-items: center;
 }
 
@@ -58,9 +61,16 @@ header {
     font-family: "Lucidity Expand", Arial, sans-serif;
     font-size: 14px;
     font-weight: bold;
-    margin-top: 15px;
+    margin-top: 16px;
     color: #222;
     text-align: center;
+}
+
+.pricing-item,
+.pricing-item h2,
+.pricing-item p,
+.price {
+    font-family: 'GlacialIndifference', sans-serif;
 }
 
 .pricing-item {
@@ -68,20 +78,16 @@ header {
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 8px;
-    /* Reducido para hacer las filas aún más compactas */
     width: 100%;
     max-width: 800px;
-    /* Ancho del contenedor de cada producto */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Fila principal que organiza las columnas */
 .product-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 8px;
-    /* Reducido para compactar las columnas */
 }
 
 .image-column {
@@ -90,7 +96,7 @@ header {
 }
 
 .details-column {
-    font-family: "Lucidity Expand", Arial, sans-serif;
+    font-family: 'GlacialIndifference', sans-serif;
     flex: 2;
     text-align: center;
 }
@@ -103,7 +109,6 @@ header {
 .product-image {
     max-width: 75px;
     max-height: 75px;
-    /* Max 75 x 75px */
     display: block;
     border-radius: 5px;
     object-fit: cover;
@@ -111,33 +116,24 @@ header {
 }
 
 .pricing-item h2 {
-    /* Título del producto */
     margin-top: 4px;
-    /* Reducido para compactar más */
     color: #333;
-    font-size: 13px;
-    /* Reducido para disminuir aún más el tamaño del texto */
+    font-size: 14px;
 }
 
 .pricing-item p {
-    /* Descripción del producto */
     color: #666;
     font-size: 11px;
-    /* Reducido para disminuir aún más el tamaño del texto */
 }
 
 .prices {
-    /* Contenedor de los precios */
     display: flex;
     flex-direction: column;
     gap: 8px;
-    /* Reducido para compactar los precios más */
 }
 
 .price {
-    /* Precio del producto */
     font-size: 12.5px;
-    /* Reducido para disminuir el tamaño del texto */
     font-weight: bold;
 }
 
@@ -151,11 +147,7 @@ header {
 
 .price.transf {
     color: #2196F3;
-    /* Cambia el color según prefieras */
 }
-
-
-/* Estilo para el botón de WhatsApp flotante */
 
 .whatsapp-float {
     position: fixed;
@@ -179,7 +171,3 @@ header {
     border-radius: 50%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
-
-/* Fin Estilo para el botón de WhatsApp */
-
-
