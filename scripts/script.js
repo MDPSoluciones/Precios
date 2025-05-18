@@ -37,7 +37,7 @@ async function loadGoogleSheetData() {
             const descripcion = row[headers.indexOf('Descripción')] || 'Descripción no disponible';
             const precioUSD = row[headers.indexOf('PrecioUSD')] || '0';
             const precioPesos = row[headers.indexOf('PrecioPesos')] || '0';
-            const precioTransf = row[headers.indexOf('PrecioTransf')] || '0'; // Nueva columna
+            const precioTransf = row[headers.indexOf('PrecioTransf')] || '0';
             const imagen = row[headers.indexOf('Imagen2')] || 'images/default.png';
 
             if (!productsByCondition[condicionProducto]) {
@@ -54,7 +54,6 @@ async function loadGoogleSheetData() {
                 precioUSD: parseFloat(precioUSD).toLocaleString('es-AR', { minimumFractionDigits: 0 }),
                 precioPesos: parseFloat(precioPesos).toLocaleString('es-AR', { minimumFractionDigits: 0 }),
                 precioTransf: parseFloat(precioTransf).toLocaleString('es-AR', { minimumFractionDigits: 0 }),
-
                 imagen
             });
         });
@@ -63,21 +62,34 @@ async function loadGoogleSheetData() {
         conditionOrder.forEach(condition => {
             if (productsByCondition[condition]) {
                 pricingContainer.innerHTML += `<h1 class="condition-title">${condition}</h1>`;
-                
-                const sortedCategories = Object.keys(productsByCondition[condition]).sort();
-                
-                sortedCategories.forEach(category => {
-                    // Ordenar los productos dentro de cada categoría alfabéticamente
-                    productsByCondition[condition][category].sort((a, b) => a.producto.localeCompare(b.producto));
-        
-                 // Mostrar la categoría solo si la condición es "Accesorios"
-                if (condition === "Accesorios") {
-                    pricingContainer.innerHTML += `<h2 class="category-title" style="background-color:rgb(180, 180, 180); padding: 10px; border-radius: 5px;">${category}</h2>`;
-                }
 
-                    
-                    // Mostrar los productos dentro de esa categoría
-        
+                const sortedCategories = Object.keys(productsByCondition[condition]).sort();
+
+                sortedCategories.forEach(category => {
+                    // Ordenar productos por nombre, y en caso de empate, priorizar 64gb sobre 128gb en la descripción
+                    productsByCondition[condition][category].sort((a, b) => {
+                        const nameComp = a.producto.localeCompare(b.producto);
+                        if (nameComp !== 0) return nameComp;
+
+                        const getPriority = (text) => {
+                            if (/64\s*gb/i.test(text)) return 0;
+                            if (/128\s*gb/i.test(text)) return 1;
+                            return 2;
+                        };
+
+                        const prioA = getPriority(a.descripcion);
+                        const prioB = getPriority(b.descripcion);
+                        if (prioA !== prioB) return prioA - prioB;
+
+                        return a.descripcion.localeCompare(b.descripcion);
+                    });
+
+                    // Mostrar la categoría solo si la condición es "Accesorios"
+                    if (condition === "Accesorios") {
+                        pricingContainer.innerHTML += `<h2 class="category-title" style="background-color:rgb(180, 180, 180); padding: 10px; border-radius: 5px;">${category}</h2>`;
+                    }
+
+                    // Mostrar productos de la categoría
                     productsByCondition[condition][category].forEach(product => {
                         pricingContainer.innerHTML += `
                             <div class="pricing-item">
@@ -115,5 +127,6 @@ async function loadGoogleSheetData() {
         console.error('Error al cargar los datos de Google Sheets:', error);
     }
 }
+
 
 document.addEventListener('DOMContentLoaded', loadGoogleSheetData);
