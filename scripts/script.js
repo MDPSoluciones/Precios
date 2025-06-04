@@ -25,7 +25,7 @@ async function loadGoogleSheetData() {
         pricingContainer.innerHTML = '';
 
         const productsByCondition = {};
-        const conditionOrder = ["Apple Nuevos", "Apple Usados", "Android Nuevos", "Android Usados", "Accesorios"];
+        const conditionOrder = ["Apple Nuevos", "Apple Usados", "Android Nuevos", "Android Usados", "Notebooks Nuevas","Notebooks Usadas","Tablets Nuevas","Tablets Usadas","Accesorios"];
 
         rows.slice(1).forEach(row => {
             const status = row[headers.indexOf('Status')] || 'No disponible';
