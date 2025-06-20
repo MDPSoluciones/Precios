@@ -106,7 +106,7 @@ async function loadGoogleSheetData() {
                                     <!-- Precios -->
                                     <div class="price-column">
                                         <div class="prices">
-                                            ${condition === "Accesorios" || condition === "Otros" ? `
+                                            ${(condition === "Accesorios" || condition === "Otros") && category !== "Gaming" ? `
                                                 <span class="price pesos">Efectivo: $${product.precioPesos}</span>
                                                 <span class="price transf">Transferencia: $${product.precioTransf}</span>` 
                                             : `
