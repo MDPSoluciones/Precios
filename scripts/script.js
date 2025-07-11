@@ -1,149 +1,164 @@
+// 🚀 Iniciar cuando el DOM esté listo
+document.addEventListener('DOMContentLoaded', () => {
+    loadGoogleSheetData(); // Cargar datos desde Google Sheets al iniciar
 
-document.addEventListener('DOMContentLoaded', loadGoogleSheetData);
+    // 🔄 Actualización automática cada N minutos (5 por defecto)
+    const minutos = 5;
+    setInterval(loadGoogleSheetData, minutos * 60 * 1000); // Ejecutar la carga cada N minutos
 
-// ID de la hoja de Google Sheets y clave de API
-const sheetID = '1W7aJMPe00ORHGjVnRzScIg6KVnjTQvddm63SLHrsAJM'; // Reemplaza con tu ID de hoja
-const apiKey = 'AIzaSyCdutMi4aKT3vJHaOabTtKUERoYv1-UBmM'; // Reemplaza con tu clave de API
-const sheetRange = 'Form'; // Nombre de la hoja o rango específico
+    // 🔍 Búsqueda de productos por texto en el campo de búsqueda
+    document.getElementById('searchInput').addEventListener('input', function () {
+        const query = this.value.toLowerCase(); // Convertir input a minúsculas
+        const products = document.querySelectorAll('.pricing-item'); // Seleccionar todos los productos
 
-// URL de la API de Google Sheets
-const sheetURL = `https://sheets.googleapis.com/v4/spreadsheets/${sheetID}/values/${sheetRange}?key=${apiKey}`;
+        // Mostrar u ocultar productos según coincidencia con título o descripción
+        products.forEach(product => {
+            const title = product.querySelector('h2').textContent.toLowerCase();
+            const desc = product.querySelector('p').textContent.toLowerCase();
+            product.style.display = title.includes(query) || desc.includes(query) ? '' : 'none';
+        });
 
+        // 🧼 Ocultar títulos de condición si no hay productos visibles debajo
+        document.querySelectorAll('.condition-title').forEach(title => {
+            const items = [];
+            let sibling = title.nextElementSibling;
+            while (sibling && !sibling.classList.contains('condition-title')) {
+                if (sibling.classList.contains('pricing-item')) items.push(sibling);
+                sibling = sibling.nextElementSibling;
+            }
+            title.style.display = items.some(item => item.style.display !== 'none') ? '' : 'none';
+        });
+
+        // 🧼 Ocultar títulos de categoría si están vacíos después del filtrado
+        document.querySelectorAll('.category-title').forEach(title => {
+            const items = [];
+            let sibling = title.nextElementSibling;
+            while (
+                sibling &&
+                !sibling.classList.contains('category-title') &&
+                !sibling.classList.contains('condition-title')
+            ) {
+                if (sibling.classList.contains('pricing-item')) items.push(sibling);
+                sibling = sibling.nextElementSibling;
+            }
+            title.style.display = items.some(item => item.style.display !== 'none') ? '' : 'none';
+        });
+    });
+});
+
+// 📦 Función principal que carga y muestra los datos desde Google Sheets
 async function loadGoogleSheetData() {
+    // 🎯 Configuración de la hoja y API
+    const sheetID = '1W7aJMPe00ORHGjVnRzScIg6KVnjTQvddm63SLHrsAJM'; // ID de la hoja de cálculo
+    const apiKey = 'AIzaSyCdutMi4aKT3vJHaOabTtKUERoYv1-UBmM'; // Tu clave de API
+    const sheetRange = 'Form'; // Nombre de la hoja/rango
+    const sheetURL = `https://sheets.googleapis.com/v4/spreadsheets/${sheetID}/values/${sheetRange}?key=${apiKey}`;
+
     try {
-        const response = await fetch(sheetURL);
-        const data = await response.json();
+        const response = await fetch(sheetURL); // Obtener datos desde la API
+        const data = await response.json(); // Parsear respuesta como JSON
+        if (!data.values || data.values.length < 2) return; // Validación mínima
 
-        if (!data.values || data.values.length < 2) {
-            console.error('Datos insuficientes o mal estructurados en la hoja.');
-            return;
-        }
-
-        const rows = data.values;
-        const headers = rows[0];
+        const [headers, ...rows] = data.values; // Separar cabecera y filas
         const pricingContainer = document.getElementById('pricing');
-        pricingContainer.innerHTML = '';
+        pricingContainer.innerHTML = ''; // Limpiar contenido actual
 
-        const productsByCondition = {};
-        const conditionOrder = ["Apple Nuevos", "Apple Usados", "Android Nuevos", "Android Usados", "Notebooks Nuevas","Notebooks Usadas","PC Escritorio", "Tablets Nuevas","Tablets Usadas","Accesorios"];
+        const productsByCondition = {}; // 🗂️ Almacenar productos organizados por condición
+        const conditionOrder = [ // 🎯 Orden fijo para mostrar las condiciones
+            "Apple Nuevos", "Apple Usados", "Android Nuevos", "Android Usados",
+            "Notebooks Nuevas", "Notebooks Usadas", "PC Escritorio",
+            "Tablets Nuevas", "Tablets Usadas", "Accesorios"
+        ];
 
-        rows.slice(1).forEach(row => {
+        // 🔁 Procesar cada fila (producto) del sheet
+        rows.forEach(row => {
             const status = row[headers.indexOf('Status')] || 'No disponible';
-            if (status !== 'Disponible') return; // Filtrar solo productos disponibles
+            if (status !== 'Disponible') return; // Solo mostrar disponibles
 
-            const condicionProducto = row[headers.indexOf('Condición del Producto')] || 'Otros';
-            const tipoProducto = row[headers.indexOf('Tipo de Producto')] || 'Otros';
-            const producto = row[headers.indexOf('Producto')] || 'Producto no definido';
-            const descripcion = row[headers.indexOf('Descripción')] || 'Descripción no disponible';
+            // 🧩 Extraer atributos del producto
+            const condicion = row[headers.indexOf('Condición del Producto')] || 'Otros';
+            const tipo = row[headers.indexOf('Tipo de Producto')] || 'Otros';
+            const producto = row[headers.indexOf('Producto')] || 'Sin nombre';
+            const descripcion = row[headers.indexOf('Descripción')] || '';
             const precioUSD = row[headers.indexOf('PrecioUSD')] || '0';
             const precioPesos = row[headers.indexOf('PrecioPesos')] || '0';
             const precioTransf = row[headers.indexOf('PrecioTransf')] || '0';
             const imagen = row[headers.indexOf('Imagen2')] || 'images/default.png';
 
-            if (!productsByCondition[condicionProducto]) {
-                productsByCondition[condicionProducto] = {};
-            }
+            // 📁 Inicializar estructuras si no existen
+            productsByCondition[condicion] ??= {};
+            productsByCondition[condicion][tipo] ??= [];
 
-            if (!productsByCondition[condicionProducto][tipoProducto]) {
-                productsByCondition[condicionProducto][tipoProducto] = [];
-            }
-
-            productsByCondition[condicionProducto][tipoProducto].push({
+            // 🛒 Añadir producto al grupo correspondiente
+            productsByCondition[condicion][tipo].push({
                 producto,
                 descripcion,
-                precioUSD: parseFloat(precioUSD).toLocaleString('es-AR', { minimumFractionDigits: 0 }),
-                precioPesos: parseFloat(precioPesos).toLocaleString('es-AR', { minimumFractionDigits: 0 }),
-                precioTransf: parseFloat(precioTransf).toLocaleString('es-AR', { minimumFractionDigits: 0 }),
+                precioUSD: parseFloat(precioUSD).toLocaleString('es-AR'),
+                precioPesos: parseFloat(precioPesos).toLocaleString('es-AR'),
+                precioTransf: parseFloat(precioTransf).toLocaleString('es-AR'),
                 imagen
             });
         });
 
-        // Ordenar condiciones según el orden predefinido
-        conditionOrder.forEach(condition => {
-            if (productsByCondition[condition]) {
-                pricingContainer.innerHTML += `<h1 class="condition-title">${condition}</h1>`;
+        // 🎨 Renderizar los productos por condición y categoría
+        conditionOrder.forEach(condicion => {
+            if (productsByCondition[condicion]) {
+                pricingContainer.innerHTML += `<h1 class="condition-title">${condicion}</h1>`;
 
-                const sortedCategories = Object.keys(productsByCondition[condition]).sort();
+                const sortedCategories = Object.keys(productsByCondition[condicion]).sort();
+                sortedCategories.forEach(categoria => {
+                    const productos = productsByCondition[condicion][categoria];
 
-                sortedCategories.forEach(category => {
-                    // Ordenar productos por nombre, y en caso de empate, priorizar 64gb sobre 128gb en la descripción
-                    productsByCondition[condition][category].sort((a, b) => {
+                    // 🔢 Ordenar productos alfabéticamente y por prioridad (GB)
+                    productos.sort((a, b) => {
                         const nameComp = a.producto.localeCompare(b.producto);
                         if (nameComp !== 0) return nameComp;
 
-                        const getPriority = (text) => {
-                            if (/64\s*gb/i.test(text)) return 0;
-                            if (/128\s*gb/i.test(text)) return 1;
-                            return 2;
-                        };
+                        const prio = text =>
+                            /64\s*gb/i.test(text) ? 0 : /128\s*gb/i.test(text) ? 1 : 2;
 
-                        const prioA = getPriority(a.descripcion);
-                        const prioB = getPriority(b.descripcion);
-                        if (prioA !== prioB) return prioA - prioB;
-
-                        return a.descripcion.localeCompare(b.descripcion);
+                        const prioA = prio(a.descripcion), prioB = prio(b.descripcion);
+                        return prioA !== prioB ? prioA - prioB : a.descripcion.localeCompare(b.descripcion);
                     });
 
-                    // Mostrar la categoría solo si la condición es "Accesorios"
-                    if (condition === "Accesorios") {
-                        pricingContainer.innerHTML += `<h2 class="category-title" style="background-color:rgb(180, 180, 180); padding: 10px; border-radius: 5px;">${category}</h2>`;
+                    // 📌 Mostrar categoría solo si es "Accesorios"
+                    if (condicion === "Accesorios") {
+                        pricingContainer.innerHTML += `
+                            <h2 class="category-title" style="background-color:rgb(180,180,180);padding:10px;border-radius:5px;">
+                                ${categoria}
+                            </h2>`;
                     }
 
-                    // Mostrar productos de la categoría
-                    productsByCondition[condition][category].forEach(product => {
+                    // 🖼️ Insertar cada producto en el DOM
+                    productos.forEach(p => {
+                        const precios = (condicion === "Accesorios" || condicion === "Otros") && categoria !== "Gaming"
+                            ? `<span class="price pesos">Efectivo: $${p.precioPesos}</span>
+                               <span class="price transf">Transferencia: $${p.precioTransf}</span>`
+                            : `<span class="price usd">USD: $${p.precioUSD}</span>
+                               <span class="price pesos">Efectivo: $${p.precioPesos}</span>
+                               <span class="price transf">Transferencia: $${p.precioTransf}</span>`;
+
                         pricingContainer.innerHTML += `
                             <div class="pricing-item">
                                 <div class="product-row">
-                                    <!-- Imagen del producto -->
                                     <div class="image-column">
-                                        <img src="${product.imagen}" alt="${product.producto}" class="product-image" />
+                                        <img src="${p.imagen}" alt="${p.producto}" class="product-image" />
                                     </div>
-                                    <!-- Detalles del producto -->
                                     <div class="details-column">
-                                        <h2>${product.producto}</h2>
-                                        <p>${product.descripcion}</p>
+                                        <h2>${p.producto}</h2>
+                                        <p>${p.descripcion}</p>
                                     </div>
-                                    <!-- Precios -->
                                     <div class="price-column">
-                                        <div class="prices">
-                                            ${(condition === "Accesorios" || condition === "Otros") && category !== "Gaming" ? `
-                                                <span class="price pesos">Efectivo: $${product.precioPesos}</span>
-                                                <span class="price transf">Transferencia: $${product.precioTransf}</span>` 
-                                            : `
-                                                <span class="price usd">USD: $${product.precioUSD}</span>
-                                                <span class="price pesos">Efectivo: $${product.precioPesos}</span>
-                                                <span class="price transf">Transferencia: $${product.precioTransf}</span>`}
-                                        </div>
+                                        <div class="prices">${precios}</div>
                                     </div>
                                 </div>
-                            </div>
-                        `;
+                            </div>`;
                     });
                 });
             }
         });
 
     } catch (error) {
-        console.error('Error al cargar los datos de Google Sheets:', error);
+        console.error('Error al cargar los datos de Google Sheets:', error); // Manejo de error
     }
 }
-
-
-document.addEventListener('DOMContentLoaded', loadGoogleSheetData);
-
-
-document.getElementById('searchInput').addEventListener('input', function () {
-    const query = this.value.toLowerCase();
-    const products = document.querySelectorAll('.pricing-item');
-
-    products.forEach(product => {
-        const title = product.querySelector('h2').textContent.toLowerCase();
-        const desc = product.querySelector('p').textContent.toLowerCase();
-
-        if (title.includes(query) || desc.includes(query)) {
-            product.style.display = '';
-        } else {
-            product.style.display = 'none';
-        }
-    });
-});
