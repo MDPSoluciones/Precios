@@ -61,7 +61,8 @@ header {
 
 .category-title {
     font-family: "Lucidity Expand", Arial, sans-serif;
-    font-size: 12px; /* Tamaño de fuente */
+    font-size: 12px;
+    /* Tamaño de fuente */
     font-weight: bold;
     margin-top: 16px;
     color: #222;
@@ -79,7 +80,8 @@ header {
     background: white;
     border: 1px solid #ddd;
     border-radius: 8px;
-    padding: 8px; /* Espacio interno */
+    padding: 8px;
+    /* Espacio interno */
     width: 100%;
     max-width: 800px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -89,7 +91,8 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 8px; /* Espacio entre columnas */
+    gap: 8px;
+    /* Espacio entre columnas */
 }
 
 .image-column {
@@ -121,7 +124,8 @@ header {
 .pricing-item h2 {
     margin-top: 4px;
     color: #333;
-    font-size: 18px; /* Tamaño de fuente */
+    font-size: 18px;
+    /* Tamaño de fuente */
 }
 
 /* Estilo para el parrafo del contenedor de precios de cada producto */
@@ -175,4 +179,37 @@ header {
     object-fit: cover;
     border-radius: 50%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilo para el contenedor de búsqueda */
+.search-container {
+    position: relative;
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    height: 40px;
+    justify-content: right;
+}
+
+#searchInput {
+    background: transparent;
+    border: 1px solid white;
+    padding: 5px 10px 5px 30px;
+    color: white;
+    border-radius: 20px;
+    font-size: 14px;
+    outline: none;
+    width: 160px;
+}
+
+.search-icon {
+    position: relative;
+    right: 195px;
+    color: white;
+    font-size: 16px;
+    pointer-events: none;
+}
+
+#searchInput::placeholder {
+    color: rgba(255, 255, 255, 0.7);
 }

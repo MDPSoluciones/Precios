@@ -130,3 +130,20 @@ async function loadGoogleSheetData() {
 
 
 document.addEventListener('DOMContentLoaded', loadGoogleSheetData);
+
+
+document.getElementById('searchInput').addEventListener('input', function () {
+    const query = this.value.toLowerCase();
+    const products = document.querySelectorAll('.pricing-item');
+
+    products.forEach(product => {
+        const title = product.querySelector('h2').textContent.toLowerCase();
+        const desc = product.querySelector('p').textContent.toLowerCase();
+
+        if (title.includes(query) || desc.includes(query)) {
+            product.style.display = '';
+        } else {
+            product.style.display = 'none';
+        }
+    });
+});
