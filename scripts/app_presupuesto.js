@@ -6,7 +6,7 @@ $(document).ready(function() {
         let isValid = true;
         
         // Array de IDs de los campos requeridos
-        const requiredFields = ['#empresa', '#mejecutivo', '#nombreCliente', '#mailcliente'];
+        const requiredFields = ['#empresa', '#mejecutivo', '#nombreCliente']; //, '#mailcliente'];
 
         requiredFields.forEach(function(field) {
             if ($(field).val().trim() === '') {
