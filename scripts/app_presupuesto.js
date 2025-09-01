@@ -130,7 +130,7 @@ $(document).ready(function() {
 
 
         html2canvas(source, {
-            scale: 2, // Aumenta la resolución
+            scale: 1.5, // Un punto medio entre calidad y tamaño
             useCORS: true,
             logging: false,
             onclone: (document) => {

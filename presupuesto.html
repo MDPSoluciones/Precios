@@ -18,6 +18,7 @@
         .card { border: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
         .bg-negro { background-color: #343a40; color: white; padding: .5rem; }
         .table th, .table td { vertical-align: middle; }
+        a:hover { color: red;}
     </style>
 </head>
 <body>
@@ -32,20 +33,20 @@
                 </div>
 
                 <div class="row mb-3">
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <div class="bg-negro">Información de la Empresa</div>
                         <input type="text" class="form-control mb-1" id="empresa" placeholder="Nombre empresa *" value="AXENTIA" required readonly>
                         <input type="text" class="form-control mb-1" id="dempresa" placeholder="Dirección empresa" value="Sarmiento 24" readonly>
                         <input type="text" class="form-control mb-1" id="mejecutivo" placeholder="Mail ejecutivo *" value="adm.axentia@gmail.com" required readonly>
                         <input type="text" class="form-control mb-1" id="tejecutivo" placeholder="Teléfono" value="+56 9 1234 5678" required readonly>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <div class="bg-negro">Información del Cliente</div>
                         <input type="text" class="form-control mb-1" id="nombreCliente" placeholder="Nombre cliente *"  required>
                         <input type="text" class="form-control mb-1" id="direccionCliente" placeholder="Dirección cliente">
-                        <input type="text" class="form-control mb-1" id="mailcliente" placeholder="Mail cliente *" required>
+                        <input type="text" class="form-control mb-1" id="mailcliente" placeholder="Mail cliente">
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-6">
                         <div class="bg-negro">Información del Presupuesto</div>
                         <div class="row mb-1">
                             <label class="col-6 col-form-label">Número</label>
@@ -56,8 +57,8 @@
                             <div class="col-6">
                                 <select class="form-select" id="tipomoneda">
                                     <option value="">-- Selecciona --</option>
-                                    <option value="USD">Dólar (USD)</option>
-                                    <option value="CLP">Peso Argentino (ARS)</option>
+                                    <option value="USD" selected>Dólar (USD)</option>
+                                    <option value="ARS">Peso Argentino (ARS)</option>
                                     <option value="EUR">Euro (EUR)</option>
                                 </select>
                             </div>
@@ -68,14 +69,14 @@
                         </div>
                         <div class="row mb-1">
                             <label class="col-6 col-form-label">Validez (días)</label>
-                            <div class="col-6"><input type="number" class="form-control" id="validez" required></div>
+                            <div class="col-6"><input type="number" class="form-control" id="validez" value="3" min="1" required></div>
                         </div>
                         <div class="row mb-1">
                             <label class="col-6 col-form-label">Forma de pago</label>
                             <div class="col-6">
                                 <select class="form-select" id="formapago">
                                     <option value="">-- Selecciona --</option>
-                                    <option value="Efectivo">Efectivo</option>
+                                    <option value="Efectivo" selected>Efectivo</option>
                                     <option value="Cuenta Corriente">Cuenta Corriente</option>
                                     <option value="Transferencia">Transferencia</option>
                                     <option value="Cheque">Cheque</option>
@@ -124,7 +125,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-6 text-end">Impuesto (%)</td>
-                                    <td class="col-6"><input type="number" class="form-control" id="tax" value="0" min="0" max="100"></td>
+                                    <td class="col-6"><input type="number" class="form-control" id="tax" value="10.5" min="0" max="100"></td>
                                 </tr>
                                 <tr>
                                     <td class="col-6 text-end">Total Final</td>
