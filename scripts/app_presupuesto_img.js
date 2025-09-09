@@ -105,7 +105,89 @@ $(document).ready(function() {
             return;
         }
 
-        // Llamar a la ventana de impresión del navegador
-        window.print();
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF('p', 'pt', 'a4');
+        const source = document.getElementById('contentToPrint');
+        const filename = `Presupuesto_${$('#nombreCliente').val().replace(/ /g, '_') || 'Nuevo'}.pdf`;
+
+        // Oculta el botón de descarga
+        const downloadBtn = $(this);
+        downloadBtn.hide();
+
+        // Oculta el botón de añadir fila
+        const addRowBtn = $('#add_row');
+        addRowBtn.hide();
+
+        // Oculta los botones de eliminar fila en cada fila (el icono de la cruz)
+        $('.delete-row').closest('td').hide();
+
+        // Elimina los bordes de los campos de texto de los items
+        $('.item-row input[type="text"], .item-row input[type="number"]').css('border', 'none');
+
+        // Para ocultar las líneas de los campos fijos
+        $('.card input').css('border', 'none');
+        $('.card select').css('border', 'none');
+
+
+        html2canvas(source, {
+            scale: 1, // Un punto medio entre calidad y tamaño
+            useCORS: true,
+            logging: false,
+            onclone: (document) => {
+                const clonedDownloadBtn = document.getElementById('downloadPdf');
+                if (clonedDownloadBtn) clonedDownloadBtn.style.display = 'none';
+
+                // Oculta el botón de añadir fila en la copia clonada
+                const clonedAddRowBtn = document.getElementById('add_row');
+                if (clonedAddRowBtn) clonedAddRowBtn.style.display = 'none';
+
+                // Oculta también los botones de eliminar fila en el clon
+                const clonedDeleteButtons = document.querySelectorAll('.delete-row');
+                clonedDeleteButtons.forEach(btn => {
+                    btn.closest('td').style.display = 'none';
+                });
+                // Elimina los bordes en la copia clonada
+                const clonedInputs = document.querySelectorAll('.item-row input[type="text"], .item-row input[type="number"]');
+                clonedInputs.forEach(input => {
+                    input.style.border = 'none';
+                });
+                 // Elimina los bordes de los campos fijos en el clon
+                const fixedInputs = document.querySelectorAll('.card input, .card select');
+                fixedInputs.forEach(input => {
+                    input.style.border = 'none';
+                });
+            }
+        }).then(canvas => {
+            const imgData = canvas.toDataURL('image/png');
+            const imgWidth = doc.internal.pageSize.getWidth();
+            const pageHeight = doc.internal.pageSize.getHeight();
+            const imgHeight = canvas.height * imgWidth / canvas.width;
+            let heightLeft = imgHeight;
+            let position = 0;
+            
+            doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+            heightLeft -= pageHeight;
+            
+            while (heightLeft >= 0) {
+                position = heightLeft - imgHeight;
+                doc.addPage();
+                doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+                heightLeft -= pageHeight;
+            }
+            
+            doc.save(filename);
+
+            // Vuelve a mostrar el botón de descarga
+            downloadBtn.show();
+            // Vuelve a mostrar el botón de añadir fila
+            addRowBtn.show();
+            // Vuelve a mostrar los botones de eliminar fila
+            $('.delete-row').closest('td').show();
+            // Restaura los bordes de los campos de texto
+            $('.item-row input[type="text"], .item-row input[type="number"]').css('border', '');
+            // Restaura los bordes de los campos fijos
+            $('.card input').css('border', '');
+            $('.card select').css('border', '');
+        });
     });
 });

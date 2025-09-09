@@ -54,3 +54,63 @@ body {
 a :hover {
     color: red !important;
 }
+
+/* * Reglas de estilo para cuando se imprime la página. 
+ * El navegador las aplicará automáticamente al usar 'window.print()'.
+ */
+@media print {
+
+    /* Oculta los botones y los íconos */
+    #downloadPdf,
+    #add_row,
+    .delete-row,
+    .col-sm-6.text-center {
+        /* Para ocultar el div que contiene el botón de descarga */
+        display: none !important;
+    }
+
+    /* Remueve los bordes de los campos de texto e input para que se vean como texto plano */
+    input[type="text"],
+    input[type="number"],
+    select {
+        border: none !important;
+        background-color: transparent !important;
+    }
+
+    /* Asegura que los campos de solo lectura no tengan bordes */
+    input[readonly] {
+        border: none !important;
+    }
+
+    /* Asegura que el color del texto sea visible para imprimir */
+    body {
+        color: #303030;
+    }
+
+    /* Asegura que la tabla no tenga un color de fondo oscuro */
+    .table-dark {
+        background-color: transparent !important;
+        color: #303030 !important;
+    }
+
+    /* Remueve la sombra de la tarjeta para una impresión más limpia */
+    .card {
+        box-shadow: none;
+    }
+
+    /* Oculta los encabezados de sección oscuros, si es necesario, o los hace más claros */
+    .bg-negro {
+        background-color: transparent !important;
+        color: #303030 !important;
+    }
+
+    /* Asegura que los íconos de la cruz se oculten */
+    .delete-row {
+        display: none !important;
+    }
+
+    /* Oculta la columna donde está el botón de borrar */
+    .delete-row:closest(td) {
+        display: none !important;
+    }
+}
