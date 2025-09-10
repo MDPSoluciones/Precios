@@ -27,7 +27,6 @@
             position: relative;
         }
 
-        /* switch arriba a la derecha */
         .switch-container {
             position: absolute;
             top: 20px;
@@ -154,6 +153,7 @@
         table td {
             padding: 10px;
             text-align: center;
+            border: 1px solid #ccc;
         }
 
         table th {
@@ -184,6 +184,32 @@
             border-radius: 10px;
             border: 1px solid #BEA167;
         }
+
+        /* --- TABLA DE TOTALES EN VISTA HTML --- */
+        #tabla_totales {
+            margin-left: auto;
+            margin-top: 20px;
+            border-collapse: collapse;
+            width: auto;
+            font-size: 1rem;
+        }
+
+        #tabla_totales td {
+            border: 1px solid #ccc;
+            padding: 8px 14px;
+        }
+
+        #tabla_totales tr:nth-child(1),
+        #tabla_totales tr:nth-child(2) {
+            background: #F5F1E8;
+            color: #303030;
+        }
+
+        #tabla_totales tr:last-child {
+            background: #BEA167;
+            color: white;
+            font-weight: bold;
+        }
     </style>
 </head>
 
@@ -206,6 +232,8 @@
             <h2>Datos de la Empresa</h2>
             <label>Nombre</label>
             <input type="text" id="empresa_nombre" value="AXENTIA" readonly>
+            <label>CUIT</label>
+            <input type="text" id="empresa_cuit" value="30-71902891-4" readonly>
             <label>Dirección</label>
             <input type="text" id="empresa_direccion" value="Sarmiento 24" readonly>
             <label>Email</label>
@@ -219,6 +247,8 @@
             <h2>Datos del Cliente</h2>
             <label>Nombre</label>
             <input type="text" id="cliente_nombre">
+            <label>CUIT</label>
+            <input type="text" id="cliente_cuit">
             <label>Dirección</label>
             <input type="text" id="cliente_direccion">
             <label>Email</label>
@@ -234,7 +264,6 @@
                 <option value="EUR">Euro (EUR)</option>
                 <option value="ARS">Peso Argentino (ARS)</option>
             </select>
-
             <label>Fecha</label>
             <input type="date" id="fecha">
             <label>Validez (días)</label>
@@ -255,6 +284,7 @@
         <input type="text" id="producto_desc" placeholder="Descripción">
         <input type="number" id="producto_cant" placeholder="Cantidad" min="1">
         <input type="number" id="producto_precio" placeholder="Precio unitario" min="0" step="0.01">
+        <input type="number" id="producto_iva" placeholder="IVA (%)" value="10.5" min="0" max="100">
         <button onclick="agregarProducto()">Agregar producto</button>
 
         <table id="tabla_productos">
@@ -262,20 +292,31 @@
                 <tr>
                     <th>Descripción</th>
                     <th>Cant</th>
-                    <th>Precio Unit.</th>
-                    <th>Subtotal</th>
+                    <th>Precio Base</th>
+                    <th>Sub-Tot Base</th>
+                    <th>IVA (%)</th>
+                    <th>Total IVA</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody></tbody>
         </table>
 
-        <label>Impuesto (%)</label>
-        <input type="number" id="impuesto" value="10.5" min="0" max="100"
-            onchange="actualizarTabla(document.getElementById('moneda').value)">
-        <h3>Total Neto: <span id="total">0</span> <span id="simbolo_moneda">USD</span></h3>
-        <h3>Impuesto: <span id="impuesto_total">0</span> <span id="simbolo_moneda">USD</span></h3>
-        <h2>Total Final: <span id="total_final">0</span> <span id="simbolo_moneda">USD</span></h2>
+        <!-- Totales en tabla -->
+        <table id="tabla_totales">
+            <tr>
+                <td>Total Neto:</td>
+                <td><span id="total">0</span> <span id="simbolo_moneda">USD</span></td>
+            </tr>
+            <tr>
+                <td>Total IVA:</td>
+                <td><span id="iva_total">0</span> <span id="simbolo_moneda">USD</span></td>
+            </tr>
+            <tr>
+                <td>Total Final:</td>
+                <td><span id="total_final">0</span> <span id="simbolo_moneda">USD</span></td>
+            </tr>
+        </table>
     </section>
 
     <div style="text-align:center;">
@@ -287,18 +328,20 @@
 
     <script>
         let productos = [];
-        let total = 0;
 
         function cambiarEmpresa() {
             const toggle = document.getElementById("empresa_toggle");
             const header = document.getElementById("header_nombre");
             const inputNombre = document.getElementById("empresa_nombre");
+            const inputCuit = document.getElementById("empresa_cuit");
             if (toggle.checked) {
                 header.innerText = "MDP SOLUCIONES";
                 inputNombre.value = "MDP SOLUCIONES";
+                inputCuit.value = "20-35023798-5";
             } else {
                 header.innerText = "AXENTIA";
                 inputNombre.value = "AXENTIA";
+                inputCuit.value = "30-71902891-4";
             }
         }
 
@@ -306,36 +349,40 @@
             const desc = document.getElementById("producto_desc").value;
             const cant = parseInt(document.getElementById("producto_cant").value);
             const precio = parseFloat(document.getElementById("producto_precio").value);
+            const ivaPorc = parseFloat(document.getElementById("producto_iva").value) || 0;
             const moneda = document.getElementById("moneda").value;
             if (!desc || isNaN(cant) || isNaN(precio)) return;
-            const subtotal = cant * precio;
-            productos.push({ desc, cant, precio, subtotal });
+            const subTotalBase = cant * precio;
+            const totalIVA = subTotalBase * ivaPorc / 100;
+            productos.push({ desc, cant, precio, subTotalBase, ivaPorc, totalIVA });
             actualizarTabla(moneda);
             document.getElementById("producto_desc").value = "";
             document.getElementById("producto_cant").value = "";
             document.getElementById("producto_precio").value = "";
+            document.getElementById("producto_iva").value = "10.5";
         }
 
         function actualizarTabla(moneda) {
             const tbody = document.querySelector("#tabla_productos tbody");
             tbody.innerHTML = "";
-            total = 0;
+            let total = 0, totalIVA = 0;
             productos.forEach((p, index) => {
-                total += p.subtotal;
+                total += p.subTotalBase;
+                totalIVA += p.totalIVA;
                 tbody.innerHTML += `
           <tr>
             <td>${p.desc}</td>
             <td>${p.cant}</td>
             <td>${p.precio.toFixed(2)} ${moneda}</td>
-            <td>${p.subtotal.toFixed(2)} ${moneda}</td>
+            <td>${p.subTotalBase.toFixed(2)} ${moneda}</td>
+            <td>${p.ivaPorc}%</td>
+            <td>${p.totalIVA.toFixed(2)} ${moneda}</td>
             <td><button class="btn-eliminar" onclick="eliminarProducto(${index})">🗑</button></td>
           </tr>`;
             });
-            const impuesto = parseFloat(document.getElementById("impuesto").value) || 0;
-            const impuestoTotal = (total * impuesto) / 100;
-            const totalFinal = total + impuestoTotal;
+            const totalFinal = total + totalIVA;
             document.getElementById("total").innerText = total.toFixed(2);
-            document.getElementById("impuesto_total").innerText = impuestoTotal.toFixed(2);
+            document.getElementById("iva_total").innerText = totalIVA.toFixed(2);
             document.getElementById("total_final").innerText = totalFinal.toFixed(2);
             document.querySelectorAll("#simbolo_moneda").forEach(el => el.innerText = moneda);
         }
@@ -345,15 +392,18 @@
             actualizarTabla(document.getElementById("moneda").value);
         }
 
+
         function generarPresupuesto() {
             const empresa = {
                 nombre: document.getElementById("empresa_nombre").value,
+                cuit: document.getElementById("empresa_cuit").value,
                 direccion: document.getElementById("empresa_direccion").value,
                 mail: document.getElementById("empresa_mail").value,
                 tel: document.getElementById("empresa_tel").value
             };
             const cliente = {
                 nombre: document.getElementById("cliente_nombre").value,
+                cuit: document.getElementById("cliente_cuit").value,
                 direccion: document.getElementById("cliente_direccion").value,
                 mail: document.getElementById("cliente_mail").value
             };
@@ -361,60 +411,85 @@
                 moneda: document.getElementById("moneda").value,
                 fecha: document.getElementById("fecha").value,
                 validez: document.getElementById("validez").value,
-                pago: document.getElementById("pago").value,
-                impuesto: document.getElementById("impuesto").value
+                pago: document.getElementById("pago").value
             };
 
-            if (!presupuesto.validez || presupuesto.validez < 1) {
-                alert("La validez del presupuesto debe ser al menos 1 día.");
+            if (presupuesto.validez < 1) {
+                alert("La validez no puede ser menor a 1 día");
                 return;
             }
 
-            let html = `<h2>Presupuesto</h2>`;
-            html += `<h3>Empresa</h3>
-               <p><strong>${empresa.nombre}</strong><br>
-               ${empresa.direccion}<br>
-               ${empresa.mail} - ${empresa.tel}</p>`;
-            html += `<h3>Cliente</h3>
-               <p><strong>${cliente.nombre}</strong><br>
-               ${cliente.direccion}<br>
-               ${cliente.mail}</p>`;
-            html += `<p><strong>Fecha:</strong> ${presupuesto.fecha}</p>
-               <p><strong>Validez:</strong> ${presupuesto.validez} días</p>
-               <p><strong>Impuesto:</strong> ${presupuesto.impuesto}%</p>
-               <p><strong>Forma de pago:</strong> ${presupuesto.pago}</p>`;
+            let html = `
+    <h2>Presupuesto</h2>
+    <p><b>Empresa:</b> ${empresa.nombre} (CUIT: ${empresa.cuit})<br>
+       ${empresa.direccion}<br>
+       ${empresa.mail} - ${empresa.tel}</p>
 
-            html += `<h3>Productos</h3>
-               <table border="1" cellspacing="0" cellpadding="5">
-                 <tr><th>Descripción</th><th>Cant</th><th>Precio</th><th>Subtotal</th></tr>`;
+    <p><b>Cliente:</b> ${cliente.nombre} (CUIT: ${cliente.cuit})<br>
+       ${cliente.direccion}<br>
+       ${cliente.mail}</p>
+
+    <p><b>Fecha:</b> ${presupuesto.fecha}<br>
+       <b>Validez:</b> ${presupuesto.validez} días<br>
+       <b>Forma de pago:</b> ${presupuesto.pago}</p>
+
+    <table border="1" cellpadding="5" cellspacing="0" width="100%">
+      <thead>
+        <tr>
+          <th>Descripción</th>
+          <th>Cant</th>
+          <th>Precio Base</th>
+          <th>Sub-Tot Base</th>
+          <th>IVA (%)</th>
+          <th>Total IVA</th>
+        </tr>
+      </thead>
+      <tbody>
+  `;
+
             productos.forEach(p => {
-                html += `<tr>
-                 <td>${p.desc}</td>
-                 <td>${p.cant}</td>
-                 <td>${p.precio.toFixed(2)} ${presupuesto.moneda}</td>
-                 <td>${p.subtotal.toFixed(2)} ${presupuesto.moneda}</td>
-               </tr>`;
+                html += `
+      <tr>
+        <td>${p.desc}</td>
+        <td>${p.cant}</td>
+        <td>${p.precio.toFixed(2)} ${presupuesto.moneda}</td>
+        <td>${p.subTotalBase.toFixed(2)} ${presupuesto.moneda}</td>
+        <td>${p.ivaPorc}%</td>
+        <td>${p.totalIVA.toFixed(2)} ${presupuesto.moneda}</td>
+      </tr>
+    `;
             });
-            html += `</table>`;
-            html += `<p><strong>Total Neto:</strong> ${total.toFixed(2)} ${presupuesto.moneda}</p>`;
-            html += `<p><strong>Impuesto:</strong> ${document.getElementById("impuesto_total").innerText} ${presupuesto.moneda}</p>`;
-            html += `<p><strong>Total Final:</strong> ${document.getElementById("total_final").innerText} ${presupuesto.moneda}</p>`;
+
+            html += `
+      </tbody>
+    </table>
+
+    <table id="tabla_totales">
+      <tr><td>Total Neto:</td><td>${document.getElementById("total").innerText} ${presupuesto.moneda}</td></tr>
+      <tr><td>Total IVA:</td><td>${document.getElementById("iva_total").innerText} ${presupuesto.moneda}</td></tr>
+      <tr><td>Total Final:</td><td>${document.getElementById("total_final").innerText} ${presupuesto.moneda}</td></tr>
+    </table>
+  `;
 
             document.getElementById("resultado").innerHTML = html;
         }
 
+
+        /* PDF igual que antes */
         function descargarPDF() {
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
-
+            const pageWidth = doc.internal.pageSize.width;
             const empresa = {
                 nombre: document.getElementById("empresa_nombre").value,
+                cuit: document.getElementById("empresa_cuit").value,
                 direccion: document.getElementById("empresa_direccion").value,
                 mail: document.getElementById("empresa_mail").value,
                 tel: document.getElementById("empresa_tel").value
             };
             const cliente = {
                 nombre: document.getElementById("cliente_nombre").value,
+                cuit: document.getElementById("cliente_cuit").value,
                 direccion: document.getElementById("cliente_direccion").value,
                 mail: document.getElementById("cliente_mail").value
             };
@@ -422,47 +497,70 @@
                 moneda: document.getElementById("moneda").value,
                 fecha: document.getElementById("fecha").value,
                 validez: document.getElementById("validez").value,
-                pago: document.getElementById("pago").value,
-                impuesto: document.getElementById("impuesto").value
+                pago: document.getElementById("pago").value
             };
 
             doc.setFontSize(18);
             doc.text("Presupuesto", 14, 20);
-
             doc.setFontSize(12);
             doc.text(`Empresa: ${empresa.nombre}`, 14, 30);
-            doc.text(`${empresa.direccion}`, 14, 36);
-            doc.text(`${empresa.mail} - ${empresa.tel}`, 14, 42);
+            doc.text(`CUIT: ${empresa.cuit}`, 14, 36);
+            doc.text(`${empresa.direccion}`, 14, 42);
+            doc.text(`${empresa.mail} - ${empresa.tel}`, 14, 48);
+            doc.text(`Cliente: ${cliente.nombre}`, 14, 58);
+            doc.text(`CUIT: ${cliente.cuit}`, 14, 64);
+            doc.text(`${cliente.direccion}`, 14, 70);
+            doc.text(`${cliente.mail}`, 14, 76);
+            doc.text(`Fecha: ${presupuesto.fecha}`, 14, 86);
+            doc.text(`Validez: ${presupuesto.validez} días`, 14, 92);
+            doc.text(`Forma de pago: ${presupuesto.pago}`, 14, 98);
 
-            doc.text(`Cliente: ${cliente.nombre}`, 14, 52);
-            doc.text(`${cliente.direccion}`, 14, 58);
-            doc.text(`${cliente.mail}`, 14, 64);
-
-            doc.text(`Fecha: ${presupuesto.fecha}`, 14, 74);
-            doc.text(`Validez: ${presupuesto.validez} días`, 14, 80);
-            doc.text(`Impuesto: ${presupuesto.impuesto}%`, 14, 86);
-            doc.text(`Forma de pago: ${presupuesto.pago}`, 14, 92);
-
-            // Tabla de productos
             const rows = productos.map(p => [
                 p.desc,
                 p.cant,
                 p.precio.toFixed(2) + " " + presupuesto.moneda,
-                p.subtotal.toFixed(2) + " " + presupuesto.moneda
+                p.subTotalBase.toFixed(2) + " " + presupuesto.moneda,
+                p.ivaPorc + "%",
+                p.totalIVA.toFixed(2) + " " + presupuesto.moneda
             ]);
             doc.autoTable({
-                startY: 95,
-                head: [["Descripción", "Cantidad", "Precio Unit.", "Subtotal"]],
+                startY: 110,
+                head: [["Descripción", "Cant", "Precio Base", "Sub-Tot Base", "IVA (%)", "Total IVA"]],
                 body: rows,
+                styles: { halign: "center" },
+                headStyles: { fillColor: [48, 48, 48], textColor: [245, 241, 232] }
             });
 
-            // Totales
-            let y = doc.lastAutoTable.finalY + 10;
-            doc.text(`Total Neto: ${total.toFixed(2)} ${presupuesto.moneda}`, 14, y);
-            y += 6;
-            doc.text(`Impuesto: ${document.getElementById("impuesto_total").innerText} ${presupuesto.moneda}`, 14, y);
-            y += 6;
-            doc.text(`Total Final: ${document.getElementById("total_final").innerText} ${presupuesto.moneda}`, 14, y);
+            let finalY = doc.lastAutoTable.finalY + 10;
+            const totalData = [
+                ["Total Neto:", `${document.getElementById("total").innerText} ${presupuesto.moneda}`],
+                ["Total IVA:", `${document.getElementById("iva_total").innerText} ${presupuesto.moneda}`],
+                ["Total Final:", `${document.getElementById("total_final").innerText} ${presupuesto.moneda}`]
+            ];
+            const col1Width = Math.max(...totalData.map(r => doc.getTextWidth(r[0]))) + 6;
+            const col2Width = Math.max(...totalData.map(r => doc.getTextWidth(r[1]))) + 6;
+            const tableWidth = col1Width + col2Width;
+            const marginLeft = pageWidth - tableWidth - 14;
+            doc.autoTable({
+                startY: finalY,
+                body: totalData,
+                theme: "grid",
+                styles: { halign: "right", fillColor: [245, 241, 232], textColor: [48, 48, 48] },
+                margin: { left: marginLeft },
+                tableWidth: "wrap",
+                columnStyles: {
+                    0: { halign: "right", cellWidth: col1Width },
+                    1: { halign: "right", cellWidth: col2Width }
+                },
+                head: [],
+                didParseCell: function (data) {
+                    if (data.row.index === 2) {
+                        data.cell.styles.fillColor = [190, 161, 103];
+                        data.cell.styles.textColor = 255;
+                        data.cell.styles.fontStyle = 'bold';
+                    }
+                }
+            });
 
             doc.save("presupuesto.pdf");
         }
