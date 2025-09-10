@@ -1,150 +1,472 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Generador de Presupuestos</title>
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presupuesto - AXENTIA</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #D9DAD4;
+            margin: 0;
+            padding: 0;
+            color: #303030;
+        }
 
-    <link rel="stylesheet" href="styles/app.css">
+        header {
+            background: #303030;
+            color: #F5F1E8;
+            padding: 20px;
+            text-align: center;
+            font-size: 2rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            position: relative;
+        }
 
-    <link rel="icon" type="image/png" href="images/presupuesto.png">
+        /* switch arriba a la derecha */
+        .switch-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: #F5F1E8;
+        }
 
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: 0.4s;
+            border-radius: 24px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: 0.4s;
+            border-radius: 50%;
+        }
+
+        input:checked+.slider {
+            background-color: #BEA167;
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(26px);
+        }
+
+        main {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        section {
+            background: #F5F1E8;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        section h2 {
+            margin-top: 0;
+            font-size: 1.2rem;
+            color: #BEA167;
+            border-bottom: 2px solid #BEA167;
+            padding-bottom: 5px;
+        }
+
+        label {
+            display: block;
+            margin-top: 12px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: #303030;
+        }
+
+        input,
+        select {
+            width: calc(100% - 16px);
+            padding: 10px;
+            margin: 6px 0 14px 0;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            background: #fff;
+            font-size: 0.95rem;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px 15px;
+            border: none;
+            background: #BEA167;
+            color: #303030;
+            font-size: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s ease;
+        }
+
+        button:hover {
+            background: #303030;
+            color: #F5F1E8;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 15px;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+        }
+
+        table th,
+        table td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        table th {
+            background: #303030;
+            color: #F5F1E8;
+        }
+
+        table tbody tr:nth-child(even) {
+            background: #f0f0f0;
+        }
+
+        .btn-eliminar {
+            background: none;
+            border: none;
+            color: #BEA167;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .btn-eliminar:hover {
+            color: #7a643e;
+        }
+
+        #resultado {
+            margin: 20px;
+            padding: 15px;
+            background: #F5F1E8;
+            border-radius: 10px;
+            border: 1px solid #BEA167;
+        }
+    </style>
 </head>
+
 <body>
-
-<div class="container my-5" id="contentToPrint">
-    <div class="row justify-content-center">
-        <div class="col-lg-10">
-            <div class="card p-4">
-                <div class="text-center mb-4">
-                    <h1>AXENTIA</h1>
-                    <p class="text-muted">Generación de presupuestos.</p>
-                </div>
-
-                <div class="row mb-3">
-                    <div class="col-sm-3">
-                        <div class="bg-negro">Empresa</div>
-                        <input type="text" class="form-control mb-1" id="empresa" placeholder="Nombre empresa *" value="AXENTIA" required readonly>
-                        <input type="text" class="form-control mb-1" id="dempresa" placeholder="Dirección empresa" value="Sarmiento 24" readonly>
-                        <input type="text" class="form-control mb-1" id="mejecutivo" placeholder="Mail ejecutivo *" value="adm.axentia@gmail.com" required readonly>
-                        <input type="text" class="form-control mb-1" id="tejecutivo" placeholder="Teléfono" value="+54 9 3364 24-9663" required readonly>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="bg-negro">Información del Cliente</div>
-                        <input type="text" class="form-control mb-1" id="nombreCliente" placeholder="Nombre cliente *"  required>
-                        <input type="text" class="form-control mb-1" id="direccionCliente" placeholder="Dirección cliente">
-                        <input type="text" class="form-control mb-1" id="mailcliente" placeholder="Mail cliente">
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="bg-negro">Información del Presupuesto</div>
-                        <div class="row mb-1">
-                            <label class="col-6 col-form-label">Número</label>
-                            <div class="col-6"><input type="text" class="form-control" placeholder="Ej: 001"></div>
-                        </div>
-                        <div class="row mb-1">
-                            <label class="col-6 col-form-label">Tipo de moneda</label>
-                            <div class="col-6">
-                                <select class="form-select" id="tipomoneda">
-                                    <option value="">-- Selecciona --</option>
-                                    <option value="USD" selected>Dólar (USD)</option>
-                                    <option value="ARS">Peso Argentino (ARS)</option>
-                                    <option value="EUR">Euro (EUR)</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row mb-1">
-                            <label class="col-6 col-form-label">Fecha</label>
-                            <div class="col-6"><input type="date" class="form-control" value="2025-08-29"></div>
-                        </div>
-                        <div class="row mb-1">
-                            <label class="col-6 col-form-label">Validez (días)</label>
-                            <div class="col-6"><input type="number" class="form-control" id="validez" value="3" min="1" required></div>
-                        </div>
-                        <div class="row mb-1">
-                            <label class="col-6 col-form-label">Forma de pago</label>
-                            <div class="col-6">
-                                <select class="form-select" id="formapago">
-                                    <option value="">-- Selecciona --</option>
-                                    <option value="Efectivo" selected>Efectivo</option>
-                                    <option value="Cuenta Corriente">Cuenta Corriente</option>
-                                    <option value="Transferencia">Transferencia</option>
-                                    <option value="Cheque">Cheque</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-12">
-                        <table class="table table-hover">
-                            <thead class="table-dark">
-                                <tr>
-                                    <th>Ítems</th>
-                                    <th style="width: 100px">Cantidad</th>
-                                    <th style="width: 150px">Precio</th>
-                                    <th style="width: 150px">Total</th>
-                                    <th style="width: 35px"></th>
-                                </tr>
-                            </thead>
-                            <tbody id="items_table_body">
-                                <tr class="item-row" data-id="1">
-                                    <td><input type="text" class="form-control item-name" placeholder="Ítem"></td>
-                                    <td><input type="number" class="form-control item-qty" placeholder="Cant." min="0"></td>
-                                    <td><input type="number" class="form-control item-price" placeholder="Precio" min="0"></td>
-                                    <td><input type="number" class="form-control item-total" placeholder="Total" readonly></td>
-                                    <td class="text-center" style="padding: 14px;"><a href="#" class="delete-row"><i class="bi bi-x-circle"></i></a></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <button type="button" id="add_row" class="btn btn-success"><i class="bi bi-plus-circle"></i> Añadir artículo</button>
-                    </div>
-                </div>
-                
-                <div class="row mt-3 mb-3 justify-content-end">
-                    <div class="col-sm-4">
-                        <table class="table">
-                            <thead class="table-dark">
-                                <tr><th colspan="2" class="text-center">Totales</th></tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="col-6 text-end">Subtotal</td>
-                                    <td class="col-6"><input type="number" class="form-control" id="subtotal" readonly></td>
-                                </tr>
-                                <tr>
-                                    <td class="col-6 text-end">Impuesto (%)</td>
-                                    <td class="col-6"><input type="number" class="form-control" id="tax" value="10.5" min="0" max="100"></td>
-                                </tr>
-                                <tr>
-                                    <td class="col-6 text-end">Total Final</td>
-                                    <td class="col-6"><input type="number" class="form-control" id="finalTotal" readonly></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                
-                <div class="row justify-content-center mt-4">
-                    <div class="col-sm-6 text-center">
-                        <button id="downloadPdf" class="btn btn-primary btn-lg">Descargar PDF</button>
-                    </div>
-                </div>
-
-            </div>
+    <header>
+        <span id="header_nombre">AXENTIA</span>
+        <div class="switch-container">
+            <span>AX</span>
+            <label class="switch">
+                <input type="checkbox" id="empresa_toggle" onchange="cambiarEmpresa()">
+                <span class="slider"></span>
+            </label>
+            <span>MDP</span>
         </div>
+    </header>
+
+    <main>
+        <!-- Empresa -->
+        <section>
+            <h2>Datos de la Empresa</h2>
+            <label>Nombre</label>
+            <input type="text" id="empresa_nombre" value="AXENTIA" readonly>
+            <label>Dirección</label>
+            <input type="text" id="empresa_direccion" value="Sarmiento 24" readonly>
+            <label>Email</label>
+            <input type="email" id="empresa_mail" value="adm.axentia@gmail.com " readonly>
+            <label>Teléfono</label>
+            <input type="text" id="empresa_tel" value="+54 9 3364 24-9663" readonly>
+        </section>
+
+        <!-- Cliente -->
+        <section>
+            <h2>Datos del Cliente</h2>
+            <label>Nombre</label>
+            <input type="text" id="cliente_nombre">
+            <label>Dirección</label>
+            <input type="text" id="cliente_direccion">
+            <label>Email</label>
+            <input type="email" id="cliente_mail">
+        </section>
+
+        <!-- Presupuesto -->
+        <section>
+            <h2>Datos del Presupuesto</h2>
+            <label>Moneda</label>
+            <select id="moneda" onchange="actualizarTabla(this.value)">
+                <option value="USD">Dólar (USD)</option>
+                <option value="EUR">Euro (EUR)</option>
+                <option value="ARS">Peso Argentino (ARS)</option>
+            </select>
+
+            <label>Fecha</label>
+            <input type="date" id="fecha">
+            <label>Validez (días)</label>
+            <input type="number" id="validez" min="1" placeholder="Ej: 30">
+            <label>Forma de pago</label>
+            <select id="pago">
+                <option>Efectivo</option>
+                <option>Cuenta Corriente</option>
+                <option>Transferencia</option>
+                <option>Cheque</option>
+            </select>
+        </section>
+    </main>
+
+    <!-- Productos -->
+    <section style="margin:20px;">
+        <h2>Productos</h2>
+        <input type="text" id="producto_desc" placeholder="Descripción">
+        <input type="number" id="producto_cant" placeholder="Cantidad" min="1">
+        <input type="number" id="producto_precio" placeholder="Precio unitario" min="0" step="0.01">
+        <button onclick="agregarProducto()">Agregar producto</button>
+
+        <table id="tabla_productos">
+            <thead>
+                <tr>
+                    <th>Descripción</th>
+                    <th>Cant</th>
+                    <th>Precio Unit.</th>
+                    <th>Subtotal</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+        <label>Impuesto (%)</label>
+        <input type="number" id="impuesto" value="10.5" min="0" max="100"
+            onchange="actualizarTabla(document.getElementById('moneda').value)">
+        <h3>Total Neto: <span id="total">0</span> <span id="simbolo_moneda">USD</span></h3>
+        <h3>Impuesto: <span id="impuesto_total">0</span> <span id="simbolo_moneda">USD</span></h3>
+        <h2>Total Final: <span id="total_final">0</span> <span id="simbolo_moneda">USD</span></h2>
+    </section>
+
+    <div style="text-align:center;">
+        <button onclick="generarPresupuesto()">Generar Presupuesto</button>
+        <button onclick="descargarPDF()">Descargar PDF</button>
     </div>
-</div>
 
-<script src="scripts/app_presupuesto.js"></script>
+    <div id="resultado"></div>
 
+    <script>
+        let productos = [];
+        let total = 0;
+
+        function cambiarEmpresa() {
+            const toggle = document.getElementById("empresa_toggle");
+            const header = document.getElementById("header_nombre");
+            const inputNombre = document.getElementById("empresa_nombre");
+            if (toggle.checked) {
+                header.innerText = "MDP SOLUCIONES";
+                inputNombre.value = "MDP SOLUCIONES";
+            } else {
+                header.innerText = "AXENTIA";
+                inputNombre.value = "AXENTIA";
+            }
+        }
+
+        function agregarProducto() {
+            const desc = document.getElementById("producto_desc").value;
+            const cant = parseInt(document.getElementById("producto_cant").value);
+            const precio = parseFloat(document.getElementById("producto_precio").value);
+            const moneda = document.getElementById("moneda").value;
+            if (!desc || isNaN(cant) || isNaN(precio)) return;
+            const subtotal = cant * precio;
+            productos.push({ desc, cant, precio, subtotal });
+            actualizarTabla(moneda);
+            document.getElementById("producto_desc").value = "";
+            document.getElementById("producto_cant").value = "";
+            document.getElementById("producto_precio").value = "";
+        }
+
+        function actualizarTabla(moneda) {
+            const tbody = document.querySelector("#tabla_productos tbody");
+            tbody.innerHTML = "";
+            total = 0;
+            productos.forEach((p, index) => {
+                total += p.subtotal;
+                tbody.innerHTML += `
+          <tr>
+            <td>${p.desc}</td>
+            <td>${p.cant}</td>
+            <td>${p.precio.toFixed(2)} ${moneda}</td>
+            <td>${p.subtotal.toFixed(2)} ${moneda}</td>
+            <td><button class="btn-eliminar" onclick="eliminarProducto(${index})">🗑</button></td>
+          </tr>`;
+            });
+            const impuesto = parseFloat(document.getElementById("impuesto").value) || 0;
+            const impuestoTotal = (total * impuesto) / 100;
+            const totalFinal = total + impuestoTotal;
+            document.getElementById("total").innerText = total.toFixed(2);
+            document.getElementById("impuesto_total").innerText = impuestoTotal.toFixed(2);
+            document.getElementById("total_final").innerText = totalFinal.toFixed(2);
+            document.querySelectorAll("#simbolo_moneda").forEach(el => el.innerText = moneda);
+        }
+
+        function eliminarProducto(i) {
+            productos.splice(i, 1);
+            actualizarTabla(document.getElementById("moneda").value);
+        }
+
+        function generarPresupuesto() {
+            const empresa = {
+                nombre: document.getElementById("empresa_nombre").value,
+                direccion: document.getElementById("empresa_direccion").value,
+                mail: document.getElementById("empresa_mail").value,
+                tel: document.getElementById("empresa_tel").value
+            };
+            const cliente = {
+                nombre: document.getElementById("cliente_nombre").value,
+                direccion: document.getElementById("cliente_direccion").value,
+                mail: document.getElementById("cliente_mail").value
+            };
+            const presupuesto = {
+                moneda: document.getElementById("moneda").value,
+                fecha: document.getElementById("fecha").value,
+                validez: document.getElementById("validez").value,
+                pago: document.getElementById("pago").value,
+                impuesto: document.getElementById("impuesto").value
+            };
+
+            if (!presupuesto.validez || presupuesto.validez < 1) {
+                alert("La validez del presupuesto debe ser al menos 1 día.");
+                return;
+            }
+
+            let html = `<h2>Presupuesto</h2>`;
+            html += `<h3>Empresa</h3>
+               <p><strong>${empresa.nombre}</strong><br>
+               ${empresa.direccion}<br>
+               ${empresa.mail} - ${empresa.tel}</p>`;
+            html += `<h3>Cliente</h3>
+               <p><strong>${cliente.nombre}</strong><br>
+               ${cliente.direccion}<br>
+               ${cliente.mail}</p>`;
+            html += `<p><strong>Fecha:</strong> ${presupuesto.fecha}</p>
+               <p><strong>Validez:</strong> ${presupuesto.validez} días</p>
+               <p><strong>Impuesto:</strong> ${presupuesto.impuesto}%</p>
+               <p><strong>Forma de pago:</strong> ${presupuesto.pago}</p>`;
+
+            html += `<h3>Productos</h3>
+               <table border="1" cellspacing="0" cellpadding="5">
+                 <tr><th>Descripción</th><th>Cant</th><th>Precio</th><th>Subtotal</th></tr>`;
+            productos.forEach(p => {
+                html += `<tr>
+                 <td>${p.desc}</td>
+                 <td>${p.cant}</td>
+                 <td>${p.precio.toFixed(2)} ${presupuesto.moneda}</td>
+                 <td>${p.subtotal.toFixed(2)} ${presupuesto.moneda}</td>
+               </tr>`;
+            });
+            html += `</table>`;
+            html += `<p><strong>Total Neto:</strong> ${total.toFixed(2)} ${presupuesto.moneda}</p>`;
+            html += `<p><strong>Impuesto:</strong> ${document.getElementById("impuesto_total").innerText} ${presupuesto.moneda}</p>`;
+            html += `<p><strong>Total Final:</strong> ${document.getElementById("total_final").innerText} ${presupuesto.moneda}</p>`;
+
+            document.getElementById("resultado").innerHTML = html;
+        }
+
+        function descargarPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            const empresa = {
+                nombre: document.getElementById("empresa_nombre").value,
+                direccion: document.getElementById("empresa_direccion").value,
+                mail: document.getElementById("empresa_mail").value,
+                tel: document.getElementById("empresa_tel").value
+            };
+            const cliente = {
+                nombre: document.getElementById("cliente_nombre").value,
+                direccion: document.getElementById("cliente_direccion").value,
+                mail: document.getElementById("cliente_mail").value
+            };
+            const presupuesto = {
+                moneda: document.getElementById("moneda").value,
+                fecha: document.getElementById("fecha").value,
+                validez: document.getElementById("validez").value,
+                pago: document.getElementById("pago").value,
+                impuesto: document.getElementById("impuesto").value
+            };
+
+            doc.setFontSize(18);
+            doc.text("Presupuesto", 14, 20);
+
+            doc.setFontSize(12);
+            doc.text(`Empresa: ${empresa.nombre}`, 14, 30);
+            doc.text(`${empresa.direccion}`, 14, 36);
+            doc.text(`${empresa.mail} - ${empresa.tel}`, 14, 42);
+
+            doc.text(`Cliente: ${cliente.nombre}`, 14, 52);
+            doc.text(`${cliente.direccion}`, 14, 58);
+            doc.text(`${cliente.mail}`, 14, 64);
+
+            doc.text(`Fecha: ${presupuesto.fecha}`, 14, 74);
+            doc.text(`Validez: ${presupuesto.validez} días`, 14, 80);
+            doc.text(`Impuesto: ${presupuesto.impuesto}%`, 14, 86);
+            doc.text(`Forma de pago: ${presupuesto.pago}`, 14, 92);
+
+            // Tabla de productos
+            const rows = productos.map(p => [
+                p.desc,
+                p.cant,
+                p.precio.toFixed(2) + " " + presupuesto.moneda,
+                p.subtotal.toFixed(2) + " " + presupuesto.moneda
+            ]);
+            doc.autoTable({
+                startY: 95,
+                head: [["Descripción", "Cantidad", "Precio Unit.", "Subtotal"]],
+                body: rows,
+            });
+
+            // Totales
+            let y = doc.lastAutoTable.finalY + 10;
+            doc.text(`Total Neto: ${total.toFixed(2)} ${presupuesto.moneda}`, 14, y);
+            y += 6;
+            doc.text(`Impuesto: ${document.getElementById("impuesto_total").innerText} ${presupuesto.moneda}`, 14, y);
+            y += 6;
+            doc.text(`Total Final: ${document.getElementById("total_final").innerText} ${presupuesto.moneda}`, 14, y);
+
+            doc.save("presupuesto.pdf");
+        }
+    </script>
 </body>
+
 </html>
