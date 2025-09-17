@@ -36,12 +36,20 @@ header {
     align-items: center;
     justify-content: center;
     gap: 20px;
+    overflow: hidden;
+    width: 100%;
+    height: 200px;
+    /* Oculta la parte de la imagen que sobresale */
+
 }
 
 /* Estilo para el logo */
 .logo {
-    max-width: 100px;
-    height: auto;
+    width: 100%;
+    height: 100%;
+    object-fit: scale-down;
+
+    /* Centra el recorte en la imagen */
 }
 
 .pricing h1 {
