@@ -124,8 +124,17 @@ async function loadGoogleSheetData() {
                             if (nameComp !== 0) return nameComp;
                         }
 
-                        const prio = text =>
-                            /64\s*gb/i.test(text) ? 0 : /128\s*gb/i.test(text) ? 1 : 2;
+                        /* const prio = text =>
+                            /64\s*gb/i.test(text) ? 0 : /128\s*gb/i.test(text) ? 1 : 2; */
+
+                        // Nueva prioridad: 512 > 256 > 128 > 64
+                        const prio = (text) => {
+                            if (/512\s*gb/i.test(text)) return 0;
+                            if (/256\s*gb/i.test(text)) return 1;
+                            if (/128\s*gb/i.test(text)) return 2;
+                            if (/64\s*gb/i.test(text)) return 3;
+                            return 4; // si no coincide con nada, va al final
+                        };
 
                         const prioA = prio(a.descripcion), prioB = prio(b.descripcion);
                         return prioA !== prioB ? prioA - prioB : a.descripcion.localeCompare(b.descripcion);
