@@ -111,10 +111,10 @@ async function loadGoogleSheetData() {
 
                     // 🔢 Ordenar productos alfabéticamente y por prioridad (GB)
                     productos.sort((a, b) => {
-                        /* const nameComp = a.producto.localeCompare(b.producto);
-                        if (nameComp !== 0) return nameComp; */
+                        const nameComp = a.producto.localeCompare(b.producto);
+                        if (nameComp !== 0) return nameComp;
 
-                        if (condicion === "Apple Nuevos" || condicion === "Apple Usados") {
+                        /* if (condicion === "Apple Nuevos" || condicion === "Apple Usados") {
                             // Orden descendente Z → A
                             const nameComp = b.producto.localeCompare(a.producto);
                             if (nameComp !== 0) return nameComp;
@@ -122,7 +122,7 @@ async function loadGoogleSheetData() {
                             // Orden ascendente A → Z
                             const nameComp = a.producto.localeCompare(b.producto);
                             if (nameComp !== 0) return nameComp;
-                        }
+                        } */
 
                         /* const prio = text =>
                             /64\s*gb/i.test(text) ? 0 : /128\s*gb/i.test(text) ? 1 : 2; */
