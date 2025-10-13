@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,137 +28,150 @@
         }
 
         .container {
-        max-width: 400px;
-        background-color: white;
-        padding: 20px 30px;
-        border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        margin-left: auto;
-        margin-right: 40px; /* margen derecho si querés más separación */
-    }
+            max-width: 400px;
+            background-color: white;
+            padding: 20px 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-left: auto;
+            margin-right: 40px;
+            /* margen derecho si querés más separación */
+        }
 
-    h2 {
-        margin-top: 0;
-        
-    }
+        h2 {
+            margin-top: 0;
 
-    input[type="text"],
-    input[type="password"] {
-        width: 30%;
-        padding: 10px;
-        margin: 10px 0 15px;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        box-sizing: border-box;
-    }
+        }
 
-    button {
-        width: 50%;
-        padding: 10px;
-        background-color: #edece8;
-        color: rgb(0, 0, 0);
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        font-size: 16px;
-    }
+        input[type="text"],
+        input[type="password"] {
+            width: 30%;
+            padding: 10px;
+            margin: 10px 0 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
 
-    button:hover {
-        background-color: #0056b3;
-    }
+        button {
+            width: 50%;
+            padding: 10px;
+            background-color: #edece8;
+            color: rgb(0, 0, 0);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
 
-    p#error {
-        margin-top: 10px;
-        color: red;
-        
-        width: 50%;
-        padding: 10px;
-        margin: 10px 0 15px;
-        
-        border-radius: 8px;
-        box-sizing: border-box;
-    }
+        button:hover {
+            background-color: #0056b3;
+        }
 
-    iframe {
-        width: 100%;
-        height: 600px;
-        border: none;
-        margin-top: 20px;
-    }
+        p#error {
+            margin-top: 10px;
+            color: red;
 
-    /* Extra: centrar verticalmente si querés */
-    body, html {
-        height: 100%;
-    }
+            width: 50%;
+            padding: 10px;
+            margin: 10px 0 15px;
 
-    /* Estilo general del modal */
-    .modal {
-    display: none; /* Oculto por defecto */
-    position: fixed;
-    z-index: 999;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4); /* fondo semitransparente */
-    }
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
 
-    /* Contenido del modal */
-    .modal-content {
-    background-color: #fff;
-    margin: 10% auto;
-    padding: 20px;
-    border-radius: 10px;
-    width: 300px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    position: relative;
-    }
+        iframe {
+            width: 100%;
+            height: 600px;
+            border: none;
+            margin-top: 20px;
+        }
 
-    /* Botón de cerrar (X) */
-    .close {
-    position: absolute;
-    top: 10px;
-    right: 14px;
-    font-size: 22px;
-    font-weight: bold;
-    color: #aaa;
-    cursor: pointer;
-    }
+        /* Extra: centrar verticalmente si querés */
+        body,
+        html {
+            height: 100%;
+        }
 
-    .close:hover {
-    color: #ff0000;
-    }
+        /* Estilo general del modal */
+        .modal {
+            display: none;
+            /* Oculto por defecto */
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+            /* fondo semitransparente */
+        }
 
-    /* Inputs y select */
-    .modal-content input,
-    .modal-content select {
-    width: 100%;
-    margin: 10px 0;
-    padding: 8px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-    }
+        /* Contenido del modal */
+        .modal-content {
+            background-color: #fff;
+            margin: 10% auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
 
+        /* Botón de cerrar (X) */
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 14px;
+            font-size: 22px;
+            font-weight: bold;
+            color: #aaa;
+            cursor: pointer;
+        }
 
+        .close:hover {
+            color: #ff0000;
+        }
 
+        /* Inputs y select */
+        .modal-content input,
+        .modal-content select {
+            width: 100%;
+            margin: 10px 0;
+            padding: 8px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
 
+        /* Contenedor del logo */
+        .logo-container-2 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            overflow: visible;
+            width: 100%;
+            height: 200px;
+            flex-direction: column;
+            /* Oculta la parte de la imagen que sobresale */
 
+        }
     </style>
 
 </head>
+
 <body class="caja">
     <header>
-        <div class="logo-container">
-            <img src="images/logoNew.png" alt="Logo de la empresa" class="logo">
+        <div class="logo-container-2">
+            <img src="images/LogoPrincDor.png" alt="Logo de la empresa" class="logo">
             <div class="title-container">
-                <h1>MDP SOLUCIONES</h1>
                 <h2>CARGA DE CAJA</h2>
             </div>
         </div>
     </header>
-    
+
 
     <!-- Formulario de login -->
     <div id="login-form" align="center">
@@ -173,46 +187,49 @@
         <div id="user-info2" align="right" style="margin-right: 20px; margin-top: 20px;">
             <p style="color: white; font-weight: bold;" id="user-info"></p>
             <!-- Botón para abrir el popup -->
-            <button onclick="openCalculator()" style="margin-top: 20px; width: 250px;">Calcular Cuenta Recaudadora</button>
+            <button onclick="openCalculator()" style="margin-top: 20px; width: 250px;">Calcular Cuenta
+                Recaudadora</button>
 
             <!-- Botón para cerrar sesión -->
-            <button onclick="logout()" style="width: 130px;" >Cerrar sesión</button>
-            
+            <button onclick="logout()" style="width: 130px;">Cerrar sesión</button>
+
 
 
             <!-- Modal flotante de la calculadora -->
             <div id="calculator-modal" class="modal">
-            <div class="modal-content">
-                <span class="close" onclick="closeCalculator()">&times;</span>
-                <h3>Calcular Cuenta Recaudadora</h3>
-                <input type="number" id="num1" placeholder="Valor en Pesos Transferencia" />
-                <input type="number" id="num2" placeholder="Cotizacion Cuenta Recaudadora" />
-                <!-- <select id="operation">
+                <div class="modal-content">
+                    <span class="close" onclick="closeCalculator()">&times;</span>
+                    <h3>Calcular Cuenta Recaudadora</h3>
+                    <input type="number" id="num1" placeholder="Valor en Pesos Transferencia" />
+                    <input type="number" id="num2" placeholder="Cotizacion Cuenta Recaudadora" />
+                    <!-- <select id="operation">
                 <option value="sumar">Sumar</option>
                 <option value="restar">Restar</option>
                 <option value="multiplicar">Multiplicar</option>
                 <option value="dividir">Dividir</option>
                 </select> -->
-                <button onclick="calcular()">Calcular</button>
-                <p id="resultado" style="margin-top: 10px; font-weight: bold;"></p>
-                <p id="clipboard" style="margin-top: 10px; "></p>
-            </div>
+                    <button onclick="calcular()">Calcular</button>
+                    <p id="resultado" style="margin-top: 10px; font-weight: bold;"></p>
+                    <p id="clipboard" style="margin-top: 10px; "></p>
+                </div>
             </div>
 
 
         </div>
-                <!-- Reemplazá la URL del iframe con el enlace de tu formulario de Google Forms -->
-        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfQ-0chI034ZnOfl-1vfMuaDzcoLhc83z8lJRKefEUZHDylww/viewform?embedded=true" width="640" height="1984" frameborder="0" marginheight="0" marginwidth="0" >Cargando…</iframe>
+        <!-- Reemplazá la URL del iframe con el enlace de tu formulario de Google Forms -->
+        <iframe
+            src="https://docs.google.com/forms/d/e/1FAIpQLSfQ-0chI034ZnOfl-1vfMuaDzcoLhc83z8lJRKefEUZHDylww/viewform?embedded=true"
+            width="640" height="1984" frameborder="0" marginheight="0" marginwidth="0">Cargando…</iframe>
     </div>
 
 
-    
+
     <!-- Contenedor de productos
     <section align="center">
         <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfQ-0chI034ZnOfl-1vfMuaDzcoLhc83z8lJRKefEUZHDylww/viewform?embedded=true" width="640" height="1833" frameborder="0" marginheight="0" marginwidth="0" >Cargando…</iframe>
     </section> -->
 
-    
+
 
     <!-- Librerías JS externas -->
     <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
@@ -224,4 +241,5 @@
     <script src="scripts/script_caja.js"></script>
 
 </body>
+
 </html>
