@@ -203,11 +203,11 @@
         <section>
             <h2>Datos de la Empresa</h2>
             <label>Nombre</label>
-            <input type="text" id="empresa_nombre" value="AXENTIA" readonly>
+            <input type="text" id="empresa_nombre" value="AXENTIA S.R.L." readonly>
             <label>CUIT</label>
             <input type="text" id="empresa_cuit" value="30-71902891-4" readonly>
             <label>Dirección</label>
-            <input type="text" id="empresa_direccion" value="Sarmiento 24" readonly>
+            <input type="text" id="empresa_direccion" value="Marinero Sosa 854" readonly>
             <label>Email</label>
             <input type="email" id="empresa_mail" value="adm.axentia@gmail.com" readonly>
             <label>Teléfono</label>
@@ -232,18 +232,18 @@
             <h2>Datos del Presupuesto</h2>
             <label>Moneda</label>
             <select id="moneda" onchange="actualizarTabla(this.value)">
+                <option value="ARS">ARS</option>
                 <option value="USD">USD</option>
                 <option value="EUR">EUR</option>
-                <option value="ARS">ARS</option>
             </select>
             <label>Fecha</label>
             <input type="date" id="fecha">
             <label>Validez (días)</label>
-            <input type="number" id="validez" min="1" placeholder="Ej: 30">
+            <input type="number" id="validez" min="1" placeholder="Ej: 30" value="5">
             <label>Forma de pago</label>
             <select id="pago">
-                <option>Efectivo</option>
                 <option>Cuenta Corriente</option>
+                <option>Efectivo</option>
                 <option>Transferencia</option>
                 <option>Cheque</option>
             </select>
@@ -306,7 +306,7 @@
                 document.getElementById("empresa_cuit").value = "20-35023798-5";
             } else {
                 document.getElementById("header_nombre").innerText = "AXENTIA";
-                document.getElementById("empresa_nombre").value = "AXENTIA";
+                document.getElementById("empresa_nombre").value = "AXENTIA S.R.L.";
                 document.getElementById("empresa_cuit").value = "30-71902891-4";
             }
         }
@@ -325,7 +325,7 @@
             document.getElementById("producto_desc").value = "";
             document.getElementById("producto_cant").value = "";
             document.getElementById("producto_precio").value = "";
-            document.getElementById("producto_iva").value = "10.5";
+            document.getElementById("producto_iva").value = "21";
         }
 
         function actualizarTabla(moneda) {
