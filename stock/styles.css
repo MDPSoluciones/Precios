@@ -1,0 +1,50 @@
+
+:root{
+  --dark: #303030;
+  --muted: #D9DAD4;
+  --accent: #BEA167;
+  --panel: #F5F1E8;
+}
+
+body {
+  background: var(--muted);
+  color: var(--dark);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+.navbar-custom {
+  background: var(--dark);
+}
+
+.navbar-custom .navbar-brand, .navbar-custom .navbar-text, .navbar-custom .btn {
+  color: var(--panel) !important;
+}
+
+.card-custom {
+  background: var(--panel);
+  border: 1px solid rgba(48,48,48,0.06);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.btn-accent {
+  background: var(--accent);
+  color: var(--dark);
+  border: none;
+}
+
+.btn-accent:hover {
+  opacity: 0.9;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: rgba(190,161,103,0.05);
+}
+
+.form-control {
+  border-radius: 6px;
+}
+
+a { color: var(--dark); }
+a:hover { color: var(--accent); }
+.container { max-width: 1100px; }
