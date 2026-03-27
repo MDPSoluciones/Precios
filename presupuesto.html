@@ -296,7 +296,24 @@
 
     <script>
         let productos = [];
-        let historial = JSON.parse(localStorage.getItem("historialPresupuestos") || "[]");
+        let historial = [];
+
+        function cargarHistorial() {
+            fetch("obtener_historial.php")
+                .then(res => res.json())
+                .then(data => {
+                    historial = data;
+                    mostrarHistorial();
+                });
+        }
+
+        cargarHistorial();
+        function formatearNumero(num) {
+            return Number(num).toLocaleString("es-AR", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+        }
 
         function cambiarEmpresa() {
             const toggle = document.getElementById("empresa_toggle");
@@ -338,16 +355,16 @@
                 total += p.subTotalBase; totalIVA += p.totalIVA;
                 tbody.innerHTML += `
       <tr>
-        <td>${p.desc}</td><td>${p.cant}</td><td>${p.precio.toFixed(2)} ${moneda}</td>
-        <td>${p.subTotalBase.toFixed(2)} ${moneda}</td>
-        <td>${p.ivaPorc}%</td><td>${p.totalIVA.toFixed(2)} ${moneda}</td>
+        <td>${p.desc}</td><td>${p.cant}</td><td>${formatearNumero(p.precio)} ${moneda}</td>
+        <td>${formatearNumero(p.subTotalBase)} ${moneda}</td>
+        <td>${p.ivaPorc}%</td><td>${formatearNumero(p.totalIVA)} ${moneda}</td>
         <td><button onclick="eliminarProducto(${i})">🗑</button></td>
       </tr>`;
             });
             const totalFinal = total + totalIVA;
-            document.getElementById("total").innerText = total.toFixed(2);
-            document.getElementById("iva_total").innerText = totalIVA.toFixed(2);
-            document.getElementById("total_final").innerText = totalFinal.toFixed(2);
+            document.getElementById("total").innerText = formatearNumero(total);
+            document.getElementById("iva_total").innerText = formatearNumero(totalIVA);
+            document.getElementById("total_final").innerText = formatearNumero(totalFinal);
             document.querySelectorAll("#simbolo_moneda").forEach(el => el.innerText = moneda);
         }
 
@@ -375,6 +392,24 @@
                 }
             };
             historial.push({ empresa, cliente, presupuesto });
+
+            fetch("guardar_presupuesto.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ empresa, cliente, presupuesto })
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log("Guardado en servidor:", data);
+                })
+                .catch(err => {
+                    console.error("Error al guardar:", err);
+                });
+
+
+
             localStorage.setItem("historialPresupuestos", JSON.stringify(historial));
             mostrarHistorial();
             verPresupuesto(historial.length - 1);
@@ -435,8 +470,8 @@
                 startY: 100,
                 head: [["Descripción", "Cant", "Precio Base", "Sub-Tot Base", "IVA (%)", "Total IVA"]],
                 body: presupuesto.productos.map(p => [
-                    p.desc, p.cant, p.precio.toFixed(2), p.subTotalBase.toFixed(2),
-                    p.ivaPorc + "%", p.totalIVA.toFixed(2)
+                    p.desc, p.cant, formatearNumero(p.precio) + " " + presupuesto.moneda, formatearNumero(p.subTotalBase) + " " + presupuesto.moneda,
+                    p.ivaPorc + "%", formatearNumero(p.totalIVA) + " " + presupuesto.moneda
                 ]),
                 theme: "grid",
                 headStyles: { fillColor: [48, 48, 48], textColor: [245, 241, 232] },
