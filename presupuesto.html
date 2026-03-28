@@ -303,6 +303,7 @@
         let productos = [];
         let historial = [];
         let clientesGuardados = [];
+        let ultimoPresupuesto = null;
 
         function cargarClientes() {
             fetch("obtener_clientes.php")
@@ -427,7 +428,7 @@
                 }
             };
             guardarClienteServidor(cliente);
-            historial.push({ empresa, cliente, presupuesto });
+            //historial.push({ empresa, cliente, presupuesto });
 
             fetch("guardar_presupuesto.php", {
                 method: "POST",
@@ -438,7 +439,19 @@
             })
                 .then(res => res.json())
                 .then(data => {
-                    console.log("Guardado en servidor:", data);
+                    if (data.codigo) {
+                        presupuesto.codigo = data.codigo;
+                    }
+
+                    ultimoPresupuesto = {
+                        empresa,
+                        cliente,
+                        presupuesto
+                    };
+                    historial.push({ empresa, cliente, presupuesto });
+
+                    mostrarHistorial();
+                    verPresupuesto(historial.length - 1);
                 })
                 .catch(err => {
                     console.error("Error al guardar:", err);
@@ -447,13 +460,14 @@
 
 
             localStorage.setItem("historialPresupuestos", JSON.stringify(historial));
+            /* historial.push({ empresa, cliente, presupuesto });
             mostrarHistorial();
-            verPresupuesto(historial.length - 1);
+            verPresupuesto(historial.length - 1); */
         }
 
         function verPresupuesto(i) {
             const { empresa, cliente, presupuesto } = historial[i];
-            let html = `<h2>Presupuesto</h2>
+            let html = `<h2>Presupuesto - ${presupuesto.codigo || ""}</h2>
     <h3>Empresa</h3><p><strong>${empresa.nombre}</strong> (CUIT: ${empresa.cuit})<br>${empresa.direccion}<br>${empresa.mail} - ${empresa.tel}</p>
     <h3>Cliente</h3><p><strong>${cliente.nombre}</strong> (CUIT: ${cliente.cuit})<br>${cliente.direccion}<br>${cliente.mail}</p>
     <p><strong>Fecha:</strong> ${presupuesto.fecha}</p>
@@ -470,12 +484,13 @@
     <p><strong>Total Final:</strong> ${presupuesto.totales.final} ${presupuesto.moneda}</p></div>`;
             document.getElementById("resultado").innerHTML = html;
         }
-
         function descargarPDF(i = null) {
+
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF(); const pageWidth = doc.internal.pageSize.width;
             let empresa, cliente, presupuesto;
-            if (i === null) {
+
+            /* if (i === null) {
                 empresa = {
                     nombre: empresa_nombre.value, cuit: empresa_cuit.value,
                     direccion: empresa_direccion.value, mail: empresa_mail.value, tel: empresa_tel.value
@@ -489,7 +504,19 @@
                     productos: [...productos],
                     totales: { neto: total.innerText, iva: iva_total.innerText, final: total_final.innerText }
                 };
-            } else { ({ empresa, cliente, presupuesto } = historial[i]); }
+            }  */
+            if (i === null) {
+                if (!ultimoPresupuesto) {
+                    alert("Primero generá un presupuesto");
+                    return;
+                }
+
+                ({ empresa, cliente, presupuesto } = ultimoPresupuesto);
+            } else {
+                ({ empresa, cliente, presupuesto } = historial[i]);
+            }
+            doc.setFontSize(10);
+            doc.text(`N°: ${presupuesto.codigo || "ss"}`, pageWidth - 20, 20, { align: "right" });
             doc.setFontSize(16);
             doc.text("Presupuesto", pageWidth / 2, 15, { align: "center" });
             doc.setFontSize(12);
@@ -533,7 +560,14 @@
                     }
                 }
             });
-            doc.save(`Presupuesto_${cliente.nombre}.pdf`);
+            const codigo = presupuesto.codigo || "SIN-CODIGO";
+
+            // limpiar nombre del cliente (evita caracteres raros)
+            const nombreCliente = (cliente.nombre || "Cliente")
+                .replace(/[^a-z0-9]/gi, "_")
+                .toUpperCase();
+
+            doc.save(`${codigo}_${nombreCliente}.pdf`);
         }
 
         function mostrarHistorial() {
