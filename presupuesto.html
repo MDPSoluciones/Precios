@@ -218,7 +218,12 @@
         <section>
             <h2>Datos del Cliente</h2>
             <label>Nombre</label>
-            <input type="text" id="cliente_nombre">
+            <div style="position:relative;">
+                <input type="text" id="cliente_nombre" autocomplete="off">
+                <div id="sugerencias_clientes"
+                    style="position:absolute; top:100%; left:0; right:0; background:#fff; border:1px solid #ccc; display:none; z-index:1000;">
+                </div>
+            </div>
             <label>CUIT</label>
             <input type="text" id="cliente_cuit">
             <label>Dirección</label>
@@ -297,6 +302,35 @@
     <script>
         let productos = [];
         let historial = [];
+        let clientesGuardados = [];
+
+        function cargarClientes() {
+            fetch("obtener_clientes.php")
+                .then(res => res.json())
+                .then(data => {
+                    clientesGuardados = data;
+                    console.log("Clientes cargados:", clientesGuardados);
+                });
+        }
+
+        function guardarClienteServidor(cliente) {
+            fetch("guardar_cliente.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(cliente)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log("Cliente:", data);
+
+                    if (data.status === "ok") {
+                        cargarClientes(); // refrescar lista
+                    }
+                })
+                .catch(err => console.error("Error cliente:", err));
+        }
 
         function cargarHistorial() {
             fetch("obtener_historial.php")
@@ -308,6 +342,7 @@
         }
 
         cargarHistorial();
+
         function formatearNumero(num) {
             return Number(num).toLocaleString("es-AR", {
                 minimumFractionDigits: 2,
@@ -354,12 +389,12 @@
             productos.forEach((p, i) => {
                 total += p.subTotalBase; totalIVA += p.totalIVA;
                 tbody.innerHTML += `
-      <tr>
+        <tr>
         <td>${p.desc}</td><td>${p.cant}</td><td>${formatearNumero(p.precio)} ${moneda}</td>
         <td>${formatearNumero(p.subTotalBase)} ${moneda}</td>
         <td>${p.ivaPorc}%</td><td>${formatearNumero(p.totalIVA)} ${moneda}</td>
         <td><button onclick="eliminarProducto(${i})">🗑</button></td>
-      </tr>`;
+        </tr>`;
             });
             const totalFinal = total + totalIVA;
             document.getElementById("total").innerText = formatearNumero(total);
@@ -391,6 +426,7 @@
                     final: document.getElementById("total_final").innerText
                 }
             };
+            guardarClienteServidor(cliente);
             historial.push({ empresa, cliente, presupuesto });
 
             fetch("guardar_presupuesto.php", {
@@ -425,7 +461,7 @@
     <p><strong>Forma de pago:</strong> ${presupuesto.pago}</p>
     <h3>Productos</h3>
     <table border="1" cellspacing="0" cellpadding="5">
-      <tr><th>Descripción</th><th>Cant</th><th>Precio Base</th><th>Sub-Tot Base</th><th>IVA (%)</th><th>Total IVA</th></tr>`;
+    <tr><th>Descripción</th><th>Cant</th><th>Precio Base</th><th>Sub-Tot Base</th><th>IVA (%)</th><th>Total IVA</th></tr>`;
             presupuesto.productos.forEach(p => {
                 html += `<tr><td>${p.desc}</td><td>${p.cant}</td><td>${p.precio.toFixed(2)} ${presupuesto.moneda}</td><td>${p.subTotalBase.toFixed(2)} ${presupuesto.moneda}</td><td>${p.ivaPorc}%</td><td>${p.totalIVA.toFixed(2)} ${presupuesto.moneda}</td></tr>`;
             });
@@ -525,6 +561,65 @@
             });
         }
         mostrarHistorial();
+        cargarClientes();
+
+        const inputCliente = document.getElementById("cliente_nombre");
+        const boxSugerencias = document.getElementById("sugerencias_clientes");
+
+        inputCliente.addEventListener("input", function () {
+            const texto = this.value.toLowerCase();
+
+            if (texto.length < 2) {
+                boxSugerencias.style.display = "none";
+                return;
+            }
+
+            const resultados = clientesGuardados.filter(c =>
+                c.nombre && c.nombre.toLowerCase().includes(texto)
+            );
+
+            mostrarSugerencias(resultados);
+        });
+
+        function mostrarSugerencias(lista) {
+            boxSugerencias.innerHTML = "";
+
+            if (lista.length === 0) {
+                boxSugerencias.style.display = "none";
+                return;
+            }
+
+            lista.forEach(c => {
+                const div = document.createElement("div");
+                div.innerHTML = `<strong>${c.nombre}</strong><br><small>${c.cuit || ""}</small>`;
+                div.style.padding = "8px";
+                div.style.cursor = "pointer";
+
+                div.onmouseover = () => div.style.background = "#eee";
+                div.onmouseout = () => div.style.background = "#fff";
+
+                div.onclick = () => seleccionarCliente(c);
+
+                boxSugerencias.appendChild(div);
+            });
+
+            boxSugerencias.style.display = "block";
+        }
+
+        function seleccionarCliente(c) {
+            document.getElementById("cliente_nombre").value = c.nombre || "";
+            document.getElementById("cliente_cuit").value = c.cuit || "";
+            document.getElementById("cliente_direccion").value = c.direccion || "";
+            document.getElementById("cliente_mail").value = c.mail || "";
+
+            boxSugerencias.style.display = "none";
+        }
+
+        document.addEventListener("click", function (e) {
+            if (!e.target.closest("#cliente_nombre")) {
+                boxSugerencias.style.display = "none";
+            }
+        });
     </script>
 </body>
 
