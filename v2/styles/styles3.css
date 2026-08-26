@@ -1,0 +1,205 @@
+@font-face {
+    font-family: 'GlacialIndifference';
+    src: url('../Res/GlacialIndifference-Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Paleta 3: Cálida y Clásica */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #F5F1E8;
+}
+
+header h1,
+header h2 {
+    font-family: "Lucidity Expand", Arial, sans-serif;
+    color: #303030;
+}
+
+header {
+    font-family: "Lucidity Expand", Arial, sans-serif;
+    text-align: center;
+    padding: 20px;
+    background-color: #BEA167;
+    color: #303030;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.logo {
+    max-width: 100px;
+    height: auto;
+}
+
+.pricing {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 10px;
+    align-items: center;
+}
+
+.pricing-item,
+.pricing-item h2,
+.pricing-item p,
+.price {
+    font-family: 'GlacialIndifference', sans-serif;
+}
+
+.condition-title {
+    font-family: "Lucidity Expand", Arial, sans-serif;
+    font-size: 15px;
+    color: #303030;
+    text-align: center;
+}
+
+.category-title {
+    font-family: "Lucidity Expand", Arial, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 16px;
+    color: #303030;
+    text-align: center;
+    background-color: #D9DAD4;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.pricing-item {
+    background: #D9DAD4;
+    border: 1px solid #303030;
+    border-radius: 8px;
+    padding: 8px;
+    width: 100%;
+    max-width: 800px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.pricing-item h2 {
+    color: #303030;
+    font-size: 18px;
+}
+
+.pricing-item p {
+    color: #303030;
+    font-size: 12px;
+}
+
+.prices {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.price {
+    font-size: 12.5px;
+    font-weight: bold;
+}
+
+.price.usd {
+    color: #303030;
+}
+
+.price.pesos {
+    color: #BEA167;
+}
+
+.price.transf {
+    color: #303030;
+}
+
+.product-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.image-column {
+    flex: 1;
+    text-align: center;
+}
+
+.details-column {
+    font-family: 'GlacialIndifference', sans-serif;
+    flex: 2;
+    text-align: center;
+}
+
+.price-column {
+    flex: 1;
+    text-align: right;
+}
+
+.product-image {
+    max-width: 75px;
+    max-height: 75px;
+    display: block;
+    border-radius: 5px;
+    object-fit: cover;
+    margin: 0 auto;
+}
+
+.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 20px;
+    right: 20px;
+    z-index: 100;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+}
+
+.whatsapp-float img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.search-container {
+    position: relative;
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    height: 40px;
+    justify-content: right;
+}
+
+#searchInput {
+    background: transparent;
+    border: 1px solid #303030;
+    padding: 5px 10px 5px 30px;
+    color: #303030;
+    border-radius: 20px;
+    font-size: 14px;
+    outline: none;
+    width: 160px;
+}
+
+.search-icon {
+    position: relative;
+    right: 195px;
+    color: #303030;
+    font-size: 16px;
+    pointer-events: none;
+}
+
+#searchInput::placeholder {
+    color: #303030;
+}
