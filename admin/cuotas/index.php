@@ -285,6 +285,41 @@ require_login();
             display: none;
         }
 
+        .toggle-pair {
+            display: flex;
+            gap: 6px;
+        }
+
+        .toggle-btn,
+        .iva-btn {
+            flex: 1;
+            padding: 8px 10px;
+            border-radius: 8px;
+            border: 1px solid #d0d6dc;
+            background: #fff;
+            color: #303030;
+            font-size: 13px;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        .toggle-btn.active,
+        .iva-btn.active {
+            background: #BEA167;
+            border-color: #BEA167;
+            color: #fff;
+        }
+
+        .toggle-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .iva-btn-group {
+            display: flex;
+            gap: 6px;
+        }
+
         .dolar-badge {
             display: flex;
             align-items: center;
@@ -547,6 +582,21 @@ require_login();
                         </div>
 
                         <div class="control">
+                            <label>¿Facturado?</label>
+                            <div class="toggle-pair" id="facturado-toggle">
+                                <button type="button" class="toggle-btn active" id="facturado-no"
+                                    onclick="setFacturado(false)">No</button>
+                                <button type="button" class="toggle-btn" id="facturado-si"
+                                    onclick="setFacturado(true)">Sí</button>
+                            </div>
+                        </div>
+
+                        <div class="control" id="iva-control-wrap" style="display:none;">
+                            <label>IVA a aplicar</label>
+                            <div class="iva-btn-group" id="iva-btn-group"></div>
+                        </div>
+
+                        <div class="control">
                             <label>Margen revendedor (%)<br><span class="small">opcional</span></label>
                             <input id="sim_revendedorPct" type="number" step="0.1" value="0" />
                         </div>
@@ -693,15 +743,31 @@ require_login();
                 <div class="controls">
                     <div class="control">
                         <label>Costo por transferencia (%)</label>
-                        <input id="tr_costo" type="number" step="0.01" value="0" />
+                        <input id="tr_costo" type="number" step="0.01" value="3" />
                     </div>
                     <div class="control">
                         <label>IVA (%)</label>
-                        <input id="tr_iva" type="number" step="0.1" value="0" />
+                        <input id="tr_iva" type="number" step="0.1" value="10.5" />
                     </div>
                     <div class="control">
                         <label>IIBB (%)</label>
-                        <input id="tr_iibb" type="number" step="0.1" value="0" />
+                        <input id="tr_iibb" type="number" step="0.1" value="3.5" />
+                    </div>
+                </div>
+
+                <h3>Facturación (IVA)</h3>
+                <div class="controls">
+                    <div class="control">
+                        <label>Opción 1 (%)</label>
+                        <input id="fact_iva1" type="number" step="0.1" value="10.5" />
+                    </div>
+                    <div class="control">
+                        <label>Opción 2 (%)</label>
+                        <input id="fact_iva2" type="number" step="0.1" value="21" />
+                    </div>
+                    <div class="control">
+                        <label>Opción 3 (%)</label>
+                        <input id="fact_iva3" type="number" step="0.1" value="27" />
                     </div>
                 </div>
             </div>
@@ -853,6 +919,51 @@ require_login();
         }
 
         // ===================== SIMULADOR DE COBRO =====================
+        // ===================== FACTURACIÓN / IVA =====================
+        let facturado = false;
+        let ivaSeleccionado = null; // porcentaje elegido (número) o null
+
+        function getIvaOptions() {
+            return [
+                parseFloat(document.getElementById('fact_iva1').value) || 0,
+                parseFloat(document.getElementById('fact_iva2').value) || 0,
+                parseFloat(document.getElementById('fact_iva3').value) || 0
+            ];
+        }
+
+        function renderIvaButtons() {
+            const group = document.getElementById('iva-btn-group');
+            group.innerHTML = '';
+            getIvaOptions().forEach(pct => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'iva-btn' + (ivaSeleccionado === pct ? ' active' : '');
+                btn.textContent = `+${fmtPct(pct)}%`;
+                btn.onclick = () => seleccionarIva(pct);
+                group.appendChild(btn);
+            });
+        }
+
+        function seleccionarIva(pct) {
+            ivaSeleccionado = (ivaSeleccionado === pct) ? null : pct;
+            renderIvaButtons();
+            actualizarConversionRecibir();
+        }
+
+        // manual = false cuando lo llama la regla automática de Mercado Pago (Point),
+        // que además bloquea el botón "No" mientras esa plataforma esté seleccionada.
+        function setFacturado(valor) {
+            facturado = valor;
+            document.getElementById('facturado-si').classList.toggle('active', valor);
+            document.getElementById('facturado-no').classList.toggle('active', !valor);
+            document.getElementById('iva-control-wrap').style.display = valor ? '' : 'none';
+            if (!valor) {
+                ivaSeleccionado = null;
+            }
+            renderIvaButtons();
+            actualizarConversionRecibir();
+        }
+
         function showPlatform() {
             const plataforma = document.getElementById('sim_plataforma').value;
             const cuotasWrap = document.getElementById('mp_cuotasSelect_wrap');
@@ -860,31 +971,55 @@ require_login();
             // Los valores mostrados corresponden a un cálculo anterior; se ocultan
             // hasta volver a presionar "Calcular" para la plataforma nueva.
             document.getElementById('whatsapp-box').style.display = 'none';
+
+            // Mercado Pago (Point) siempre va facturado: se fuerza el toggle a "Sí"
+            // (con 10,5% por defecto si no había ninguna opción elegida) y se
+            // bloquea el botón "No" mientras esta plataforma esté seleccionada.
+            const noBtn = document.getElementById('facturado-no');
+            if (plataforma === 'mercadopago') {
+                noBtn.disabled = true;
+                if (!facturado) setFacturado(true);
+                if (ivaSeleccionado === null) {
+                    ivaSeleccionado = getIvaOptions()[0];
+                    renderIvaButtons();
+                    actualizarConversionRecibir();
+                }
+            } else {
+                noBtn.disabled = false;
+            }
         }
 
-        // Convierte lo que haya en "sim_recibir" a pesos según la moneda elegida.
-        // ARS: se usa tal cual. USD: se multiplica por el dólar blue vigente (campo "dolar").
+        // Convierte lo que haya en "sim_recibir" a pesos según la moneda elegida
+        // (ARS: tal cual, USD: × dólar de referencia) y le suma el IVA si está
+        // marcado "Facturado" y hay un porcentaje seleccionado.
         function obtenerRecibirEnPesos() {
             const valor = parseFloat(document.getElementById('sim_recibir').value) || 0;
             const moneda = document.getElementById('sim_recibir_moneda').value;
+            let base = valor;
             if (moneda === 'USD') {
                 const dolar = parseFloat(document.getElementById('dolar').value) || 0;
-                return valor * dolar;
+                base = valor * dolar;
             }
-            return valor;
+            if (facturado && ivaSeleccionado) {
+                base = base * (1 + ivaSeleccionado / 100);
+            }
+            return base;
         }
 
-        // Muestra en vivo, debajo del campo, a cuántos pesos equivale lo ingresado en USD.
+        // Muestra en vivo, debajo del campo, la conversión de USD y/o el IVA aplicado.
         function actualizarConversionRecibir() {
             const valor = parseFloat(document.getElementById('sim_recibir').value) || 0;
             const moneda = document.getElementById('sim_recibir_moneda').value;
             const infoEl = document.getElementById('sim_recibir_conversion');
+            const partes = [];
             if (moneda === 'USD' && valor > 0) {
                 const dolar = parseFloat(document.getElementById('dolar').value) || 0;
-                infoEl.textContent = `≈ ${fmt(valor * dolar, 'ARS')} (dólar referencia ${fmt(dolar, 'ARS')})`;
-            } else {
-                infoEl.textContent = '';
+                partes.push(`≈ ${fmt(valor * dolar, 'ARS')} (dólar referencia ${fmt(dolar, 'ARS')})`);
             }
+            if (facturado && ivaSeleccionado && valor > 0) {
+                partes.push(`+ IVA ${fmtPct(ivaSeleccionado)}% = ${fmt(obtenerRecibirEnPesos(), 'ARS')}`);
+            }
+            infoEl.textContent = partes.join(' · ');
         }
 
         function renderRow(container, label, sub, valueText, isTotal, tag) {
@@ -937,8 +1072,15 @@ require_login();
             let costoBase = 0;
             let cuotas = 1;
 
+            const subPartesRecibir = [];
+            if (monedaRecibir === 'USD') {
+                subPartesRecibir.push(`USD ${fmt(valorIngresado)} · dólar referencia ${fmt(dolarActual, 'ARS')}`);
+            }
+            if (facturado && ivaSeleccionado) {
+                subPartesRecibir.push(`facturado + IVA ${fmtPct(ivaSeleccionado)}%`);
+            }
             renderRow(body, 'Para recibir',
-                monedaRecibir === 'USD' ? `USD ${fmt(valorIngresado)} · dólar referencia ${fmt(dolarActual, 'ARS')}` : null,
+                subPartesRecibir.length ? subPartesRecibir.join(' · ') : null,
                 fmt(recibir, 'ARS'));
 
             if (plataforma === 'mercadopago') {
@@ -1142,10 +1284,33 @@ require_login();
             saveConfig();
             generarTabla();
             actualizarBadgeDolar(parseFloat(document.getElementById('dolar').value) || 0, '· valor cargado manualmente');
+            renderIvaButtons();
+            actualizarConversionRecibir();
             if ((parseFloat(document.getElementById('sim_recibir').value) || 0) > 0) {
                 calcularSimulador();
             }
             closeConfigModal();
+            guardarConfigEnServidor();
+        }
+
+        // Persiste la configuración en config.json (servidor), para que quede
+        // disponible en próximas visitas sin depender del navegador/localStorage.
+        async function guardarConfigEnServidor() {
+            try {
+                const res = await fetch('guardar_config.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(getConfigFromFields())
+                });
+                const data = await res.json();
+                if (data && data.ok) {
+                    mostrarToast('✓ Configuración guardada en el servidor');
+                } else {
+                    mostrarToast('Se guardó en este navegador, pero falló en el servidor' + (data && data.error ? ': ' + data.error : ''));
+                }
+            } catch (e) {
+                mostrarToast('Se guardó en este navegador, pero no se pudo conectar con el servidor.');
+            }
         }
 
         function resetConfigDefaults() {
@@ -1169,9 +1334,13 @@ require_login();
             document.getElementById('mp_retCD').value = 0.6;
             document.getElementById('mp_retIIBB').value = 0.4;
 
-            document.getElementById('tr_costo').value = 0;
-            document.getElementById('tr_iva').value = 0;
-            document.getElementById('tr_iibb').value = 0;
+            document.getElementById('tr_costo').value = 3;
+            document.getElementById('tr_iva').value = 10.5;
+            document.getElementById('tr_iibb').value = 3.5;
+
+            document.getElementById('fact_iva1').value = 10.5;
+            document.getElementById('fact_iva2').value = 21;
+            document.getElementById('fact_iva3').value = 27;
             // No guarda solo: hay que presionar "Guardar" para confirmar.
         }
 
@@ -1229,7 +1398,8 @@ require_login();
             'sim_plataforma', 'sim_recibir_moneda', 'mp_costoCobro', 'mp_ivaComision', 'mp_cuotasSelect',
             'mp_pct2', 'mp_pct3', 'mp_pct6', 'mp_pct9', 'mp_pct12', 'mp_pct18',
             'mp_retCD', 'mp_retIIBB',
-            'tr_costo', 'tr_iva', 'tr_iibb'
+            'tr_costo', 'tr_iva', 'tr_iibb',
+            'fact_iva1', 'fact_iva2', 'fact_iva3'
         ];
         const CONFIG_STORAGE_KEY = 'calculadora_cuotas_config_v1';
 
