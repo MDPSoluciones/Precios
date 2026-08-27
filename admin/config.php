@@ -48,6 +48,33 @@ function current_user() {
     return $_SESSION['usuario'] ?? null;
 }
 
+// Busca el usuario logueado en users.json y devuelve su rol ('admin' o 'usuario').
+// Si el usuario no tiene el campo 'rol' (cuentas viejas), se lo trata como 'usuario'.
+function current_user_role() {
+    $usuario = current_user();
+    if (!$usuario) return null;
+    $users = load_json(USERS_FILE);
+    foreach ($users as $u) {
+        if (strcasecmp($u['usuario'], $usuario) === 0) {
+            return $u['rol'] ?? 'usuario';
+        }
+    }
+    return 'usuario';
+}
+
+function is_admin() {
+    return current_user_role() === 'admin';
+}
+
+// Para páginas que solo puede ver un admin (gestionar_usuarios.php, etc.)
+function require_admin() {
+    require_login();
+    if (!is_admin()) {
+        http_response_code(403);
+        die('No tenés permisos de administrador para ver esta página.');
+    }
+}
+
 function json_response($data, $code = 200) {
     http_response_code($code);
     header('Content-Type: application/json; charset=utf-8');

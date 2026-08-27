@@ -19,7 +19,7 @@
   "mp_pct18": "26.10",
   "mp_retCD": "0.6",
   "mp_retIIBB": "0.4",
-  "tr_costo": "0",
-  "tr_iva": "0",
-  "tr_iibb": "0"
+  "tr_costo": "3",
+  "tr_iva": "10.5",
+  "tr_iibb": "3.5"
 }

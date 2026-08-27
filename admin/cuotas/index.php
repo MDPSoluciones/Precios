@@ -982,24 +982,18 @@ require_login();
 
             } else {
                 const costoPct = parseFloat(document.getElementById('tr_costo').value) || 0;
-                const ivaPct = parseFloat(document.getElementById('tr_iva').value) || 0;
-                const iibbPct = parseFloat(document.getElementById('tr_iibb').value) || 0;
 
-                rateTotal = (costoPct + ivaPct + iibbPct) / 100;
+                rateTotal = costoPct / 100;
 
                 if (rateTotal >= 1) {
-                    body.innerHTML = '<p class="small" style="color:#b00020;">La suma de costos y retenciones supera o iguala el 100%. Revisá los porcentajes en "⚙ Configurar".</p>';
+                    body.innerHTML = '<p class="small" style="color:#b00020;">El costo de transferencia supera o iguala el 100%. Revisá el porcentaje en "⚙ Configurar".</p>';
                     return;
                 }
 
                 costoBase = recibir / (1 - rateTotal);
                 const montoCosto = costoBase * (costoPct / 100);
-                const montoIva = costoBase * (ivaPct / 100);
-                const montoIibb = costoBase * (iibbPct / 100);
 
                 renderRow(body, 'Costo por transferencia', `${fmtPct(costoPct)}%`, '+ ' + fmt(montoCosto, 'ARS'), false, '[Banco]');
-                renderRow(body, 'IVA', `${fmtPct(ivaPct)}%`, '+ ' + fmt(montoIva, 'ARS'), false, '[Impuesto]');
-                renderRow(body, 'IIBB', `${fmtPct(iibbPct)}%`, '+ ' + fmt(montoIibb, 'ARS'), false, '[Impuesto]');
             }
 
             let totalFinal = costoBase;
@@ -1055,12 +1049,11 @@ require_login();
                 const rateCosto = (costoCobroPct / 100) * (1 + ivaComisionPct / 100);
                 const rateCuotas = cuotas > 1 ? (cuotaPct / 100) * (1 + ivaComisionPct / 100) : 0;
                 rateTotal = rateCosto + rateCuotas + (retCDPct / 100) + (retIIBBPct / 100);
-            } else {
+            } else if (plataforma === 'transferencia') {
                 const costoPct = parseFloat(document.getElementById('tr_costo').value) || 0;
-                const ivaPct = parseFloat(document.getElementById('tr_iva').value) || 0;
-                const iibbPct = parseFloat(document.getElementById('tr_iibb').value) || 0;
-                rateTotal = (costoPct + ivaPct + iibbPct) / 100;
+                rateTotal = costoPct / 100;
             }
+            // 'efectivo' (o cualquier otro valor): sin costo asociado, rateTotal queda en 0.
 
             if (rateTotal >= 1) return null;
 
@@ -1079,8 +1072,22 @@ require_login();
                 return;
             }
 
-            let mensaje = '';
+            // Efectivo y transferencia se calculan siempre, sin importar la plataforma
+            // elegida arriba, y se agregan al mismo mensaje.
+            const efectivoTotal = calcularTotalCobro('efectivo', recibir, 1, revendedorPct);
+            const transferenciaTotal = calcularTotalCobro('transferencia', recibir, 1, revendedorPct);
+            if (efectivoTotal === null || transferenciaTotal === null) {
+                box.style.display = 'none';
+                return;
+            }
 
+            const secciones = [
+                `💰 Efectivo: ${fmt(efectivoTotal, 'ARS')}`,
+                `🏦 Transferencia: ${fmt(transferenciaTotal, 'ARS')}`
+            ];
+
+            // La tarjeta de crédito (Mercado Pago) se agrega solo si esa es la
+            // plataforma seleccionada, porque depende de su propia configuración de costos.
             if (plataforma === 'mercadopago') {
                 const cuotasDisponibles = [1, 2, 3, 6, 9, 12, 18];
                 const lineas = [];
@@ -1091,12 +1098,10 @@ require_login();
                     const valor = cuotas === 1 ? total : total / cuotas;
                     lineas.push(`${label} de: ${fmt(valor, 'ARS')}`);
                 }
-                mensaje = 'Te compartimos nuestras opciones de pago 👇\n\n💳 Tarjeta de crédito:\n' + lineas.join('\n');
-            } else {
-                const total = calcularTotalCobro('transferencia', recibir, 1, revendedorPct);
-                if (total === null) { box.style.display = 'none'; return; }
-                mensaje = 'Te compartimos nuestra opción de pago 👇\n\n🏦 Transferencia / Efectivo: ' + fmt(total, 'ARS');
+                secciones.push('💳 Tarjeta de crédito:\n' + lineas.join('\n'));
             }
+
+            const mensaje = 'Te compartimos nuestras opciones de pago 👇\n\n' + secciones.join('\n\n');
 
             textEl.textContent = mensaje;
             box.style.display = '';

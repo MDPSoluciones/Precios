@@ -14,6 +14,10 @@ $items = [
     'inventario'  => ['label' => 'Inventario',           'href' => 'inventario/',             'icon' => 'box'],
 ];
 
+if (is_admin()) {
+    $items['usuarios'] = ['label' => 'Gestionar usuarios', 'href' => 'gestionar_usuarios.php', 'icon' => 'users'];
+}
+
 function nav_icon($name) {
     $icons = [
         'home'      => '<path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v9a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1v-9"/>',
@@ -23,6 +27,7 @@ function nav_icon($name) {
         'percent'   => '<circle cx="7" cy="7" r="2.3"/><circle cx="17" cy="17" r="2.3"/><path d="M18 6 6 18"/>',
         'wallet'    => '<path d="M3 7a2 2 0 0 1 2-2h13a1 1 0 0 1 1 1v3"/><path d="M3 7v11a2 2 0 0 0 2 2h14a1 1 0 0 0 1-1v-4"/><path d="M15 13h4v4h-4a2 2 0 0 1 0-4Z"/>',
         'box'       => '<path d="M3 9.5 12 4l9 5.5V19a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1Z"/>',
+        'users'     => '<circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="8" r="2.4"/><path d="M23 20c0-2.6-1.7-4.8-4-5.6"/>',
     ];
     return $icons[$name] ?? '';
 }
@@ -58,10 +63,33 @@ $inicial = $usuario ? strtoupper(substr($usuario, 0, 2)) : '--';
     <div class="avatar"><?= htmlspecialchars($inicial) ?></div>
     <div class="quien">
       <strong><?= htmlspecialchars($usuario ?? '') ?></strong>
+      <a href="#" onclick="mdpAbrirModalClave(); return false;">Cambiar clave</a>
+      &middot;
       <a href="logout.php" target="_top">Cerrar sesión</a>
     </div>
   </div>
 </aside>
+
+<!-- Modal de "cambiar mi clave", disponible siempre desde el panel -->
+<div id="modalClave" class="modal-overlay" onclick="if (event.target === this) mdpCerrarModalClave();">
+  <div class="modal-box">
+    <button class="modal-close" onclick="mdpCerrarModalClave()">&times;</button>
+    <h3>Cambiar mi clave</h3>
+    <form id="formClave" onsubmit="return mdpGuardarClave(event)">
+      <label>Clave actual</label>
+      <input type="password" name="clave_actual" required>
+
+      <label>Clave nueva</label>
+      <input type="password" name="clave_nueva" required minlength="6">
+
+      <label>Repetir clave nueva</label>
+      <input type="password" name="clave_confirmar" required minlength="6">
+
+      <button type="submit" class="btn btn-oro">Guardar</button>
+    </form>
+    <p id="claveMensaje" class="aviso"></p>
+  </div>
+</div>
 
 <script>
 function mdpMarcarActivo(el) {
@@ -71,5 +99,41 @@ function mdpMarcarActivo(el) {
   var ov = document.getElementById('mdpOverlay');
   if (sb) sb.classList.remove('abierto');
   if (ov) ov.classList.remove('abierto');
+}
+
+function mdpAbrirModalClave() {
+  document.getElementById('modalClave').classList.add('abierto');
+}
+
+function mdpCerrarModalClave() {
+  document.getElementById('modalClave').classList.remove('abierto');
+  document.getElementById('formClave').reset();
+  var msj = document.getElementById('claveMensaje');
+  msj.textContent = '';
+}
+
+async function mdpGuardarClave(e) {
+  e.preventDefault();
+  var form = e.target;
+  var msj = document.getElementById('claveMensaje');
+  msj.style.color = '';
+  msj.textContent = 'Guardando...';
+
+  try {
+    var res = await fetch('cambiar_clave.php', { method: 'POST', body: new FormData(form) });
+    var data = await res.json();
+    if (data.ok) {
+      msj.style.color = '#2e7d32';
+      msj.textContent = data.mensaje;
+      form.reset();
+    } else {
+      msj.style.color = '#a33';
+      msj.textContent = data.error || 'No se pudo cambiar la clave.';
+    }
+  } catch (err) {
+    msj.style.color = '#a33';
+    msj.textContent = 'Error de conexión.';
+  }
+  return false;
 }
 </script>

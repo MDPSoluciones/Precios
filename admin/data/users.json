@@ -2,31 +2,43 @@
     {
         "usuario": "admin",
         "clave_hash": "$2y$12$fm\/7VFHROrcKL7tuNR172u7NCZYUHBs0Ukf\/LNaBA41PW0odGLKo2",
-        "creado": "2026-07-04T22:43:34+00:00"
+        "creado": "2026-07-04T22:43:34+00:00",
+        "rol": "admin"
     },
     {
         "usuario": "Marcos",
         "clave_hash": "$2y$12$dw6muz4dKyEnsDODrT3uvuce.6fVq2Rf\/mrE1OSMSL.9aWdiCpos6",
-        "creado": "2026-07-04T22:55:52+00:00"
+        "creado": "2026-07-04T22:55:52+00:00",
+        "rol": "usuario"
     },
     {
         "usuario": "Ariela",
         "clave_hash": "$2y$12$j0B0.Mj\/xjXVJGOwJKAqfeWxnOkAX0GdNHoixSuWr53.cRnjg\/OcO",
-        "creado": "2026-07-04T22:56:04+00:00"
+        "creado": "2026-07-04T22:56:04+00:00",
+        "rol": "usuario"
     },
     {
         "usuario": "Cristian",
         "clave_hash": "$2y$12$.PiW5EnNkgSQUxY4uk3ZYurFx0c2lZwqmKFawXl4sSc.1ys4EEtH2",
-        "creado": "2026-07-04T22:56:18+00:00"
+        "creado": "2026-07-04T22:56:18+00:00",
+        "rol": "admin"
     },
     {
         "usuario": "gerardo",
         "clave_hash": "$2y$10$V9vLoaAVFPBcjRUWSL56TeVgB\/OM8UgVeV\/.Lh2yA.IIy4GN7XMAm",
-        "creado": "2026-08-25T17:02:35+00:00"
+        "creado": "2026-08-25T17:02:35+00:00",
+        "rol": "usuario"
     },
     {
         "usuario": "yanina",
         "clave_hash": "$2y$10$BU0Wgo\/0DGaerV\/QdowRZ.\/5PwMG0Ylx.a\/nJiky28AlnAMDBOF6u",
-        "creado": "2026-08-25T17:02:43+00:00"
+        "creado": "2026-08-25T17:02:43+00:00",
+        "rol": "usuario"
+    },
+    {
+        "usuario": "Marcelo",
+        "clave_hash": "$2y$12$kcRVrGMzhAPGIW.A2DXbMO0Iyu4zf7hZetodjoyx5HKiz2ioLTx7W",
+        "rol": "usuario",
+        "creado": "2026-08-27T12:29:42+00:00"
     }
 ]

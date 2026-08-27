@@ -261,6 +261,96 @@ a { color: inherit; }
   max-width: 560px;
 }
 
+/* ===== MODAL GENERICO (cambiar clave, etc.) ===== */
+.modal-overlay {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(48,48,48,0.5);
+  z-index: 300;
+  align-items: center;
+  justify-content: center;
+}
+.modal-overlay.abierto { display: flex; }
+.modal-box {
+  background: var(--blanco);
+  padding: 28px;
+  border-radius: var(--radius);
+  width: 90%;
+  max-width: 340px;
+  box-shadow: var(--sombra-hover);
+  position: relative;
+}
+.modal-box h3 { font-size: 20px; margin-bottom: 16px; }
+.modal-box label { display: block; font-size: 13px; font-weight: 500; margin-top: 10px; }
+.modal-box input {
+  width: 100%;
+  margin-top: 4px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--humo);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+.modal-box button { margin-top: 18px; width: 100%; }
+.modal-close {
+  position: absolute; top: 12px; right: 16px;
+  font-size: 20px; font-weight: bold;
+  color: #999; cursor: pointer; background: none; border: none;
+}
+
+/* ===== GESTIONAR USUARIOS ===== */
+.login-card.ancho { max-width: 640px; text-align: left; }
+.login-card.ancho .login-logo,
+.login-card.ancho h1 { text-align: center; }
+.login-card.ancho > h1 { display: block; margin-left: auto; margin-right: auto; }
+.subtitulo { font-size: 19px; margin: 26px 0 12px; }
+.ok { color: #2e7d32; font-size: 13px; }
+
+.tabla-usuarios { display: flex; flex-direction: column; gap: 10px; }
+.fila-usuario {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  background: var(--crema);
+  border-radius: 10px;
+}
+.fila-usuario-nombre {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 140px;
+  font-size: 14px;
+}
+.fila-usuario-accion {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+.fila-usuario-accion input,
+.fila-usuario-accion select {
+  padding: 8px 10px;
+  border-radius: 7px;
+  border: 1px solid var(--humo);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+}
+.fila-usuario-accion .btn { padding: 8px 14px; font-size: 13px; }
+
+.rol-badge {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 20px;
+}
+.rol-badge.rol-admin { background: var(--oro); color: var(--carbon); }
+.rol-badge.rol-usuario { background: var(--humo); color: var(--carbon); }
+
 @media (max-width: 900px) {
   .sidebar { transform: translateX(-100%); }
   .sidebar.abierto { transform: translateX(0); }
