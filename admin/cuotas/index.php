@@ -724,8 +724,11 @@ require_login();
             });
         }
 
+        // Mientras esté facturado, siempre debe quedar un IVA seleccionado: tocar
+        // el que ya está activo no lo desmarca, solo cambia si se elige otro distinto.
         function seleccionarIva(pct) {
-            ivaSeleccionado = (ivaSeleccionado === pct) ? null : pct;
+            if (facturado && ivaSeleccionado === pct) return;
+            ivaSeleccionado = pct;
             renderIvaButtons();
             actualizarConversionRecibir();
         }
@@ -739,6 +742,9 @@ require_login();
             document.getElementById('iva-control-wrap').style.display = valor ? '' : 'none';
             if (!valor) {
                 ivaSeleccionado = null;
+            } else if (ivaSeleccionado === null) {
+                // Al facturar, siempre queda un IVA elegido (por defecto, la Opción 1).
+                ivaSeleccionado = getIvaOptions()[0];
             }
             renderIvaButtons();
             actualizarConversionRecibir();
