@@ -150,39 +150,6 @@ require_login();
             }
         }
 
-        /* --- Tabs --- */
-        .tabs {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 18px;
-            border-bottom: 1px solid #e6e9ed;
-        }
-
-        .tab-btn {
-            background: none;
-            color: #666;
-            border: none;
-            padding: 10px 16px;
-            cursor: pointer;
-            font-size: 14px;
-            border-bottom: 3px solid transparent;
-            border-radius: 0;
-        }
-
-        .tab-btn.active {
-            color: #222;
-            font-weight: 700;
-            border-bottom: 3px solid #BEA167;
-        }
-
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
         /* --- Simulador de cobro --- */
         .sim-layout {
             display: flex;
@@ -478,12 +445,6 @@ require_login();
     </header>
     <div class="panel">
 
-        <div class="tabs">
-            <button class="tab-btn active" id="tabbtn-simulador" onclick="showTab('simulador')">Simulador de
-                cobro</button>
-            <button class="tab-btn" id="tabbtn-cuotas" onclick="showTab('cuotas')">Calculadora USD / Cuotas</button>
-        </div>
-
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:10px;">
             <div class="dolar-badge" id="dolar-badge" title="Fuente: DolarAPI.com">
                 💵 Dólar de referencia: <strong id="dolar-badge-valor">-</strong>
@@ -493,59 +454,7 @@ require_login();
             <button onclick="openConfigModal()">⚙ Configurar</button>
         </div>
 
-        <!-- ===================== TAB 1: Calculadora USD / Cuotas ===================== -->
-        <div id="tab-cuotas" class="tab-content">
-            <h1>Calculadora Ventas con Tarjeta</h1>
-
-            <div class="controls">
-                <div class="control">
-                    <label>Producto</label>
-                    <input id="producto" type="text" value="" />
-                </div>
-
-                <div class="control">
-                    <label>Valor en USD</label>
-                    <input id="usd" type="number" step="1" value="500" />
-                </div>
-
-                <div style="display:flex; align-items:center; gap:8px;">
-                    <button onclick="generarTabla()">Generar tabla</button>
-                </div>
-            </div>
-
-            <!-- Tabla read-only -->
-            <table id="tabla-resultados" aria-label="Resultados">
-                <thead>
-                    <tr>
-                        <th>PRODUCTO</th>
-                        <th>PRECIO<br><span class="small">EFECTIVO (USD)</span></th>
-                        <th>PRECIO PESOS<br><span class="small">(A DÓLAR BLUE VENTA)</span></th>
-                        <th>PRECIO TRENSFERENCIA</th>
-                        <th>IVA (10.5%)</th>
-                        <th>IIBB (3,5%)</th>
-                        <th>PRECIO FACTURADO<br><span class="small">(EFT/TRF)</span></th>
-                        <th id="th-en1">EN 1 CUOTA</th>
-                        <th id="th-en3">EN 3 CUOTAS</th>
-                        <th id="th-en6">EN 6 CUOTAS</th>
-                        <th id="th-en12">EN 12 CUOTAS</th>
-                    </tr>
-                </thead>
-                <tbody id="tbody-results">
-                    <!-- se completa dinámicamente -->
-                </tbody>
-            </table>
-
-            <p class="small" id="notas" style="margin-top:12px;">
-                Notas: <strong>P. transferencia</strong> = pesos + transf %. <strong>P. Facturado</strong> = pesos +
-                IVA +
-                IIBB. Las cuotas aplican
-                recargos: EN 1 = +10%, EN 3 = +25%, EN 6 = +35%, EN 12 = +45%.
-                Estos porcentajes se editan desde "⚙ Configurar".
-            </p>
-        </div>
-
-        <!-- ===================== TAB 2: Simulador de cobro ===================== -->
-        <div id="tab-simulador" class="tab-content active">
+        <div id="tab-simulador">
             <h1>Simulador de cobro</h1>
             <div class="hint">
                 Ingresá cuánto querés <strong>recibir</strong> en tu cuenta y el simulador calcula cuánto le
@@ -650,41 +559,11 @@ require_login();
                 presionar "Guardar".</p>
 
             <div class="modal-body">
-                <h3>Calculadora USD / Cuotas</h3>
+                <h3>Dólar de referencia</h3>
                 <div class="controls">
                     <div class="control">
                         <label>Dólar de referencia</label>
                         <input id="dolar" type="number" step="1" value="1450" />
-                    </div>
-                    <div class="control">
-                        <label>Transferencia (%)</label>
-                        <input id="transferPct" type="number" step="0.1" value="3" />
-                    </div>
-                    <div class="control">
-                        <label>IVA (%)</label>
-                        <input id="ivaPct" type="number" step="0.1" value="10.5" />
-                    </div>
-                    <div class="control">
-                        <label>IIBB (%)</label>
-                        <input id="iibbPct" type="number" step="0.1" value="3.5" />
-                    </div>
-                </div>
-                <div class="controls">
-                    <div class="control">
-                        <label>Recargo 1 cuota (%)</label>
-                        <input id="pct1" type="number" step="0.1" value="10" />
-                    </div>
-                    <div class="control">
-                        <label>Recargo 3 cuotas (%)</label>
-                        <input id="pct3" type="number" step="0.1" value="25" />
-                    </div>
-                    <div class="control">
-                        <label>Recargo 6 cuotas (%)</label>
-                        <input id="pct6" type="number" step="0.1" value="35" />
-                    </div>
-                    <div class="control">
-                        <label>Recargo 12 cuotas (%)</label>
-                        <input id="pct12" type="number" step="0.1" value="45" />
                     </div>
                 </div>
 
@@ -800,97 +679,6 @@ require_login();
             return n.toLocaleString('es-AR', opts);
         }
 
-        function generarTabla() {
-            const producto = document.getElementById('producto').value || '';
-            const usd = parseFloat(document.getElementById('usd').value) || 0;
-            const dolar = parseFloat(document.getElementById('dolar').value) || 1;
-            const transferPct = (parseFloat(document.getElementById('transferPct').value) || 0) / 100;
-            const ivaPct = (parseFloat(document.getElementById('ivaPct').value) || 0) / 100;
-            const iibbPct = (parseFloat(document.getElementById('iibbPct').value) || 0) / 100;
-
-            const pct1 = parseFloat(document.getElementById('pct1').value) || 0;
-            const pct3 = parseFloat(document.getElementById('pct3').value) || 0;
-            const pct6 = parseFloat(document.getElementById('pct6').value) || 0;
-            const pct12 = parseFloat(document.getElementById('pct12').value) || 0;
-
-            const precioPesos = usd * dolar;
-            const precioTransferido = precioPesos * (1 + transferPct);
-
-            const iva = precioPesos * ivaPct;
-            const iibb = precioPesos * iibbPct;
-
-            const precioFacturado = precioPesos + iva + iibb;
-
-            const mult1 = 1 + pct1 / 100;
-            const mult3 = 1 + pct3 / 100;
-            const mult6 = 1 + pct6 / 100;
-            const mult12 = 1 + pct12 / 100;
-
-            const en1 = precioFacturado * mult1;
-            const en3 = precioFacturado * mult3;
-            const en6 = precioFacturado * mult6;
-            const en12 = precioFacturado * mult12;
-
-            const cuota3 = en3 / 3;
-            const cuota6 = en6 / 6;
-            const cuota12 = en12 / 12;
-
-            document.getElementById('th-en1').innerHTML = `EN 1 CUOTA<br><span class="small">(+${fmtPct(pct1)}%)</span>`;
-            document.getElementById('th-en3').innerHTML = `EN 3 CUOTAS<br><span class="small">(+${fmtPct(pct3)}%)</span>`;
-            document.getElementById('th-en6').innerHTML = `EN 6 CUOTAS<br><span class="small">(+${fmtPct(pct6)}%)</span>`;
-            document.getElementById('th-en12').innerHTML = `EN 12 CUOTAS<br><span class="small">(+${fmtPct(pct12)}%)</span>`;
-            document.getElementById('notas').innerHTML =
-                `Notas: <strong>P. transferencia</strong> = pesos + transf %. <strong>P. Facturado</strong> = pesos + IVA + IIBB. Las cuotas aplican recargos: EN 1 = +${fmtPct(pct1)}%, EN 3 = +${fmtPct(pct3)}%, EN 6 = +${fmtPct(pct6)}%, EN 12 = +${fmtPct(pct12)}%. Estos porcentajes se editan desde "⚙ Configurar".`;
-
-            const tbody = document.getElementById('tbody-results');
-            tbody.innerHTML = '';
-
-            const tr1 = document.createElement('tr');
-            function td(text) {
-                const c = document.createElement('td');
-                c.textContent = text;
-                return c;
-            }
-
-            tr1.appendChild(td(producto));
-            tr1.appendChild(td(fmt(usd, 'USD')));
-            tr1.appendChild(td(fmt(precioPesos, 'ARS')));
-            tr1.appendChild(td(fmt(precioTransferido, 'ARS')));
-            tr1.appendChild(td(fmt(iva, 'ARS')));
-            tr1.appendChild(td(fmt(iibb, 'ARS')));
-            tr1.appendChild(td(fmt(precioFacturado, 'ARS')));
-            tr1.appendChild(td(fmt(en1, 'ARS')));
-            tr1.appendChild(td(fmt(en3, 'ARS')));
-            tr1.appendChild(td(fmt(en6, 'ARS')));
-            tr1.appendChild(td(fmt(en12, 'ARS')));
-
-            const tr2 = document.createElement('tr');
-            const tdVacio = () => {
-                const td = document.createElement('td');
-                td.textContent = '';
-                return td;
-            };
-
-            tr2.appendChild(tdVacio());
-            tr2.appendChild(tdVacio());
-            tr2.appendChild(tdVacio());
-            tr2.appendChild(tdVacio());
-            tr2.appendChild(tdVacio());
-            tr2.appendChild(tdVacio());
-            tr2.appendChild(tdVacio());
-            const tdLabel = document.createElement('td');
-            tdLabel.textContent = "Valor por cuota";
-            tdLabel.style.fontWeight = "bold";
-            tdLabel.style.textAlign = "right";
-            tr2.appendChild(tdLabel);
-            tr2.appendChild(td(fmt(cuota3, 'ARS')));
-            tr2.appendChild(td(fmt(cuota6, 'ARS')));
-            tr2.appendChild(td(fmt(cuota12, 'ARS')));
-
-            tbody.appendChild(tr1);
-            tbody.appendChild(tr2);
-        }
-
         function fmtPct(n) {
             if (typeof n !== "number" || !isFinite(n)) return "-";
             return n.toLocaleString('es-AR', { minimumFractionDigits: 0, maximumFractionDigits: 2 });
@@ -908,14 +696,6 @@ require_login();
                 minimumFractionDigits: 0,
                 maximumFractionDigits: 2
             });
-        }
-
-        // ===================== TABS =====================
-        function showTab(name) {
-            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
-            document.getElementById('tab-' + name).classList.add('active');
-            document.getElementById('tabbtn-' + name).classList.add('active');
         }
 
         // ===================== SIMULADOR DE COBRO =====================
@@ -1282,7 +1062,6 @@ require_login();
 
         function guardarConfiguracion() {
             saveConfig();
-            generarTabla();
             actualizarBadgeDolar(parseFloat(document.getElementById('dolar').value) || 0, '· valor cargado manualmente');
             renderIvaButtons();
             actualizarConversionRecibir();
@@ -1315,13 +1094,6 @@ require_login();
 
         function resetConfigDefaults() {
             document.getElementById('dolar').value = 1450;
-            document.getElementById('transferPct').value = 3;
-            document.getElementById('ivaPct').value = 10.5;
-            document.getElementById('iibbPct').value = 3.5;
-            document.getElementById('pct1').value = 10;
-            document.getElementById('pct3').value = 25;
-            document.getElementById('pct6').value = 35;
-            document.getElementById('pct12').value = 45;
 
             document.getElementById('mp_costoCobro').value = 4.98;
             document.getElementById('mp_ivaComision').value = 21;
@@ -1388,13 +1160,15 @@ require_login();
                 actualizarBadgeDolar(actual, '· sin conexión, valor guardado');
                 if (manual) mostrarToast('No se pudo actualizar. Se mantiene el valor guardado.');
             }
-            generarTabla();
             actualizarConversionRecibir();
+            if ((parseFloat(document.getElementById('sim_recibir').value) || 0) > 0) {
+                calcularSimulador();
+            }
         }
 
         // ===================== PERSISTENCIA DE CONFIGURACIÓN =====================
         const CONFIG_FIELDS = [
-            'dolar', 'transferPct', 'ivaPct', 'iibbPct', 'pct1', 'pct3', 'pct6', 'pct12',
+            'dolar',
             'sim_plataforma', 'sim_recibir_moneda', 'mp_costoCobro', 'mp_ivaComision', 'mp_cuotasSelect',
             'mp_pct2', 'mp_pct3', 'mp_pct6', 'mp_pct9', 'mp_pct12', 'mp_pct18',
             'mp_retCD', 'mp_retIIBB',
@@ -1491,8 +1265,7 @@ require_login();
                 loadConfigFromStorage();
             }
             showPlatform();
-            showTab('simulador');
-            await actualizarDolar(); // trae el dólar blue del día; generarTabla() se llama adentro
+            await actualizarDolar(); // trae el dólar blue del día
         });
     </script>
 </body>

@@ -16,7 +16,7 @@ if (!is_array($data)) {
 // Solo se persisten las claves de configuración conocidas, para evitar que
 // el endpoint pueda usarse para escribir datos arbitrarios en el archivo.
 $camposPermitidos = [
-    'dolar', 'transferPct', 'ivaPct', 'iibbPct', 'pct1', 'pct3', 'pct6', 'pct12',
+    'dolar',
     'sim_plataforma', 'sim_recibir_moneda', 'mp_costoCobro', 'mp_ivaComision', 'mp_cuotasSelect',
     'mp_pct2', 'mp_pct3', 'mp_pct6', 'mp_pct9', 'mp_pct12', 'mp_pct18',
     'mp_retCD', 'mp_retIIBB',
