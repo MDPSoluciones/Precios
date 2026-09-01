@@ -7298,5 +7298,89 @@
             },
             "codigo": "PRES-00177"
         }
+    },
+    {
+        "empresa": {
+            "nombre": "AXENTIA S.R.L.",
+            "cuit": "30-71902891-4",
+            "direccion": "Marinero Sosa 854",
+            "mail": "adm.axentia@gmail.com",
+            "tel": "+54 9 3364 24-9663"
+        },
+        "cliente": {
+            "nombre": "SERVICIOS PORTUARIOS S.A.",
+            "cuit": "30-60675453-8",
+            "direccion": "AYOLAS Y EL RIO",
+            "mail": "pmelgar@serviciosportuarios.com.ar"
+        },
+        "presupuesto": {
+            "moneda": "ARS",
+            "fecha": "2026-08-27",
+            "validez": "5",
+            "pago": "Cuenta Corriente",
+            "notas": "",
+            "productos": [
+                {
+                    "desc": "Cámara IP PT 4G Dahua Apollo DH-IPC-PTS2649C-3E3Z-4GB20 | Doble Lente Dual 3+3MP | Panel Solar 8W + Batería 65Wh | WizColor | Zoom Híbrido 6x | Exterior IP66",
+                    "cant": 2,
+                    "precio": 652050,
+                    "subTotalBase": 1304100,
+                    "ivaPorc": 21,
+                    "totalIVA": 273861
+                },
+                {
+                    "desc": "ENVIO A ROSARIO",
+                    "cant": 1,
+                    "precio": 15000,
+                    "subTotalBase": 15000,
+                    "ivaPorc": 21,
+                    "totalIVA": 3150
+                }
+            ],
+            "totales": {
+                "neto": "1.319.100,00",
+                "iva": "277.011,00",
+                "final": "1.596.111,00"
+            },
+            "codigo": "PRES-00178"
+        }
+    },
+    {
+        "empresa": {
+            "nombre": "AXENTIA S.R.L.",
+            "cuit": "30-71902891-4",
+            "direccion": "Marinero Sosa 854",
+            "mail": "adm.axentia@gmail.com",
+            "tel": "+54 9 3364 24-9663"
+        },
+        "cliente": {
+            "nombre": "Municipalidad de San Nicolás de los Arroyos",
+            "cuit": "30-99900513-2",
+            "direccion": "Av. Illia 1130",
+            "mail": "info@sannicolas.gob.ar"
+        },
+        "presupuesto": {
+            "moneda": "ARS",
+            "fecha": "2026-08-26",
+            "validez": "5",
+            "pago": "Cuenta Corriente",
+            "notas": "",
+            "productos": [
+                {
+                    "desc": "Disco Rigido 16 Tb Seagate Ironwolf 16tb 3.5",
+                    "cant": 2,
+                    "precio": 1890000,
+                    "subTotalBase": 3780000,
+                    "ivaPorc": 0,
+                    "totalIVA": 0
+                }
+            ],
+            "totales": {
+                "neto": "3.780.000,00",
+                "iva": "0,00",
+                "final": "3.780.000,00"
+            },
+            "codigo": "PRES-00179"
+        }
     }
 ]
