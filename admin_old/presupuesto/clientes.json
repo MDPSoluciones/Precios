@@ -1,0 +1,98 @@
+[
+    {
+        "nombre": "SERVICIOS PORTUARIOS S.A.",
+        "cuit": "30-60675453-8",
+        "direccion": "AYOLAS Y EL RIO",
+        "mail": "pmelgar@serviciosportuarios.com.ar"
+    },
+    {
+        "nombre": "LOBERAZ S.A.",
+        "cuit": "30-64852476-1",
+        "direccion": "Calle 3 Nro 1110 - Parque Industrial Comirsa - Ramallo",
+        "mail": "loberaz@loberaz.com.ar"
+    },
+    {
+        "nombre": "Graciela Susana Vitali",
+        "cuit": "25.492.042",
+        "direccion": "Cantilo 36",
+        "mail": ""
+    },
+    {
+        "nombre": "Mar\u00eda Jimena Brucellaria ",
+        "cuit": "27-32279360-5 ",
+        "direccion": "Belgrano 329 ",
+        "mail": ""
+    },
+    {
+        "nombre": "Municipalidad de San Nicol\u00e1s de los Arroyos",
+        "cuit": "30-99900513-2",
+        "direccion": "Av. Illia 1130",
+        "mail": "info@sannicolas.gob.ar"
+    },
+    {
+        "nombre": "Di Santo Construcciones",
+        "cuit": "",
+        "direccion": "Alem 56",
+        "mail": "info@disantoconstrucciones.com.ar"
+    },
+    {
+        "nombre": "Frakaju Construcciones SRL",
+        "cuit": "30716421399",
+        "direccion": "Alem 56",
+        "mail": ""
+    },
+    {
+        "nombre": "Ente Aguas San Nicolas",
+        "cuit": "30-99900513-2",
+        "direccion": "Av. Illia 1130",
+        "mail": "info@sannicolas.gob.ar"
+    },
+    {
+        "nombre": "INSTITUTO SAN NICOLAS DE BARI S.R.L",
+        "cuit": "33-65108523-9",
+        "direccion": "Francia 21",
+        "mail": "info@snbari.edu.ar"
+    },
+    {
+        "nombre": "TERMINALES Y SERVICIOS S.R.L.",
+        "cuit": "30-69384468-8",
+        "direccion": "Coronel Bogado 55",
+        "mail": "contacto@terminalesyservicios.com.ar"
+    },
+    {
+        "nombre": "Silpituca",
+        "cuit": "",
+        "direccion": "",
+        "mail": ""
+    },
+    {
+        "nombre": "BALIARDA",
+        "cuit": "30-52109250-1",
+        "direccion": "",
+        "mail": ""
+    },
+    {
+        "nombre": "Santiago ",
+        "cuit": "",
+        "direccion": "",
+        "mail": ""
+    },
+    {
+        "nombre": "DIEGO PEREZ",
+        "cuit": "",
+        "direccion": "",
+        "mail": ""
+    },
+    {
+        "nombre": "SEPOR S.A",
+        "cuit": "30-70816443-3",
+        "direccion": "Las Rosas 150, San Nicol\u00e1s",
+        "mail": ""
+    },
+    {
+        "nombre": "CONSUMIDOR FINAL",
+        "cuit": "1111111111",
+        "direccion": "XXXXX",
+        "mail": "XXXXX@SDSDS.COM"
+    }
+]
