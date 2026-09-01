@@ -10,7 +10,7 @@ $activo = 'inicio';
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Panel - MDP Soluciones</title>
 <link rel="icon" href="https://mdpsoluciones.com.ar/images/logoCircDor.png" type="image/x-icon">
-<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/style.css?v=3">
 </head>
 <body>
 <div class="panel">

@@ -3,7 +3,18 @@
         "usuario": "admin",
         "clave_hash": "$2y$12$fm\/7VFHROrcKL7tuNR172u7NCZYUHBs0Ukf\/LNaBA41PW0odGLKo2",
         "creado": "2026-07-04T22:43:34+00:00",
-        "rol": "admin"
+        "rol": "admin",
+        "orden_menu": [
+            "inicio",
+            "presupuesto",
+            "facturas",
+            "etiquetas",
+            "cuotas",
+            "caja",
+            "productos",
+            "inventario",
+            "usuarios"
+        ]
     },
     {
         "usuario": "Marcos",
@@ -21,7 +32,18 @@
         "usuario": "Cristian",
         "clave_hash": "$2y$12$.PiW5EnNkgSQUxY4uk3ZYurFx0c2lZwqmKFawXl4sSc.1ys4EEtH2",
         "creado": "2026-07-04T22:56:18+00:00",
-        "rol": "admin"
+        "rol": "admin",
+        "orden_menu": [
+            "inicio",
+            "cuotas",
+            "presupuesto",
+            "caja",
+            "facturas",
+            "etiquetas",
+            "productos",
+            "inventario",
+            "usuarios"
+        ]
     },
     {
         "usuario": "gerardo",

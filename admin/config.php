@@ -48,18 +48,24 @@ function current_user() {
     return $_SESSION['usuario'] ?? null;
 }
 
-// Busca el usuario logueado en users.json y devuelve su rol ('admin' o 'usuario').
-// Si el usuario no tiene el campo 'rol' (cuentas viejas), se lo trata como 'usuario'.
-function current_user_role() {
+// Devuelve el registro completo del usuario logueado desde users.json (o null).
+function current_user_data() {
     $usuario = current_user();
     if (!$usuario) return null;
     $users = load_json(USERS_FILE);
     foreach ($users as $u) {
         if (strcasecmp($u['usuario'], $usuario) === 0) {
-            return $u['rol'] ?? 'usuario';
+            return $u;
         }
     }
-    return 'usuario';
+    return null;
+}
+
+// Busca el usuario logueado en users.json y devuelve su rol ('admin' o 'usuario').
+// Si el usuario no tiene el campo 'rol' (cuentas viejas), se lo trata como 'usuario'.
+function current_user_role() {
+    $u = current_user_data();
+    return $u ? ($u['rol'] ?? 'usuario') : null;
 }
 
 function is_admin() {

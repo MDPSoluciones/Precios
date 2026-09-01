@@ -93,7 +93,7 @@ $users = load_json(USERS_FILE);
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gestionar usuarios - MDP Soluciones</title>
-<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/style.css?v=3">
 </head>
 <body class="login-body">
   <div class="login-card ancho">

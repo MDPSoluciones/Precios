@@ -11,11 +11,28 @@ $items = [
     'etiquetas'   => ['label' => 'Etiquetas',            'href' => 'etiquetas/',              'icon' => 'tag'],
     'cuotas'      => ['label' => 'Simulador de Cuotas',  'href' => 'cuotas/',                 'icon' => 'percent'],
     'caja'        => ['label' => 'Carga de Caja',        'href' => 'caja/',                   'icon' => 'wallet'],
+    'productos'   => ['label' => 'Carga de Productos',   'href' => 'productos/',              'icon' => 'upload'],
     'inventario'  => ['label' => 'Inventario',           'href' => 'inventario/',             'icon' => 'box'],
 ];
 
 if (is_admin()) {
     $items['usuarios'] = ['label' => 'Gestionar usuarios', 'href' => 'gestionar_usuarios.php', 'icon' => 'users'];
+}
+
+// Cada usuario puede reordenar el menú arrastrando; su orden se guarda en su
+// propio registro (users.json) y se aplica acá. Si hay ítems nuevos que el
+// usuario todavía no tiene en su orden guardado (por ej. una herramienta que
+// se agregó después), quedan al final en su posición por defecto.
+$usuarioData = current_user_data();
+if ($usuarioData && !empty($usuarioData['orden_menu']) && is_array($usuarioData['orden_menu'])) {
+    $ordenados = [];
+    foreach ($usuarioData['orden_menu'] as $clave) {
+        if (isset($items[$clave])) {
+            $ordenados[$clave] = $items[$clave];
+            unset($items[$clave]);
+        }
+    }
+    $items = $ordenados + $items;
 }
 
 function nav_icon($name) {
@@ -28,6 +45,7 @@ function nav_icon($name) {
         'wallet'    => '<path d="M3 7a2 2 0 0 1 2-2h13a1 1 0 0 1 1 1v3"/><path d="M3 7v11a2 2 0 0 0 2 2h14a1 1 0 0 0 1-1v-4"/><path d="M15 13h4v4h-4a2 2 0 0 1 0-4Z"/>',
         'box'       => '<path d="M3 9.5 12 4l9 5.5V19a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1Z"/>',
         'users'     => '<circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="8" r="2.4"/><path d="M23 20c0-2.6-1.7-4.8-4-5.6"/>',
+        'upload'    => '<path d="M12 3v12"/><path d="M7.5 7.5 12 3l4.5 4.5"/><path d="M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/>',
     ];
     return $icons[$name] ?? '';
 }
@@ -52,6 +70,7 @@ $inicial = $usuario ? strtoupper(substr($usuario, 0, 2)) : '--';
          href="<?= htmlspecialchars($item['href']) ?>"
          target="toolFrame"
          data-tool="<?= htmlspecialchars($key) ?>"
+         draggable="true"
          onclick="mdpMarcarActivo(this)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><?= nav_icon($item['icon']) ?></svg>
         <?= htmlspecialchars($item['label']) ?>
@@ -136,4 +155,47 @@ async function mdpGuardarClave(e) {
   }
   return false;
 }
+
+// ===== Reordenar el menú arrastrando (se guarda por usuario) =====
+(function () {
+  var nav = document.querySelector('.sidebar-nav');
+  if (!nav) return;
+  var arrastrando = null;
+
+  function itemsActuales() {
+    return Array.prototype.slice.call(nav.querySelectorAll('.nav-item'));
+  }
+
+  function guardarOrden() {
+    var orden = itemsActuales().map(function (n) { return n.dataset.tool; });
+    fetch('guardar_orden_menu.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(orden)
+    }).catch(function () { /* si falla, el orden vuelve a como estaba al recargar */ });
+  }
+
+  itemsActuales().forEach(function (item) {
+    item.addEventListener('dragstart', function () {
+      arrastrando = item;
+      item.classList.add('arrastrando');
+    });
+    item.addEventListener('dragend', function () {
+      item.classList.remove('arrastrando');
+      arrastrando = null;
+      guardarOrden();
+    });
+    item.addEventListener('dragover', function (e) {
+      e.preventDefault();
+      if (!arrastrando || arrastrando === item) return;
+      var rect = item.getBoundingClientRect();
+      var mitad = rect.top + rect.height / 2;
+      if (e.clientY < mitad) {
+        nav.insertBefore(arrastrando, item);
+      } else {
+        nav.insertBefore(arrastrando, item.nextSibling);
+      }
+    });
+  });
+})();
 </script>
