@@ -26,7 +26,17 @@
         "usuario": "Ariela",
         "clave_hash": "$2y$12$j0B0.Mj\/xjXVJGOwJKAqfeWxnOkAX0GdNHoixSuWr53.cRnjg\/OcO",
         "creado": "2026-07-04T22:56:04+00:00",
-        "rol": "usuario"
+        "rol": "usuario",
+        "orden_menu": [
+            "inicio",
+            "presupuesto",
+            "facturas",
+            "etiquetas",
+            "cuotas",
+            "caja",
+            "productos",
+            "inventario"
+        ]
     },
     {
         "usuario": "Cristian",
@@ -35,13 +45,13 @@
         "rol": "admin",
         "orden_menu": [
             "inicio",
-            "cuotas",
             "presupuesto",
-            "caja",
+            "cuotas",
             "facturas",
             "etiquetas",
-            "productos",
             "inventario",
+            "productos",
+            "caja",
             "usuarios"
         ]
     },
@@ -55,12 +65,32 @@
         "usuario": "yanina",
         "clave_hash": "$2y$10$BU0Wgo\/0DGaerV\/QdowRZ.\/5PwMG0Ylx.a\/nJiky28AlnAMDBOF6u",
         "creado": "2026-08-25T17:02:43+00:00",
-        "rol": "usuario"
+        "rol": "usuario",
+        "orden_menu": [
+            "inicio",
+            "presupuesto",
+            "facturas",
+            "etiquetas",
+            "caja",
+            "productos",
+            "cuotas",
+            "inventario"
+        ]
     },
     {
         "usuario": "Marcelo",
         "clave_hash": "$2y$12$kcRVrGMzhAPGIW.A2DXbMO0Iyu4zf7hZetodjoyx5HKiz2ioLTx7W",
         "rol": "usuario",
-        "creado": "2026-08-27T12:29:42+00:00"
+        "creado": "2026-08-27T12:29:42+00:00",
+        "orden_menu": [
+            "inicio",
+            "caja",
+            "productos",
+            "cuotas",
+            "etiquetas",
+            "inventario",
+            "facturas",
+            "presupuesto"
+        ]
     }
 ]

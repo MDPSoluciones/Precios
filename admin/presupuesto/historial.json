@@ -7382,5 +7382,2049 @@
             },
             "codigo": "PRES-00179"
         }
+    },
+    {
+        "empresa": {
+            "nombre": "AXENTIA S.R.L.",
+            "cuit": "30-71902891-4",
+            "direccion": "Marinero Sosa 854",
+            "mail": "adm.axentia@gmail.com",
+            "tel": "+54 9 3364 24-9663"
+        },
+        "cliente": {
+            "nombre": "Municipalidad de San Nicolás de los Arroyos",
+            "cuit": "30-99900513-2",
+            "direccion": "Av. Illia 1130",
+            "mail": "info@sannicolas.gob.ar"
+        },
+        "presupuesto": {
+            "moneda": "ARS",
+            "fecha": "2026-09-03",
+            "validez": "5",
+            "pago": "Cuenta Corriente",
+            "notas": "",
+            "productos": [
+                {
+                    "desc": "Cámara IP PTZ Domo Exterior Hikvision DS-2DE7A232IW-AEB (T5) | 2MP (Full HD) | Zoom Óptico 32x | Smart IR 200m | IA AcuSense \/ LPR | IP66 \/ IK10",
+                    "cant": 10,
+                    "precio": 2800000,
+                    "subTotalBase": 28000000,
+                    "ivaPorc": 0,
+                    "totalIVA": 0
+                },
+                {
+                    "desc": "Cámara IP Domo Exterior Hikvision | 4MP (2K) | Lente Motorizado Varifocal | Smart IR | IP67 \/ IK10",
+                    "cant": 10,
+                    "precio": 910000,
+                    "subTotalBase": 9100000,
+                    "ivaPorc": 0,
+                    "totalIVA": 0
+                }
+            ],
+            "totales": {
+                "neto": "37.100.000,00",
+                "iva": "0,00",
+                "final": "37.100.000,00"
+            },
+            "codigo": "PRES-00180"
+        }
+    },
+    {
+        "empresa": {
+            "nombre": "AXENTIA S.R.L.",
+            "cuit": "30-71902891-4",
+            "direccion": "Marinero Sosa 854",
+            "mail": "adm.axentia@gmail.com",
+            "tel": "+54 9 3364 24-9663"
+        },
+        "cliente": {
+            "nombre": "Municipalidad de San Nicolás de los Arroyos",
+            "cuit": "30-99900513-2",
+            "direccion": "Av. Illia 1130",
+            "mail": "info@sannicolas.gob.ar"
+        },
+        "presupuesto": {
+            "moneda": "ARS",
+            "fecha": "2026-09-03",
+            "validez": "5",
+            "pago": "Cuenta Corriente",
+            "notas": "",
+            "productos": [
+                {
+                    "desc": "Cámara IP PTZ Domo Exterior Hikvision DS-2DE7A232IW-AEB (T5) | 2MP (Full HD) | Zoom Óptico 32x | Smart IR 200m | IA AcuSense \/ LPR | IP66 \/ IK10",
+                    "cant": 10,
+                    "precio": 2800000,
+                    "subTotalBase": 28000000,
+                    "ivaPorc": 0,
+                    "totalIVA": 0
+                },
+                {
+                    "desc": "Cámara IP Domo Exterior Hikvision | 4MP (2K) | Lente Motorizado Varifocal | Smart IR | IP67 \/ IK10",
+                    "cant": 10,
+                    "precio": 910000,
+                    "subTotalBase": 9100000,
+                    "ivaPorc": 0,
+                    "totalIVA": 0
+                },
+                {
+                    "desc": "Switch PoE Dahua PFS3006-4ET-60 | 4 Puertos PoE + 2 Uplink 10\/100 Mbps | Hi-PoE (60W) | Modo Extend 250m | Gabinete Metálico",
+                    "cant": 10,
+                    "precio": 110000,
+                    "subTotalBase": 1100000,
+                    "ivaPorc": 0,
+                    "totalIVA": 0
+                }
+            ],
+            "totales": {
+                "neto": "38.200.000,00",
+                "iva": "0,00",
+                "final": "38.200.000,00"
+            },
+            "codigo": "PRES-00181"
+        }
+    },
+    {
+        "empresa": {
+            "nombre": "AXENTIA S.R.L.",
+            "cuit": "30-71902891-4",
+            "direccion": "Marinero Sosa 854",
+            "mail": "adm.axentia@gmail.com",
+            "tel": "+54 9 3364 24-9663"
+        },
+        "cliente": {
+            "nombre": "SERVICIOS PORTUARIOS S.A.",
+            "cuit": "30-60675453-8",
+            "direccion": "AYOLAS Y EL RIO",
+            "mail": "pmelgar@serviciosportuarios.com.ar"
+        },
+        "presupuesto": {
+            "moneda": "ARS",
+            "fecha": "2026-09-04",
+            "validez": "5",
+            "pago": "Cuenta Corriente",
+            "notas": "",
+            "productos": [
+                {
+                    "desc": "Teléfono Inalámbrico Gigaset A270a Duo | Contestador Automático | Manos Libres | Dect 6.0         (SEGUN ORDEN DE COMPRA N° 66105)",
+                    "cant": 1,
+                    "precio": 170600,
+                    "subTotalBase": 170600,
+                    "ivaPorc": 21,
+                    "totalIVA": 35826
+                }
+            ],
+            "totales": {
+                "neto": "170.600,00",
+                "iva": "35.826,00",
+                "final": "206.426,00"
+            },
+            "codigo": "PRES-00182"
+        }
+    },
+    {
+        "empresa": {
+            "nombre": "AXENTIA S.R.L.",
+            "cuit": "30-71902891-4",
+            "direccion": "Marinero Sosa 854",
+            "mail": "adm.axentia@gmail.com",
+            "tel": "+54 9 3364 24-9663"
+        },
+        "cliente": {
+            "nombre": "Municipalidad de San Nicolás de los Arroyos",
+            "cuit": "30-99900513-2",
+            "direccion": "Av. Illia 1130",
+            "mail": "info@sannicolas.gob.ar"
+        },
+        "presupuesto": {
+            "moneda": "ARS",
+            "fecha": "2026-09-08",
+            "validez": "5",
+            "pago": "Cuenta Corriente",
+            "notas": "",
+            "productos": [
+                {
+                    "desc": "Headset Gamer Redragon Alámbrico Hylas H260 Rgb",
+                    "cant": 1,
+                    "precio": 65000,
+                    "subTotalBase": 65000,
+                    "ivaPorc": 0,
+                    "totalIVA": 0
+                }
+            ],
+            "totales": {
+                "neto": "65.000,00",
+                "iva": "0,00",
+                "final": "65.000,00"
+            },
+            "codigo": "PRES-00183"
+        }
+    },
+    {
+        "empresa": {
+            "nombre": "AXENTIA S.R.L.",
+            "cuit": "30-71902891-4",
+            "direccion": "Marinero Sosa 854",
+            "mail": "adm.axentia@gmail.com",
+            "tel": "+54 9 3364 24-9663"
+        },
+        "cliente": {
+            "nombre": "Municipalidad de San Nicolás de los Arroyos",
+            "cuit": "30-99900513-2",
+            "direccion": "Av. Illia 1130",
+            "mail": "info@sannicolas.gob.ar"
+        },
+        "presupuesto": {
+            "moneda": "ARS",
+            "fecha": "2026-09-09",
+            "validez": "5",
+            "pago": "Cuenta Corriente",
+            "notas": "",
+            "productos": [
+                {
+                    "desc": "Adaptador Magnético Dual Sunnylife P\/ Dji Osmo Nano\/action 6 Negro",
+                    "cant": 1,
+                    "precio": 85000,
+                    "subTotalBase": 85000,
+                    "ivaPorc": 0,
+                    "totalIVA": 0
+                },
+                {
+                    "desc": "Palo selfie para camaras de accion ugreen - Modelo LP586-15062",
+                    "cant": 1,
+                    "precio": 95000,
+                    "subTotalBase": 95000,
+                    "ivaPorc": 0,
+                    "totalIVA": 0
+                }
+            ],
+            "totales": {
+                "neto": "180.000,00",
+                "iva": "0,00",
+                "final": "180.000,00"
+            },
+            "codigo": "PRES-00184"
+        }
+    },
+    {
+        "empresa": {
+            "nombre": "AXENTIA S.R.L.",
+            "cuit": "30-71902891-4",
+            "direccion": "Marinero Sosa 854",
+            "mail": "adm.axentia@gmail.com",
+            "tel": "+54 9 3364 24-9663"
+        },
+        "cliente": {
+            "nombre": "SERVICIOS PORTUARIOS S.A.",
+            "cuit": "30-60675453-8",
+            "direccion": "AYOLAS Y EL RIO",
+            "mail": "pmelgar@serviciosportuarios.com.ar"
+        },
+        "presupuesto": {
+            "moneda": "ARS",
+            "fecha": "2026-09-09",
+            "validez": "5",
+            "pago": "Cuenta Corriente",
+            "notas": "",
+            "productos": [
+                {
+                    "desc": "Fuente alimentacion Switching 12v 1amp",
+                    "cant": 1,
+                    "precio": 15000,
+                    "subTotalBase": 15000,
+                    "ivaPorc": 21,
+                    "totalIVA": 3150
+                },
+                {
+                    "desc": "Teclado Genius Kb-117 De Membrana Con Pad Numérico",
+                    "cant": 1,
+                    "precio": 20000,
+                    "subTotalBase": 20000,
+                    "ivaPorc": 10.5,
+                    "totalIVA": 2100
+                },
+                {
+                    "desc": "Access Point Ubiquiti Unifi U6-mesh Wifi6",
+                    "cant": 1,
+                    "precio": 550000,
+                    "subTotalBase": 550000,
+                    "ivaPorc": 10.5,
+                    "totalIVA": 57750
+                }
+            ],
+            "totales": {
+                "neto": "585.000,00",
+                "iva": "63.000,00",
+                "final": "648.000,00"
+            },
+            "codigo": "PRES-00185"
+        }
+    },
+    {
+        "empresa": {
+            "nombre": "AXENTIA S.R.L.",
+            "cuit": "30-71902891-4",
+            "direccion": "Marinero Sosa 854",
+            "mail": "adm.axentia@gmail.com",
+            "tel": "+54 9 3364 24-9663"
+        },
+        "cliente": {
+            "nombre": "SERVICIOS PORTUARIOS S.A.",
+            "cuit": "30-60675453-8",
+            "direccion": "AYOLAS Y EL RIO",
+            "mail": "pmelgar@serviciosportuarios.com.ar"
+        },
+        "presupuesto": {
+            "moneda": "ARS",
+            "fecha": "2026-09-09",
+            "validez": "5",
+            "pago": "Cuenta Corriente",
+            "notas": "",
+            "productos": [
+                {
+                    "desc": "Impresora Multifunción Brother Dcp-l3560cdw Láser Color",
+                    "cant": 1,
+                    "precio": 1190000,
+                    "subTotalBase": 1190000,
+                    "ivaPorc": 21,
+                    "totalIVA": 249900
+                },
+                {
+                    "desc": "MFLC HP 3303FDW LASERJET PRO 25 PPM WIFI",
+                    "cant": 1,
+                    "precio": 890000,
+                    "subTotalBase": 890000,
+                    "ivaPorc": 21,
+                    "totalIVA": 186900
+                }
+            ],
+            "totales": {
+                "neto": "2.080.000,00",
+                "iva": "436.800,00",
+                "final": "2.516.800,00"
+            },
+            "codigo": "PRES-00186"
+        }
+    },
+    {
+        "empresa": {
+            "nombre": "AXENTIA S.R.L.",
+            "cuit": "30-71902891-4",
+            "direccion": "Marinero Sosa 854",
+            "mail": "adm.axentia@gmail.com",
+            "tel": "+54 9 3364 24-9663"
+        },
+        "cliente": {
+            "nombre": "Municipalidad de San Nicolás de los Arroyos",
+            "cuit": "30-99900513-2",
+            "direccion": "Av. Illia 1130",
+            "mail": "info@sannicolas.gob.ar"
+        },
+        "presupuesto": {
+            "moneda": "ARS",
+            "fecha": "2026-09-09",
+            "validez": "5",
+            "pago": "Cuenta Corriente",
+            "notas": "",
+            "productos": [
+                {
+                    "desc": "Disco Rígido NAS Seagate IronWolf Pro 16TB (ST16000NT001) | 3.5\" SATA III | 7200 RPM | 256MB Cache | Tecnología CMR | Carga 550 TB\/año",
+                    "cant": 2,
+                    "precio": 1950000,
+                    "subTotalBase": 3900000,
+                    "ivaPorc": 0,
+                    "totalIVA": 0
+                },
+                {
+                    "desc": "Disco Rígido NAS Seagate IronWolf 12TB (ST12000VN0008) | 3.5\" SATA III 6 Gb\/s | 7200 RPM | 256MB Cache | Tecnología CMR | EAN: 8719706011311",
+                    "cant": 2,
+                    "precio": 1000000,
+                    "subTotalBase": 2000000,
+                    "ivaPorc": 0,
+                    "totalIVA": 0
+                }
+            ],
+            "totales": {
+                "neto": "5.900.000,00",
+                "iva": "0,00",
+                "final": "5.900.000,00"
+            },
+            "codigo": "PRES-00187"
+        }
+    },
+    {
+        "empresa": {
+            "nombre": "AXENTIA S.R.L.",
+            "cuit": "30-71902891-4",
+            "direccion": "Marinero Sosa 854",
+            "mail": "adm.axentia@gmail.com",
+            "tel": "+54 9 3364 24-9663"
+        },
+        "cliente": {
+            "nombre": "Municipalidad de San Nicolás de los Arroyos",
+            "cuit": "30-99900513-2",
+            "direccion": "Av. Illia 1130",
+            "mail": "info@sannicolas.gob.ar"
+        },
+        "presupuesto": {
+            "moneda": "ARS",
+            "fecha": "2026-09-12",
+            "validez": "5",
+            "pago": "Cuenta Corriente",
+            "notas": "",
+            "productos": [
+                {
+                    "desc": "Switch PoE Dahua PFS3006-4ET-60 | 4 Puertos PoE + 2 Uplink 10\/100 Mbps | Hi-PoE (60W) | Modo Extend 250m | Gabinete Metálico",
+                    "cant": 10,
+                    "precio": 110000,
+                    "subTotalBase": 1100000,
+                    "ivaPorc": 10.5,
+                    "totalIVA": 115500
+                }
+            ],
+            "totales": {
+                "neto": "1.100.000,00",
+                "iva": "115.500,00",
+                "final": "1.215.500,00"
+            },
+            "codigo": "PRES-00188"
+        }
+    },
+    {
+        "empresa": {
+            "nombre": "AXENTIA S.R.L.",
+            "cuit": "30-71902891-4",
+            "direccion": "Marinero Sosa 854",
+            "mail": "adm.axentia@gmail.com",
+            "tel": "+54 9 3364 24-9663"
+        },
+        "cliente": {
+            "nombre": "Augustus Seguridad S.A.",
+            "cuit": "30-70823152-1",
+            "direccion": "Central Argentino 210 Bis, Rosario",
+            "mail": "pmelgar@serviciosportuarios.com.ar"
+        },
+        "presupuesto": {
+            "moneda": "ARS",
+            "fecha": "2026-09-15",
+            "validez": "5",
+            "pago": "Cuenta Corriente",
+            "notas": "",
+            "productos": [
+                {
+                    "desc": "Cámara IP Bullet Exterior Vivotek IB9387-EHTV-V3 | 5MP | Lente Telefoto Varifocal 12-40mm | Smart IR 100m | IA Smart VCA | IP67 \/ IK10",
+                    "cant": 4,
+                    "precio": 2770000,
+                    "subTotalBase": 11080000,
+                    "ivaPorc": 21,
+                    "totalIVA": 2326800
+                },
+                {
+                    "desc": "ENVIO A ROSARIO",
+                    "cant": 1,
+                    "precio": 15000,
+                    "subTotalBase": 15000,
+                    "ivaPorc": 21,
+                    "totalIVA": 3150
+                }
+            ],
+            "totales": {
+                "neto": "11.095.000,00",
+                "iva": "2.329.950,00",
+                "final": "13.424.950,00"
+            },
+            "codigo": "PRES-00189"
+        }
+    },
+    {
+        "empresa": {
+            "nombre": "AXENTIA S.R.L.",
+            "cuit": "30-71902891-4",
+            "direccion": "Marinero Sosa 854",
+            "mail": "adm.axentia@gmail.com",
+            "tel": "+54 9 3364 24-9663"
+        },
+        "cliente": {
+            "nombre": "Augustus Seguridad S.A.",
+            "cuit": "30-70823152-1",
+            "direccion": "Central Argentino 210 Bis, Rosario",
+            "mail": "pmelgar@serviciosportuarios.com.ar"
+        },
+        "presupuesto": {
+            "moneda": "USD",
+            "fecha": "2026-09-15",
+            "validez": "5",
+            "pago": "Cuenta Corriente",
+            "notas": "Se debe importar con un plazo de entrega de 120 días.",
+            "productos": [
+                {
+                    "desc": "Cámara IP Bullet Exterior Vivotek IB9387-EHTV-V3 | 5MP | Lente Telefoto Varifocal 12-40mm | Smart IR 100m | IA Smart VCA | IP67 \/ IK10",
+                    "cant": 2,
+                    "precio": 1750,
+                    "subTotalBase": 3500,
+                    "ivaPorc": 21,
+                    "totalIVA": 735
+                }
+            ],
+            "totales": {
+                "neto": "3.500,00",
+                "iva": "735,00",
+                "final": "4.235,00"
+            },
+            "codigo": "PRES-00190"
+        }
+    },
+    {
+        "empresa": {
+            "nombre": "AXENTIA S.R.L.",
+            "cuit": "30-71902891-4",
+            "direccion": "Marinero Sosa 854",
+            "mail": "adm.axentia@gmail.com",
+            "tel": "+54 9 3364 24-9663"
+        },
+        "cliente": {
+            "nombre": "SERVICIOS PORTUARIOS S.A.",
+            "cuit": "30-60675453-8",
+            "direccion": "AYOLAS Y EL RIO",
+            "mail": "pmelgar@serviciosportuarios.com.ar"
+        },
+        "presupuesto": {
+            "moneda": "ARS",
+            "fecha": "2026-09-15",
+            "validez": "5",
+            "pago": "Cuenta Corriente",
+            "notas": "",
+            "productos": [
+                {
+                    "desc": "Unidad De Tambor De Imagen HP 19A (CF219A) | Con Chip | Compatible Global",
+                    "cant": 2,
+                    "precio": 13500,
+                    "subTotalBase": 27000,
+                    "ivaPorc": 21,
+                    "totalIVA": 5670
+                },
+                {
+                    "desc": "Cartucho De Tóner HP 17A (CF217A) | Con Chip | Compatible Global",
+                    "cant": 6,
+                    "precio": 8800,
+                    "subTotalBase": 52800,
+                    "ivaPorc": 21,
+                    "totalIVA": 11088
+                }
+            ],
+            "totales": {
+                "neto": "79.800,00",
+                "iva": "16.758,00",
+                "final": "96.558,00"
+            },
+            "codigo": "PRES-00191"
+        }
+    },
+    {
+        "empresa": {
+            "nombre": "AXENTIA S.R.L.",
+            "cuit": "30-71902891-4",
+            "direccion": "Marinero Sosa 854",
+            "mail": "adm.axentia@gmail.com",
+            "tel": "+54 9 3364 24-9663"
+        },
+        "cliente": {
+            "nombre": "Municipalidad de San Nicolás de los Arroyos",
+            "cuit": "30-99900513-2",
+            "direccion": "Av. Illia 1130",
+            "mail": "info@sannicolas.gob.ar"
+        },
+        "presupuesto": {
+            "moneda": "ARS",
+            "fecha": "2026-09-15",
+            "validez": "5",
+            "pago": "Cuenta Corriente",
+            "notas": "",
+            "productos": [
+                {
+                    "desc": "Dell Latitude 5440 | Core 7 150U \/ 16GB RAM \/ 512GB SSD \/ 14\" W11 Pro | Con Ñ (Teclado en español)",
+                    "cant": 1,
+                    "precio": 1850000,
+                    "subTotalBase": 1850000,
+                    "ivaPorc": 0,
+                    "totalIVA": 0
+                },
+                {
+                    "desc": "Dell Latitude 5430 | i5-1245U \/ 16GB RAM \/ 512GB SSD \/ 14\" W11 Pro | Sin Ñ (Teclado US)",
+                    "cant": 1,
+                    "precio": 1650000,
+                    "subTotalBase": 1650000,
+                    "ivaPorc": 0,
+                    "totalIVA": 0
+                },
+                {
+                    "desc": "Lenovo ThinkPad T14s Gen 6 | Ultra 7 265U \/ 32GB RAM \/ 512GB SSD \/ 14\" Touch | Con Ñ (Teclado en español)",
+                    "cant": 1,
+                    "precio": 3150000,
+                    "subTotalBase": 3150000,
+                    "ivaPorc": 0,
+                    "totalIVA": 0
+                },
+                {
+                    "desc": "HP ProBook 460 G11 | Ultra 5 125U \/ 16GB RAM \/ 256GB SSD \/ 16\" | Sin Ñ (Teclado US)",
+                    "cant": 1,
+                    "precio": 1650000,
+                    "subTotalBase": 1650000,
+                    "ivaPorc": 0,
+                    "totalIVA": 0
+                },
+                {
+                    "desc": "Lenovo ThinkPad E14 Gen 5 (21T1000CAR | R5\/16GB\/512GB\/W11P) | Teclado Con Ñ",
+                    "cant": 1,
+                    "precio": 2600000,
+                    "subTotalBase": 2600000,
+                    "ivaPorc": 0,
+                    "totalIVA": 0
+                },
+                {
+                    "desc": "Lenovo ThinkBook 16 Gen 6 (21MW0060AR | R5\/8GB\/512GB\/FreeDOS) | Teclado Con Ñ",
+                    "cant": 1,
+                    "precio": 1400000,
+                    "subTotalBase": 1400000,
+                    "ivaPorc": 0,
+                    "totalIVA": 0
+                },
+                {
+                    "desc": "HP ProBook 440 G11 (A24Z2LT | Ultra 5\/16GB\/512GB\/W11P) | Teclado Con Ñ",
+                    "cant": 1,
+                    "precio": 1950000,
+                    "subTotalBase": 1950000,
+                    "ivaPorc": 0,
+                    "totalIVA": 0
+                },
+                {
+                    "desc": "HP ProBook 445 G10 (B94K5LT#AC8 | R7\/16GB\/1TB\/W11P) | Teclado Con Ñ",
+                    "cant": 1,
+                    "precio": 1800000,
+                    "subTotalBase": 1800000,
+                    "ivaPorc": 0,
+                    "totalIVA": 0
+                }
+            ],
+            "totales": {
+                "neto": "16.050.000,00",
+                "iva": "0,00",
+                "final": "16.050.000,00"
+            },
+            "codigo": "PRES-00193"
+        }
+    },
+    {
+        "empresa": {
+            "nombre": "AXENTIA S.R.L.",
+            "cuit": "30-71902891-4",
+            "direccion": "Marinero Sosa 854",
+            "mail": "adm.axentia@gmail.com",
+            "tel": "+54 9 3364 24-9663"
+        },
+        "cliente": {
+            "nombre": "Municipalidad de San Nicolás de los Arroyos",
+            "cuit": "30-99900513-2",
+            "direccion": "Av. Illia 1130",
+            "mail": "info@sannicolas.gob.ar"
+        },
+        "presupuesto": {
+            "moneda": "ARS",
+            "fecha": "2026-09-16",
+            "validez": "5",
+            "pago": "Cuenta Corriente",
+            "notas": "",
+            "productos": [
+                {
+                    "desc": "Termómetro Digital Para Heladera Y Refrigeración DT-1 | Doble Sensor (Int\/Ext) Con Sonda | Pantalla LCD",
+                    "cant": 10,
+                    "precio": 27000,
+                    "subTotalBase": 270000,
+                    "ivaPorc": 0,
+                    "totalIVA": 0
+                }
+            ],
+            "totales": {
+                "neto": "270.000,00",
+                "iva": "0,00",
+                "final": "270.000,00"
+            },
+            "codigo": "PRES-00194"
+        }
+    },
+    {
+        "empresa": {
+            "nombre": "AXENTIA S.R.L.",
+            "cuit": "30-71902891-4",
+            "direccion": "Marinero Sosa 854",
+            "mail": "adm.axentia@gmail.com",
+            "tel": "+54 9 3364 24-9663"
+        },
+        "cliente": {
+            "nombre": "Municipalidad de San Nicolás de los Arroyos",
+            "cuit": "30-99900513-2",
+            "direccion": "Av. Illia 1130",
+            "mail": "info@sannicolas.gob.ar"
+        },
+        "presupuesto": {
+            "moneda": "ARS",
+            "fecha": "2026-09-16",
+            "validez": "5",
+            "pago": "Cuenta Corriente",
+            "notas": "",
+            "productos": [
+                {
+                    "desc": "Auriculares Gamer Redragon Hylas H260 | Iluminación RGB | Cancelación De Ruido | Micrófono Flexible | Cable 2m | Color Negro",
+                    "cant": 3,
+                    "precio": 63000,
+                    "subTotalBase": 189000,
+                    "ivaPorc": 0,
+                    "totalIVA": 0
+                }
+            ],
+            "totales": {
+                "neto": "189.000,00",
+                "iva": "0,00",
+                "final": "189.000,00"
+            },
+            "codigo": "PRES-00195"
+        }
+    },
+    {
+        "empresa": {
+            "nombre": "AXENTIA S.R.L.",
+            "cuit": "30-71902891-4",
+            "direccion": "Marinero Sosa 854",
+            "mail": "adm.axentia@gmail.com",
+            "tel": "+54 9 3364 24-9663"
+        },
+        "cliente": {
+            "nombre": "SERVICIOS PORTUARIOS S.A.",
+            "cuit": "30-60675453-8",
+            "direccion": "AYOLAS Y EL RIO",
+            "mail": "pmelgar@serviciosportuarios.com.ar"
+        },
+        "presupuesto": {
+            "moneda": "ARS",
+            "fecha": "2026-09-16",
+            "validez": "5",
+            "pago": "Cuenta Corriente",
+            "notas": "",
+            "productos": [
+                {
+                    "desc": "NOTEBOOK DELL DC15250 INTEL CORE I7 (13VA GEN) 16\/512GB 15.6\" FHD",
+                    "cant": 1,
+                    "precio": 1470000,
+                    "subTotalBase": 1470000,
+                    "ivaPorc": 10.5,
+                    "totalIVA": 154350
+                },
+                {
+                    "desc": "HP ProBook 440 G11 (A24Z2LT | Ultra 5\/16GB\/512GB\/W11P) | Teclado español",
+                    "cant": 1,
+                    "precio": 1765000,
+                    "subTotalBase": 1765000,
+                    "ivaPorc": 10.5,
+                    "totalIVA": 185325
+                }
+            ],
+            "totales": {
+                "neto": "3.235.000,00",
+                "iva": "339.675,00",
+                "final": "3.574.675,00"
+            },
+            "codigo": "PRES-00196"
+        }
+    },
+    {
+        "empresa": {
+            "nombre": "AXENTIA S.R.L.",
+            "cuit": "30-71902891-4",
+            "direccion": "Marinero Sosa 854",
+            "mail": "adm.axentia@gmail.com",
+            "tel": "+54 9 3364 24-9663"
+        },
+        "cliente": {
+            "nombre": "Municipalidad de San Nicolás de los Arroyos",
+            "cuit": "30-99900513-2",
+            "direccion": "Av. Illia 1130",
+            "mail": "info@sannicolas.gob.ar"
+        },
+        "presupuesto": {
+            "moneda": "ARS",
+            "fecha": "2026-09-17",
+            "validez": "5",
+            "pago": "Cuenta Corriente",
+            "notas": "",
+            "productos": [
+                {
+                    "desc": "Lenovo ThinkPad T14s Gen 6 | Ultra 7 265U \/ 32GB RAM \/ 512GB SSD \/ 14\" Touch | Con Ñ (Teclado en español)",
+                    "cant": 1,
+                    "precio": 3150000,
+                    "subTotalBase": 3150000,
+                    "ivaPorc": 0,
+                    "totalIVA": 0
+                }
+            ],
+            "totales": {
+                "neto": "3.150.000,00",
+                "iva": "0,00",
+                "final": "3.150.000,00"
+            },
+            "codigo": "PRES-00197"
+        }
+    },
+    {
+        "empresa": {
+            "nombre": "AXENTIA S.R.L.",
+            "cuit": "30-71902891-4",
+            "direccion": "Marinero Sosa 854",
+            "mail": "adm.axentia@gmail.com",
+            "tel": "+54 9 3364 24-9663"
+        },
+        "cliente": {
+            "nombre": "Municipalidad de San Nicolás de los Arroyos",
+            "cuit": "30-99900513-2",
+            "direccion": "Av. Illia 1130",
+            "mail": "info@sannicolas.gob.ar"
+        },
+        "presupuesto": {
+            "moneda": "ARS",
+            "fecha": "2026-09-18",
+            "validez": "5",
+            "pago": "Cuenta Corriente",
+            "notas": "",
+            "productos": [
+                {
+                    "desc": "Auriculares Gamer Redragon Hylas H260 | Iluminación RGB | Cancelación De Ruido | Micrófono Flexible | Cable 2m | Color Negro",
+                    "cant": 2,
+                    "precio": 63000,
+                    "subTotalBase": 126000,
+                    "ivaPorc": 0,
+                    "totalIVA": 0
+                },
+                {
+                    "desc": "Auriculares Gamer Redragon Lamia 2 H320RGB | Sonido Surround 7.1 Virtual | Iluminación RGB Chroma | Incluye Soporte Vertical | Cable 2m | Color Negro",
+                    "cant": 1,
+                    "precio": 90000,
+                    "subTotalBase": 90000,
+                    "ivaPorc": 0,
+                    "totalIVA": 0
+                }
+            ],
+            "totales": {
+                "neto": "216.000,00",
+                "iva": "0,00",
+                "final": "216.000,00"
+            },
+            "codigo": "PRES-00198"
+        }
+    },
+    {
+        "empresa": {
+            "nombre": "AXENTIA S.R.L.",
+            "cuit": "30-71902891-4",
+            "direccion": "Marinero Sosa 854",
+            "mail": "adm.axentia@gmail.com",
+            "tel": "+54 9 3364 24-9663"
+        },
+        "cliente": {
+            "nombre": "Municipalidad de San Nicolás de los Arroyos",
+            "cuit": "30-99900513-2",
+            "direccion": "Av. Illia 1130",
+            "mail": "info@sannicolas.gob.ar"
+        },
+        "presupuesto": {
+            "moneda": "ARS",
+            "fecha": "2026-09-18",
+            "validez": "5",
+            "pago": "Cuenta Corriente",
+            "notas": "",
+            "productos": [
+                {
+                    "desc": "Medidor Digital De Suelo Y Jardinería 6 En 1 | pH | Humedad | Luz | Temperatura | Humedad Ambiental | Color Negro",
+                    "cant": 1,
+                    "precio": 108000,
+                    "subTotalBase": 108000,
+                    "ivaPorc": 0,
+                    "totalIVA": 0
+                }
+            ],
+            "totales": {
+                "neto": "108.000,00",
+                "iva": "0,00",
+                "final": "108.000,00"
+            },
+            "codigo": "PRES-00199"
+        }
+    },
+    {
+        "empresa": {
+            "nombre": "AXENTIA S.R.L.",
+            "cuit": "30-71902891-4",
+            "direccion": "Marinero Sosa 854",
+            "mail": "adm.axentia@gmail.com",
+            "tel": "+54 9 3364 24-9663"
+        },
+        "cliente": {
+            "nombre": "SERVICIOS PORTUARIOS S.A.",
+            "cuit": "30-60675453-8",
+            "direccion": "AYOLAS Y EL RIO",
+            "mail": "pmelgar@serviciosportuarios.com.ar"
+        },
+        "presupuesto": {
+            "moneda": "ARS",
+            "fecha": "2026-09-18",
+            "validez": "5",
+            "pago": "Cuenta Corriente",
+            "notas": "Plazo de Entrega: 20 días hábiles.",
+            "productos": [
+                {
+                    "desc": "Notebook Lenovo Legion Pro 5 Gen 10 16\" WQXGA (2560x1600) OLED 165Hz 100% DCI-P3 | Cód. 83LT003KAR | AMD Ryzen 7 8745HX (3.6 a 5.1GHz) | 32GB DDR5-5200 (2x16GB) | SSD 1TB NVMe PCIe 4.0 | NVIDIA GeForce RTX 5060 8GB GDDR7 | Teclado Español LA con Tecla Ñ | Garantía: 1 Año Legion Ultimate Support en Argentina",
+                    "cant": 1,
+                    "precio": 6500000,
+                    "subTotalBase": 6500000,
+                    "ivaPorc": 10.5,
+                    "totalIVA": 682500
+                },
+                {
+                    "desc": "Notebook Lenovo LOQ Gen 10 15.6\" FHD (1920x1080) IPS 144Hz 100% sRGB | Cód. 83JGCTO1WWAR2 | AMD Ryzen 7 250 (3.3 a 5.1GHz) | 32GB DDR5-5600 (2x16GB) | SSD 1TB NVMe PCIe 4.0 | NVIDIA GeForce RTX 5060 8GB GDDR7 | Teclado Español LA con Tecla Ñ | Garantía: 1 Año Servicio de Recogida o con Transporte en Argentina",
+                    "cant": 1,
+                    "precio": 7350000,
+                    "subTotalBase": 7350000,
+                    "ivaPorc": 10.5,
+                    "totalIVA": 771750
+                },
+                {
+                    "desc": "Notebook Lenovo LOQ Gen 10 15.6\" FHD (1920x1080) IPS 144Hz 100% sRGB | Cód. 83JGCTO1WWAR2 | AMD Ryzen 7 250 (3.3 a 5.1GHz) | 32GB DDR5-5600 (2x16GB) | SSD 1TB NVMe PCIe 4.0 | NVIDIA GeForce RTX 5050 8GB GDDR7 | Teclado Español LA con Tecla Ñ | Garantía: 1 Año Legion Ultimate Support en Argentina",
+                    "cant": 1,
+                    "precio": 7100000,
+                    "subTotalBase": 7100000,
+                    "ivaPorc": 10.5,
+                    "totalIVA": 745500
+                },
+                {
+                    "desc": "Notebook Lenovo Legion 5i Gen 10 15.1\" WQXGA (2560x1600) OLED 165Hz 100% DCI-P3 | Cód. 83LYCTO1WWAR2 | Intel Core i9-14900HX (E-cores hasta 4.10GHz \/ P-cores hasta 5.80GHz) | 32GB DDR5-5600 (2x16GB) | SSD 1TB NVMe PCIe 4.0 | NVIDIA GeForce RTX 5070 8GB GDDR7 | Teclado Español LA con Tecla Ñ | Garantía: 1 Año Legion Ultimate Support en Argentina",
+                    "cant": 1,
+                    "precio": 8050000,
+                    "subTotalBase": 8050000,
+                    "ivaPorc": 10.5,
+                    "totalIVA": 845250
+                }
+            ],
+            "totales": {
+                "neto": "29.000.000,00",
+                "iva": "3.045.000,00",
+                "final": "32.045.000,00"
+            },
+            "codigo": "PRES-00201"
+        }
+    },
+    {
+        "empresa": {
+            "nombre": "AXENTIA S.R.L.",
+            "cuit": "30-71902891-4",
+            "direccion": "Marinero Sosa 854",
+            "mail": "adm.axentia@gmail.com",
+            "tel": "+54 9 3364 24-9663"
+        },
+        "cliente": {
+            "nombre": "SERVICIOS PORTUARIOS S.A.",
+            "cuit": "30-60675453-8",
+            "direccion": "AYOLAS Y EL RIO",
+            "mail": "pmelgar@serviciosportuarios.com.ar"
+        },
+        "presupuesto": {
+            "moneda": "ARS",
+            "fecha": "2026-09-18",
+            "validez": "5",
+            "pago": "Cuenta Corriente",
+            "notas": "Plazo de Entrega: 30 días hábiles.",
+            "productos": [
+                {
+                    "desc": "Notebook Lenovo Legion Pro 5 Gen 10 16\" WQXGA (2560x1600) OLED 165Hz 100% DCI-P3 | Cód. 83LT003KAR | AMD Ryzen 7 8745HX (3.6 a 5.1GHz) | 32GB DDR5-5200 (2x16GB) | SSD 1TB NVMe PCIe 4.0 | NVIDIA GeForce RTX 5060 8GB GDDR7 | Teclado Español LA con Tecla Ñ | Garantía: 1 Año Lenovo",
+                    "cant": 1,
+                    "precio": 6500000,
+                    "subTotalBase": 6500000,
+                    "ivaPorc": 10.5,
+                    "totalIVA": 682500
+                },
+                {
+                    "desc": "Notebook Lenovo LOQ Gen 10 15.6\" FHD (1920x1080) IPS 144Hz 100% sRGB | Cód. 83JGCTO1WWAR2 | AMD Ryzen 7 250 (3.3 a 5.1GHz) | 32GB DDR5-5600 (2x16GB) | SSD 1TB NVMe PCIe 4.0 | NVIDIA GeForce RTX 5060 8GB GDDR7 | Teclado Español LA con Tecla Ñ | Garantía: 1 Año Lenovo",
+                    "cant": 1,
+                    "precio": 7350000,
+                    "subTotalBase": 7350000,
+                    "ivaPorc": 10.5,
+                    "totalIVA": 771750
+                },
+                {
+                    "desc": "Notebook Lenovo LOQ Gen 10 15.6\" FHD (1920x1080) IPS 144Hz 100% sRGB | Cód. 83JGCTO1WWAR2 | AMD Ryzen 7 250 (3.3 a 5.1GHz) | 32GB DDR5-5600 (2x16GB) | SSD 1TB NVMe PCIe 4.0 | NVIDIA GeForce RTX 5050 8GB GDDR7 | Teclado Español LA con Tecla Ñ | Garantía: 1 Año Lenovo",
+                    "cant": 1,
+                    "precio": 7100000,
+                    "subTotalBase": 7100000,
+                    "ivaPorc": 10.5,
+                    "totalIVA": 745500
+                },
+                {
+                    "desc": "Notebook Lenovo Legion 5i Gen 10 15.1\" WQXGA (2560x1600) OLED 165Hz 100% DCI-P3 | Cód. 83LYCTO1WWAR2 | Intel Core i9-14900HX (E-cores hasta 4.10GHz \/ P-cores hasta 5.80GHz) | 32GB DDR5-5600 (2x16GB) | SSD 1TB NVMe PCIe 4.0 | NVIDIA GeForce RTX 5070 8GB GDDR7 | Teclado Español LA con Tecla Ñ | Garantía: 1 Año Lenovo",
+                    "cant": 1,
+                    "precio": 8050000,
+                    "subTotalBase": 8050000,
+                    "ivaPorc": 10.5,
+                    "totalIVA": 845250
+                }
+            ],
+            "totales": {
+                "neto": "29.000.000,00",
+                "iva": "3.045.000,00",
+                "final": "32.045.000,00"
+            },
+            "codigo": "PRES-00202"
+        }
+    },
+    {
+        "empresa": {
+            "nombre": "AXENTIA S.R.L.",
+            "cuit": "30-71902891-4",
+            "direccion": "Marinero Sosa 854",
+            "mail": "adm.axentia@gmail.com",
+            "tel": "+54 9 3364 24-9663"
+        },
+        "cliente": {
+            "nombre": "Municipalidad de San Nicolás de los Arroyos",
+            "cuit": "30-99900513-2",
+            "direccion": "Av. Illia 1130",
+            "mail": "info@sannicolas.gob.ar"
+        },
+        "presupuesto": {
+            "moneda": "ARS",
+            "fecha": "2026-09-18",
+            "validez": "5",
+            "pago": "Cuenta Corriente",
+            "notas": "Plazo de entrega: 20 días hábiles (sujeto a disponibilidad al momento de la confirmación).",
+            "productos": [
+                {
+                    "desc": "Medidor Digital Multifunción 6 En 1 Para Suelo Y Vegetación | pH | CE (Conductividad) | Fertilidad | Humedad | Temperatura | Luz Solar",
+                    "cant": 1,
+                    "precio": 130000,
+                    "subTotalBase": 130000,
+                    "ivaPorc": 0,
+                    "totalIVA": 0
+                },
+                {
+                    "desc": "Medidor Digital De Suelo 4 En 1 Smart | pH | Humedad | Temperatura | Luz Solar | Pantalla LCD Retroiluminada",
+                    "cant": 1,
+                    "precio": 27000,
+                    "subTotalBase": 27000,
+                    "ivaPorc": 0,
+                    "totalIVA": 0
+                }
+            ],
+            "totales": {
+                "neto": "157.000,00",
+                "iva": "0,00",
+                "final": "157.000,00"
+            },
+            "codigo": "PRES-00203"
+        }
+    },
+    {
+        "empresa": {
+            "nombre": "AXENTIA S.R.L.",
+            "cuit": "30-71902891-4",
+            "direccion": "Marinero Sosa 854",
+            "mail": "adm.axentia@gmail.com",
+            "tel": "+54 9 3364 24-9663"
+        },
+        "cliente": {
+            "nombre": "DIEGO PEREZ",
+            "cuit": "",
+            "direccion": "",
+            "mail": ""
+        },
+        "presupuesto": {
+            "moneda": "ARS",
+            "fecha": "2026-09-18",
+            "validez": "5",
+            "pago": "Cuenta Corriente",
+            "notas": "",
+            "productos": [
+                {
+                    "desc": "Proyector Epson PowerLite E24 (V11HB51021) | 3LCD | 3600 Lúmenes | XGA (1024x768) | HDMI \/ VGA \/ USB \/ RS232 | Parlante Integrado",
+                    "cant": 1,
+                    "precio": 1100000,
+                    "subTotalBase": 1100000,
+                    "ivaPorc": 21,
+                    "totalIVA": 231000
+                },
+                {
+                    "desc": "Proyector Epson EpiqVision V11HA85020 | Fuente LED | 3000 Lúmenes | XGA (1024x768) | HDMI | Parlante Integrado",
+                    "cant": 1,
+                    "precio": 1250000,
+                    "subTotalBase": 1250000,
+                    "ivaPorc": 21,
+                    "totalIVA": 262500
+                },
+                {
+                    "desc": "Proyector ViewSonic LS550WH | DLP LED Tiro Corto | 3000 Lúmenes ANSI | HDMI \/ RS232 \/ RJ45 | Parlante Integrado",
+                    "cant": 1,
+                    "precio": 1300000,
+                    "subTotalBase": 1300000,
+                    "ivaPorc": 21,
+                    "totalIVA": 273000
+                }
+            ],
+            "totales": {
+                "neto": "3.650.000,00",
+                "iva": "766.500,00",
+                "final": "4.416.500,00"
+            },
+            "codigo": "PRES-00204"
+        }
+    },
+    {
+        "empresa": {
+            "nombre": "AXENTIA S.R.L.",
+            "cuit": "30-71902891-4",
+            "direccion": "Marinero Sosa 854",
+            "mail": "adm.axentia@gmail.com",
+            "tel": "+54 9 3364 24-9663"
+        },
+        "cliente": {
+            "nombre": "DIEGO PEREZ",
+            "cuit": "",
+            "direccion": "",
+            "mail": ""
+        },
+        "presupuesto": {
+            "moneda": "ARS",
+            "fecha": "2026-09-18",
+            "validez": "5",
+            "pago": "Cuenta Corriente",
+            "notas": "Plazo de entrega y stock: 20 días hábiles (sujeto a disponibilidad al momento de la confirmación).",
+            "productos": [
+                {
+                    "desc": "Impresora Brother HL-L3220CDW | Digital LED Color | 19 ppm | Wi-Fi \/ USB | Bandeja 250 Hojas | Color Blanco",
+                    "cant": 1,
+                    "precio": 930000,
+                    "subTotalBase": 930000,
+                    "ivaPorc": 21,
+                    "totalIVA": 195300
+                },
+                {
+                    "desc": "Impresora HP Color LaserJet Pro 3201dw (499Q9F) | Láser Color | 26 ppm | Dúplex Automático | Wi-Fi \/ Ethernet \/ USB | Bandeja 250 Hojas | Color Blanco",
+                    "cant": 1,
+                    "precio": 890000,
+                    "subTotalBase": 890000,
+                    "ivaPorc": 21,
+                    "totalIVA": 186900
+                }
+            ],
+            "totales": {
+                "neto": "1.820.000,00",
+                "iva": "382.200,00",
+                "final": "2.202.200,00"
+            },
+            "codigo": "PRES-00205"
+        }
+    },
+    {
+        "empresa": {
+            "nombre": "AXENTIA S.R.L.",
+            "cuit": "30-71902891-4",
+            "direccion": "Marinero Sosa 854",
+            "mail": "adm.axentia@gmail.com",
+            "tel": "+54 9 3364 24-9663"
+        },
+        "cliente": {
+            "nombre": "Municipalidad de San Nicolás de los Arroyos",
+            "cuit": "30-99900513-2",
+            "direccion": "Av. Illia 1130",
+            "mail": "info@sannicolas.gob.ar"
+        },
+        "presupuesto": {
+            "moneda": "ARS",
+            "fecha": "2026-09-21",
+            "validez": "5",
+            "pago": "Cuenta Corriente",
+            "notas": "",
+            "productos": [
+                {
+                    "desc": "Memoria Ram Kingston Ddr4 16gb 3200mhz",
+                    "cant": 3,
+                    "precio": 370000,
+                    "subTotalBase": 1110000,
+                    "ivaPorc": 0,
+                    "totalIVA": 0
+                },
+                {
+                    "desc": "Memoria Ram Adata Premier 16gb Ddr4 3200 Mhz",
+                    "cant": 3,
+                    "precio": 330000,
+                    "subTotalBase": 990000,
+                    "ivaPorc": 0,
+                    "totalIVA": 0
+                }
+            ],
+            "totales": {
+                "neto": "2.100.000,00",
+                "iva": "0,00",
+                "final": "2.100.000,00"
+            },
+            "codigo": "PRES-00206"
+        }
+    },
+    {
+        "empresa": {
+            "nombre": "AXENTIA S.R.L.",
+            "cuit": "30-71902891-4",
+            "direccion": "Marinero Sosa 854",
+            "mail": "adm.axentia@gmail.com",
+            "tel": "+54 9 3364 24-9663"
+        },
+        "cliente": {
+            "nombre": "Claudia Panzardi",
+            "cuit": "22954946",
+            "direccion": "Las Rosas 576 - Barrio Guemes",
+            "mail": ""
+        },
+        "presupuesto": {
+            "moneda": "ARS",
+            "fecha": "2026-09-22",
+            "validez": "5",
+            "pago": "Cuenta Corriente",
+            "notas": "",
+            "productos": [
+                {
+                    "desc": "Apple MacBook Air 13.6\" M5 | 16GB RAM | SSD 512GB | Pantalla Liquid Retina",
+                    "cant": 1,
+                    "precio": 4000000,
+                    "subTotalBase": 4000000,
+                    "ivaPorc": 10.5,
+                    "totalIVA": 420000
+                }
+            ],
+            "totales": {
+                "neto": "4.000.000,00",
+                "iva": "420.000,00",
+                "final": "4.420.000,00"
+            },
+            "codigo": "PRES-00207"
+        }
+    },
+    {
+        "empresa": {
+            "nombre": "AXENTIA S.R.L.",
+            "cuit": "30-71902891-4",
+            "direccion": "Marinero Sosa 854",
+            "mail": "adm.axentia@gmail.com",
+            "tel": "+54 9 3364 24-9663"
+        },
+        "cliente": {
+            "nombre": "Municipalidad de San Nicolás de los Arroyos",
+            "cuit": "30-99900513-2",
+            "direccion": "Av. Illia 1130",
+            "mail": "info@sannicolas.gob.ar"
+        },
+        "presupuesto": {
+            "moneda": "ARS",
+            "fecha": "2026-09-22",
+            "validez": "5",
+            "pago": "Cuenta Corriente",
+            "notas": "Compatible con L16M2PB1 \/ L16M2PB2 \/ L16M2PB3 L16L2PB1 \/ L16L2PB2 \/ L16L2PB3 L16C2PB2 \/ L16S2PB2 \/ L17L2PF1",
+            "productos": [
+                {
+                    "desc": "Batería Para Notebook Lenovo V15 Series (ADA \/ IIL \/ IKB) | Li-ion | 35Wh \/ 7.6V \/ 2 Celdas | Reemplazo Apto L19M2PB0 \/ L19C2PB0",
+                    "cant": 1,
+                    "precio": 84000,
+                    "subTotalBase": 84000,
+                    "ivaPorc": 0,
+                    "totalIVA": 0
+                }
+            ],
+            "totales": {
+                "neto": "84.000,00",
+                "iva": "0,00",
+                "final": "84.000,00"
+            },
+            "codigo": "PRES-00208"
+        }
+    },
+    {
+        "empresa": {
+            "nombre": "AXENTIA S.R.L.",
+            "cuit": "30-71902891-4",
+            "direccion": "Marinero Sosa 854",
+            "mail": "adm.axentia@gmail.com",
+            "tel": "+54 9 3364 24-9663"
+        },
+        "cliente": {
+            "nombre": "Municipalidad de San Nicolás de los Arroyos",
+            "cuit": "30-99900513-2",
+            "direccion": "Av. Illia 1130",
+            "mail": "info@sannicolas.gob.ar"
+        },
+        "presupuesto": {
+            "moneda": "ARS",
+            "fecha": "2026-09-22",
+            "validez": "5",
+            "pago": "Cuenta Corriente",
+            "notas": "",
+            "productos": [
+                {
+                    "desc": "Notebook Lenovo V15 G4 AMN \/ ABP 15.6\" FHD (1920x1080) TN Antirreflectante | AMD Ryzen 7 7730U (2.0 a 4.5GHz) | 16GB DDR4-3200 | SSD 512GB NVMe PCIe 4.0 | AMD Radeon Graphics | Windows 11 Home \/ Pro | Teclado Español LA con Tecla Ñ",
+                    "cant": 2,
+                    "precio": 1800000,
+                    "subTotalBase": 3600000,
+                    "ivaPorc": 0,
+                    "totalIVA": 0
+                }
+            ],
+            "totales": {
+                "neto": "3.600.000,00",
+                "iva": "0,00",
+                "final": "3.600.000,00"
+            },
+            "codigo": "PRES-00209"
+        }
+    },
+    {
+        "empresa": {
+            "nombre": "AXENTIA S.R.L.",
+            "cuit": "30-71902891-4",
+            "direccion": "Marinero Sosa 854",
+            "mail": "adm.axentia@gmail.com",
+            "tel": "+54 9 3364 24-9663"
+        },
+        "cliente": {
+            "nombre": "Municipalidad de San Nicolás de los Arroyos",
+            "cuit": "30-99900513-2",
+            "direccion": "Av. Illia 1130",
+            "mail": "info@sannicolas.gob.ar"
+        },
+        "presupuesto": {
+            "moneda": "ARS",
+            "fecha": "2026-09-23",
+            "validez": "5",
+            "pago": "Cuenta Corriente",
+            "notas": "",
+            "productos": [
+                {
+                    "desc": "Notebook Lenovo V15 G4 AMN \/ ABP 15.6\" FHD (1920x1080) TN Antirreflectante | AMD Ryzen 7 7730U (2.0 a 4.5GHz) | 16GB DDR4-3200 | SSD 512GB NVMe PCIe 4.0 | AMD Radeon Graphics | Windows 11 Home \/ Pro | Teclado Español LA con Tecla Ñ",
+                    "cant": 2,
+                    "precio": 1800000,
+                    "subTotalBase": 3600000,
+                    "ivaPorc": 0,
+                    "totalIVA": 0
+                },
+                {
+                    "desc": "NOTEBOOK DELL 15250 I7 13RA GEN 16GB DE RAM  512GB ALMACENAMIENTO 15.6FHD",
+                    "cant": 2,
+                    "precio": 1650000,
+                    "subTotalBase": 3300000,
+                    "ivaPorc": 0,
+                    "totalIVA": 0
+                }
+            ],
+            "totales": {
+                "neto": "6.900.000,00",
+                "iva": "0,00",
+                "final": "6.900.000,00"
+            },
+            "codigo": "PRES-00210"
+        }
+    },
+    {
+        "empresa": {
+            "nombre": "AXENTIA S.R.L.",
+            "cuit": "30-71902891-4",
+            "direccion": "Marinero Sosa 854",
+            "mail": "adm.axentia@gmail.com",
+            "tel": "+54 9 3364 24-9663"
+        },
+        "cliente": {
+            "nombre": "Municipalidad de San Nicolás de los Arroyos",
+            "cuit": "30-99900513-2",
+            "direccion": "Av. Illia 1130",
+            "mail": "info@sannicolas.gob.ar"
+        },
+        "presupuesto": {
+            "moneda": "ARS",
+            "fecha": "2026-09-23",
+            "validez": "5",
+            "pago": "Cuenta Corriente",
+            "notas": "",
+            "productos": [
+                {
+                    "desc": "Auriculares Gamer Redragon Cybill H312 | Sonido Surround 7.1 Virtual | Iluminación RGB | Micrófono Omnidireccional | Conexión USB | Color Negro",
+                    "cant": 1,
+                    "precio": 120000,
+                    "subTotalBase": 120000,
+                    "ivaPorc": 0,
+                    "totalIVA": 0
+                },
+                {
+                    "desc": "Auriculares Gamer Redragon Cronus H211 | Iluminación RGB | Micrófono Rebatible | Conectores 3.5mm + USB (Luces) | Color Negro",
+                    "cant": 2,
+                    "precio": 54000,
+                    "subTotalBase": 108000,
+                    "ivaPorc": 0,
+                    "totalIVA": 0
+                }
+            ],
+            "totales": {
+                "neto": "228.000,00",
+                "iva": "0,00",
+                "final": "228.000,00"
+            },
+            "codigo": "PRES-00211"
+        }
+    },
+    {
+        "empresa": {
+            "nombre": "AXENTIA S.R.L.",
+            "cuit": "30-71902891-4",
+            "direccion": "Marinero Sosa 854",
+            "mail": "adm.axentia@gmail.com",
+            "tel": "+54 9 3364 24-9663"
+        },
+        "cliente": {
+            "nombre": "DIEGO PEREZ",
+            "cuit": "",
+            "direccion": "",
+            "mail": ""
+        },
+        "presupuesto": {
+            "moneda": "ARS",
+            "fecha": "2026-09-23",
+            "validez": "5",
+            "pago": "Cuenta Corriente",
+            "notas": "",
+            "productos": [
+                {
+                    "desc": "DELL 3400 INTEL I7 (GEN 8VA) 16GB\/512GB 14“ HD",
+                    "cant": 1,
+                    "precio": 805000,
+                    "subTotalBase": 805000,
+                    "ivaPorc": 10.5,
+                    "totalIVA": 84525
+                },
+                {
+                    "desc": "DELL 3420 INTEL I5 (GEN 11) 16\/256GB 14\" HD",
+                    "cant": 1,
+                    "precio": 750000,
+                    "subTotalBase": 750000,
+                    "ivaPorc": 10.5,
+                    "totalIVA": 78750
+                },
+                {
+                    "desc": "LENOVO THINKPAD T14S INTEL I5 (GEN 10MA) 8GB\/512GB 14“ FHD",
+                    "cant": 1,
+                    "precio": 730000,
+                    "subTotalBase": 730000,
+                    "ivaPorc": 10.5,
+                    "totalIVA": 76650
+                },
+                {
+                    "desc": "LENOVO THINKPAD T490S INTEL I5 (GEN 8VA) 16GB\/512GB 14\"FHD TACTIL",
+                    "cant": 1,
+                    "precio": 750000,
+                    "subTotalBase": 750000,
+                    "ivaPorc": 10.5,
+                    "totalIVA": 78750
+                },
+                {
+                    "desc": "DELL 3400 INTEL I5 (GEN 8VA) 16GB\/512GB 14“ HD",
+                    "cant": 1,
+                    "precio": 760000,
+                    "subTotalBase": 760000,
+                    "ivaPorc": 10.5,
+                    "totalIVA": 79800
+                },
+                {
+                    "desc": "DELL 7300 INTEL I5 (GEN 8VA) 16\/512GB 14\" FHD",
+                    "cant": 1,
+                    "precio": 700000,
+                    "subTotalBase": 700000,
+                    "ivaPorc": 10.5,
+                    "totalIVA": 73500
+                },
+                {
+                    "desc": "HP PROBOOK 640 G5 INTEL I5(GEN 8VA) 16GB\/512GB 14“ FHD",
+                    "cant": 1,
+                    "precio": 750000,
+                    "subTotalBase": 750000,
+                    "ivaPorc": 10.5,
+                    "totalIVA": 78750
+                },
+                {
+                    "desc": "LENOVO THINKPAD L14 INTEL I5 (GEN 10MA) 16GB\/512GB 14“ FHD",
+                    "cant": 1,
+                    "precio": 750000,
+                    "subTotalBase": 750000,
+                    "ivaPorc": 10.5,
+                    "totalIVA": 78750
+                },
+                {
+                    "desc": "HP G8 ELITEBOOK INTEL I5 (11VA GEN) 16GB \/ 512GB 14FHD",
+                    "cant": 1,
+                    "precio": 700000,
+                    "subTotalBase": 700000,
+                    "ivaPorc": 10.5,
+                    "totalIVA": 73500
+                },
+                {
+                    "desc": "LENOVO T14 I7 (11VA GEN) 16GB 512GB 14\"FHD",
+                    "cant": 1,
+                    "precio": 820000,
+                    "subTotalBase": 820000,
+                    "ivaPorc": 10.5,
+                    "totalIVA": 86100
+                }
+            ],
+            "totales": {
+                "neto": "7.515.000,00",
+                "iva": "789.075,00",
+                "final": "8.304.075,00"
+            },
+            "codigo": "PRES-00212"
+        }
+    },
+    {
+        "empresa": {
+            "nombre": "AXENTIA S.R.L.",
+            "cuit": "30-71902891-4",
+            "direccion": "Marinero Sosa 854",
+            "mail": "adm.axentia@gmail.com",
+            "tel": "+54 9 3364 24-9663"
+        },
+        "cliente": {
+            "nombre": "Municipalidad de San Nicolás de los Arroyos",
+            "cuit": "30-99900513-2",
+            "direccion": "Av. Illia 1130",
+            "mail": "info@sannicolas.gob.ar"
+        },
+        "presupuesto": {
+            "moneda": "ARS",
+            "fecha": "2026-09-25",
+            "validez": "5",
+            "pago": "Cuenta Corriente",
+            "notas": "Plazo de entrega: 25 días hábiles (sujeto a disponibilidad al momento de la confirmación).",
+            "productos": [
+                {
+                    "desc": "Sensor De Suelo Industrial 3 En 1 | Temperatura | Humedad | Conductividad Eléctrica (CE\/EC) | Interfaz RS485 Modbus-RTU | Grado IP68",
+                    "cant": 1,
+                    "precio": 200000,
+                    "subTotalBase": 200000,
+                    "ivaPorc": 0,
+                    "totalIVA": 0
+                }
+            ],
+            "totales": {
+                "neto": "200.000,00",
+                "iva": "0,00",
+                "final": "200.000,00"
+            },
+            "codigo": "PRES-00213"
+        }
+    },
+    {
+        "empresa": {
+            "nombre": "AXENTIA S.R.L.",
+            "cuit": "30-71902891-4",
+            "direccion": "Marinero Sosa 854",
+            "mail": "adm.axentia@gmail.com",
+            "tel": "+54 9 3364 24-9663"
+        },
+        "cliente": {
+            "nombre": "DIEGO PEREZ",
+            "cuit": "",
+            "direccion": "",
+            "mail": ""
+        },
+        "presupuesto": {
+            "moneda": "ARS",
+            "fecha": "2026-09-28",
+            "validez": "5",
+            "pago": "Cuenta Corriente",
+            "notas": "",
+            "productos": [
+                {
+                    "desc": "Access Point Ubiquiti UniFi U6 Plus (U6+) | Wi-Fi 6 Dual Band | 3.0 Gbps | Puerto GbE | Incluye Inyector PoE",
+                    "cant": 3,
+                    "precio": 350000,
+                    "subTotalBase": 1050000,
+                    "ivaPorc": 10.5,
+                    "totalIVA": 110250
+                }
+            ],
+            "totales": {
+                "neto": "1.050.000,00",
+                "iva": "110.250,00",
+                "final": "1.160.250,00"
+            },
+            "codigo": "PRES-00214"
+        }
+    },
+    {
+        "empresa": {
+            "nombre": "AXENTIA S.R.L.",
+            "cuit": "30-71902891-4",
+            "direccion": "Marinero Sosa 854",
+            "mail": "adm.axentia@gmail.com",
+            "tel": "+54 9 3364 24-9663"
+        },
+        "cliente": {
+            "nombre": "Municipalidad de San Nicolás de los Arroyos",
+            "cuit": "30-99900513-2",
+            "direccion": "Av. Illia 1130",
+            "mail": "info@sannicolas.gob.ar"
+        },
+        "presupuesto": {
+            "moneda": "ARS",
+            "fecha": "2026-09-28",
+            "validez": "5",
+            "pago": "Cuenta Corriente",
+            "notas": "",
+            "productos": [
+                {
+                    "desc": "Dell Latitude 5420 i5 1145G7 | 16GB RAM | 512GB SSD | 14” Full HD",
+                    "cant": 1,
+                    "precio": 1200000,
+                    "subTotalBase": 1200000,
+                    "ivaPorc": 0,
+                    "totalIVA": 0
+                },
+                {
+                    "desc": "Dell Latitude 5430 i5 1245U | 16GB RAM | 512GB SSD | 14” Full HD",
+                    "cant": 1,
+                    "precio": 1400000,
+                    "subTotalBase": 1400000,
+                    "ivaPorc": 0,
+                    "totalIVA": 0
+                },
+                {
+                    "desc": "Dell Latitude 5420 i7 1165G7 | 16GB RAM | 512GB SSD | 14\" Full HD",
+                    "cant": 1,
+                    "precio": 1400000,
+                    "subTotalBase": 1400000,
+                    "ivaPorc": 0,
+                    "totalIVA": 0
+                },
+                {
+                    "desc": "Dell Latitude 5530 i5 1235U | 16GB RAM | 512GB SSD | 15.6\" Full HD",
+                    "cant": 1,
+                    "precio": 1500000,
+                    "subTotalBase": 1500000,
+                    "ivaPorc": 0,
+                    "totalIVA": 0
+                },
+                {
+                    "desc": "Asus X515EA i7 1165G7 | 16GB RAM | 512GB SSD | 15.6” Full HD",
+                    "cant": 1,
+                    "precio": 1500000,
+                    "subTotalBase": 1500000,
+                    "ivaPorc": 0,
+                    "totalIVA": 0
+                }
+            ],
+            "totales": {
+                "neto": "7.000.000,00",
+                "iva": "0,00",
+                "final": "7.000.000,00"
+            },
+            "codigo": "PRES-00215"
+        }
+    },
+    {
+        "empresa": {
+            "nombre": "AXENTIA S.R.L.",
+            "cuit": "30-71902891-4",
+            "direccion": "Marinero Sosa 854",
+            "mail": "adm.axentia@gmail.com",
+            "tel": "+54 9 3364 24-9663"
+        },
+        "cliente": {
+            "nombre": "BALIARDA",
+            "cuit": "30-52109250-1",
+            "direccion": "",
+            "mail": ""
+        },
+        "presupuesto": {
+            "moneda": "ARS",
+            "fecha": "2026-09-28",
+            "validez": "5",
+            "pago": "Cuenta Corriente",
+            "notas": "",
+            "productos": [
+                {
+                    "desc": "Tablet Samsung Galaxy Tab A11+ 11\" | 128GB | 6GB RAM | Cámara 8MP | Wi-Fi | Android 16",
+                    "cant": 1,
+                    "precio": 520000,
+                    "subTotalBase": 520000,
+                    "ivaPorc": 10.5,
+                    "totalIVA": 54600
+                },
+                {
+                    "desc": "Apple iPad 11ª Gen 11\" | Chip A16 Bionic | 128GB | Wi-Fi",
+                    "cant": 1,
+                    "precio": 1050000,
+                    "subTotalBase": 1050000,
+                    "ivaPorc": 10.5,
+                    "totalIVA": 110250
+                },
+                {
+                    "desc": "Tablet Maxwest 10\" | Pantalla 10\" | Conectividad Wi-Fi",
+                    "cant": 1,
+                    "precio": 245000,
+                    "subTotalBase": 245000,
+                    "ivaPorc": 10.5,
+                    "totalIVA": 25725
+                }
+            ],
+            "totales": {
+                "neto": "1.815.000,00",
+                "iva": "190.575,00",
+                "final": "2.005.575,00"
+            },
+            "codigo": "PRES-00216"
+        }
+    },
+    {
+        "empresa": {
+            "nombre": "AXENTIA S.R.L.",
+            "cuit": "30-71902891-4",
+            "direccion": "Marinero Sosa 854",
+            "mail": "adm.axentia@gmail.com",
+            "tel": "+54 9 3364 24-9663"
+        },
+        "cliente": {
+            "nombre": "Municipalidad de San Nicolás de los Arroyos",
+            "cuit": "30-99900513-2",
+            "direccion": "Av. Illia 1130",
+            "mail": "info@sannicolas.gob.ar"
+        },
+        "presupuesto": {
+            "moneda": "ARS",
+            "fecha": "2026-09-28",
+            "validez": "5",
+            "pago": "Cuenta Corriente",
+            "notas": "NOTAS Y CONDICIONES COMERCIALES DE LA COTIZACIÓN:\n\nForma de Pago: La presente cotización se realiza bajo la condición de pago 100% anticipado*\n\nPlazos de Entrega por Producto:\n> Notebooks Kelyx 15.6\" FHD: Stock completo disponible para entrega inmediata.\n> Notebooks Lenovo IdeaPad Slim 15.6\": Entrega de 150 unidades de forma inmediata y el saldo restante a los 30 días.\n> Carros de Carga Matic: Plazo de entrega a los 30 días.",
+            "productos": [
+                {
+                    "desc": "Notebook Kelyx 15.6\" FHD | AMD Ryzen 3 3200U (2.6 a 3.5GHz) | 8GB RAM | SSD 256GB M.2 | Windows 11 Home",
+                    "cant": 300,
+                    "precio": 870000,
+                    "subTotalBase": 261000000,
+                    "ivaPorc": 0,
+                    "totalIVA": 0
+                },
+                {
+                    "desc": "Notebook Lenovo IdeaPad Slim 15.6\" | Intel Core i3 | 8GB RAM | 128GB SSD | Pantalla 15.6\"",
+                    "cant": 300,
+                    "precio": 910000,
+                    "subTotalBase": 273000000,
+                    "ivaPorc": 0,
+                    "totalIVA": 0
+                },
+                {
+                    "desc": "Carro Carga 30 Notebooks Matic | 2 Estantes Extraíbles con Separadores + 1 Estante Telescópico | Doble Puerta Rejillada con Cooler 4\" | 32 Tomas Protegidas (Disyuntor\/Bipolar) | Chapa Acero MIG\/Láser | Ruedas con Freno y Cerradura",
+                    "cant": 10,
+                    "precio": 2700000,
+                    "subTotalBase": 27000000,
+                    "ivaPorc": 0,
+                    "totalIVA": 0
+                }
+            ],
+            "totales": {
+                "neto": "561.000.000,00",
+                "iva": "0,00",
+                "final": "561.000.000,00"
+            },
+            "codigo": "PRES-00217"
+        }
+    },
+    {
+        "empresa": {
+            "nombre": "AXENTIA S.R.L.",
+            "cuit": "30-71902891-4",
+            "direccion": "Marinero Sosa 854",
+            "mail": "adm.axentia@gmail.com",
+            "tel": "+54 9 3364 24-9663"
+        },
+        "cliente": {
+            "nombre": "Municipalidad de San Nicolás de los Arroyos",
+            "cuit": "30-99900513-2",
+            "direccion": "Av. Illia 1130",
+            "mail": "info@sannicolas.gob.ar"
+        },
+        "presupuesto": {
+            "moneda": "ARS",
+            "fecha": "2026-09-29",
+            "validez": "5",
+            "pago": "Cuenta Corriente",
+            "notas": "NOTAS Y CONDICIONES COMERCIALES DE LA COTIZACIÓN:\n\nForma de Pago: La presente cotización se realiza bajo la condición de pago 100% anticipado*\n\nPlazos de Entrega por Producto:\n> Notebooks Kelyx 15.6\" FHD: Stock completo disponible para entrega inmediata.\n> Notebooks Lenovo IdeaPad Slim 15.6\": Entrega de 150 unidades de forma inmediata y el saldo restante a los 30 días.\n> Carros de Carga Matic: Plazo de entrega a los 30 días.",
+            "productos": [
+                {
+                    "desc": "Notebook Kelyx 15.6\" FHD | AMD Ryzen 3 3200U (2.6 a 3.5GHz) | 8GB RAM | SSD 256GB M.2 | Windows 11 Home",
+                    "cant": 300,
+                    "precio": 870000,
+                    "subTotalBase": 261000000,
+                    "ivaPorc": 0,
+                    "totalIVA": 0
+                },
+                {
+                    "desc": "Notebook Lenovo IdeaPad Slim 15.6\" | Intel Core i3 | 8GB RAM | 128GB SSD | Pantalla 15.6\"",
+                    "cant": 300,
+                    "precio": 950000,
+                    "subTotalBase": 285000000,
+                    "ivaPorc": 0,
+                    "totalIVA": 0
+                },
+                {
+                    "desc": "Carro Carga 30 Notebooks Matic | 2 Estantes Extraíbles con Separadores + 1 Estante Telescópico | Doble Puerta Rejillada con Cooler 4\" | 32 Tomas Protegidas (Disyuntor\/Bipolar) | Chapa Acero MIG\/Láser | Ruedas con Freno y Cerradura",
+                    "cant": 10,
+                    "precio": 2700000,
+                    "subTotalBase": 27000000,
+                    "ivaPorc": 0,
+                    "totalIVA": 0
+                }
+            ],
+            "totales": {
+                "neto": "573.000.000,00",
+                "iva": "0,00",
+                "final": "573.000.000,00"
+            },
+            "codigo": "PRES-00218"
+        }
+    },
+    {
+        "empresa": {
+            "nombre": "AXENTIA S.R.L.",
+            "cuit": "30-71902891-4",
+            "direccion": "Marinero Sosa 854",
+            "mail": "adm.axentia@gmail.com",
+            "tel": "+54 9 3364 24-9663"
+        },
+        "cliente": {
+            "nombre": "Municipalidad de San Nicolás de los Arroyos",
+            "cuit": "30-99900513-2",
+            "direccion": "Av. Illia 1130",
+            "mail": "info@sannicolas.gob.ar"
+        },
+        "presupuesto": {
+            "moneda": "ARS",
+            "fecha": "2026-09-29",
+            "validez": "5",
+            "pago": "Cuenta Corriente",
+            "notas": "NOTAS Y CONDICIONES COMERCIALES DE LA COTIZACIÓN:\n\nForma de Pago: La presente cotización se realiza bajo la condición de pago 100% anticipado*\n\nPlazos de Entrega por Producto:\n> Notebooks Kelyx 15.6\" FHD: Stock completo disponible para entrega inmediata.\n> Notebooks Lenovo IdeaPad Slim 15.6\": Entrega de 150 unidades de forma inmediata y el saldo restante a los 30 días.\n> Carros de Carga Matic: Plazo de entrega a los 30 días.",
+            "productos": [
+                {
+                    "desc": "Notebook Kelyx 15.6\" FHD | AMD Ryzen 3 3200U (2.6 a 3.5GHz) | 8GB RAM | SSD 256GB M.2 | Windows 11 Home",
+                    "cant": 300,
+                    "precio": 870000,
+                    "subTotalBase": 261000000,
+                    "ivaPorc": 0,
+                    "totalIVA": 0
+                },
+                {
+                    "desc": "Notebook Lenovo IdeaPad Slim 15.6\" | Intel Core i3 | 8GB RAM | 128GB SSD | Pantalla 15.6\"",
+                    "cant": 300,
+                    "precio": 930000,
+                    "subTotalBase": 279000000,
+                    "ivaPorc": 0,
+                    "totalIVA": 0
+                },
+                {
+                    "desc": "Carro Carga 30 Notebooks Matic | 2 Estantes Extraíbles con Separadores + 1 Estante Telescópico | Doble Puerta Rejillada con Cooler 4\" | 32 Tomas Protegidas (Disyuntor\/Bipolar) | Chapa Acero MIG\/Láser | Ruedas con Freno y Cerradura",
+                    "cant": 10,
+                    "precio": 2700000,
+                    "subTotalBase": 27000000,
+                    "ivaPorc": 0,
+                    "totalIVA": 0
+                }
+            ],
+            "totales": {
+                "neto": "567.000.000,00",
+                "iva": "0,00",
+                "final": "567.000.000,00"
+            },
+            "codigo": "PRES-00219"
+        }
+    },
+    {
+        "empresa": {
+            "nombre": "AXENTIA S.R.L.",
+            "cuit": "30-71902891-4",
+            "direccion": "Marinero Sosa 854",
+            "mail": "adm.axentia@gmail.com",
+            "tel": "+54 9 3364 24-9663"
+        },
+        "cliente": {
+            "nombre": "SERVICIOS PORTUARIOS S.A.",
+            "cuit": "30-60675453-8",
+            "direccion": "AYOLAS Y EL RIO",
+            "mail": "pmelgar@serviciosportuarios.com.ar"
+        },
+        "presupuesto": {
+            "moneda": "ARS",
+            "fecha": "2026-09-29",
+            "validez": "5",
+            "pago": "Cuenta Corriente",
+            "notas": "",
+            "productos": [
+                {
+                    "desc": "Disco Rígido 4TB WD Purple (WD43PURZ) | 3.5\" SATA III | 5400 RPM | 256MB Cache | Optimizado Para Videovigilancia \/ DVR \/ NVR",
+                    "cant": 2,
+                    "precio": 560000,
+                    "subTotalBase": 1120000,
+                    "ivaPorc": 10.5,
+                    "totalIVA": 117600
+                },
+                {
+                    "desc": "Storage NAS QNAP TS-233 | 2 Bahías 3.5\"\/2.5\" | Processor Quad-Core 2.0GHz | 2GB RAM DDR4 | Nube Privada \/ RAID 0\/1 | Puerto GbE",
+                    "cant": 1,
+                    "precio": 700000,
+                    "subTotalBase": 700000,
+                    "ivaPorc": 10.5,
+                    "totalIVA": 73500
+                },
+                {
+                    "desc": "ENVIO A ROSARIO",
+                    "cant": 1,
+                    "precio": 15000,
+                    "subTotalBase": 15000,
+                    "ivaPorc": 21,
+                    "totalIVA": 3150
+                }
+            ],
+            "totales": {
+                "neto": "1.835.000,00",
+                "iva": "194.250,00",
+                "final": "2.029.250,00"
+            },
+            "codigo": "PRES-00220"
+        }
+    },
+    {
+        "empresa": {
+            "nombre": "AXENTIA S.R.L.",
+            "cuit": "30-71902891-4",
+            "direccion": "Marinero Sosa 854",
+            "mail": "adm.axentia@gmail.com",
+            "tel": "+54 9 3364 24-9663"
+        },
+        "cliente": {
+            "nombre": "Municipalidad de San Nicolás de los Arroyos",
+            "cuit": "30-99900513-2",
+            "direccion": "Av. Illia 1130",
+            "mail": "info@sannicolas.gob.ar"
+        },
+        "presupuesto": {
+            "moneda": "ARS",
+            "fecha": "2026-09-30",
+            "validez": "5",
+            "pago": "Cuenta Corriente",
+            "notas": "",
+            "productos": [
+                {
+                    "desc": "NOTEBOOK - Lenovo ThinkPad T14s Gen 6 | Ultra 7 265U \/ 32GB RAM \/ 512GB SSD \/ 14\" Touch | Con Ñ (Teclado en español)",
+                    "cant": 1,
+                    "precio": 3150000,
+                    "subTotalBase": 3150000,
+                    "ivaPorc": 0,
+                    "totalIVA": 0
+                }
+            ],
+            "totales": {
+                "neto": "3.150.000,00",
+                "iva": "0,00",
+                "final": "3.150.000,00"
+            },
+            "codigo": "PRES-00221"
+        }
+    },
+    {
+        "empresa": {
+            "nombre": "AXENTIA S.R.L.",
+            "cuit": "30-71902891-4",
+            "direccion": "Marinero Sosa 854",
+            "mail": "adm.axentia@gmail.com",
+            "tel": "+54 9 3364 24-9663"
+        },
+        "cliente": {
+            "nombre": "Municipalidad de San Nicolás de los Arroyos",
+            "cuit": "30-99900513-2",
+            "direccion": "Av. Illia 1130",
+            "mail": "info@sannicolas.gob.ar"
+        },
+        "presupuesto": {
+            "moneda": "ARS",
+            "fecha": "2026-09-30",
+            "validez": "5",
+            "pago": "Cuenta Corriente",
+            "notas": "",
+            "productos": [
+                {
+                    "desc": "NOTEBOOK DELL 15250 I7 13RA GEN 16GB DE RAM 512GB ALMACENAMIENTO 15.6FHD",
+                    "cant": 2,
+                    "precio": 1650000,
+                    "subTotalBase": 3300000,
+                    "ivaPorc": 0,
+                    "totalIVA": 0
+                }
+            ],
+            "totales": {
+                "neto": "3.300.000,00",
+                "iva": "0,00",
+                "final": "3.300.000,00"
+            },
+            "codigo": "PRES-00222"
+        }
+    },
+    {
+        "empresa": {
+            "nombre": "AXENTIA S.R.L.",
+            "cuit": "30-71902891-4",
+            "direccion": "Marinero Sosa 854",
+            "mail": "adm.axentia@gmail.com",
+            "tel": "+54 9 3364 24-9663"
+        },
+        "cliente": {
+            "nombre": "CARLOS",
+            "cuit": "",
+            "direccion": "",
+            "mail": ""
+        },
+        "presupuesto": {
+            "moneda": "ARS",
+            "fecha": "2026-09-30",
+            "validez": "5",
+            "pago": "Cuenta Corriente",
+            "notas": "",
+            "productos": [
+                {
+                    "desc": "HP\tElitedesk 800 G3\ti7 7700\t1TB SSD\t16GB DDR4 (REACONDICIONADA)",
+                    "cant": 1,
+                    "precio": 790000,
+                    "subTotalBase": 790000,
+                    "ivaPorc": 10.5,
+                    "totalIVA": 82950
+                },
+                {
+                    "desc": "CPU INTEL CORE I7-12700 ALDERLAKE S170 + MB ASUS S1700 PRIME H610M-F D4 R2.0 + DDR4 16GB HIKSEMI 3200MHZ    + SSD 1TB KINGSTON M.2 NVME NV3    + GAB RAPTOR INFINITY MESH TG + FUENTE  650W",
+                    "cant": 1,
+                    "precio": 1439000,
+                    "subTotalBase": 1439000,
+                    "ivaPorc": 10.5,
+                    "totalIVA": 151095
+                }
+            ],
+            "totales": {
+                "neto": "2.229.000,00",
+                "iva": "234.045,00",
+                "final": "2.463.045,00"
+            },
+            "codigo": "PRES-00223"
+        }
     }
 ]

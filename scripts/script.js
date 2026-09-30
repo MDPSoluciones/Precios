@@ -263,21 +263,7 @@ async function loadGoogleSheetData() {
                     }
                     preciosHTML += `<span class="price pesos">Efectivo: $${p.precioPesos}</span>`;
                     preciosHTML += `<span class="price transf">Transferencia: $${p.precioTransf}</span>`;
-
-                    // Cuotas (calculadas siempre desde el efectivo)
-                    const cuotas = calcularCuotas(p.precioPesosNum);
-                    let cuotasHTML = '';
-                    if (cuotas) {
-                        cuotasHTML = `
-                            <div class="cuotas-list">
-                                <span class="cuota-item">💳</span>
-                                <span class="cuota-item"><span class="cuota-label">1 pago:</span>$${formatARS(cuotas.c1)}</span>
-                                <span class="cuota-item"><span class="cuota-label">3 cuotas:</span>$${formatARS(cuotas.c3)}</span>
-                                <span class="cuota-item"><span class="cuota-label">6 cuotas:</span>$${formatARS(cuotas.c6)}</span>
-                                <span class="cuota-item"><span class="cuota-label">9 cuotas:</span>$${formatARS(cuotas.c9)}</span>
-                                <span class="cuota-item"><span class="cuota-label">12 cuotas:</span>$${formatARS(cuotas.c12)}</span>
-                            </div>`;
-                    }
+                    preciosHTML += `<span class="price financiacion">💳 Consultar por financiación</span>`;
 
                     cardsHTML += `
                         <div class="pricing-item">
@@ -293,7 +279,6 @@ async function loadGoogleSheetData() {
                                     <div class="prices">${preciosHTML}</div>
                                 </div>
                             </div>
-                            ${cuotasHTML}
                         </div>`;
                 });
 

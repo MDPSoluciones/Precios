@@ -94,5 +94,23 @@
         "cuit": "1111111111",
         "direccion": "XXXXX",
         "mail": "XXXXX@SDSDS.COM"
+    },
+    {
+        "nombre": "Augustus Seguridad S.A.",
+        "cuit": "30-70823152-1",
+        "direccion": "Central Argentino 210 Bis, Rosario",
+        "mail": "pmelgar@serviciosportuarios.com.ar"
+    },
+    {
+        "nombre": "Claudia Panzardi",
+        "cuit": "22954946",
+        "direccion": "Las Rosas 576 - Barrio Guemes",
+        "mail": ""
+    },
+    {
+        "nombre": "CARLOS",
+        "cuit": "",
+        "direccion": "",
+        "mail": ""
     }
 ]

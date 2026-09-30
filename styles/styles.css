@@ -308,9 +308,7 @@ header.shrunk h2 {
     /* pricing-item es el grid container, image-column y product-row son hijos directos */
     display: grid;
     grid-template-columns: auto minmax(0, 1fr);
-    grid-template-areas:
-        "image row"
-        "cuotas cuotas";
+    grid-template-areas: "image row";
     align-items: center;
     gap: 4px 8px;
 }
@@ -358,31 +356,7 @@ header.shrunk h2 {
     font-size: 12px;
 }
 
-/* CUOTAS en vista LISTA: horizontales, debajo del row principal */
-.pricing.view-list .cuotas-list {
-    grid-area: cuotas;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 4px 14px;
-    margin-top: 8px;
-    padding-top: 8px;
-    border-top: 1px dashed #d0d0d0;
-}
-
-.pricing.view-list .cuota-item {
-    font-family: 'GlacialIndifference', sans-serif;
-    font-size: 12px;
-    color: #303030;
-    font-weight: bold;
-    white-space: nowrap;
-}
-
-.pricing.view-list .cuota-item .cuota-label {
-    color: #555;
-    font-weight: normal;
-    margin-right: 3px;
-}
+/* (Se muestra la leyenda "Consultar por financiación" en lugar del listado de cuotas) */
 
 /* ================================================== */
 /* PRODUCT CARD - VISTA GRID (nueva)                  */
@@ -396,11 +370,8 @@ header.shrunk h2 {
     /* Ahora pricing-item es el grid container */
     display: grid;
     grid-template-columns: 130px minmax(0, 1fr);
-    grid-template-areas:
-        "image main"
-        "image cuotas";
-    grid-template-rows: auto 1fr;
-    gap: 6px 14px;
+    grid-template-areas: "image main";
+    gap: 14px;
     align-items: start;
 }
 
@@ -479,27 +450,14 @@ header.shrunk h2 {
     font-weight: bold;
 }
 
-.pricing.view-grid .cuotas-list {
-    grid-area: cuotas;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    margin-top: 4px;
-    padding-top: 8px;
-    border-top: 1px dashed #d0d0d0;
-}
-
-.pricing.view-grid .cuota-item {
-    font-family: 'GlacialIndifference', sans-serif;
-    font-size: 12px;
-    color: #303030;
-    font-weight: bold;
-}
-
-.pricing.view-grid .cuota-item .cuota-label {
-    color: #555;
+/* Leyenda de financiación (reemplaza al listado de cuotas en ambas vistas) */
+.price.financiacion {
+    color: #666;
+    font-size: 11px;
     font-weight: normal;
-    margin-right: 4px;
+    font-style: italic;
+    margin-top: 4px;
+    letter-spacing: 0.2px;
 }
 
 /* ================================================== */
@@ -625,8 +583,7 @@ header.shrunk h2 {
         grid-template-columns: 1fr;
         grid-template-areas:
             "image"
-            "main"
-            "cuotas";
+            "main";
         text-align: center;
     }
 
