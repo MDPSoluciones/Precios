@@ -346,9 +346,15 @@ header.shrunk h2 {
 }
 
 .pricing.view-list .pricing-item h2 {
+    font-family: "Lucidity Expand", Arial, sans-serif;
     margin-top: 4px;
     color: #333;
-    font-size: 18px;
+    font-size: 15px;
+    letter-spacing: 0;
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    hyphens: auto;
 }
 
 .pricing.view-list .pricing-item p {
