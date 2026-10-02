@@ -563,8 +563,9 @@ main {
     min-width: 220px;
 }
 
+/* La leyenda de financiación se muestra también en vista lista */
 .products.list .fin {
-    display: none;
+    margin-top: 4px;
 }
 
 /* ================================================== */
