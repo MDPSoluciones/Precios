@@ -1,293 +1,373 @@
 // ===================================================
 // CONFIGURACIÓN GLOBAL
 // ===================================================
-const STORAGE_KEY_VIEW = 'mdp_view_mode'; // 'list' | 'grid'
-const SCROLL_SHRINK_THRESHOLD = 80;        // px de scroll para encoger header
+const STORAGE_KEY_VIEW = 'mdp_view_mode';      // 'list' | 'grid' (misma clave que el sitio actual)
+const CATEGORIA_INICIAL = 'Apple Nuevos';      // categoría que se muestra al abrir
+const MINUTOS_ACTUALIZACION = 5;               // recarga automática de datos
+
+// Google Sheet (mismo origen de datos que el sitio productivo)
+const SHEET_ID = '1W7aJMPe00ORHGjVnRzScIg6KVnjTQvddm63SLHrsAJM';
+const API_KEY = 'AIzaSyCdutMi4aKT3vJHaOabTtKUERoYv1-UBmM';
+const SHEET_RANGE = 'Form';
+
+// Ruta base para imágenes relativas del Sheet (ej: "images/x.png").
+// Vacío porque el sitio está en la raíz (en una subcarpeta sería '../').
+const IMG_BASE = '';
+
+// ===================================================
+// MENÚ LATERAL: grupos → categorías
+// - Los grupos normales usan la "Condición del Producto" del Sheet.
+// - Accesorios usa el "Tipo de Producto" (se arma solo con lo que haya cargado).
+// ===================================================
+const MENU = [
+    {
+        name: 'Celulares', icon: 'phone',
+        items: ['Apple Nuevos', 'Apple Usados', 'Android Nuevos', 'Android Usados']
+    },
+    {
+        name: 'Computación', icon: 'laptop',
+        items: ['Notebooks Nuevas', 'Notebooks Usadas', 'PC Escritorio', 'Tablets Nuevas', 'Tablets Usadas']
+    },
+    {
+        name: 'Accesorios', icon: 'plug',
+        condicion: 'Accesorios', byTipo: true, items: [] // se completa con los tipos disponibles
+    }
+];
+
+const ICONS = {
+    phone: '<rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/>',
+    laptop: '<rect x="4" y="4" width="16" height="11" rx="1"/><path d="M2 19h20"/>',
+    plug: '<path d="M9 2v6M15 2v6M6 8h12v4a6 6 0 0 1-12 0z M12 18v4"/>',
+    chev: '<path d="m9 6 6 6-6 6"/>'
+};
+const svg = (k, s = 16) =>
+    `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ICONS[k]}</svg>`;
+
+// ===================================================
+// ESTADO
+// ===================================================
+let DATA = [];
+const state = {
+    group: 'Celulares',
+    cat: CATEGORIA_INICIAL,   // '*' = ver todo
+    tipo: null,               // filtro rápido (chips)
+    q: '',
+    view: 'grid',
+    openGroups: new Set(['Celulares'])
+};
 
 // 🚀 Iniciar cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', () => {
     initViewToggle();
-    initHeaderShrink();
     initSearch();
+    initSidebarEvents();
+    initDrawer();
+    initSpider();
 
-    loadGoogleSheetData(); // Cargar datos desde Google Sheets al iniciar
-
-    // 🔄 Actualización automática cada N minutos (5 por defecto)
-    const minutos = 5;
-    setInterval(loadGoogleSheetData, minutos * 60 * 1000);
+    loadGoogleSheetData();
+    setInterval(loadGoogleSheetData, MINUTOS_ACTUALIZACION * 60 * 1000);
 });
 
 // ===================================================
-// TOGGLE DE VISTA (LISTA / GRID)
+// UTILIDADES
+// ===================================================
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c =>
+    ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+const fmt = n => (isNaN(n) ? 0 : n).toLocaleString('es-AR');
+
+function imgSrc(path) {
+    if (!path) return IMG_BASE + 'images/default.png';
+    if (/^(https?:)?\/\//.test(path) || path.startsWith('/') || path.startsWith('data:')) return path;
+    return IMG_BASE + path;
+}
+
+// ¿El producto pertenece a esta categoría del menú?
+function inCat(p, groupName, cat) {
+    const g = MENU.find(m => m.name === groupName);
+    if (!g) return false;
+    return g.byTipo ? (p.condicion === g.condicion && p.tipo === cat) : p.condicion === cat;
+}
+const countCat = (groupName, cat) => DATA.filter(p => inCat(p, groupName, cat)).length;
+
+// Orden original: por nombre y luego 64GB < 128GB < resto
+function sortProducts(list) {
+    const prio = t => /64\s*gb/i.test(t) ? 0 : /128\s*gb/i.test(t) ? 1 : 2;
+    return list.sort((a, b) => {
+        const n = a.producto.localeCompare(b.producto);
+        if (n !== 0) return n;
+        const pa = prio(a.descripcion), pb = prio(b.descripcion);
+        return pa !== pb ? pa - pb : a.descripcion.localeCompare(b.descripcion);
+    });
+}
+
+// ===================================================
+// TOGGLE DE VISTA (GRILLA / LISTA)
 // ===================================================
 function initViewToggle() {
-    const toggle = document.getElementById('viewToggle');
-    const labelLista = document.getElementById('labelLista');
-    const labelGrid = document.getElementById('labelGrid');
+    const btnGrid = document.getElementById('btnGrid');
+    const btnList = document.getElementById('btnList');
 
-    // Recuperar preferencia guardada
-    const savedView = localStorage.getItem(STORAGE_KEY_VIEW) || 'list';
-    const isGrid = savedView === 'grid';
-    toggle.checked = isGrid;
-    applyViewMode(isGrid ? 'grid' : 'list');
+    let saved = 'grid';
+    try { saved = localStorage.getItem(STORAGE_KEY_VIEW) || 'grid'; } catch (e) { }
+    setView(saved === 'list' ? 'list' : 'grid', false);
 
-    // Listener del toggle
-    toggle.addEventListener('change', () => {
-        const mode = toggle.checked ? 'grid' : 'list';
-        localStorage.setItem(STORAGE_KEY_VIEW, mode);
-        applyViewMode(mode);
-    });
+    btnGrid.addEventListener('click', () => setView('grid'));
+    btnList.addEventListener('click', () => setView('list'));
 
-    function applyViewMode(mode) {
-        const pricing = document.getElementById('pricing');
-        if (!pricing) return;
-
-        pricing.classList.remove('view-list', 'view-grid');
-        pricing.classList.add('view-' + mode);
-
-        // Resaltar label activo
-        if (mode === 'grid') {
-            labelGrid.classList.add('active');
-            labelLista.classList.remove('active');
-        } else {
-            labelLista.classList.add('active');
-            labelGrid.classList.remove('active');
-        }
+    function setView(mode, rerender = true) {
+        state.view = mode;
+        btnGrid.classList.toggle('active', mode === 'grid');
+        btnList.classList.toggle('active', mode === 'list');
+        try { localStorage.setItem(STORAGE_KEY_VIEW, mode); } catch (e) { }
+        if (rerender) renderMain();
     }
 }
 
 // ===================================================
-// HEADER SHRINK ON SCROLL
-// ===================================================
-function initHeaderShrink() {
-    const header = document.getElementById('mainHeader');
-    const body = document.body;
-
-    let ticking = false;
-
-    function onScroll() {
-        if (!ticking) {
-            window.requestAnimationFrame(() => {
-                if (window.scrollY > SCROLL_SHRINK_THRESHOLD) {
-                    header.classList.add('shrunk');
-                    body.classList.add('header-shrunk');
-                } else {
-                    header.classList.remove('shrunk');
-                    body.classList.remove('header-shrunk');
-                }
-                ticking = false;
-            });
-            ticking = true;
-        }
-    }
-
-    window.addEventListener('scroll', onScroll, { passive: true });
-}
-
-// ===================================================
-// BÚSQUEDA
+// BÚSQUEDA (busca en todo el catálogo)
 // ===================================================
 function initSearch() {
-    const searchInput = document.getElementById('searchInput');
-    if (!searchInput) return;
-
-    searchInput.addEventListener('input', function () {
-        const query = this.value.toLowerCase();
-        const products = document.querySelectorAll('.pricing-item');
-
-        products.forEach(product => {
-            const titleEl = product.querySelector('h2');
-            const descEl = product.querySelector('p');
-            const title = titleEl ? titleEl.textContent.toLowerCase() : '';
-            const desc = descEl ? descEl.textContent.toLowerCase() : '';
-            product.style.display = title.includes(query) || desc.includes(query) ? '' : 'none';
-        });
-
-        // Ocultar bloques (categoría / condición) que quedan vacíos
-        document.querySelectorAll('.products-grid').forEach(grid => {
-            const visibleItems = Array.from(grid.querySelectorAll('.pricing-item'))
-                .filter(item => item.style.display !== 'none');
-            grid.style.display = visibleItems.length > 0 ? '' : 'none';
-        });
-
-        document.querySelectorAll('.category-title').forEach(title => {
-            const nextGrid = title.nextElementSibling;
-            if (nextGrid && nextGrid.classList.contains('products-grid')) {
-                title.style.display = nextGrid.style.display === 'none' ? 'none' : '';
-            }
-        });
-
-        document.querySelectorAll('.condition-title').forEach(title => {
-            const items = [];
-            let sibling = title.nextElementSibling;
-            while (sibling && !sibling.classList.contains('condition-title')) {
-                if (sibling.classList.contains('pricing-item') ||
-                    (sibling.classList.contains('products-grid') && sibling.style.display !== 'none')) {
-                    items.push(sibling);
-                }
-                sibling = sibling.nextElementSibling;
-            }
-            const hasVisible = items.some(item => {
-                if (item.classList.contains('products-grid')) return item.style.display !== 'none';
-                return item.style.display !== 'none';
-            });
-            title.style.display = hasVisible ? '' : 'none';
-        });
+    const input = document.getElementById('searchInput');
+    input.addEventListener('input', () => {
+        state.q = input.value;
+        renderMain();
     });
 }
 
 // ===================================================
-// CÁLCULO DE CUOTAS
+// MENÚ EN CELULAR (drawer)
 // ===================================================
-// base = precio efectivo
-// cuota1  = base * 1.339
-// cuota3  = (base * 1.571) / 3
-// cuota6  = (base * 1.764) / 6
-// cuota9  = (base * 2.004) / 9
-// cuota12 = (base * 2.238) / 12
-function calcularCuotas(precioEfectivoNum) {
-    if (!precioEfectivoNum || isNaN(precioEfectivoNum) || precioEfectivoNum <= 0) {
-        return null;
-    }
-    const base = precioEfectivoNum;
-    return {
-        c1:  base * 1.339,
-        c3:  (base * 1.571) / 3,
-        c6:  (base * 1.764) / 6,
-        c9:  (base * 2.004) / 9,
-        c12: (base * 2.238) / 12
-    };
+function initDrawer() {
+    document.getElementById('menuBtn').addEventListener('click', () => document.body.classList.add('drawer-open'));
+    document.getElementById('backdrop').addEventListener('click', () => document.body.classList.remove('drawer-open'));
 }
 
-function formatARS(num) {
-    if (num == null || isNaN(num)) return '0';
-    // Redondeo a entero (sin decimales) para que quede más limpio en cuotas
-    return Math.round(num).toLocaleString('es-AR');
+// ===================================================
+// SIDEBAR
+// ===================================================
+function renderSidebar() {
+    const side = document.getElementById('sidebar');
+    let html = `<div class="side-title">Categorías</div>`;
+    html += `<button class="all-btn ${state.cat === '*' ? 'active' : ''}" data-group="*" data-cat="*">
+                Ver todo <span class="count">${DATA.length}</span></button>`;
+
+    MENU.forEach(g => {
+        const items = g.items.filter(c => countCat(g.name, c) > 0);
+        if (!items.length) return;
+        const open = state.openGroups.has(g.name);
+
+        html += `<div class="group ${open ? 'open' : ''}">
+            <button class="group-head" data-toggle="${esc(g.name)}">
+                <span class="ico">${svg(g.icon)}</span>${esc(g.name)}
+                <span class="chev">${svg('chev', 14)}</span>
+            </button>
+            <ul class="sub">${items.map(c => {
+                const active = state.cat === c && state.group === g.name;
+                return `<li><button class="${active ? 'active' : ''}" data-group="${esc(g.name)}" data-cat="${esc(c)}">
+                            ${esc(c)} <span class="count">${countCat(g.name, c)}</span></button></li>`;
+            }).join('')}</ul>
+        </div>`;
+    });
+    side.innerHTML = html;
+}
+
+function initSidebarEvents() {
+    document.getElementById('sidebar').addEventListener('click', e => {
+        // Abrir / cerrar grupo
+        const t = e.target.closest('[data-toggle]');
+        if (t) {
+            const name = t.dataset.toggle;
+            state.openGroups.has(name) ? state.openGroups.delete(name) : state.openGroups.add(name);
+            t.parentElement.classList.toggle('open');
+            return;
+        }
+        // Elegir categoría
+        const b = e.target.closest('[data-cat]');
+        if (!b) return;
+        selectCategory(b.dataset.group, b.dataset.cat);
+        document.body.classList.remove('drawer-open');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Chips de filtro rápido
+    document.getElementById('main').addEventListener('click', e => {
+        const c = e.target.closest('[data-tipo]');
+        if (!c) return;
+        state.tipo = c.dataset.tipo || null;
+        renderMain();
+    });
+}
+
+function selectCategory(group, cat) {
+    state.group = group;
+    state.cat = cat;
+    state.tipo = null;
+    state.q = '';
+    document.getElementById('searchInput').value = '';
+    if (group !== '*') state.openGroups.add(group);
+    renderSidebar();
+    renderMain();
+}
+
+// Si la categoría elegida quedó vacía (ej: se vendió todo), pasar a la primera con stock
+function ensureValidCategory() {
+    if (state.cat === '*' || countCat(state.group, state.cat) > 0) return;
+    for (const g of MENU) {
+        const c = g.items.find(c => countCat(g.name, c) > 0);
+        if (c) { state.group = g.name; state.cat = c; state.openGroups.add(g.name); return; }
+    }
+    state.cat = '*';
+}
+
+// ===================================================
+// VISTA PRINCIPAL
+// ===================================================
+function card(p) {
+    // Mismas reglas que el sitio actual: accesorios sin USD (salvo Gaming)
+    const mostrarUSD = !((p.condicion === 'Accesorios' || p.condicion === 'Otros') && p.tipo !== 'Gaming');
+    const estado = /usad/i.test(p.condicion) ? 'usado' : /nuev/i.test(p.condicion) ? 'nuevo' : '';
+
+    return `
+    <div class="card">
+        <div class="img"><img src="${esc(imgSrc(p.imagen))}" alt="${esc(p.producto)}" loading="lazy"
+             onerror="this.onerror=null;this.src='${IMG_BASE}images/default.png'"></div>
+        <div class="info">
+            ${estado ? `<span class="badge ${estado}">${estado.toUpperCase()}</span>` : ''}
+            <h3>${esc(p.producto)}</h3>
+            <div class="desc">${esc(p.descripcion)}</div>
+        </div>
+        <div class="prices">
+            ${mostrarUSD ? `<div class="p"><span>USD</span><b class="usd">$${fmt(p.precioUSD)}</b></div>` : ''}
+            <div class="p"><span>Efectivo</span><b class="pesos">$${fmt(p.precioPesos)}</b></div>
+            <div class="p"><span>Transferencia</span><b class="transf">$${fmt(p.precioTransf)}</b></div>
+            <div class="fin">💳 Consultar por financiación</div>
+        </div>
+    </div>`;
+}
+
+const grid = list => `<div class="products ${state.view === 'list' ? 'list' : ''}">${sortProducts(list).map(card).join('')}</div>`;
+
+function header(crumb, title, n) {
+    return `<div class="crumbs">${esc(crumb)}</div>
+        <div class="main-head"><h1>${esc(title)}</h1>
+        <span class="n">${n} producto${n !== 1 ? 's' : ''}</span></div>`;
+}
+
+// Secciones con título, en el orden del menú (para "Ver todo" y búsqueda)
+function sections(list) {
+    let html = '';
+    MENU.forEach(g => g.items.forEach(c => {
+        const l = list.filter(p => inCat(p, g.name, c));
+        if (l.length) html += `<div class="section-title">${g.byTipo ? 'Accesorios · ' : ''}${esc(c)}</div>${grid(l)}`;
+    }));
+    return html;
+}
+
+function renderMain() {
+    const main = document.getElementById('main');
+    const q = state.q.trim().toLowerCase();
+
+    // 1) Búsqueda: ignora la categoría y busca en todo
+    if (q) {
+        const res = DATA.filter(p => `${p.producto} ${p.descripcion} ${p.tipo}`.toLowerCase().includes(q));
+        main.innerHTML = header('Búsqueda', `"${state.q.trim()}"`, res.length) +
+            (res.length ? sections(res) : '<div class="empty">No encontramos productos con ese nombre.</div>');
+        return;
+    }
+
+    // 2) Ver todo
+    if (state.cat === '*') {
+        main.innerHTML = header('Catálogo', 'Todos los productos', DATA.length) + sections(DATA);
+        return;
+    }
+
+    // 3) Categoría elegida + chips por tipo (si hay más de uno)
+    let list = DATA.filter(p => inCat(p, state.group, state.cat));
+    const g = MENU.find(m => m.name === state.group);
+    const tipos = [...new Set(list.map(p => p.tipo))].sort();
+    if (state.tipo && !tipos.includes(state.tipo)) state.tipo = null;
+
+    const chips = (!g.byTipo && tipos.length > 1)
+        ? `<div class="chips"><button class="chip ${!state.tipo ? 'active' : ''}" data-tipo="">Todos</button>${tipos.map(t => `<button class="chip ${state.tipo === t ? 'active' : ''}" data-tipo="${esc(t)}">${esc(t)}</button>`).join('')
+        }</div>` : '';
+
+    if (state.tipo) list = list.filter(p => p.tipo === state.tipo);
+    main.innerHTML = header(state.group, state.cat, list.length) + chips +
+        (list.length ? grid(list) : '<div class="empty">No hay productos en esta categoría.</div>');
 }
 
 // ===================================================
 // CARGA DE DATOS DESDE GOOGLE SHEETS
 // ===================================================
 async function loadGoogleSheetData() {
-    const sheetID = '1W7aJMPe00ORHGjVnRzScIg6KVnjTQvddm63SLHrsAJM';
-    const apiKey = 'AIzaSyCdutMi4aKT3vJHaOabTtKUERoYv1-UBmM';
-    const sheetRange = 'Form';
-    const sheetURL = `https://sheets.googleapis.com/v4/spreadsheets/${sheetID}/values/${sheetRange}?key=${apiKey}`;
+    const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${SHEET_RANGE}?key=${API_KEY}`;
 
     try {
-        const response = await fetch(sheetURL);
+        const response = await fetch(url);
         const data = await response.json();
         if (!data.values || data.values.length < 2) return;
 
         const [headers, ...rows] = data.values;
-        const pricingContainer = document.getElementById('pricing');
-        pricingContainer.innerHTML = '';
+        const col = name => headers.indexOf(name);
+        const num = v => parseFloat(v) || 0; // igual que el sitio actual
 
-        const productsByCondition = {};
-        const conditionOrder = [
-            "Apple Nuevos", "Apple Usados", "Android Nuevos", "Android Usados",
-            "Notebooks Nuevas", "Notebooks Usadas", "PC Escritorio",
-            "Tablets Nuevas", "Tablets Usadas", "Accesorios"
-        ];
+        DATA = rows
+            .filter(r => (r[col('Status')] || 'No disponible') === 'Disponible')
+            .map(r => ({
+                condicion: r[col('Condición del Producto')] || 'Otros',
+                tipo: r[col('Tipo de Producto')] || 'Otros',
+                producto: r[col('Producto')] || 'Sin nombre',
+                descripcion: r[col('Descripción')] || '',
+                precioUSD: num(r[col('PrecioUSD')]),
+                precioPesos: num(r[col('PrecioPesos')]),
+                precioTransf: num(r[col('PrecioTransf')]),
+                imagen: r[col('Imagen2')] || 'images/default.png'
+            }));
 
-        // Procesar filas
-        rows.forEach(row => {
-            const status = row[headers.indexOf('Status')] || 'No disponible';
-            if (status !== 'Disponible') return;
-
-            const condicion = row[headers.indexOf('Condición del Producto')] || 'Otros';
-            const tipo = row[headers.indexOf('Tipo de Producto')] || 'Otros';
-            const producto = row[headers.indexOf('Producto')] || 'Sin nombre';
-            const descripcion = row[headers.indexOf('Descripción')] || '';
-            const precioUSDRaw = row[headers.indexOf('PrecioUSD')] || '0';
-            const precioPesosRaw = row[headers.indexOf('PrecioPesos')] || '0';
-            const precioTransfRaw = row[headers.indexOf('PrecioTransf')] || '0';
-            const imagen = row[headers.indexOf('Imagen2')] || 'images/default.png';
-
-            const precioPesosNum = parseFloat(precioPesosRaw) || 0;
-
-            productsByCondition[condicion] ??= {};
-            productsByCondition[condicion][tipo] ??= [];
-
-            productsByCondition[condicion][tipo].push({
-                producto,
-                descripcion,
-                precioUSD: parseFloat(precioUSDRaw).toLocaleString('es-AR'),
-                precioPesos: precioPesosNum.toLocaleString('es-AR'),
-                precioTransf: parseFloat(precioTransfRaw).toLocaleString('es-AR'),
-                precioPesosNum, // valor numérico para cuotas
-                imagen
-            });
+        // Tipos de accesorios disponibles (orden alfabético, "Otros" al final)
+        MENU.filter(m => m.byTipo).forEach(m => {
+            m.items = [...new Set(DATA.filter(p => p.condicion === m.condicion).map(p => p.tipo))]
+                .sort((a, b) => (a === 'Otros') - (b === 'Otros') || a.localeCompare(b));
         });
 
-        // Renderizar
-        conditionOrder.forEach(condicion => {
-            if (!productsByCondition[condicion]) return;
-
-            pricingContainer.innerHTML += `<h1 class="condition-title">${condicion}</h1>`;
-
-            const sortedCategories = Object.keys(productsByCondition[condicion]).sort();
-            sortedCategories.forEach(categoria => {
-                const productos = productsByCondition[condicion][categoria];
-
-                // Ordenar productos
-                productos.sort((a, b) => {
-                    const nameComp = a.producto.localeCompare(b.producto);
-                    if (nameComp !== 0) return nameComp;
-
-                    const prio = text =>
-                        /64\s*gb/i.test(text) ? 0 : /128\s*gb/i.test(text) ? 1 : 2;
-
-                    const prioA = prio(a.descripcion), prioB = prio(b.descripcion);
-                    return prioA !== prioB ? prioA - prioB : a.descripcion.localeCompare(b.descripcion);
-                });
-
-                // Mostrar título de categoría solo si es Accesorios
-                if (condicion === "Accesorios") {
-                    pricingContainer.innerHTML += `
-                        <h2 class="category-title" style="background-color:rgb(180,180,180);padding:10px;border-radius:5px;">
-                            ${categoria}
-                        </h2>`;
-                }
-
-                // Wrapper grid (en lista se muestra como flex-column gracias al CSS)
-                let cardsHTML = '<div class="products-grid">';
-
-                productos.forEach(p => {
-                    // Precios principales
-                    const mostrarUSD = !((condicion === "Accesorios" || condicion === "Otros") && categoria !== "Gaming");
-
-                    let preciosHTML = '';
-                    if (mostrarUSD) {
-                        preciosHTML += `<span class="price usd">USD: $${p.precioUSD}</span>`;
-                    }
-                    preciosHTML += `<span class="price pesos">Efectivo: $${p.precioPesos}</span>`;
-                    preciosHTML += `<span class="price transf">Transferencia: $${p.precioTransf}</span>`;
-                    preciosHTML += `<span class="price financiacion">💳 Consultar por financiación</span>`;
-
-                    cardsHTML += `
-                        <div class="pricing-item">
-                            <div class="image-column">
-                                <img src="${p.imagen}" alt="${p.producto}" class="product-image" />
-                            </div>
-                            <div class="product-row">
-                                <div class="details-column">
-                                    <h2>${p.producto}</h2>
-                                    <p>${p.descripcion}</p>
-                                </div>
-                                <div class="price-column">
-                                    <div class="prices">${preciosHTML}</div>
-                                </div>
-                            </div>
-                        </div>`;
-                });
-
-                cardsHTML += '</div>'; // cierra products-grid
-                pricingContainer.innerHTML += cardsHTML;
-            });
-        });
-
+        ensureValidCategory();
+        renderSidebar();
+        renderMain();
     } catch (error) {
         console.error('Error al cargar los datos de Google Sheets:', error);
+        if (!DATA.length) {
+            document.getElementById('main').innerHTML =
+                '<div class="empty">No se pudieron cargar los productos. Intentá de nuevo en unos minutos.</div>';
+        }
     }
+}
+
+// ===================================================
+// 🎃 HALLOWEEN: ARAÑA QUE BAJA CON EL SCROLL
+// (solo actúa si el <body> tiene class="halloween")
+// ===================================================
+function initSpider() {
+    const wrap = document.getElementById('spiderWrap');
+    if (!wrap || !document.body.classList.contains('halloween')) return;
+
+    const BASE_DROP = 24;   // largo inicial del hilo (px)
+    const MAX_EXTRA = 110;  // cuánto puede bajar como máximo (px)
+    const FACTOR = 0.2;     // px de hilo por cada px de scroll
+    let ticking = false;
+
+    function update() {
+        const extra = Math.min(window.scrollY * FACTOR, MAX_EXTRA);
+        wrap.style.setProperty('--spider-drop', (BASE_DROP + extra) + 'px');
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(update);
+            ticking = true;
+        }
+    }, { passive: true });
+
+    update();
 }

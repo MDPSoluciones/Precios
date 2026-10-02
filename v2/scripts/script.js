@@ -62,6 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initSearch();
     initSidebarEvents();
     initDrawer();
+    initSpider();
 
     loadGoogleSheetData();
     setInterval(loadGoogleSheetData, MINUTOS_ACTUALIZACION * 60 * 1000);
@@ -340,4 +341,33 @@ async function loadGoogleSheetData() {
                 '<div class="empty">No se pudieron cargar los productos. Intentá de nuevo en unos minutos.</div>';
         }
     }
+}
+
+// ===================================================
+// 🎃 HALLOWEEN: ARAÑA QUE BAJA CON EL SCROLL
+// (solo actúa si el <body> tiene class="halloween")
+// ===================================================
+function initSpider() {
+    const wrap = document.getElementById('spiderWrap');
+    if (!wrap || !document.body.classList.contains('halloween')) return;
+
+    const BASE_DROP = 24;   // largo inicial del hilo (px)
+    const MAX_EXTRA = 110;  // cuánto puede bajar como máximo (px)
+    const FACTOR = 0.2;     // px de hilo por cada px de scroll
+    let ticking = false;
+
+    function update() {
+        const extra = Math.min(window.scrollY * FACTOR, MAX_EXTRA);
+        wrap.style.setProperty('--spider-drop', (BASE_DROP + extra) + 'px');
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(update);
+            ticking = true;
+        }
+    }, { passive: true });
+
+    update();
 }
