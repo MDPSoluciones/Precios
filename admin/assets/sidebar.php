@@ -12,6 +12,7 @@ $items = [
     'cuotas'      => ['label' => 'Simulador de Cuotas',  'href' => 'cuotas/',                 'icon' => 'percent'],
     'caja'        => ['label' => 'Carga de Caja',        'href' => 'caja/',                   'icon' => 'wallet'],
     'productos'   => ['label' => 'Carga de Productos',   'href' => 'productos/',              'icon' => 'upload'],
+    'catalogo'    => ['label' => 'Catálogo (nuevo)',     'href' => 'catalogo/',               'icon' => 'list'],
     'inventario'  => ['label' => 'Inventario',           'href' => 'inventario/',             'icon' => 'box'],
 ];
 
@@ -45,6 +46,7 @@ function nav_icon($name) {
         'wallet'    => '<path d="M3 7a2 2 0 0 1 2-2h13a1 1 0 0 1 1 1v3"/><path d="M3 7v11a2 2 0 0 0 2 2h14a1 1 0 0 0 1-1v-4"/><path d="M15 13h4v4h-4a2 2 0 0 1 0-4Z"/>',
         'box'       => '<path d="M3 9.5 12 4l9 5.5V19a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1Z"/>',
         'users'     => '<circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="8" r="2.4"/><path d="M23 20c0-2.6-1.7-4.8-4-5.6"/>',
+        'list'      => '<path d="M8 6h13M8 12h13M8 18h13"/><path d="M3.5 6h.01M3.5 12h.01M3.5 18h.01"/>',
         'upload'    => '<path d="M12 3v12"/><path d="M7.5 7.5 12 3l4.5 4.5"/><path d="M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/>',
     ];
     return $icons[$name] ?? '';

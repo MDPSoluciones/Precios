@@ -54,6 +54,13 @@ require_login();
         <p>Formulario para dar de alta un producto nuevo.</p>
       </a>
 
+      <a class="tool-card" href="catalogo/">
+        <div class="tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13"/><path d="M3.5 6h.01M3.5 12h.01M3.5 18h.01"/></svg></div>
+        <h2>Catálogo (nuevo)</h2>
+        <p>Alta, edición y precios de los productos del sitio.</p>
+        <span class="tool-tag">En prueba</span>
+      </a>
+
       <a class="tool-card" href="inventario/">
         <div class="tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 4l9 5.5V19a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1Z"/></svg></div>
         <h2>Inventario</h2>
