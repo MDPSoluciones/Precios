@@ -1,0 +1,13 @@
+{
+    "modo": "auto",
+    "cotizacion": 1570,
+    "ajuste": 20,
+    "pct_transf": 3,
+    "dolar_api": {
+        "venta": 1550,
+        "fecha": "2026-10-06T20:56:00.000Z",
+        "consultado": 1791338961,
+        "intento": 1791338961
+    },
+    "actualizado": "2026-10-07T02:09:22+00:00"
+}

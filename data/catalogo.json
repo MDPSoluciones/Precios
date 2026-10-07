@@ -1,0 +1,1355 @@
+{
+    "actualizado": "2026-10-06T19:07:34+00:00",
+    "productos": [
+        {
+            "producto": "AIRPOD PRO 3",
+            "descripcion": "Cancelación de ruido mejorada Sensor de ritmo cardíaco Controles táctiles 8 h de batería (24 h con estuche) Resistencia al agua IP57",
+            "condicion": "Accesorios",
+            "tipo": "Auriculares",
+            "precioUSD": 350,
+            "precioPesos": 549500,
+            "precioTransf": 565985,
+            "imagen": "images/headsets/AIRPODS_PRO_3.jpeg"
+        },
+        {
+            "producto": "AIRPODS PRO 2DA GEN REPLICA",
+            "descripcion": "PRO 2DA GEN",
+            "condicion": "Accesorios",
+            "tipo": "Auriculares",
+            "precioUSD": 41,
+            "precioPesos": 64370,
+            "precioTransf": 66301,
+            "imagen": "images/headsets/AIRPOD_PRO_2DA_GENERACION.jpeg"
+        },
+        {
+            "producto": "AIRPODS PRO 3 GEN REPLICA",
+            "descripcion": "PRO 3RA GEN",
+            "condicion": "Accesorios",
+            "tipo": "Auriculares",
+            "precioUSD": 46,
+            "precioPesos": 72220,
+            "precioTransf": 74387,
+            "imagen": "images/logoNew.png"
+        },
+        {
+            "producto": "ALEXA",
+            "descripcion": "ECHO DOT",
+            "condicion": "Accesorios",
+            "tipo": "Parlantes",
+            "precioUSD": 95,
+            "precioPesos": 149150,
+            "precioTransf": 153625,
+            "imagen": "images/parlantes/ALEXA.jpg"
+        },
+        {
+            "producto": "ALEXA",
+            "descripcion": "ECHO SPOT",
+            "condicion": "Accesorios",
+            "tipo": "Parlantes",
+            "precioUSD": 120,
+            "precioPesos": 188400,
+            "precioTransf": 194052,
+            "imagen": "images/logoNew.png"
+        },
+        {
+            "producto": "APPLE WATCH SE 3",
+            "descripcion": "40MM STARLIGHT S/M GPS",
+            "condicion": "Accesorios",
+            "tipo": "Smartwatch",
+            "precioUSD": 450,
+            "precioPesos": 706500,
+            "precioTransf": 727695,
+            "imagen": "images/logoNew.png"
+        },
+        {
+            "producto": "ASUS TUF A16 GAMING",
+            "descripcion": "RYZEN 7 170RTX 4050 16/512GB 16\"",
+            "condicion": "Notebooks Nuevas",
+            "tipo": "Notebooks",
+            "precioUSD": 1390,
+            "precioPesos": 2182300,
+            "precioTransf": 2247769,
+            "imagen": "images/logoNew.png"
+        },
+        {
+            "producto": "AURICULARES",
+            "descripcion": "INALAMBRICOS ENC/HIFI",
+            "condicion": "Accesorios",
+            "tipo": "Auriculares",
+            "precioUSD": 37,
+            "precioPesos": 58090,
+            "precioTransf": 59833,
+            "imagen": "images/headsets/INALAMBRICOS_ENCHIFI.jpeg"
+        },
+        {
+            "producto": "AURICULARES",
+            "descripcion": "JBL LIVE 220BT",
+            "condicion": "Accesorios",
+            "tipo": "Auriculares",
+            "precioUSD": 50,
+            "precioPesos": 78500,
+            "precioTransf": 80855,
+            "imagen": "images/headsets/JBL_LIVE_220BT.jpeg"
+        },
+        {
+            "producto": "AURICULARES CON CABLE",
+            "descripcion": "PRO 21 SUPER SONICO-COLORES",
+            "condicion": "Accesorios",
+            "tipo": "Auriculares",
+            "precioUSD": 3,
+            "precioPesos": 4710,
+            "precioTransf": 4851,
+            "imagen": "images/headsets/PRO_21_SUPER_SONICO_COLORES.jpeg"
+        },
+        {
+            "producto": "AURICULARES CON CABLE",
+            "descripcion": "STEREO HEADSET",
+            "condicion": "Accesorios",
+            "tipo": "Auriculares",
+            "precioUSD": 4,
+            "precioPesos": 6280,
+            "precioTransf": 6468,
+            "imagen": "images/headsets/STEREO_HEADSET.jpeg"
+        },
+        {
+            "producto": "AURICULARES CON CABLE",
+            "descripcion": "DISEÑO COLORIDO",
+            "condicion": "Accesorios",
+            "tipo": "Auriculares",
+            "precioUSD": 2,
+            "precioPesos": 3140,
+            "precioTransf": 3234,
+            "imagen": "images/headsets/DISEÑO_COLORIDO.jpeg"
+        },
+        {
+            "producto": "AURICULARES CON CABLE",
+            "descripcion": "EARPODS LIGHTNING CONNECTOR",
+            "condicion": "Accesorios",
+            "tipo": "Auriculares",
+            "precioUSD": 20,
+            "precioPesos": 31400,
+            "precioTransf": 32342,
+            "imagen": "images/headsets/EARPODS_LIGHTNING_CONNECTOR.jpeg"
+        },
+        {
+            "producto": "AURICULARES CON CABLE SAMSUNG",
+            "descripcion": "USB-C",
+            "condicion": "Accesorios",
+            "tipo": "Auriculares",
+            "precioUSD": 12,
+            "precioPesos": 18840,
+            "precioTransf": 19405,
+            "imagen": "images/headsets/SAMSUNG_USB-C.jpeg"
+        },
+        {
+            "producto": "AURICULARES VINCHA",
+            "descripcion": "BEATS STUDIO PRO",
+            "condicion": "Accesorios",
+            "tipo": "Auriculares",
+            "precioUSD": 41,
+            "precioPesos": 64370,
+            "precioTransf": 66301,
+            "imagen": "images/headsets/BEATS_STUDIO_PRO.jpeg"
+        },
+        {
+            "producto": "AURICULARES VINCHA",
+            "descripcion": "AIRPODS MAX REPLICA",
+            "condicion": "Accesorios",
+            "tipo": "Auriculares",
+            "precioUSD": 45,
+            "precioPesos": 70650,
+            "precioTransf": 72770,
+            "imagen": "images/headsets/AIRPODS_MAX_REPLICA.jpeg"
+        },
+        {
+            "producto": "BOTELLA ALUMINIO",
+            "descripcion": "WATERDOG TONGO 750 ML",
+            "condicion": "Accesorios",
+            "tipo": "Otros",
+            "precioUSD": 20,
+            "precioPesos": 31400,
+            "precioTransf": 32342,
+            "imagen": "images/logoNew.png"
+        },
+        {
+            "producto": "CARGADOR",
+            "descripcion": "SMARTWATCH",
+            "condicion": "Accesorios",
+            "tipo": "Cargadores",
+            "precioUSD": 8,
+            "precioPesos": 12560,
+            "precioTransf": 12937,
+            "imagen": "images/cargadores/SMARTWATCH.jpeg"
+        },
+        {
+            "producto": "CARGADOR",
+            "descripcion": "GARMIN FENIX 5/6/245/935",
+            "condicion": "Accesorios",
+            "tipo": "Cargadores",
+            "precioUSD": 10,
+            "precioPesos": 15700,
+            "precioTransf": 16171,
+            "imagen": "images/logoNew.png"
+        },
+        {
+            "producto": "CARGADOR APPLE ALTERNATIVO",
+            "descripcion": "20W",
+            "condicion": "Accesorios",
+            "tipo": "Cargadores",
+            "precioUSD": 25,
+            "precioPesos": 39250,
+            "precioTransf": 40428,
+            "imagen": "images/cargadores/APPLE_ALTERNATIVO_20W.jpeg"
+        },
+        {
+            "producto": "CARGADOR APPLE ORIGINAL",
+            "descripcion": "20W",
+            "condicion": "Accesorios",
+            "tipo": "Cargadores",
+            "precioUSD": 50,
+            "precioPesos": 78500,
+            "precioTransf": 80855,
+            "imagen": "images/cargadores/APPLE_ORIGINAL_20W.jpeg"
+        },
+        {
+            "producto": "CARGADOR BATTERY PACK APPLE ALTERNATIVO",
+            "descripcion": "PORTATIL",
+            "condicion": "Accesorios",
+            "tipo": "Cargadores",
+            "precioUSD": 35,
+            "precioPesos": 54950,
+            "precioTransf": 56599,
+            "imagen": "images/cargadores/BATTERY_PACK_APPLE_ALTERNATIVO.jpeg"
+        },
+        {
+            "producto": "CARGADOR INALAMBRICO",
+            "descripcion": "3 EN 1",
+            "condicion": "Accesorios",
+            "tipo": "Cargadores",
+            "precioUSD": 30,
+            "precioPesos": 47100,
+            "precioTransf": 48513,
+            "imagen": "images/cargadores/CARGADOR_INALAMBRICO_3-1.jpeg"
+        },
+        {
+            "producto": "CARGADOR INALAMBRICO",
+            "descripcion": "TACTIL 4 EN 1",
+            "condicion": "Accesorios",
+            "tipo": "Cargadores",
+            "precioUSD": 60,
+            "precioPesos": 94200,
+            "precioTransf": 97026,
+            "imagen": "images/cargadores/CARGADOR_INALAMBRICO_4-1.jpeg"
+        },
+        {
+            "producto": "CARGADOR INALAMBRICO APPLE ALTERNATIVO",
+            "descripcion": "INALAMBRICO",
+            "condicion": "Accesorios",
+            "tipo": "Cargadores",
+            "precioUSD": 30,
+            "precioPesos": 47100,
+            "precioTransf": 48513,
+            "imagen": "images/cargadores/INALAMBRICO_APPLE_ALTERNATIVO.jpeg"
+        },
+        {
+            "producto": "CARGADOR MAGNETIC 3 EN 1",
+            "descripcion": "3 EN 1",
+            "condicion": "Accesorios",
+            "tipo": "Cargadores",
+            "precioUSD": 40,
+            "precioPesos": 62800,
+            "precioTransf": 64684,
+            "imagen": "images/cargadores/MAGNETIC_3_EN_1.jpeg"
+        },
+        {
+            "producto": "CARGADOR MOTOROLA",
+            "descripcion": "TURBO 68DUO SALIDA SB-C",
+            "condicion": "Accesorios",
+            "tipo": "Cargadores",
+            "precioUSD": 16,
+            "precioPesos": 25120,
+            "precioTransf": 25874,
+            "imagen": "images/cargadores/MOTOROLA_TURBO_68DUO_SALIDA_SB-C.jpeg"
+        },
+        {
+            "producto": "CARGADOR PARA AUTO",
+            "descripcion": "MAGNETIC 15W",
+            "condicion": "Accesorios",
+            "tipo": "Cargadores",
+            "precioUSD": 20,
+            "precioPesos": 31400,
+            "precioTransf": 32342,
+            "imagen": "images/cargadores/AUTO_MAGNETIC_15W.jpeg"
+        },
+        {
+            "producto": "CARGADOR PARA AUTO",
+            "descripcion": "AUTOMATICO 15W",
+            "condicion": "Accesorios",
+            "tipo": "Cargadores",
+            "precioUSD": 45,
+            "precioPesos": 70650,
+            "precioTransf": 72770,
+            "imagen": "images/cargadores/AUTO_AUTOMATICO_15W.jpeg"
+        },
+        {
+            "producto": "CARGADOR PARA AUTO",
+            "descripcion": "MCDODO 30W",
+            "condicion": "Accesorios",
+            "tipo": "Cargadores",
+            "precioUSD": 23,
+            "precioPesos": 36110,
+            "precioTransf": 37193,
+            "imagen": "images/logoNew.png"
+        },
+        {
+            "producto": "CARGADOR SAMSUNG",
+            "descripcion": "25W",
+            "condicion": "Accesorios",
+            "tipo": "Cargadores",
+            "precioUSD": 10,
+            "precioPesos": 15700,
+            "precioTransf": 16171,
+            "imagen": "images/cargadores/SAMSUNG_25W.jpeg"
+        },
+        {
+            "producto": "CARGADOR SAMSUNG",
+            "descripcion": "45W",
+            "condicion": "Accesorios",
+            "tipo": "Cargadores",
+            "precioUSD": 16,
+            "precioPesos": 25120,
+            "precioTransf": 25874,
+            "imagen": "images/cargadores/SAMSUNG_45W.jpeg"
+        },
+        {
+            "producto": "CARGADOR SAMSUNG",
+            "descripcion": "S10/20",
+            "condicion": "Accesorios",
+            "tipo": "Cargadores",
+            "precioUSD": 6,
+            "precioPesos": 9420,
+            "precioTransf": 9703,
+            "imagen": "images/cargadores/SAMSUNG_S10_20.jpeg"
+        },
+        {
+            "producto": "CARGADOR SAMSUNG",
+            "descripcion": "POWER TRIO USB-CX2 USB-A PORT 65w",
+            "condicion": "Accesorios",
+            "tipo": "Cargadores",
+            "precioUSD": 16,
+            "precioPesos": 25120,
+            "precioTransf": 25874,
+            "imagen": "images/cargadores/SAMSUNG_POWER_TRIO.jpeg"
+        },
+        {
+            "producto": "CARGADOR SAMSUNG",
+            "descripcion": "ENTREGA USB Y USB-C 35W",
+            "condicion": "Accesorios",
+            "tipo": "Cargadores",
+            "precioUSD": 16,
+            "precioPesos": 25120,
+            "precioTransf": 25874,
+            "imagen": "images/cargadores/SAMSUNG_USB-C_35W.jpeg"
+        },
+        {
+            "producto": "CARGADOR SAMSUNG POWER BANK",
+            "descripcion": "BATTERY PACK",
+            "condicion": "Accesorios",
+            "tipo": "Cargadores",
+            "precioUSD": 16,
+            "precioPesos": 25120,
+            "precioTransf": 25874,
+            "imagen": "images/cargadores/SAMSUNG_POWER_BANK.jpeg"
+        },
+        {
+            "producto": "CARGADOR XAEA",
+            "descripcion": "MAXIMA POTENCIA 27W",
+            "condicion": "Accesorios",
+            "tipo": "Cargadores",
+            "precioUSD": 8,
+            "precioPesos": 12560,
+            "precioTransf": 12937,
+            "imagen": "images/cargadores/XAEA.jpeg"
+        },
+        {
+            "producto": "COMBO PHILIPS",
+            "descripcion": "TECLADO MOUSE",
+            "condicion": "Accesorios",
+            "tipo": "Periféricos",
+            "precioUSD": 15,
+            "precioPesos": 23550,
+            "precioTransf": 24257,
+            "imagen": "images/logoNew.png"
+        },
+        {
+            "producto": "CONSOLA GAME STICK",
+            "descripcion": "2 JOYSTICK +20.000 JUEGOS RETRO",
+            "condicion": "Accesorios",
+            "tipo": "Gaming",
+            "precioUSD": 55,
+            "precioPesos": 86350,
+            "precioTransf": 88941,
+            "imagen": "images/gaming/CONSOLA_GAME_STICK.jpeg"
+        },
+        {
+            "producto": "CONSOLA GAMER36S",
+            "descripcion": "MULTIEMULADOR",
+            "condicion": "Accesorios",
+            "tipo": "Gaming",
+            "precioUSD": 60,
+            "precioPesos": 94200,
+            "precioTransf": 97026,
+            "imagen": "images/logoNew.png"
+        },
+        {
+            "producto": "DELL 3400",
+            "descripcion": "INTEL I5 (GEN 8VA) 16GB/512GB 14“ HD",
+            "condicion": "Notebooks Usadas",
+            "tipo": "Notebooks",
+            "precioUSD": 520,
+            "precioPesos": 816400,
+            "precioTransf": 840892,
+            "imagen": "images/logoNew.png"
+        },
+        {
+            "producto": "DELL 3400",
+            "descripcion": "INTEL I7 (GEN 8VA) 16GB/512GB 14“ HD",
+            "condicion": "Notebooks Usadas",
+            "tipo": "Celulares",
+            "precioUSD": 590,
+            "precioPesos": 926300,
+            "precioTransf": 954089,
+            "imagen": "images/logoNew.png"
+        },
+        {
+            "producto": "DELL 3420",
+            "descripcion": "INTEL I5 (GEN 11) 16/256GB 14\" HD",
+            "condicion": "Notebooks Usadas",
+            "tipo": "Celulares",
+            "precioUSD": 505,
+            "precioPesos": 792850,
+            "precioTransf": 816636,
+            "imagen": "images/logoNew.png"
+        },
+        {
+            "producto": "DELL 7300",
+            "descripcion": "INTEL I5 (GEN 8VA) 16/512GB 14\" FHD",
+            "condicion": "Notebooks Usadas",
+            "tipo": "Notebooks",
+            "precioUSD": 440,
+            "precioPesos": 690800,
+            "precioTransf": 711524,
+            "imagen": "images/logoNew.png"
+        },
+        {
+            "producto": "DELL DC15250",
+            "descripcion": "INTEL CORE I7 (13VA GEN) 16/512GB 15.6\" FHD",
+            "condicion": "Notebooks Nuevas",
+            "tipo": "Notebooks",
+            "precioUSD": 1050,
+            "precioPesos": 1648500,
+            "precioTransf": 1697955,
+            "imagen": "images/logoNew.png"
+        },
+        {
+            "producto": "HP PROBOOK 640 G5",
+            "descripcion": "INTEL I5(GEN 8VA) 16GB/512GB 14“ FHD",
+            "condicion": "Notebooks Usadas",
+            "tipo": "Notebooks",
+            "precioUSD": 475,
+            "precioPesos": 745750,
+            "precioTransf": 768123,
+            "imagen": "images/logoNew.png"
+        },
+        {
+            "producto": "IPHONE 14 PRO",
+            "descripcion": "128GB 90% DEEP PURPLE",
+            "condicion": "Apple Usados",
+            "tipo": "Celulares",
+            "precioUSD": 500,
+            "precioPesos": 785000,
+            "precioTransf": 808550,
+            "imagen": "images/usados/usados.png"
+        },
+        {
+            "producto": "IPHONE 15",
+            "descripcion": "128GB - CONSULTAR COLORES",
+            "condicion": "Apple Nuevos",
+            "tipo": "Celulares",
+            "precioUSD": 790,
+            "precioPesos": 1240300,
+            "precioTransf": 1277509,
+            "imagen": "images/iphone-15-01.png"
+        },
+        {
+            "producto": "IPHONE 15",
+            "descripcion": "128GB 88% BLUE CON CAJA",
+            "condicion": "Apple Usados",
+            "tipo": "Celulares",
+            "precioUSD": 490,
+            "precioPesos": 769300,
+            "precioTransf": 792379,
+            "imagen": "images/usados/usados.png"
+        },
+        {
+            "producto": "IPHONE 15",
+            "descripcion": "128GB 87% BLUE CON CAJA",
+            "condicion": "Apple Usados",
+            "tipo": "Celulares",
+            "precioUSD": 490,
+            "precioPesos": 769300,
+            "precioTransf": 792379,
+            "imagen": "images/usados/usados.png"
+        },
+        {
+            "producto": "IPHONE 15 PRO",
+            "descripcion": "128GB 86% WHITE ESIM",
+            "condicion": "Apple Usados",
+            "tipo": "Celulares",
+            "precioUSD": 590,
+            "precioPesos": 926300,
+            "precioTransf": 954089,
+            "imagen": "images/usados/usados.png"
+        },
+        {
+            "producto": "IPHONE 15 PRO",
+            "descripcion": "256GB 89% WHITE ESIM",
+            "condicion": "Apple Usados",
+            "tipo": "Celulares",
+            "precioUSD": 650,
+            "precioPesos": 1020500,
+            "precioTransf": 1051115,
+            "imagen": "images/usados/usados.png"
+        },
+        {
+            "producto": "IPHONE 15 PRO",
+            "descripcion": "128GB 86% NATURAL ESIM CON CAJA",
+            "condicion": "Apple Usados",
+            "tipo": "Celulares",
+            "precioUSD": 590,
+            "precioPesos": 926300,
+            "precioTransf": 954089,
+            "imagen": "images/usados/usados.png"
+        },
+        {
+            "producto": "IPHONE 15 PRO MAX",
+            "descripcion": "256GB 84% NATURAL CON CAJA ESIM",
+            "condicion": "Apple Usados",
+            "tipo": "Celulares",
+            "precioUSD": 750,
+            "precioPesos": 1177500,
+            "precioTransf": 1212825,
+            "imagen": "images/usados/usados.png"
+        },
+        {
+            "producto": "IPHONE 15 PRO MAX",
+            "descripcion": "256GB 85% BLACK ESIM",
+            "condicion": "Apple Usados",
+            "tipo": "Celulares",
+            "precioUSD": 750,
+            "precioPesos": 1177500,
+            "precioTransf": 1212825,
+            "imagen": "images/usados/usados.png"
+        },
+        {
+            "producto": "IPHONE 16",
+            "descripcion": "128GB - CONSULTAR COLORES",
+            "condicion": "Apple Nuevos",
+            "tipo": "Celulares",
+            "precioUSD": 870,
+            "precioPesos": 1365900,
+            "precioTransf": 1406877,
+            "imagen": "images/iphone-16-01.png"
+        },
+        {
+            "producto": "IPHONE 16",
+            "descripcion": "128GB 89% ULTRAMARINE ESIM",
+            "condicion": "Apple Usados",
+            "tipo": "Celulares",
+            "precioUSD": 630,
+            "precioPesos": 989100,
+            "precioTransf": 1018773,
+            "imagen": "images/usados/usados.png"
+        },
+        {
+            "producto": "IPHONE 16 PRO",
+            "descripcion": "128GB 88% NATURAL ESIM",
+            "condicion": "Apple Usados",
+            "tipo": "Celulares",
+            "precioUSD": 760,
+            "precioPesos": 1193200,
+            "precioTransf": 1228996,
+            "imagen": "images/usados/usados.png"
+        },
+        {
+            "producto": "IPHONE 16 PRO MAX",
+            "descripcion": "256GB 89% NATURAL CON CAJA ESIM",
+            "condicion": "Apple Usados",
+            "tipo": "Celulares",
+            "precioUSD": 870,
+            "precioPesos": 1365900,
+            "precioTransf": 1406877,
+            "imagen": "images/usados/usados.png"
+        },
+        {
+            "producto": "IPHONE 16 PRO MAX",
+            "descripcion": "256GB 90% DESERT ESIM",
+            "condicion": "Apple Usados",
+            "tipo": "Celulares",
+            "precioUSD": 890,
+            "precioPesos": 1397300,
+            "precioTransf": 1439219,
+            "imagen": "images/usados/usados.png"
+        },
+        {
+            "producto": "IPHONE 16 PRO MAX",
+            "descripcion": "256GB 90% BLACK ESIM",
+            "condicion": "Apple Usados",
+            "tipo": "Celulares",
+            "precioUSD": 890,
+            "precioPesos": 1397300,
+            "precioTransf": 1439219,
+            "imagen": "images/usados/usados.png"
+        },
+        {
+            "producto": "IPHONE 16 PRO MAX",
+            "descripcion": "256GB 91% WHITE ESIM",
+            "condicion": "Apple Usados",
+            "tipo": "Celulares",
+            "precioUSD": 900,
+            "precioPesos": 1413000,
+            "precioTransf": 1455390,
+            "imagen": "images/usados/usados.png"
+        },
+        {
+            "producto": "IPHONE 16 PRO MAX",
+            "descripcion": "256GB 89% NATURAL CON CAJA ESIM",
+            "condicion": "Apple Usados",
+            "tipo": "Celulares",
+            "precioUSD": 870,
+            "precioPesos": 1365900,
+            "precioTransf": 1406877,
+            "imagen": "images/usados/usados.png"
+        },
+        {
+            "producto": "IPHONE 16 PRO MAX",
+            "descripcion": "256GB 89% NATURAL CON CAJA ESIM",
+            "condicion": "Apple Usados",
+            "tipo": "Celulares",
+            "precioUSD": 870,
+            "precioPesos": 1365900,
+            "precioTransf": 1406877,
+            "imagen": "images/usados/usados.png"
+        },
+        {
+            "producto": "IPHONE 16 PRO MAX",
+            "descripcion": "256GB 91% NATURAL ESIM CON CAJA",
+            "condicion": "Apple Usados",
+            "tipo": "Celulares",
+            "precioUSD": 900,
+            "precioPesos": 1413000,
+            "precioTransf": 1455390,
+            "imagen": "images/usados/usados.png"
+        },
+        {
+            "producto": "IPHONE 16 PRO MAX",
+            "descripcion": "256GB 89% DESERT ESIM CON CAJA",
+            "condicion": "Apple Usados",
+            "tipo": "Celulares",
+            "precioUSD": 870,
+            "precioPesos": 1365900,
+            "precioTransf": 1406877,
+            "imagen": "images/usados/usados.png"
+        },
+        {
+            "producto": "IPHONE 17",
+            "descripcion": "256GB CONSULTAR COLORES",
+            "condicion": "Apple Nuevos",
+            "tipo": "Celulares",
+            "precioUSD": 990,
+            "precioPesos": 1554300,
+            "precioTransf": 1600929,
+            "imagen": "images/iphone-17-01.png"
+        },
+        {
+            "producto": "IPHONE 17 PRO",
+            "descripcion": "256GB CONSULTAR COLORES",
+            "condicion": "Apple Nuevos",
+            "tipo": "Celulares",
+            "precioUSD": 1250,
+            "precioPesos": 1962500,
+            "precioTransf": 2021375,
+            "imagen": "images/iphone-17-pro-01.png"
+        },
+        {
+            "producto": "IPHONE 17 PRO MAX",
+            "descripcion": "256GB CONSULTAR COLORES",
+            "condicion": "Apple Nuevos",
+            "tipo": "Celulares",
+            "precioUSD": 1350,
+            "precioPesos": 2119500,
+            "precioTransf": 2183085,
+            "imagen": "images/iphone-17-pro-max-01.png"
+        },
+        {
+            "producto": "IPHONE 18 PRO",
+            "descripcion": "256GB CONSULTAR COLORES",
+            "condicion": "Apple Nuevos",
+            "tipo": "Celulares",
+            "precioUSD": 1690,
+            "precioPesos": 2653300,
+            "precioTransf": 2732899,
+            "imagen": "images/iphone-18-pro.png"
+        },
+        {
+            "producto": "IPHONE 18 PRO",
+            "descripcion": "512GB CONSULTAR COLORES",
+            "condicion": "Apple Nuevos",
+            "tipo": "Celulares",
+            "precioUSD": 1890,
+            "precioPesos": 2967300,
+            "precioTransf": 3056319,
+            "imagen": "images/iphone-18-pro.png"
+        },
+        {
+            "producto": "IPHONE 18 PRO MAX",
+            "descripcion": "256GB CONSULTAR COLORES",
+            "condicion": "Apple Nuevos",
+            "tipo": "Celulares",
+            "precioUSD": 1950,
+            "precioPesos": 3061500,
+            "precioTransf": 3153345,
+            "imagen": "images/iphone-18-pro-max.png"
+        },
+        {
+            "producto": "IPHONE 18 PRO MAX",
+            "descripcion": "512GB CONSULTAR COLORES",
+            "condicion": "Apple Nuevos",
+            "tipo": "Celulares",
+            "precioUSD": 2050,
+            "precioPesos": 3218500,
+            "precioTransf": 3315055,
+            "imagen": "images/iphone-18-pro-max.png"
+        },
+        {
+            "producto": "JBL 16 PRO",
+            "descripcion": "REPLICA",
+            "condicion": "Accesorios",
+            "tipo": "Parlantes",
+            "precioUSD": 50,
+            "precioPesos": 78500,
+            "precioTransf": 80855,
+            "imagen": "images/parlantes/JBL_16_PRO.jpg"
+        },
+        {
+            "producto": "JBL BOOMBOX 3 WIFI PORTABLE BLUETOOTH",
+            "descripcion": "ORIGINAL",
+            "condicion": "Accesorios",
+            "tipo": "Parlantes",
+            "precioUSD": 690,
+            "precioPesos": 1083300,
+            "precioTransf": 1115799,
+            "imagen": "images/parlantes/JBL_BOOMBOX_3_WIFI_PORTABLE_BLUETOOTH.jpg"
+        },
+        {
+            "producto": "JBL BOOMBOX MIX 3",
+            "descripcion": "REPLICA",
+            "condicion": "Accesorios",
+            "tipo": "Parlantes",
+            "precioUSD": 55,
+            "precioPesos": 86350,
+            "precioTransf": 88941,
+            "imagen": "images/parlantes/JBL_BOOMBOX_MIX_3.jpg"
+        },
+        {
+            "producto": "JBL FLIP 7",
+            "descripcion": "ORIGINAL",
+            "condicion": "Accesorios",
+            "tipo": "Parlantes",
+            "precioUSD": 160,
+            "precioPesos": 251200,
+            "precioTransf": 258736,
+            "imagen": "images/logoNew.png"
+        },
+        {
+            "producto": "JBL GO 4 PORTABLE",
+            "descripcion": "ORIGINAL",
+            "condicion": "Accesorios",
+            "tipo": "Parlantes",
+            "precioUSD": 70,
+            "precioPesos": 109900,
+            "precioTransf": 113197,
+            "imagen": "images/parlantes/JBL_GO_4_PORTABLE.jpg"
+        },
+        {
+            "producto": "JBL TUNE M65",
+            "descripcion": "YOUR MUSIC NOISE FREE VINCHA",
+            "condicion": "Accesorios",
+            "tipo": "Auriculares",
+            "precioUSD": 60,
+            "precioPesos": 94200,
+            "precioTransf": 97026,
+            "imagen": "images/logoNew.png"
+        },
+        {
+            "producto": "JBL WAVE BEAM3",
+            "descripcion": "INALAMBRICO",
+            "condicion": "Accesorios",
+            "tipo": "Auriculares",
+            "precioUSD": 46.66,
+            "precioPesos": 73256,
+            "precioTransf": 75454,
+            "imagen": "images/logoNew.png"
+        },
+        {
+            "producto": "JBL WAVE FLEX22",
+            "descripcion": "INALAMBRICOS",
+            "condicion": "Accesorios",
+            "tipo": "Auriculares",
+            "precioUSD": 46.66,
+            "precioPesos": 73256,
+            "precioTransf": 75454,
+            "imagen": "images/logoNew.png"
+        },
+        {
+            "producto": "JOYSTICK PLAY STATION 5",
+            "descripcion": "JOYSTICK PS5 VARIOS COLORES",
+            "condicion": "Accesorios",
+            "tipo": "Gaming",
+            "precioUSD": 150,
+            "precioPesos": 235500,
+            "precioTransf": 242565,
+            "imagen": "images/gaming/JOYSTICK_PS5.jpg"
+        },
+        {
+            "producto": "kit de Micrófono Hollyland Lark m2",
+            "descripcion": "Micrófono (Para iPhone/cámara/android/pc)",
+            "condicion": "Accesorios",
+            "tipo": "Otros",
+            "precioUSD": 195,
+            "precioPesos": 306150,
+            "precioTransf": 315335,
+            "imagen": "images/logoNew.png"
+        },
+        {
+            "producto": "LENOVO THINKPAD L14",
+            "descripcion": "INTEL I5 (GEN 10MA) 16GB/512GB 14“ FHD",
+            "condicion": "Notebooks Usadas",
+            "tipo": "Notebooks",
+            "precioUSD": 520,
+            "precioPesos": 816400,
+            "precioTransf": 840892,
+            "imagen": "images/logoNew.png"
+        },
+        {
+            "producto": "LENOVO THINKPAD T14S",
+            "descripcion": "INTEL I5 (GEN 10MA) 8GB/512GB 14“ FHD",
+            "condicion": "Notebooks Usadas",
+            "tipo": "Celulares",
+            "precioUSD": 475,
+            "precioPesos": 745750,
+            "precioTransf": 768123,
+            "imagen": "images/logoNew.png"
+        },
+        {
+            "producto": "LENOVO THINKPAD T490S",
+            "descripcion": "INTEL I5 (GEN 8VA) 16GB/512GB 14\"FHD TACTIL",
+            "condicion": "Notebooks Usadas",
+            "tipo": "Celulares",
+            "precioUSD": 475,
+            "precioPesos": 745750,
+            "precioTransf": 768123,
+            "imagen": "images/logoNew.png"
+        },
+        {
+            "producto": "MACBOOK PRO 2019",
+            "descripcion": "INTEL I7 16GB/512GB 16\" PANTALLA RETINA",
+            "condicion": "Notebooks Usadas",
+            "tipo": "Notebooks",
+            "precioUSD": 680,
+            "precioPesos": 1067600,
+            "precioTransf": 1099628,
+            "imagen": "images/usados/usados.png"
+        },
+        {
+            "producto": "MAGNETIC SELFIE SCREEN",
+            "descripcion": "NEGRA - PANTALLA DE 3.97\"",
+            "condicion": "Accesorios",
+            "tipo": "Otros",
+            "precioUSD": 80,
+            "precioPesos": 125600,
+            "precioTransf": 129368,
+            "imagen": "images/otros/MAGNETIC_SELFIE_SCREEN.jpeg"
+        },
+        {
+            "producto": "MINI PC DELL",
+            "descripcion": "DELL 7050 i5 6600T 256M2 8DDR4",
+            "condicion": "PC Escritorio",
+            "tipo": "PC",
+            "precioUSD": 350,
+            "precioPesos": 549500,
+            "precioTransf": 565985,
+            "imagen": "images/logoNew.png"
+        },
+        {
+            "producto": "MINI PC HP PRODESK 600",
+            "descripcion": "HP PRODESK 600 G3 I5 6500T 256M2 8DDR4",
+            "condicion": "PC Escritorio",
+            "tipo": "PC",
+            "precioUSD": 350,
+            "precioPesos": 549500,
+            "precioTransf": 565985,
+            "imagen": "images/logoNew.png"
+        },
+        {
+            "producto": "MOTOROLA G06",
+            "descripcion": "128GB VERDE/AZUL",
+            "condicion": "Android Nuevos",
+            "tipo": "Celulares",
+            "precioUSD": 200,
+            "precioPesos": 314000,
+            "precioTransf": 323420,
+            "imagen": "images/logoNew.png"
+        },
+        {
+            "producto": "MOUSE LOGITECH",
+            "descripcion": "M170",
+            "condicion": "Accesorios",
+            "tipo": "Periféricos",
+            "precioUSD": 18,
+            "precioPesos": 28260,
+            "precioTransf": 29108,
+            "imagen": "images/logoNew.png"
+        },
+        {
+            "producto": "MOUSE NOGA",
+            "descripcion": "DISEÑO ECONOMICO",
+            "condicion": "Accesorios",
+            "tipo": "Periféricos",
+            "precioUSD": 6,
+            "precioPesos": 9420,
+            "precioTransf": 9703,
+            "imagen": "images/logoNew.png"
+        },
+        {
+            "producto": "NINTENDO SWITCH 2",
+            "descripcion": "NINTENDO SWITCH 2",
+            "condicion": "Accesorios",
+            "tipo": "Gaming",
+            "precioUSD": 700,
+            "precioPesos": 1099000,
+            "precioTransf": 1131970,
+            "imagen": "images/logoNew.png"
+        },
+        {
+            "producto": "OCULUS META QUEST 3s",
+            "descripcion": "LENTES DE REALIDAD VIRTUAL 128GB",
+            "condicion": "Accesorios",
+            "tipo": "Gaming",
+            "precioUSD": 500,
+            "precioPesos": 785000,
+            "precioTransf": 808550,
+            "imagen": "images/logoNew.png"
+        },
+        {
+            "producto": "ONE ODIO A 70",
+            "descripcion": "FISION WIRELESS+DJ HEADPHONES",
+            "condicion": "Accesorios",
+            "tipo": "Auriculares",
+            "precioUSD": 0,
+            "precioPesos": 230000,
+            "precioTransf": 236900,
+            "imagen": "images/usados/usados.png"
+        },
+        {
+            "producto": "ONE ODIO FOCUS A10",
+            "descripcion": "ACTIVE NOISE CANCELLING",
+            "condicion": "Accesorios",
+            "tipo": "Auriculares",
+            "precioUSD": 0,
+            "precioPesos": 230000,
+            "precioTransf": 236900,
+            "imagen": "images/usados/usados.png"
+        },
+        {
+            "producto": "ONE ODIO MINITOR 80",
+            "descripcion": "OPEN BLACK HEASPHINES",
+            "condicion": "Accesorios",
+            "tipo": "Auriculares",
+            "precioUSD": 0,
+            "precioPesos": 230000,
+            "precioTransf": 236900,
+            "imagen": "images/usados/usados.png"
+        },
+        {
+            "producto": "ONE ODIO STUDIO PRO 50",
+            "descripcion": "BORN FOR DJ",
+            "condicion": "Accesorios",
+            "tipo": "Auriculares",
+            "precioUSD": 0,
+            "precioPesos": 230000,
+            "precioTransf": 236900,
+            "imagen": "images/usados/usados.png"
+        },
+        {
+            "producto": "PARLANTE G CHICO",
+            "descripcion": "CARGA INALAMBRICA PARA CELULAR",
+            "condicion": "Accesorios",
+            "tipo": "Parlantes",
+            "precioUSD": 23,
+            "precioPesos": 36110,
+            "precioTransf": 37193,
+            "imagen": "images/parlantes/PARLANTE_G_CHICO.jpg"
+        },
+        {
+            "producto": "PARLANTE G GRANDE",
+            "descripcion": "CARGA INALAMBRICA PARA CELULAR",
+            "condicion": "Accesorios",
+            "tipo": "Parlantes",
+            "precioUSD": 30,
+            "precioPesos": 47100,
+            "precioTransf": 48513,
+            "imagen": "images/parlantes/PARLANTE_G_GRANDE.jpg"
+        },
+        {
+            "producto": "PLAY STATION 5",
+            "descripcion": "PS5 DIGITAL 825GB",
+            "condicion": "Accesorios",
+            "tipo": "Gaming",
+            "precioUSD": 780,
+            "precioPesos": 1224600,
+            "precioTransf": 1261338,
+            "imagen": "images/gaming/PLAY_5.jpg"
+        },
+        {
+            "producto": "PROYECTOR",
+            "descripcion": "SMART ANDROID 13 WIFI/BT NM-PR400 NETMAK",
+            "condicion": "Accesorios",
+            "tipo": "Gaming",
+            "precioUSD": 98,
+            "precioPesos": 153860,
+            "precioTransf": 158476,
+            "imagen": "images/gaming/PROYECTOR_NETMAK.jpeg"
+        },
+        {
+            "producto": "PROYECTOR CON JOYSTICK",
+            "descripcion": "PROYECTOR CON JOYSTOCK 2 EN 1",
+            "condicion": "Accesorios",
+            "tipo": "Gaming",
+            "precioUSD": 160,
+            "precioPesos": 251200,
+            "precioTransf": 258736,
+            "imagen": "images/gaming/PROYECTOR.jpg"
+        },
+        {
+            "producto": "RELOJ SAMSUNG",
+            "descripcion": "GALAXY WATCH 7",
+            "condicion": "Accesorios",
+            "tipo": "Smartwatch",
+            "precioUSD": 80,
+            "precioPesos": 125600,
+            "precioTransf": 129368,
+            "imagen": "images/logoNew.png"
+        },
+        {
+            "producto": "RELOJ SAMSUNG",
+            "descripcion": "GALAXY WATCH ULTRA",
+            "condicion": "Accesorios",
+            "tipo": "Smartwatch",
+            "precioUSD": 70,
+            "precioPesos": 109900,
+            "precioTransf": 113197,
+            "imagen": "images/logoNew.png"
+        },
+        {
+            "producto": "SAMSUNG A17",
+            "descripcion": "4/128GB BLACK",
+            "condicion": "Android Nuevos",
+            "tipo": "Celulares",
+            "precioUSD": 280,
+            "precioPesos": 439600,
+            "precioTransf": 452788,
+            "imagen": "images/logoNew.png"
+        },
+        {
+            "producto": "SMART BAND XIAOMI ORIGINAL",
+            "descripcion": "9 ACTIVE",
+            "condicion": "Accesorios",
+            "tipo": "Smartwatch",
+            "precioUSD": 55,
+            "precioPesos": 86350,
+            "precioTransf": 88941,
+            "imagen": "images/logoNew.png"
+        },
+        {
+            "producto": "SMARTWACHT",
+            "descripcion": "HK 10 ULTRA 3",
+            "condicion": "Accesorios",
+            "tipo": "Smartwatch",
+            "precioUSD": 64,
+            "precioPesos": 100480,
+            "precioTransf": 103494,
+            "imagen": "images/logoNew.png"
+        },
+        {
+            "producto": "SMARTWACHT",
+            "descripcion": "WATCH X",
+            "condicion": "Accesorios",
+            "tipo": "Smartwatch",
+            "precioUSD": 32,
+            "precioPesos": 50240,
+            "precioTransf": 51747,
+            "imagen": "images/logoNew.png"
+        },
+        {
+            "producto": "SMARTWACHT HAYLOU",
+            "descripcion": "SOLAR PLUS",
+            "condicion": "Accesorios",
+            "tipo": "Smartwatch",
+            "precioUSD": 70,
+            "precioPesos": 109900,
+            "precioTransf": 113197,
+            "imagen": "images/smartwatch/SMARTWACHT_HAYLOU_SOLAR_PLUS.jpeg"
+        },
+        {
+            "producto": "SMARTWACHT HK",
+            "descripcion": "HK 10 PRO MAX",
+            "condicion": "Accesorios",
+            "tipo": "Smartwatch",
+            "precioUSD": 66,
+            "precioPesos": 103620,
+            "precioTransf": 106729,
+            "imagen": "images/smartwatch/SMARTWATCH_HK_10_PRO_MAX.jpeg"
+        },
+        {
+            "producto": "SMARTWATCH",
+            "descripcion": "HK 9 PRO",
+            "condicion": "Accesorios",
+            "tipo": "Smartwatch",
+            "precioUSD": 55,
+            "precioPesos": 86350,
+            "precioTransf": 88941,
+            "imagen": "images/logoNew.png"
+        },
+        {
+            "producto": "SMARTWATCH APPLE",
+            "descripcion": "SERIE 10",
+            "condicion": "Accesorios",
+            "tipo": "Smartwatch",
+            "precioUSD": 42,
+            "precioPesos": 65940,
+            "precioTransf": 67918,
+            "imagen": "images/logoNew.png"
+        },
+        {
+            "producto": "SMARTWATCH HK9 ULTRA 2 MAX",
+            "descripcion": "REPLICA CUADRADO",
+            "condicion": "Accesorios",
+            "tipo": "Smartwatch",
+            "precioUSD": 79,
+            "precioPesos": 124030,
+            "precioTransf": 127751,
+            "imagen": "images/smartwatch/SMARTWATCH_HK9_ULTRA_2_MAX.jpeg"
+        },
+        {
+            "producto": "SMARTWATCH ULTRA 2",
+            "descripcion": "RELOJ CUADRADO",
+            "condicion": "Accesorios",
+            "tipo": "Smartwatch",
+            "precioUSD": 79,
+            "precioPesos": 124030,
+            "precioTransf": 127751,
+            "imagen": "images/smartwatch/SMARTWATCH_ULTRA_2.jpeg"
+        },
+        {
+            "producto": "SMARTWATCH ZL02C PRO NEGRO",
+            "descripcion": "REDONDO",
+            "condicion": "Accesorios",
+            "tipo": "Smartwatch",
+            "precioUSD": 30,
+            "precioPesos": 47100,
+            "precioTransf": 48513,
+            "imagen": "images/smartwatch/SMARTWATCH_ZL02C_PRO_NEGRO.jpeg"
+        },
+        {
+            "producto": "SOPORTE AUTO",
+            "descripcion": "LT 415",
+            "condicion": "Accesorios",
+            "tipo": "Otros",
+            "precioUSD": 10,
+            "precioPesos": 15700,
+            "precioTransf": 16171,
+            "imagen": "images/otros/SOPORTE_AUTO_LT415.jpeg"
+        },
+        {
+            "producto": "SOPORTE AUTO",
+            "descripcion": "MAGNETIC VACUUM DIAMOND",
+            "condicion": "Accesorios",
+            "tipo": "Otros",
+            "precioUSD": 10,
+            "precioPesos": 15700,
+            "precioTransf": 16171,
+            "imagen": "images/otros/SOPORTE_AUTO_MAGNETIC_VACUUM_DIAMOND.jpeg"
+        },
+        {
+            "producto": "SOPORTE AUTO",
+            "descripcion": "VACUUM M7",
+            "condicion": "Accesorios",
+            "tipo": "Otros",
+            "precioUSD": 14,
+            "precioPesos": 21980,
+            "precioTransf": 22639,
+            "imagen": "images/otros/SOPORTE_AUTO_VACUUM_M7.jpeg"
+        },
+        {
+            "producto": "SOPORTE AUTO",
+            "descripcion": "CON BRAZO E IMAN A138",
+            "condicion": "Accesorios",
+            "tipo": "Otros",
+            "precioUSD": 10,
+            "precioPesos": 15700,
+            "precioTransf": 16171,
+            "imagen": "images/otros/SOPORTE_AUTO_CON_BRAZO_E_IMAN_A138.jpeg"
+        },
+        {
+            "producto": "TECLADO GTC",
+            "descripcion": "USB KBG-204",
+            "condicion": "Accesorios",
+            "tipo": "Periféricos",
+            "precioUSD": 12,
+            "precioPesos": 18840,
+            "precioTransf": 19405,
+            "imagen": "images/logoNew.png"
+        },
+        {
+            "producto": "TERMO STANLEY 1 L",
+            "descripcion": "REPLICA",
+            "condicion": "Accesorios",
+            "tipo": "Otros",
+            "precioUSD": 37,
+            "precioPesos": 58090,
+            "precioTransf": 59833,
+            "imagen": "images/otros/TERMO_STANLEY_1_L.jpeg"
+        },
+        {
+            "producto": "TERMO STANLEY 1.2L",
+            "descripcion": "ORIGINAL",
+            "condicion": "Accesorios",
+            "tipo": "Otros",
+            "precioUSD": 110,
+            "precioPesos": 172700,
+            "precioTransf": 177881,
+            "imagen": "images/otros/TERMO_STANLEY_1.2L.jpeg"
+        },
+        {
+            "producto": "VASO",
+            "descripcion": "TUBO STANLEY",
+            "condicion": "Accesorios",
+            "tipo": "Otros",
+            "precioUSD": 18,
+            "precioPesos": 28260,
+            "precioTransf": 29108,
+            "imagen": "images/otros/VASO_TUBO_STANLEY.jpeg"
+        },
+        {
+            "producto": "VASO CAFE TERMICO",
+            "descripcion": "CON SENSOR DE TEMPERATURA",
+            "condicion": "Accesorios",
+            "tipo": "Otros",
+            "precioUSD": 14,
+            "precioPesos": 21980,
+            "precioTransf": 22639,
+            "imagen": "images/logoNew.png"
+        },
+        {
+            "producto": "VASO CHOPERO",
+            "descripcion": "STANLEY",
+            "condicion": "Accesorios",
+            "tipo": "Otros",
+            "precioUSD": 14,
+            "precioPesos": 21980,
+            "precioTransf": 22639,
+            "imagen": "images/logoNew.png"
+        },
+        {
+            "producto": "VASO TERMICO",
+            "descripcion": "ACERO Y PLASTICO",
+            "condicion": "Accesorios",
+            "tipo": "Otros",
+            "precioUSD": 16,
+            "precioPesos": 25120,
+            "precioTransf": 25874,
+            "imagen": "images/logoNew.png"
+        },
+        {
+            "producto": "VASOS JARRA",
+            "descripcion": "STANLEY",
+            "condicion": "Accesorios",
+            "tipo": "Otros",
+            "precioUSD": 20,
+            "precioPesos": 31400,
+            "precioTransf": 32342,
+            "imagen": "images/otros/VASOS_JARRA.jpeg"
+        },
+        {
+            "producto": "VASOS JARRA CON PARLANTE",
+            "descripcion": "VER COLORES",
+            "condicion": "Accesorios",
+            "tipo": "Otros",
+            "precioUSD": 31,
+            "precioPesos": 48670,
+            "precioTransf": 50130,
+            "imagen": "images/otros/VASOS_JARRA.jpeg"
+        },
+        {
+            "producto": "XIAOMI",
+            "descripcion": "MI BRO",
+            "condicion": "Accesorios",
+            "tipo": "Smartwatch",
+            "precioUSD": 50,
+            "precioPesos": 78500,
+            "precioTransf": 80855,
+            "imagen": "images/productos/XIAOMI_56a908.jpg"
+        },
+        {
+            "producto": "XIAOMI REDMI 13C",
+            "descripcion": "4/125GB BLACK",
+            "condicion": "Android Usados",
+            "tipo": "Celulares",
+            "precioUSD": 150,
+            "precioPesos": 235500,
+            "precioTransf": 242565,
+            "imagen": "images/logoNew.png"
+        },
+        {
+            "producto": "IPHONE 14",
+            "descripcion": "128GB 100% MIDNIGHT",
+            "condicion": "Apple Usados",
+            "tipo": "Celulares",
+            "precioUSD": 400,
+            "precioPesos": 628000,
+            "precioTransf": 646840,
+            "imagen": "images/usados/usados.png"
+        },
+        {
+            "producto": "IPHONE 16 PRO",
+            "descripcion": "128GB 88% BLACK ESIM",
+            "condicion": "Apple Usados",
+            "tipo": "Celulares",
+            "precioUSD": 760,
+            "precioPesos": 1193200,
+            "precioTransf": 1228996,
+            "imagen": "images/usados/usados.png"
+        },
+        {
+            "producto": "IPHONE 17 PRO MAX",
+            "descripcion": "256GB 92% COSMIC ORANGE ESIM CON CAJA",
+            "condicion": "Apple Usados",
+            "tipo": "Celulares",
+            "precioUSD": 1200,
+            "precioPesos": 1884000,
+            "precioTransf": 1940520,
+            "imagen": "images/usados/usados.png"
+        }
+    ]
+}
