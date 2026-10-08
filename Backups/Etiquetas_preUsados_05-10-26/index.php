@@ -87,28 +87,6 @@ require_login();
   }
   .codes-grid input:focus{outline:none;border-color:var(--gold)}
 
-  /* ===== Formulario de etiquetas de usados (6 bloques, uno por etiqueta) ===== */
-  .used-item{
-    border:1px solid #4a4a4a;border-radius:4px;
-    padding:10px 10px 10px;margin-bottom:10px;
-  }
-  .used-item h3{
-    font-family:var(--sans);font-size:11px;letter-spacing:.18em;
-    text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:8px;
-  }
-  .used-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 8px}
-  .used-grid .wide{grid-column:1 / -1}
-  .used-grid label{
-    display:block;font-size:10px;letter-spacing:.12em;
-    text-transform:uppercase;color:var(--smoke);margin-bottom:3px;font-weight:600;
-  }
-  .used-grid input{
-    width:100%;min-width:0;background:#3a3a3a;border:1px solid #4a4a4a;
-    color:var(--cream);font-family:var(--sans);font-size:13px;
-    padding:7px 9px;border-radius:3px;
-  }
-  .used-grid input:focus{outline:none;border-color:var(--gold)}
-
   /* ===== Segmented control (3+ opciones mutuamente excluyentes) ===== */
   .seg{
     display:flex;background:#3a3a3a;border:1px solid #4a4a4a;
@@ -121,8 +99,6 @@ require_login();
     padding:9px 6px;border-radius:3px;cursor:pointer;
     transition:background .15s,color .15s;
   }
-  #seg-mode button{font-size:11px;letter-spacing:.03em;padding:9px 4px;white-space:nowrap}
-  #seg-mode button[data-mode="codes"]{flex:1.5}
   .seg button:hover{color:var(--cream)}
   .seg button.active{background:var(--gold);color:var(--carbon)}
 
@@ -272,40 +248,6 @@ require_login();
   .cut-h.r1{top:2in;transform:translateY(-1px)}
   .cut-h.r2{top:4in;transform:translateY(-1px)}
 
-  /* ===== MODO USADOS: 6 etiquetas de 2x2 con Modelo / GB / Bateria / Color / IMEI ===== */
-  #sheet.used{
-    display:grid;
-    grid-template-columns:2in 2in;
-    grid-template-rows:2in 2in 2in;
-  }
-  .used-label{
-    width:2in;height:2in;
-    padding:0.13in 0.15in 0.17in;
-    display:flex;flex-direction:column;
-    overflow:hidden;color:#000;
-  }
-  .u-row{
-    flex:1;min-height:0;
-    display:flex;align-items:flex-end;gap:5pt;
-  }
-  .u-lbl{
-    flex:none;font-family:var(--serif);font-weight:700;
-    font-size:14pt;line-height:1;white-space:nowrap;color:#000;
-  }
-  .u-val{
-    flex:1;min-width:0;font-family:var(--sans);font-weight:700;
-    font-size:13pt;line-height:1;white-space:nowrap;overflow:hidden;
-    text-transform:uppercase;color:#000;padding-bottom:1pt;
-  }
-  /* Valor muy largo (ya achicado al minimo): pasa a varias lineas mas chicas */
-  .u-val.wrap{white-space:normal;overflow-wrap:anywhere;font-size:7.5pt !important;line-height:1.05;max-height:3.2em}
-  /* Lineas de corte: el dibujo arranca en el borde, que es donde se ve */
-  #sheet.used .cut-v,#sheet.used .cut-h{background-origin:border-box}
-  #sheet.used .cut-h{background-image:linear-gradient(90deg,#000 60%, transparent 0)}
-  /* Campo vacio: renglon solido para escribir a mano (solido = imprime bien en termica) */
-  .u-line{flex:1;min-width:0;border-bottom:1.5px solid #000;margin-bottom:2pt}
-  .u-suf{flex:none;font-family:var(--sans);font-weight:700;font-size:11pt;line-height:1;color:#000;padding-bottom:1pt}
-
   /* ===== MODO SOLO CÓDIGOS: 12 / 18 / 24 celdas ===== */
   #sheet.codes-12{display:grid;grid-template-columns:2in 2in;grid-template-rows:repeat(6,1in)}
   #sheet.codes-18{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(6,1in)}
@@ -342,15 +284,10 @@ require_login();
     #sheet,#sheet *{visibility:visible}
     body{background:#fff;padding:0}
     #sheet{position:absolute;left:0;top:0}
-    /* Modo Usados: sale una sola hoja (el formulario largo no agrega paginas en blanco) */
-    body.mode-used{min-height:0}
-    body.mode-used header.brand,body.mode-used .panel,
-    body.mode-used .preview-area > h2,body.mode-used .preview-area > .sub{display:none}
     .sheet-scale{padding:0;background:none}
     /* Forzar negro pleno en impresion */
     .l-company,.l-company small,.l-code,.l-product,.l-specs,
-    .m-company,.m-company small,.m-code,.c-num,
-    .u-lbl,.u-val,.u-suf{
+    .m-company,.m-company small,.m-code,.c-num{
       color:#000 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;
     }
   }
@@ -377,7 +314,6 @@ require_login();
         <button type="button" data-mode="long">Larga</button>
         <button type="button" data-mode="short" class="active">Corta</button>
         <button type="button" data-mode="codes">Solo c&oacute;digos</button>
-        <button type="button" data-mode="used">Usados</button>
       </div>
 
       <div class="seg" id="seg-density" style="display:none">
@@ -441,25 +377,6 @@ PANTALLA 14" FHD
 UHD GRAPHICS 620</textarea>
           <div class="hint">Cada salto de l&iacute;nea se respeta en la etiqueta.</div>
         </div>
-      </div>
-
-      <!-- ===== Modo Usados: etiquetas para pegar en equipos usados ===== -->
-      <div class="toggle-row" id="row-used" style="display:none">
-        <span class="lbl active" id="lbl-blank">En blanco</span>
-        <label class="switch">
-          <input type="checkbox" id="sw-used">
-          <span class="slider"></span>
-        </label>
-        <span class="lbl" id="lbl-filled">Con datos</span>
-      </div>
-
-      <div class="field" id="field-used-blank" style="display:none">
-        <div class="hint">Se imprimen 6 etiquetas con los campos Modelo, GB, Bater&iacute;a, Color e IMEI vac&iacute;os, para completar a mano.</div>
-      </div>
-
-      <div id="fields-used" style="display:none">
-        <div id="used-list"></div>
-        <div class="hint" style="margin-bottom:14px">El orden es izquierda a derecha, arriba a abajo. Los campos que dejes vac&iacute;os salen con el rengl&oacute;n en blanco para completar a mano.</div>
       </div>
 
       <button class="btn" id="btn-gen">Actualizar vista previa</button>
@@ -626,96 +543,6 @@ function renderCodes(sheet, data){
   });
 }
 
-// ===== Modo "Usados" =====
-// Campos de la etiqueta, en el orden en que se imprimen.
-var USED_FIELDS = [
-  {key:'modelo',  label:'Modelo',          ph:'Ej: 16 PRO', wide:true},
-  {key:'gb',      label:'GB',              ph:'Ej: 128',    numeric:true},
-  {key:'bateria', label:'Bater&iacute;a',  ph:'Ej: 90',     numeric:true},
-  {key:'color',   label:'Color',           ph:'Ej: BLACK'},
-  {key:'imei',    label:'IMEI',            ph:'Ej: 7213',   numeric:true}
-];
-var USED_COUNT = 6;
-
-// Arma (una sola vez) los 6 bloques de carga, uno por etiqueta
-function ensureUsedInputs(){
-  var list = document.getElementById('used-list');
-  if(list.children.length) return;
-  var html = '';
-  for(var i=0;i<USED_COUNT;i++){
-    html += '<div class="used-item"><h3>Etiqueta '+(i+1)+'</h3><div class="used-grid">';
-    USED_FIELDS.forEach(function(f){
-      var id = 'f-used-'+i+'-'+f.key;
-      html += '<div'+(f.wide?' class="wide"':'')+'>' +
-        '<label for="'+id+'">'+f.label+'</label>' +
-        '<input type="text" id="'+id+'" class="f-used" data-idx="'+i+'" data-key="'+f.key+'"' +
-        (f.numeric?' inputmode="numeric"':'')+' placeholder="'+f.ph+'" autocomplete="off">' +
-        '</div>';
-    });
-    html += '</div></div>';
-  }
-  list.innerHTML = html;
-  list.querySelectorAll('input').forEach(function(inp){
-    inp.addEventListener('input', render);
-  });
-}
-
-function getUsedData(){
-  var items = [];
-  for(var i=0;i<USED_COUNT;i++) items.push({});
-  document.querySelectorAll('.f-used').forEach(function(inp){
-    items[parseInt(inp.getAttribute('data-idx'),10)][inp.getAttribute('data-key')] = inp.value.trim();
-  });
-  return items;
-}
-
-// item = datos de esa etiqueta, o null para imprimirla en blanco
-function buildUsed(item){
-  var div = document.createElement('div');
-  div.className = 'used-label';
-  var html = '';
-  USED_FIELDS.forEach(function(f){
-    var val = item ? (item[f.key] || '') : '';
-    // Bateria: si cargaron solo el numero, se le agrega el %
-    if(f.key === 'bateria' && /^\d+([.,]\d+)?$/.test(val)) val += '%';
-    html += '<div class="u-row"><span class="u-lbl">'+f.label+':</span>';
-    if(val){
-      html += '<span class="u-val">'+escapeHtml(val)+'</span>';
-    }else{
-      html += '<span class="u-line"></span>';
-      if(f.key === 'bateria') html += '<span class="u-suf">%</span>';
-    }
-    html += '</div>';
-  });
-  div.innerHTML = html;
-  return div;
-}
-
-function renderUsed(sheet, data){
-  sheet.className = 'used';
-  sheet.innerHTML =
-    '<div class="cut-v"></div>' +
-    '<div class="cut-h r1"></div>' +
-    '<div class="cut-h r2"></div>';
-  for(var i=0;i<USED_COUNT;i++){
-    sheet.appendChild(buildUsed(data.usedFilled ? data.used[i] : null));
-  }
-  fitUsedValues();
-}
-
-// Textos largos: se achica la letra hasta que entren en el renglon (minimo 8pt);
-// si aun asi no entran, pasan a dos lineas.
-function fitUsedValues(){
-  document.querySelectorAll('#sheet .u-val').forEach(function(el){
-    var size = 13;
-    while(el.scrollWidth > el.clientWidth + 1 && size > 8){
-      size -= 0.5;
-      el.style.fontSize = size + 'pt';
-    }
-    if(el.scrollWidth > el.clientWidth + 1) el.classList.add('wrap');
-  });
-}
-
 // ===== Estado global =====
 function getMode(){
   var btn = document.querySelector('#seg-mode button.active');
@@ -768,15 +595,12 @@ function render(){
     code: document.getElementById('f-code').value.trim() || '0000',
     codes: codes,
     product: document.getElementById('f-product').value.trim(),
-    specs: document.getElementById('f-specs').value,
-    usedFilled: document.getElementById('sw-used').checked,
-    used: getUsedData()
+    specs: document.getElementById('f-specs').value
   };
 
   var sheet = document.getElementById('sheet');
   if(mode === 'long') renderLong(sheet, data);
   else if(mode === 'short') renderShort(sheet, data);
-  else if(mode === 'used') renderUsed(sheet, data);
   else renderCodes(sheet, data);
 }
 
@@ -784,16 +608,14 @@ function syncMode(){
   var mode = getMode();
   var density = getDensity();
   var useLogo = document.getElementById('sw-mode').checked;
-  var isUsed = (mode === 'used');   // etiquetas de usados: sin encabezado ni codigo de barras
-  document.body.classList.toggle('mode-used', isUsed);
 
   // Toggle Texto/Logo
-  document.getElementById('field-company').style.display = (useLogo || isUsed) ? 'none' : 'block';
-  document.getElementById('field-logohint').style.display = (useLogo && !isUsed) ? 'block' : 'none';
+  document.getElementById('field-company').style.display = useLogo ? 'none' : 'block';
+  document.getElementById('field-logohint').style.display = useLogo ? 'block' : 'none';
   document.getElementById('lbl-text').classList.toggle('active', !useLogo);
   document.getElementById('lbl-logo').classList.toggle('active', useLogo);
   // El toggle Texto/Logo solo tiene sentido en modos con encabezado (long / short)
-  document.getElementById('row-mode').style.display = (mode === 'codes' || isUsed) ? 'none' : 'flex';
+  document.getElementById('row-mode').style.display = (mode === 'codes') ? 'none' : 'flex';
 
   // Campos exclusivos de modo largo
   document.getElementById('fields-long').style.display = (mode === 'long') ? 'block' : 'none';
@@ -807,17 +629,8 @@ function syncMode(){
   var diff = document.getElementById('sw-diff').checked && supportsDiff;
   document.getElementById('lbl-igual').classList.toggle('active', !diff);
   document.getElementById('lbl-distintos').classList.toggle('active', diff);
-  document.getElementById('field-code').style.display = (diff || isUsed) ? 'none' : 'block';
+  document.getElementById('field-code').style.display = diff ? 'none' : 'block';
   document.getElementById('field-codes-multi').style.display = diff ? 'block' : 'none';
-
-  // Modo Usados: toggle En blanco / Con datos y los 6 bloques de carga
-  var usedFilled = document.getElementById('sw-used').checked;
-  document.getElementById('row-used').style.display = isUsed ? 'flex' : 'none';
-  document.getElementById('lbl-blank').classList.toggle('active', !usedFilled);
-  document.getElementById('lbl-filled').classList.toggle('active', usedFilled);
-  document.getElementById('field-used-blank').style.display = (isUsed && !usedFilled) ? 'block' : 'none';
-  document.getElementById('fields-used').style.display = (isUsed && usedFilled) ? 'block' : 'none';
-  if(isUsed) ensureUsedInputs();
 
   // Regenerar grilla dinamica de inputs segun modo y densidad
   if(diff){
@@ -835,7 +648,6 @@ function syncMode(){
   var sub;
   if(mode === 'long') sub = 'Etiqueta f&iacute;sica 4&times;6" &middot; 2 copias de 2" &middot; cortar por la l&iacute;nea central';
   else if(mode === 'short') sub = 'Etiqueta f&iacute;sica 4&times;6" &middot; 6 copias de 2&times;2" &middot; cortar por las l&iacute;neas punteadas';
-  else if(mode === 'used') sub = 'Etiqueta f&iacute;sica 4&times;6" &middot; 6 etiquetas de 2&times;2" para equipos usados &middot; cortar por las l&iacute;neas punteadas';
   else {
     var cfg2 = CODES_LAYOUT[density] || CODES_LAYOUT[18];
     sub = 'Etiqueta f&iacute;sica 4&times;6" &middot; ' + (cfg2.cols*cfg2.rows) + ' c&oacute;digos (' + cfg2.cols + '&times;' + cfg2.rows + ') &middot; cortar por las l&iacute;neas punteadas';
@@ -857,7 +669,6 @@ function seedMultiCodes(){
 
 // ===== Listeners =====
 document.getElementById('sw-mode').addEventListener('change', syncMode);
-document.getElementById('sw-used').addEventListener('change', syncMode);
 document.getElementById('sw-diff').addEventListener('change', function(){
   // Cuando se activa Distintos, primero regenerar inputs, después prellenar
   syncMode();
@@ -885,10 +696,6 @@ document.getElementById('btn-print').addEventListener('click', function(){
   render(); setTimeout(function(){ window.print(); }, 150);
 });
 window.addEventListener('load', syncMode);
-// Al terminar de cargar las fuentes se vuelve a medir el ajuste de textos largos
-if(document.fonts && document.fonts.ready){
-  document.fonts.ready.then(function(){ if(getMode() === 'used') render(); });
-}
 </script>
 </body>
 </html>
