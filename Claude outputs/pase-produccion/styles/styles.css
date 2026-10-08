@@ -1,0 +1,818 @@
+/* ================================================== */
+/* FUENTES                                             */
+/* ================================================== */
+@font-face {
+    font-family: 'GlacialIndifference';
+    src: url('../Res/GlacialIndifference-Regular.otf') format('opentype');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'GlacialIndifference';
+    src: url('../Res/GlacialIndifference-Bold.otf') format('opentype');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: 'Lucidity Expand';
+    src: url('../Res/Lucidity-Expand.otf') format('opentype');
+}
+
+/* ================================================== */
+/* VARIABLES                                           */
+/* ================================================== */
+:root {
+    --gold: #BEA167;
+    --gold-soft: #f3ecdd;
+    --gold-dark: #5f4a1f;
+    --black: #0d0d0d;
+    --bg: #edece8;
+    --card: #fff;
+    --text: #222;
+    --muted: #6b6b6b;
+    --line: #dedbd3;
+    --usd: #2e8b3e;
+    --pesos: #e0521f;
+    --transf: #1f7fd1;
+    --side-w: 260px;
+    --head-h: 72px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'GlacialIndifference', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+}
+
+button {
+    font: inherit;
+    cursor: pointer;
+}
+
+/* ================================================== */
+/* HEADER                                              */
+/* ================================================== */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    height: var(--head-h);
+    background: var(--black);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 0 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .3);
+}
+
+.menu-btn {
+    display: none;
+    background: none;
+    border: 1px solid #444;
+    color: #fff;
+    border-radius: 8px;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.logo {
+    height: 46px;
+    width: auto;
+}
+
+.title {
+    font-family: 'Lucidity Expand', Arial, sans-serif;
+    font-size: 14px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    white-space: nowrap;
+    margin: 0;
+}
+
+.spacer {
+    flex: 1;
+}
+
+/* Buscador */
+.search {
+    position: relative;
+}
+
+.search input {
+    background: #1c1c1c;
+    border: 1px solid #3a3a3a;
+    color: #fff;
+    border-radius: 20px;
+    padding: 9px 14px 9px 34px;
+    width: 260px;
+    font-size: 13px;
+    outline: none;
+    transition: border-color .2s, width .2s;
+}
+
+.search input:focus {
+    border-color: var(--gold);
+    width: 300px;
+}
+
+.search input::placeholder {
+    color: rgba(255, 255, 255, .6);
+}
+
+.search svg {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: .7;
+    pointer-events: none;
+}
+
+/* Botones Grilla / Lista */
+.view-toggle {
+    display: flex;
+    background: #1c1c1c;
+    border: 1px solid #3a3a3a;
+    border-radius: 20px;
+    padding: 3px;
+    flex-shrink: 0;
+}
+
+.view-toggle button {
+    background: none;
+    border: none;
+    color: #aaa;
+    padding: 6px 10px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    transition: background .2s, color .2s;
+}
+
+.view-toggle button:hover {
+    color: #fff;
+}
+
+.view-toggle button.active {
+    background: var(--gold);
+    color: #111;
+}
+
+/* ================================================== */
+/* LAYOUT                                              */
+/* ================================================== */
+.layout {
+    display: grid;
+    grid-template-columns: var(--side-w) minmax(0, 1fr);
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+/* ================================================== */
+/* SIDEBAR                                             */
+/* ================================================== */
+aside {
+    position: sticky;
+    top: var(--head-h);
+    height: calc(100vh - var(--head-h));
+    overflow-y: auto;
+    background: #fff;
+    border-right: 1px solid var(--line);
+    padding: 18px 12px 40px;
+}
+
+.side-title {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin: 0 10px 10px;
+}
+
+.all-btn {
+    width: 100%;
+    text-align: left;
+    border: none;
+    background: none;
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+    color: var(--text);
+}
+
+.group {
+    margin-bottom: 4px;
+}
+
+.group-head {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: none;
+    background: none;
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--text);
+}
+
+.group-head:hover,
+.all-btn:hover {
+    background: #f5f4f0;
+}
+
+.group-head .ico {
+    width: 28px;
+    height: 28px;
+    border-radius: 7px;
+    background: var(--gold-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #8a6f36;
+    flex-shrink: 0;
+}
+
+.group-head .chev {
+    margin-left: auto;
+    transition: transform .2s;
+    opacity: .5;
+}
+
+.group.open .chev {
+    transform: rotate(90deg);
+}
+
+.sub {
+    list-style: none;
+    margin: 2px 0 8px;
+    padding: 0 0 0 22px;
+    display: none;
+}
+
+.group.open .sub {
+    display: block;
+}
+
+.sub button {
+    width: 100%;
+    text-align: left;
+    border: none;
+    background: none;
+    padding: 8px 12px 8px 26px;
+    font-size: 13px;
+    color: #444;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-left: 2px solid var(--line);
+    border-radius: 0 8px 8px 0;
+}
+
+.sub button:hover {
+    background: #f5f4f0;
+}
+
+.count {
+    font-size: 11px;
+    background: #eeece6;
+    color: #666;
+    border-radius: 10px;
+    padding: 1px 8px;
+    font-weight: normal;
+}
+
+.sub button.active,
+.all-btn.active {
+    background: var(--gold-soft);
+    color: var(--gold-dark);
+    font-weight: bold;
+    border-left-color: var(--gold);
+}
+
+.sub button.active .count,
+.all-btn.active .count {
+    background: var(--gold);
+    color: #fff;
+}
+
+/* ================================================== */
+/* MAIN                                                */
+/* ================================================== */
+main {
+    padding: 22px 28px 90px;
+    min-height: calc(100vh - var(--head-h));
+}
+
+.loading,
+.empty {
+    text-align: center;
+    color: var(--muted);
+    padding: 60px 0;
+}
+
+.crumbs {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: .5px;
+    margin-bottom: 4px;
+}
+
+.main-head {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 4px 12px;
+    border-bottom: 2px solid var(--gold);
+    padding-bottom: 10px;
+    margin-bottom: 18px;
+}
+
+.main-head h1 {
+    font-family: 'Lucidity Expand', Arial, sans-serif;
+    margin: 0;
+    font-size: 20px;
+    letter-spacing: 1px;
+}
+
+.main-head .n {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+/* Filtros rápidos por tipo */
+.chips {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: -6px 0 18px;
+}
+
+.chip {
+    border: 1px solid var(--line);
+    background: #fff;
+    border-radius: 16px;
+    padding: 5px 12px;
+    font-size: 12px;
+    color: #555;
+}
+
+.chip:hover {
+    border-color: var(--gold);
+}
+
+.chip.active {
+    background: #111;
+    color: #fff;
+    border-color: #111;
+}
+
+.section-title {
+    font-family: 'Lucidity Expand', Arial, sans-serif;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #555;
+    margin: 26px 0 10px;
+}
+
+/* ================================================== */
+/* PRODUCTOS - GRILLA                                  */
+/* ================================================== */
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+}
+
+.card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    transition: transform .15s, box-shadow .15s;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, .1);
+}
+
+.card .img {
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    background: #faf9f6;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.card .img img {
+    max-height: 136px;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+.card .info {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.card h3 {
+    font-family: 'Lucidity Expand', Arial, sans-serif;
+    margin: 0 0 3px;
+    font-size: 14px;
+    line-height: 1.25;
+    overflow-wrap: anywhere;
+}
+
+.card .desc {
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: .3px;
+    margin-bottom: 10px;
+}
+
+.badge {
+    align-self: flex-start;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: .5px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-bottom: 8px;
+}
+
+.badge.nuevo {
+    background: #e5f4e8;
+    color: #2e7d3e;
+}
+
+.badge.usado {
+    background: #fdeee3;
+    color: #b3541e;
+}
+
+.prices {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    border-top: 1px dashed var(--line);
+    padding-top: 10px;
+}
+
+.p {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    font-size: 13px;
+}
+
+.p span {
+    color: var(--muted);
+}
+
+.p b.usd {
+    color: var(--usd);
+}
+
+.p b.pesos {
+    color: var(--pesos);
+}
+
+.p b.transf {
+    color: var(--transf);
+}
+
+.fin {
+    font-size: 11px;
+    color: var(--muted);
+    font-style: italic;
+    margin-top: 6px;
+}
+
+/* ================================================== */
+/* PRODUCTOS - LISTA                                   */
+/* ================================================== */
+.products.list {
+    grid-template-columns: 1fr;
+    gap: 8px;
+}
+
+.products.list .card {
+    flex-direction: row;
+    align-items: center;
+    gap: 14px;
+    padding: 10px 14px;
+}
+
+.products.list .card:hover {
+    transform: none;
+}
+
+.products.list .card .img {
+    height: 70px;
+    width: 70px;
+    margin: 0;
+    flex-shrink: 0;
+}
+
+.products.list .card .img img {
+    max-height: 64px;
+}
+
+.products.list .card .info {
+    flex: 1;
+}
+
+.products.list .badge {
+    margin-bottom: 4px;
+}
+
+.products.list .desc {
+    margin-bottom: 0;
+}
+
+.products.list .prices {
+    margin-top: 0;
+    border-top: none;
+    padding-top: 0;
+    min-width: 220px;
+}
+
+/* La leyenda de financiación se muestra también en vista lista */
+.products.list .fin {
+    margin-top: 4px;
+}
+
+/* ================================================== */
+/* WHATSAPP FLOTANTE                                   */
+/* ================================================== */
+.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 20px;
+    right: 20px;
+    z-index: 40;
+    transition: transform .3s ease;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+}
+
+.whatsapp-float img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, .3);
+}
+
+/* ================================================== */
+/* RESPONSIVE - CELULAR                                */
+/* ================================================== */
+.backdrop {
+    display: none;
+}
+
+@media (max-width: 860px) {
+    :root {
+        --head-h: 60px;
+    }
+
+    header {
+        padding: 0 12px;
+        gap: 10px;
+    }
+
+    .menu-btn {
+        display: flex;
+    }
+
+    .logo {
+        height: 34px;
+    }
+
+    .title,
+    .spacer {
+        display: none;
+    }
+
+    .search {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .search input,
+    .search input:focus {
+        width: 100%;
+    }
+
+    .layout {
+        grid-template-columns: 1fr;
+    }
+
+    /* Sidebar como menú deslizable */
+    aside {
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100vh;
+        width: 82%;
+        max-width: 300px;
+        z-index: 60;
+        transform: translateX(-100%);
+        transition: transform .25s;
+        box-shadow: 4px 0 20px rgba(0, 0, 0, .25);
+    }
+
+    body.drawer-open aside {
+        transform: none;
+    }
+
+    body.drawer-open .backdrop {
+        display: block;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, .4);
+        z-index: 55;
+    }
+
+    main {
+        padding: 16px 14px 90px;
+    }
+
+    .products {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 10px;
+    }
+
+    .card .img {
+        height: 120px;
+    }
+
+    .card .img img {
+        max-height: 108px;
+    }
+
+    /* Lista en celular: precios debajo del nombre */
+    .products.list .card {
+        flex-wrap: wrap;
+    }
+
+    .products.list .card .info {
+        flex: 1 1 calc(100% - 90px);
+    }
+
+    .products.list .prices {
+        min-width: 0;
+        flex-basis: 100%;
+        border-top: 1px dashed var(--line);
+        padding-top: 8px;
+    }
+
+    .whatsapp-float {
+        width: 54px;
+        height: 54px;
+    }
+}
+
+@media (max-width: 400px) {
+    .view-toggle button {
+        padding: 6px 7px;
+    }
+}
+
+/* ================================================== */
+/* 🎃 HALLOWEEN (se activa con class="halloween" en <body>) */
+/* Para desactivar: quitar esa clase del <body> en index.html */
+/* ================================================== */
+.halloween-deco {
+    display: none;
+}
+
+body.halloween .halloween-deco {
+    display: block;
+}
+
+/* Telarañas en las esquinas del header (ocupan el alto del header) */
+body.halloween .web {
+    position: absolute;
+    top: 0;
+    width: var(--head-h);
+    height: var(--head-h);
+    color: #ffffff;
+    opacity: 0.28;
+    pointer-events: none;
+    z-index: 0;
+}
+
+body.halloween .web svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+body.halloween .web-left {
+    left: 0;
+}
+
+body.halloween .web-right {
+    right: 0;
+    transform: scaleX(-1);
+}
+
+/* Logo, buscador y botones quedan por encima de las telarañas */
+body.halloween header > *:not(.halloween-deco) {
+    position: relative;
+    z-index: 1;
+}
+
+/* Araña colgando: el largo del hilo lo controla JS con --spider-drop */
+body.halloween .spider-wrap {
+    position: absolute;
+    top: 100%;
+    right: 130px;
+    width: 40px;
+    pointer-events: none;
+    z-index: 2;
+    transform-origin: top center;
+    animation: spiderSway 4s ease-in-out infinite;
+}
+
+body.halloween .spider-thread {
+    width: 1px;
+    height: var(--spider-drop, 24px);
+    margin: 0 auto;
+    background: rgba(0, 0, 0, 0.55);
+    transition: height 0.15s linear;
+}
+
+body.halloween .spider {
+    display: block;
+    width: 34px;
+    height: 34px;
+    margin: -2px auto 0;
+}
+
+@keyframes spiderSway {
+    0%, 100% { transform: rotate(-3deg); }
+    50% { transform: rotate(3deg); }
+}
+
+@media (max-width: 860px) {
+    body.halloween .spider-wrap {
+        right: 14px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body.halloween .spider-wrap {
+        animation: none;
+    }
+
+    body.halloween .spider-thread {
+        transition: none;
+    }
+}
+
+/* Cursor de Halloween: flecha normal + calabaza chica al costado.
+   El punto de clic es la punta de la flecha (o del dedo en botones y links). */
+body.halloween {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M3 2v17.5l4.6-4.2 3 7 3-1.3-3-6.8h6.2z' fill='%23111' stroke='%23fff' stroke-width='1.4' stroke-linejoin='round'/%3E%3Cg transform='translate%2813.5 12.5%29 scale%28.6%29'%3E%3Cellipse cx='16' cy='19' rx='12' ry='10' fill='%23f97316' stroke='%23000' stroke-width='1.8'/%3E%3Cpath d='M16 9C8 9 6 28 16 29M16 9C24 9 26 28 16 29' fill='none' stroke='%23b94e08' stroke-width='1'/%3E%3Crect x='14' y='4' width='4' height='6' rx='1' fill='%23166534' stroke='%23000' stroke-width='1.2'/%3E%3Cpath d='M10 18l3-4 3 4zM16 18l3-4 3 4z' fill='%23000'/%3E%3Cpath d='M11 22l2 2 3-2 3 2 2-2' fill='none' stroke='%23000' stroke-width='1.6'/%3E%3C/g%3E%3C/svg%3E") 3 2, auto;
+}
+
+body.halloween a,
+body.halloween button,
+body.halloween label {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M8 2a2 2 0 0 1 2 2v6l5.2 1a2.5 2.5 0 0 1 2 2.6l-.6 5.4a3 3 0 0 1-3 2.7h-4.6a3 3 0 0 1-2.4-1.2l-4-5.3a1.6 1.6 0 0 1 2.4-2.1l1 1V4a2 2 0 0 1 2-2z' fill='%23fff' stroke='%23111' stroke-width='1.3' stroke-linejoin='round'/%3E%3Cg transform='translate%2813.5 12.5%29 scale%28.6%29'%3E%3Cellipse cx='16' cy='19' rx='12' ry='10' fill='%23f97316' stroke='%23000' stroke-width='1.8'/%3E%3Cpath d='M16 9C8 9 6 28 16 29M16 9C24 9 26 28 16 29' fill='none' stroke='%23b94e08' stroke-width='1'/%3E%3Crect x='14' y='4' width='4' height='6' rx='1' fill='%23166534' stroke='%23000' stroke-width='1.2'/%3E%3Cpath d='M10 18l3-4 3 4zM16 18l3-4 3 4z' fill='%23000'/%3E%3Cpath d='M11 22l2 2 3-2 3 2 2-2' fill='none' stroke='%23000' stroke-width='1.6'/%3E%3C/g%3E%3C/svg%3E") 8 2, pointer;
+}
+
+body.halloween input[type="text"] {
+    cursor: text;
+}
