@@ -62,6 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initSidebarEvents();
     initDrawer();
     initSpider();
+    initCopiarWhatsApp();
 
     actualizarTodo();
     setInterval(actualizarTodo, MINUTOS_ACTUALIZACION * 60 * 1000);
@@ -220,6 +221,80 @@ function ensureValidCategory() {
 }
 
 // ===================================================
+// COPIAR PARA WHATSAPP (para ventas)
+// Doble clic sobre una tarjeta → copia nombre, detalle y precios
+// con formato de WhatsApp, listo para pegar en un chat.
+// ===================================================
+function textoWhatsApp(p) {
+    const mostrarUSD = p.precioUSD > 0 &&
+        !((p.condicion === 'Accesorios' || p.condicion === 'Otros') && p.tipo !== 'Gaming');
+    const lineas = [`*${p.producto}*`];
+    if (p.descripcion) lineas.push(p.descripcion);
+    lineas.push('');
+    if (mostrarUSD) lineas.push(`💵 USD: $${fmt(p.precioUSD)}`);
+    lineas.push(`💰 Efectivo: $${fmt(p.precioPesos)}`);
+    lineas.push(`🏦 Transferencia: $${fmt(p.precioTransf)}`);
+    lineas.push('💳 Consultá por financiación');
+    return lineas.join('\n');
+}
+
+async function copiarTexto(texto) {
+    try {
+        if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(texto);
+            return true;
+        }
+    } catch (e) { /* sigue con el método alternativo */ }
+    // Alternativa para navegadores viejos o páginas sin https
+    const ta = document.createElement('textarea');
+    ta.value = texto;
+    ta.setAttribute('readonly', '');
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    let ok = false;
+    try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+    ta.remove();
+    return ok;
+}
+
+let avisoCopiaTimer = null;
+function avisoCopia(mensaje, error) {
+    let el = document.getElementById('aviso-copia');
+    if (!el) {
+        el = document.createElement('div');
+        el.id = 'aviso-copia';
+        el.className = 'aviso-copia';
+        document.body.appendChild(el);
+    }
+    el.textContent = mensaje;
+    el.classList.toggle('error', !!error);
+    el.classList.add('visible');
+    clearTimeout(avisoCopiaTimer);
+    avisoCopiaTimer = setTimeout(() => el.classList.remove('visible'), 2200);
+}
+
+function initCopiarWhatsApp() {
+    document.getElementById('main').addEventListener('dblclick', async e => {
+        const tarjeta = e.target.closest('.card[data-i]');
+        if (!tarjeta) return;
+        const p = DATA[Number(tarjeta.dataset.i)];
+        if (!p) return;
+        // El doble clic selecciona una palabra: se limpia para que no quede marcada
+        if (window.getSelection) window.getSelection().removeAllRanges();
+        const ok = await copiarTexto(textoWhatsApp(p));
+        if (ok) {
+            tarjeta.classList.add('copiada');
+            setTimeout(() => tarjeta.classList.remove('copiada'), 700);
+            avisoCopia('✓ Copiado. Listo para pegar en WhatsApp');
+        } else {
+            avisoCopia('No se pudo copiar. Probá de nuevo.', true);
+        }
+    });
+}
+
+// ===================================================
 // VISTA PRINCIPAL
 // ===================================================
 function card(p) {
@@ -229,7 +304,7 @@ function card(p) {
     const estado = /usad/i.test(p.condicion) ? 'usado' : /nuev/i.test(p.condicion) ? 'nuevo' : '';
 
     return `
-    <div class="card">
+    <div class="card" data-i="${DATA.indexOf(p)}">
         <div class="img"><img src="${esc(imgSrc(p.imagen))}" alt="${esc(p.producto)}" loading="lazy"
              onerror="this.onerror=null;this.src='${IMG_BASE}images/default.png'"></div>
         <div class="info">

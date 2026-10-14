@@ -5,18 +5,21 @@ const STORAGE_KEY_VIEW = 'mdp_view_mode';      // 'list' | 'grid' (misma clave q
 const CATEGORIA_INICIAL = 'Apple Nuevos';      // categoría que se muestra al abrir
 const MINUTOS_ACTUALIZACION = 5;               // recarga automática de datos
 
-// Google Sheet (mismo origen de datos que el sitio productivo)
-const SHEET_ID = '1W7aJMPe00ORHGjVnRzScIg6KVnjTQvddm63SLHrsAJM';
-const API_KEY = 'AIzaSyCdutMi4aKT3vJHaOabTtKUERoYv1-UBmM';
-const SHEET_RANGE = 'Form';
+// Origen de datos: archivo que publica el panel (Admin → Catálogo de Productos).
+// En una subcarpeta de prueba (ej. v3/) sería '../data/catalogo.json'.
+const CATALOGO_URL = 'data/catalogo.json';
 
-// Ruta base para imágenes relativas del Sheet (ej: "images/x.png").
-// Vacío porque el sitio está en la raíz (en una subcarpeta sería '../').
+// Aviso al panel para que refresque el dólar automático si ya pasaron 30 minutos.
+// En una subcarpeta de prueba (ej. v3/) sería '../admin/catalogo/actualizar_dolar.php'.
+const DOLAR_URL = 'admin/catalogo/actualizar_dolar.php';
+
+// Ruta base para imágenes relativas del catálogo (ej: "images/x.png").
+// Vacío porque el sitio está en la raíz (en una subcarpeta de prueba sería '../').
 const IMG_BASE = '';
 
 // ===================================================
 // MENÚ LATERAL: grupos → categorías
-// - Los grupos normales usan la "Condición del Producto" del Sheet.
+// - Los grupos normales usan la categoría del producto.
 // - Accesorios usa el "Tipo de Producto" (se arma solo con lo que haya cargado).
 // ===================================================
 const MENU = [
@@ -63,9 +66,10 @@ document.addEventListener('DOMContentLoaded', () => {
     initSidebarEvents();
     initDrawer();
     initSpider();
+    initCopiarWhatsApp();
 
-    loadGoogleSheetData();
-    setInterval(loadGoogleSheetData, MINUTOS_ACTUALIZACION * 60 * 1000);
+    actualizarTodo();
+    setInterval(actualizarTodo, MINUTOS_ACTUALIZACION * 60 * 1000);
 });
 
 // ===================================================
@@ -221,15 +225,90 @@ function ensureValidCategory() {
 }
 
 // ===================================================
+// COPIAR PARA WHATSAPP (para ventas)
+// Doble clic sobre una tarjeta → copia nombre, detalle y precios
+// con formato de WhatsApp, listo para pegar en un chat.
+// ===================================================
+function textoWhatsApp(p) {
+    const mostrarUSD = p.precioUSD > 0 &&
+        !((p.condicion === 'Accesorios' || p.condicion === 'Otros') && p.tipo !== 'Gaming');
+    const lineas = [`*${p.producto}*`];
+    if (p.descripcion) lineas.push(p.descripcion);
+    lineas.push('');
+    if (mostrarUSD) lineas.push(`💵 USD: $${fmt(p.precioUSD)}`);
+    lineas.push(`💰 Efectivo: $${fmt(p.precioPesos)}`);
+    lineas.push(`🏦 Transferencia: $${fmt(p.precioTransf)}`);
+    lineas.push('💳 Consultá por financiación');
+    return lineas.join('\n');
+}
+
+async function copiarTexto(texto) {
+    try {
+        if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(texto);
+            return true;
+        }
+    } catch (e) { /* sigue con el método alternativo */ }
+    // Alternativa para navegadores viejos o páginas sin https
+    const ta = document.createElement('textarea');
+    ta.value = texto;
+    ta.setAttribute('readonly', '');
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    let ok = false;
+    try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+    ta.remove();
+    return ok;
+}
+
+let avisoCopiaTimer = null;
+function avisoCopia(mensaje, error) {
+    let el = document.getElementById('aviso-copia');
+    if (!el) {
+        el = document.createElement('div');
+        el.id = 'aviso-copia';
+        el.className = 'aviso-copia';
+        document.body.appendChild(el);
+    }
+    el.textContent = mensaje;
+    el.classList.toggle('error', !!error);
+    el.classList.add('visible');
+    clearTimeout(avisoCopiaTimer);
+    avisoCopiaTimer = setTimeout(() => el.classList.remove('visible'), 2200);
+}
+
+function initCopiarWhatsApp() {
+    document.getElementById('main').addEventListener('dblclick', async e => {
+        const tarjeta = e.target.closest('.card[data-i]');
+        if (!tarjeta) return;
+        const p = DATA[Number(tarjeta.dataset.i)];
+        if (!p) return;
+        // El doble clic selecciona una palabra: se limpia para que no quede marcada
+        if (window.getSelection) window.getSelection().removeAllRanges();
+        const ok = await copiarTexto(textoWhatsApp(p));
+        if (ok) {
+            tarjeta.classList.add('copiada');
+            setTimeout(() => tarjeta.classList.remove('copiada'), 700);
+            avisoCopia('✓ Copiado. Listo para pegar en WhatsApp');
+        } else {
+            avisoCopia('No se pudo copiar. Probá de nuevo.', true);
+        }
+    });
+}
+
+// ===================================================
 // VISTA PRINCIPAL
 // ===================================================
 function card(p) {
-    // Mismas reglas que el sitio actual: accesorios sin USD (salvo Gaming)
-    const mostrarUSD = !((p.condicion === 'Accesorios' || p.condicion === 'Otros') && p.tipo !== 'Gaming');
+    // Accesorios sin USD (salvo Gaming). Tampoco se muestra si el producto no tiene precio en USD.
+    const mostrarUSD = p.precioUSD > 0 &&
+        !((p.condicion === 'Accesorios' || p.condicion === 'Otros') && p.tipo !== 'Gaming');
     const estado = /usad/i.test(p.condicion) ? 'usado' : /nuev/i.test(p.condicion) ? 'nuevo' : '';
 
     return `
-    <div class="card">
+    <div class="card" data-i="${DATA.indexOf(p)}">
         <div class="img"><img src="${esc(imgSrc(p.imagen))}" alt="${esc(p.producto)}" loading="lazy"
              onerror="this.onerror=null;this.src='${IMG_BASE}images/default.png'"></div>
         <div class="info">
@@ -298,32 +377,41 @@ function renderMain() {
 }
 
 // ===================================================
-// CARGA DE DATOS DESDE GOOGLE SHEETS
+// ACTUALIZACIÓN: muestra el catálogo y, de paso, le avisa al servidor para que
+// revise el dólar. Si la cotización cambió, vuelve a leer los precios.
 // ===================================================
-async function loadGoogleSheetData() {
-    const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${SHEET_RANGE}?key=${API_KEY}`;
-
+async function actualizarTodo() {
+    await loadCatalogo();
     try {
-        const response = await fetch(url);
+        const res = await fetch(DOLAR_URL, { cache: 'no-store' });
+        const data = await res.json();
+        if (data && data.cambio) await loadCatalogo();
+    } catch (e) { /* si falla, quedan los precios ya publicados */ }
+}
+
+// ===================================================
+// CARGA DE DATOS DESDE EL CATÁLOGO DEL PANEL
+// (data/catalogo.json: lo genera Admin → Catálogo de Productos,
+//  ya trae solo los productos disponibles y los precios calculados)
+// ===================================================
+async function loadCatalogo() {
+    try {
+        // El parámetro ?t= evita que el navegador muestre una copia vieja.
+        const response = await fetch(CATALOGO_URL + '?t=' + Date.now(), { cache: 'no-store' });
+        if (!response.ok) throw new Error('HTTP ' + response.status);
         const data = await response.json();
-        if (!data.values || data.values.length < 2) return;
+        const num = v => parseFloat(v) || 0;
 
-        const [headers, ...rows] = data.values;
-        const col = name => headers.indexOf(name);
-        const num = v => parseFloat(v) || 0; // igual que el sitio actual
-
-        DATA = rows
-            .filter(r => (r[col('Status')] || 'No disponible') === 'Disponible')
-            .map(r => ({
-                condicion: r[col('Condición del Producto')] || 'Otros',
-                tipo: r[col('Tipo de Producto')] || 'Otros',
-                producto: r[col('Producto')] || 'Sin nombre',
-                descripcion: r[col('Descripción')] || '',
-                precioUSD: num(r[col('PrecioUSD')]),
-                precioPesos: num(r[col('PrecioPesos')]),
-                precioTransf: num(r[col('PrecioTransf')]),
-                imagen: r[col('Imagen2')] || 'images/default.png'
-            }));
+        DATA = (Array.isArray(data.productos) ? data.productos : []).map(p => ({
+            condicion: p.condicion || 'Otros',
+            tipo: p.tipo || 'Otros',
+            producto: p.producto || 'Sin nombre',
+            descripcion: p.descripcion || '',
+            precioUSD: num(p.precioUSD),
+            precioPesos: num(p.precioPesos),
+            precioTransf: num(p.precioTransf),
+            imagen: p.imagen || 'images/default.png'
+        }));
 
         // Tipos de accesorios disponibles (orden alfabético, "Otros" al final)
         MENU.filter(m => m.byTipo).forEach(m => {
@@ -335,7 +423,7 @@ async function loadGoogleSheetData() {
         renderSidebar();
         renderMain();
     } catch (error) {
-        console.error('Error al cargar los datos de Google Sheets:', error);
+        console.error('Error al cargar el catálogo:', error);
         if (!DATA.length) {
             document.getElementById('main').innerHTML =
                 '<div class="empty">No se pudieron cargar los productos. Intentá de nuevo en unos minutos.</div>';
