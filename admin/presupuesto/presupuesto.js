@@ -528,16 +528,22 @@ function cargarHistorial() {
 }
 
 function mostrarHistorial() {
-    const filtro = document.getElementById("filtro_cliente").value.toLowerCase();
+    const palabras = normalizarBusqueda(document.getElementById("filtro_cliente").value)
+        .split(/\s+/).filter(Boolean);
     const lista  = document.getElementById("lista_historial");
     lista.innerHTML = "";
 
+    // Busca en cliente, código y productos. Con varias palabras, deben aparecer todas.
     const indexados = historial
         .map((h, i) => ({ h, i }))
-        .filter(({ h }) =>
-            h.cliente.nombre.toLowerCase().includes(filtro) ||
-            (h.presupuesto.codigo || "").toLowerCase().includes(filtro)
-        )
+        .filter(({ h }) => {
+            if (!palabras.length) return true;
+            const texto = normalizarBusqueda([
+                h.cliente?.nombre, h.presupuesto?.codigo,
+                ...(h.presupuesto?.productos || []).map(p => p.desc)
+            ].join(" "));
+            return palabras.every(w => texto.includes(w));
+        })
         .sort((a, b) => {
             const fechaDiff = new Date(b.h.presupuesto.fecha) - new Date(a.h.presupuesto.fecha);
             if (fechaDiff !== 0) return fechaDiff;
@@ -560,6 +566,17 @@ function mostrarHistorial() {
             `<span class="historial-codigo">${h.presupuesto.codigo || "—"}</span> ` +
             `<span class="historial-cliente">${h.cliente.nombre}</span> ` +
             `<span class="historial-fecha">${formatearFecha(h.presupuesto.fecha)}</span>`;
+
+        // Si la búsqueda coincide con productos, se muestran debajo
+        if (palabras.length) {
+            const prods = (h.presupuesto.productos || [])
+                .filter(p => palabras.some(w => normalizarBusqueda(p.desc).includes(w)))
+                .map(p => escaparHTML(p.desc));
+            if (prods.length) {
+                info.innerHTML += `<span class="historial-productos">🔎 ${prods.slice(0, 3).join(" · ")}` +
+                    (prods.length > 3 ? ` (+${prods.length - 3})` : "") + `</span>`;
+            }
+        }
 
         const acciones = document.createElement("span");
         acciones.className = "historial-acciones";
@@ -596,6 +613,15 @@ function mostrarHistorial() {
         li.append(info, acciones);
         lista.appendChild(li);
     });
+}
+
+function normalizarBusqueda(txt) {
+    return String(txt || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
+
+function escaparHTML(txt) {
+    return String(txt || "").replace(/[&<>"']/g, c =>
+        ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 }
 
 function formatearFecha(fechaStr) {
@@ -712,7 +738,38 @@ function descargarPDF(i = null) {
 }
 
 // ─── Remito ───────────────────────────────────────────────────────────────────
+// Número de remito: mismo número que el presupuesto (PRES-00245 → REM-00245)
+function codigoRemito(codigoPres) {
+    if (!codigoPres) return "";
+    return /^PRES/i.test(codigoPres) ? codigoPres.replace(/^PRES/i, "REM") : "REM-" + codigoPres;
+}
+
+// Antes de generar el remito se pide la Orden de Compra (opcional)
 function descargarRemito(i = null) {
+    if (i === null && !ultimoPresupuesto) { alert("Primero generá un presupuesto."); return; }
+    const modal = document.getElementById("modal-oc");
+    const input = document.getElementById("input-oc");
+    modal.dataset.indice = i === null ? "" : i;
+    input.value = "";
+    modal.style.display = "flex";
+    document.body.style.overflow = "hidden";
+    setTimeout(() => input.focus(), 50);
+}
+
+function cerrarModalOC() {
+    document.getElementById("modal-oc").style.display = "none";
+    document.body.style.overflow = "";
+}
+
+function confirmarModalOC() {
+    const modal = document.getElementById("modal-oc");
+    const indice = modal.dataset.indice === "" ? null : Number(modal.dataset.indice);
+    const oc = document.getElementById("input-oc").value.trim();
+    cerrarModalOC();
+    generarRemito(indice, oc);
+}
+
+function generarRemito(i = null, oc = "") {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
     const pageWidth  = doc.internal.pageSize.width;
@@ -727,7 +784,7 @@ function descargarRemito(i = null) {
         ({ empresa, cliente, presupuesto } = historial[i]);
     }
 
-    const codigo        = presupuesto.codigo || "SIN-CODIGO";
+    const numRemito     = codigoRemito(presupuesto.codigo);
     const nombreCliente = (cliente.nombre || "Cliente").replace(/[^a-z0-9]/gi, "_").toUpperCase();
 
     // ── Función auxiliar que dibuja una copia completa ──────────────────────
@@ -747,6 +804,11 @@ function descargarRemito(i = null) {
         doc.setFont(undefined, "bold");
         doc.text("Remito", pageWidth / 2, 15, { align: "center" });
         doc.setFont(undefined, "normal");
+
+        // N° de remito (mismo lugar que en el presupuesto) y OC si se cargó
+        doc.setFontSize(10);
+        doc.text(`N°: ${numRemito || "—"}`, pageWidth - 20, 20, { align: "right" });
+        if (oc) doc.text(`OC: ${oc}`, pageWidth - 20, 26, { align: "right" });
 
         // Datos empresa
         doc.setFontSize(11);
@@ -822,7 +884,7 @@ function descargarRemito(i = null) {
     doc.addPage();
     dibujarCopia("Copia Proveedor / Transportista");
 
-    doc.save(`REMITO_${codigo}_${nombreCliente}.pdf`);
+    doc.save(`${numRemito || "REMITO"}_${nombreCliente}.pdf`);
 }
 
 // ─── Utilidades ───────────────────────────────────────────────────────────────
@@ -832,3 +894,11 @@ function formatearNumero(num) {
         maximumFractionDigits: 2
     });
 }
+
+// Enter confirma y Esc cancela en el modal de OC
+document.addEventListener("keydown", e => {
+    const modal = document.getElementById("modal-oc");
+    if (!modal || modal.style.display !== "flex") return;
+    if (e.key === "Enter") { e.preventDefault(); confirmarModalOC(); }
+    if (e.key === "Escape") cerrarModalOC();
+});

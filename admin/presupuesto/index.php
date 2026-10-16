@@ -9,7 +9,7 @@ require_login();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Presupuesto - AXENTIA</title>
-    <link rel="stylesheet" href="presupuesto.css">
+    <link rel="stylesheet" href="presupuesto.css?v=3">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
 </head>
@@ -148,7 +148,7 @@ require_login();
                 <a href="backup.php" class="btn-tool btn-link">💾 Backup</a>
             </div>
         </div>
-        <input type="text" id="filtro_cliente" placeholder="Buscar por cliente o código..." onkeyup="mostrarHistorial()">
+        <input type="text" id="filtro_cliente" placeholder="Buscar por cliente, código o producto (ej: dahua)..." oninput="mostrarHistorial()">
         <ul id="lista_historial"></ul>
     </section>
 
@@ -163,7 +163,25 @@ require_login();
         </div>
     </div>
 
-    <script src="presupuesto.js"></script>
+    <!-- Modal Orden de Compra (remito) -->
+    <div id="modal-oc" class="modal-overlay" onclick="if (event.target === this) cerrarModalOC()">
+        <div class="modal-box modal-oc-box">
+            <div class="modal-header">
+                <h2>Generar remito</h2>
+                <button class="btn-cerrar-modal" onclick="cerrarModalOC()">✕</button>
+            </div>
+            <div class="modal-body">
+                <label for="input-oc" class="oc-label">N° de Orden de Compra (OC)</label>
+                <input type="text" id="input-oc" placeholder="Opcional — dejalo vacío si no hay OC" autocomplete="off">
+                <div class="oc-acciones">
+                    <button class="btn-secundario" onclick="cerrarModalOC()">Cancelar</button>
+                    <button onclick="confirmarModalOC()">⬇ Generar remito</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="presupuesto.js?v=3"></script>
 
 </body>
 </html>
