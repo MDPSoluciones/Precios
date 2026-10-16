@@ -1,2 +1,7 @@
 .DS_Store
 **/.DS_Store
+admin/data/users.json
+admin/presupuesto/historial.json
+data/catalogo.json
+admin/catalogo/data/*
+!admin/catalogo/data/.htaccess
