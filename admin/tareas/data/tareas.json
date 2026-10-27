@@ -1,0 +1,754 @@
+{
+    "ultimo_id": 18,
+    "tareas": [
+        {
+            "id": 1,
+            "titulo": "Documentacion de funcionalidades",
+            "descripcion": "hacer apartado ede documentacion.",
+            "categoria": "Sistemas",
+            "prioridad": "media",
+            "vence": "2026-11-01",
+            "estado": "proceso",
+            "asignados": [
+                "Cristian"
+            ],
+            "creado_por": "Cristian",
+            "creado": "2026-10-22 18:09",
+            "actualizado": "2026-10-22 20:29",
+            "pasos": [
+                {
+                    "texto": "Generar documento",
+                    "hecho": false
+                },
+                {
+                    "texto": "Generar menu",
+                    "hecho": true
+                },
+                {
+                    "texto": "Compartir con compañeros",
+                    "hecho": false
+                }
+            ],
+            "comentarios": [],
+            "historial": [
+                {
+                    "fecha": "2026-10-22 18:09",
+                    "usuario": "Cristian",
+                    "accion": "creó la tarea y la asignó a Cristian"
+                },
+                {
+                    "fecha": "2026-10-22 20:25",
+                    "usuario": "Cristian",
+                    "accion": "completó el paso \"Generar menu\""
+                },
+                {
+                    "fecha": "2026-10-22 20:29",
+                    "usuario": "Cristian",
+                    "accion": "estado: Pendiente → En proceso"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "titulo": "Impresora de etiquetas mini",
+            "descripcion": "Buscar una impresora que puede imprimir tarjetas más pequeñas como la del sistema de inventario y probar.",
+            "categoria": "Sistemas",
+            "prioridad": "media",
+            "vence": "2026-11-10",
+            "estado": "proceso",
+            "asignados": [
+                "Cristian"
+            ],
+            "creado_por": "Cristian",
+            "creado": "2026-10-22 20:28",
+            "actualizado": "2026-10-22 20:29",
+            "pasos": [
+                {
+                    "texto": "Buscar impresora.",
+                    "hecho": false
+                },
+                {
+                    "texto": "Relevar la medida de etiquetas del sistema de inventarios.",
+                    "hecho": false
+                },
+                {
+                    "texto": "Compras impresora",
+                    "hecho": false
+                },
+                {
+                    "texto": "Buscar insumos para la impresora actual con tamaño etiqueta inferior.",
+                    "hecho": false
+                },
+                {
+                    "texto": "Probar Impresoras",
+                    "hecho": false
+                },
+                {
+                    "texto": "Configurar impresora en los equipos de los empleados.",
+                    "hecho": false
+                }
+            ],
+            "comentarios": [],
+            "historial": [
+                {
+                    "fecha": "2026-10-22 20:28",
+                    "usuario": "Cristian",
+                    "accion": "creó la tarea y la asignó a Cristian"
+                },
+                {
+                    "fecha": "2026-10-22 20:29",
+                    "usuario": "Cristian",
+                    "accion": "estado: Pendiente → En proceso"
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "titulo": "REPOSICION",
+            "descripcion": "S26 ULTRA\/S26\/S26 FE\n17 PRO MAX\/ 17 PRO(VARIEDAD NO HAY CASI NADA)\/ 17\n15\/15 PRO\nFUNDA CON TECLADO LENOVO TAB PLUS 12,1\" \nNINTENDO SWICH\nSMARTWACH BANDA XIAOMI\nMALLAS RELOJ GARMIN\nFUNDA AIRTAG",
+            "categoria": "",
+            "prioridad": "media",
+            "vence": "",
+            "estado": "pendiente",
+            "asignados": [
+                "Marcos",
+                "Ariela"
+            ],
+            "creado_por": "yanina",
+            "creado": "2026-10-23 17:41",
+            "actualizado": "2026-10-24 11:39",
+            "pasos": [],
+            "comentarios": [],
+            "historial": [
+                {
+                    "fecha": "2026-10-23 17:41",
+                    "usuario": "yanina",
+                    "accion": "creó la tarea y la asignó a Marcos, Ariela"
+                },
+                {
+                    "fecha": "2026-10-23 17:42",
+                    "usuario": "yanina",
+                    "accion": "se sumó a la tarea"
+                },
+                {
+                    "fecha": "2026-10-23 17:42",
+                    "usuario": "yanina",
+                    "accion": "quitó a yanina"
+                },
+                {
+                    "fecha": "2026-10-24 11:23",
+                    "usuario": "yanina",
+                    "accion": "cambió descripción"
+                },
+                {
+                    "fecha": "2026-10-24 11:39",
+                    "usuario": "yanina",
+                    "accion": "cambió descripción"
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "titulo": "SISTEMA COCOS",
+            "descripcion": "en el estado de cuenta figura pequeño el saldo a favor o adeudado\n\ncuando el cliente esta cargado con pocos datos en la factura como carga inicial  y le generas una nueva factura colocando todos datos que faltan, no se actualizan en el cliente actualizando sus datos\ncuando cargas un cliente nuevo desde la factura no te deja colocar el nombre completo(no tiene para muchos caracteres)\n pero si despues podemos ingresar desde CLIENTE y modificarlo(ingresar nombre completo)\nnos da error cuando queremos emitir un recibo de una venta\n\n\npoder hacer ventas sin percio definido, y luego modificarlo.",
+            "categoria": "",
+            "prioridad": "media",
+            "vence": "",
+            "estado": "proceso",
+            "asignados": [
+                "Marcos"
+            ],
+            "creado_por": "yanina",
+            "creado": "2026-10-24 11:27",
+            "actualizado": "2026-10-26 16:21",
+            "pasos": [],
+            "comentarios": [],
+            "historial": [
+                {
+                    "fecha": "2026-10-24 11:27",
+                    "usuario": "yanina",
+                    "accion": "creó la tarea y la asignó a Marcos"
+                },
+                {
+                    "fecha": "2026-10-24 12:00",
+                    "usuario": "yanina",
+                    "accion": "cambió descripción"
+                },
+                {
+                    "fecha": "2026-10-26 11:45",
+                    "usuario": "yanina",
+                    "accion": "cambió descripción"
+                },
+                {
+                    "fecha": "2026-10-26 16:21",
+                    "usuario": "Marcos",
+                    "accion": "estado: Pendiente → En proceso"
+                },
+                {
+                    "fecha": "2026-10-26 16:21",
+                    "usuario": "Marcos",
+                    "accion": "cambió descripción"
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "titulo": "COMPLETAR DATOS PROVEEDORES",
+            "descripcion": "DIRECCION TELEFONO Y PERSONA DE CONTACTO",
+            "categoria": "",
+            "prioridad": "media",
+            "vence": "",
+            "estado": "proceso",
+            "asignados": [
+                "Marcos",
+                "Ariela"
+            ],
+            "creado_por": "yanina",
+            "creado": "2026-10-24 12:15",
+            "actualizado": "2026-10-26 16:21",
+            "pasos": [],
+            "comentarios": [],
+            "historial": [
+                {
+                    "fecha": "2026-10-24 12:15",
+                    "usuario": "yanina",
+                    "accion": "creó la tarea y la asignó a Marcos, Ariela"
+                },
+                {
+                    "fecha": "2026-10-26 16:21",
+                    "usuario": "Marcos",
+                    "accion": "estado: Pendiente → En proceso"
+                }
+            ]
+        },
+        {
+            "id": 6,
+            "titulo": "COMPLETAR DATOS CLIENTES",
+            "descripcion": "COMPLETAR TODOS LOS DATOS DESDE CLIENTE",
+            "categoria": "",
+            "prioridad": "media",
+            "vence": "",
+            "estado": "proceso",
+            "asignados": [
+                "Ariela",
+                "Yanina",
+                "Marcelo"
+            ],
+            "creado_por": "yanina",
+            "creado": "2026-10-24 12:16",
+            "actualizado": "2026-10-27 11:32",
+            "pasos": [],
+            "comentarios": [],
+            "historial": [
+                {
+                    "fecha": "2026-10-24 12:16",
+                    "usuario": "yanina",
+                    "accion": "creó la tarea y la asignó a Ariela, Yanina, Marcelo"
+                },
+                {
+                    "fecha": "2026-10-27 11:32",
+                    "usuario": "yanina",
+                    "accion": "estado: Pendiente → En proceso"
+                }
+            ]
+        },
+        {
+            "id": 7,
+            "titulo": "COMPLETAR DATOS CLIENTES",
+            "descripcion": "COMPLETAR DESDE CLIENTES",
+            "categoria": "",
+            "prioridad": "media",
+            "vence": "",
+            "estado": "cancelado",
+            "asignados": [
+                "Ariela",
+                "Yanina",
+                "Marcelo"
+            ],
+            "creado_por": "yanina",
+            "creado": "2026-10-24 12:17",
+            "actualizado": "2026-10-24 12:17",
+            "pasos": [],
+            "comentarios": [],
+            "historial": [
+                {
+                    "fecha": "2026-10-24 12:17",
+                    "usuario": "yanina",
+                    "accion": "creó la tarea y la asignó a Ariela, Yanina, Marcelo"
+                },
+                {
+                    "fecha": "2026-10-24 12:17",
+                    "usuario": "yanina",
+                    "accion": "estado: Pendiente → Cancelado"
+                }
+            ]
+        },
+        {
+            "id": 8,
+            "titulo": "STOCK",
+            "descripcion": "COMPLETAR DATOS DE ARTICULOS EN SISTEMA E IMPRIMIR CODIGO A CADA UNO",
+            "categoria": "",
+            "prioridad": "media",
+            "vence": "",
+            "estado": "proceso",
+            "asignados": [
+                "Gerardo",
+                "Yanina",
+                "Marcelo"
+            ],
+            "creado_por": "yanina",
+            "creado": "2026-10-24 12:18",
+            "actualizado": "2026-10-27 11:32",
+            "pasos": [],
+            "comentarios": [],
+            "historial": [
+                {
+                    "fecha": "2026-10-24 12:18",
+                    "usuario": "yanina",
+                    "accion": "creó la tarea y la asignó a Gerardo, Yanina, Marcelo"
+                },
+                {
+                    "fecha": "2026-10-27 11:32",
+                    "usuario": "yanina",
+                    "accion": "estado: Pendiente → En proceso"
+                }
+            ]
+        },
+        {
+            "id": 9,
+            "titulo": "COMPRAS INMUEBLE",
+            "descripcion": "COMPRA PISTORA SCANER E IMPRESORA TERMICA",
+            "categoria": "",
+            "prioridad": "media",
+            "vence": "",
+            "estado": "proceso",
+            "asignados": [
+                "Marcos"
+            ],
+            "creado_por": "yanina",
+            "creado": "2026-10-24 12:52",
+            "actualizado": "2026-10-26 16:21",
+            "pasos": [],
+            "comentarios": [],
+            "historial": [
+                {
+                    "fecha": "2026-10-24 12:52",
+                    "usuario": "yanina",
+                    "accion": "creó la tarea y la asignó a Marcos"
+                },
+                {
+                    "fecha": "2026-10-26 16:21",
+                    "usuario": "Marcos",
+                    "accion": "estado: Pendiente → En proceso"
+                }
+            ]
+        },
+        {
+            "id": 10,
+            "titulo": "HACER FACTURA BALIARDA",
+            "descripcion": "Hacer una factura B consumidor final para Baliarda, y pasarme a mi o al colo por 995000 final iva incluido, por DETALLE DE SISTEMA.",
+            "categoria": "Facturacion",
+            "prioridad": "alta",
+            "vence": "2026-10-27",
+            "estado": "revision",
+            "asignados": [
+                "Ariela"
+            ],
+            "creado_por": "Marcos",
+            "creado": "2026-10-26 13:39",
+            "actualizado": "2026-10-27 12:35",
+            "pasos": [
+                {
+                    "texto": "LISTO",
+                    "hecho": true
+                }
+            ],
+            "comentarios": [],
+            "historial": [
+                {
+                    "fecha": "2026-10-26 13:39",
+                    "usuario": "Marcos",
+                    "accion": "creó la tarea y la asignó a Ariela"
+                },
+                {
+                    "fecha": "2026-10-27 12:35",
+                    "usuario": "Ariela",
+                    "accion": "agregó el paso \"LISTO\""
+                },
+                {
+                    "fecha": "2026-10-27 12:35",
+                    "usuario": "Ariela",
+                    "accion": "completó el paso \"LISTO\""
+                },
+                {
+                    "fecha": "2026-10-27 12:35",
+                    "usuario": "Ariela",
+                    "accion": "estado: Pendiente → Revisión"
+                }
+            ]
+        },
+        {
+            "id": 11,
+            "titulo": "PASARLE EL ESTADO DE CUENTA AL CHINO",
+            "descripcion": "fjiate que tenga vendida las notebooks ultimas que pidio.\n\nconsultame antes",
+            "categoria": "Facturacion",
+            "prioridad": "media",
+            "vence": "",
+            "estado": "finalizado",
+            "asignados": [
+                "Ariela"
+            ],
+            "creado_por": "Marcos",
+            "creado": "2026-10-26 13:44",
+            "actualizado": "2026-10-26 15:40",
+            "pasos": [],
+            "comentarios": [],
+            "historial": [
+                {
+                    "fecha": "2026-10-26 13:44",
+                    "usuario": "Marcos",
+                    "accion": "creó la tarea y la asignó a Ariela"
+                },
+                {
+                    "fecha": "2026-10-26 15:40",
+                    "usuario": "Ariela",
+                    "accion": "estado: Pendiente → Revisión"
+                },
+                {
+                    "fecha": "2026-10-26 15:40",
+                    "usuario": "Marcos",
+                    "accion": "estado: Revisión → Finalizado"
+                }
+            ]
+        },
+        {
+            "id": 12,
+            "titulo": "ESTADO DE CUENTA DE LA MUNI",
+            "descripcion": "REVISAR LAS FACTURAS PENDIENTE DE PAGO Y VER QUE COINCIDA CON EL SISTEMA, REVISAR LAS ORDENES DE PAGO QUE CANCELAN FACTURA.",
+            "categoria": "Facturacion",
+            "prioridad": "media",
+            "vence": "",
+            "estado": "pendiente",
+            "asignados": [
+                "Ariela"
+            ],
+            "creado_por": "Marcos",
+            "creado": "2026-10-26 15:37",
+            "actualizado": "2026-10-26 15:37",
+            "pasos": [],
+            "comentarios": [],
+            "historial": [
+                {
+                    "fecha": "2026-10-26 15:37",
+                    "usuario": "Marcos",
+                    "accion": "creó la tarea y la asignó a Ariela"
+                }
+            ]
+        },
+        {
+            "id": 13,
+            "titulo": "FACU FOB",
+            "descripcion": "DESCONTAR LO QUE FALTA LLEGAR Y OBTENER EL NUMERO REAL DE LA DEUDA QUE TENEMOS HOY.",
+            "categoria": "DEUDA",
+            "prioridad": "media",
+            "vence": "",
+            "estado": "pendiente",
+            "asignados": [
+                "Ariela"
+            ],
+            "creado_por": "Marcos",
+            "creado": "2026-10-26 16:14",
+            "actualizado": "2026-10-26 16:14",
+            "pasos": [],
+            "comentarios": [],
+            "historial": [
+                {
+                    "fecha": "2026-10-26 16:14",
+                    "usuario": "Marcos",
+                    "accion": "creó la tarea y la asignó a Ariela"
+                }
+            ]
+        },
+        {
+            "id": 14,
+            "titulo": "cuenta corriente cristian ramallo",
+            "descripcion": "Ordenar realmente lo que debemos y lo que nos debe.\nver los productos que devolvio (consolas) y que devolvimos (pen drives)",
+            "categoria": "cuenta corriente",
+            "prioridad": "media",
+            "vence": "",
+            "estado": "pendiente",
+            "asignados": [
+                "Ariela"
+            ],
+            "creado_por": "Marcos",
+            "creado": "2026-10-26 16:16",
+            "actualizado": "2026-10-26 16:16",
+            "pasos": [],
+            "comentarios": [],
+            "historial": [
+                {
+                    "fecha": "2026-10-26 16:16",
+                    "usuario": "Marcos",
+                    "accion": "creó la tarea y la asignó a Ariela"
+                }
+            ]
+        },
+        {
+            "id": 15,
+            "titulo": "compra de lector de codigo de barra y de impresora de etiquetas",
+            "descripcion": "buscar 2 lectores de codigo de barra Bueno bonito ybaratos\ny 2 impresoras que sirvan para imprmir las etiquetas de los productos.",
+            "categoria": "Sistemas",
+            "prioridad": "alta",
+            "vence": "2026-10-27",
+            "estado": "proceso",
+            "asignados": [
+                "Cristian"
+            ],
+            "creado_por": "Marcos",
+            "creado": "2026-10-26 16:20",
+            "actualizado": "2026-10-27 08:46",
+            "pasos": [
+                {
+                    "texto": "Buscar lectores",
+                    "hecho": false
+                },
+                {
+                    "texto": "Buscar impresoras",
+                    "hecho": false
+                },
+                {
+                    "texto": "Armar propuesta",
+                    "hecho": false
+                },
+                {
+                    "texto": "Compra",
+                    "hecho": false
+                },
+                {
+                    "texto": "Instalación",
+                    "hecho": false
+                }
+            ],
+            "comentarios": [],
+            "historial": [
+                {
+                    "fecha": "2026-10-26 16:20",
+                    "usuario": "Marcos",
+                    "accion": "creó la tarea y la asignó a Cristian"
+                },
+                {
+                    "fecha": "2026-10-27 08:43",
+                    "usuario": "Cristian",
+                    "accion": "agregó el paso \"Buscar lectores\""
+                },
+                {
+                    "fecha": "2026-10-27 08:43",
+                    "usuario": "Cristian",
+                    "accion": "agregó el paso \"Buscar impresoras\""
+                },
+                {
+                    "fecha": "2026-10-27 08:43",
+                    "usuario": "Cristian",
+                    "accion": "agregó el paso \"Armar propuesta\""
+                },
+                {
+                    "fecha": "2026-10-27 08:43",
+                    "usuario": "Cristian",
+                    "accion": "agregó el paso \"Compra\""
+                },
+                {
+                    "fecha": "2026-10-27 08:43",
+                    "usuario": "Cristian",
+                    "accion": "agregó el paso \"Instalación\""
+                },
+                {
+                    "fecha": "2026-10-27 08:43",
+                    "usuario": "Cristian",
+                    "accion": "estado: Pendiente → En proceso"
+                },
+                {
+                    "fecha": "2026-10-27 08:46",
+                    "usuario": "Cristian",
+                    "accion": "cambió categoría: Sistemas"
+                }
+            ]
+        },
+        {
+            "id": 16,
+            "titulo": "SEPARAR IPHONE 17 BLANCO",
+            "descripcion": "SEPARAR IPHONE 17 BLANCO PARA VICTOR PASAGGLIA, ENTREGA 13 PRO (PARA ENVIAR A REPARAR) EN 300USD Y EL PRECIO ES 990, VA ABONAR LA DIFERENCIA.\nAVISARLE AL CELU DE EL CUANDO LLEGUE MAÑANA EL CELU",
+            "categoria": "VENTA-RESERVA",
+            "prioridad": "alta",
+            "vence": "2026-10-26",
+            "estado": "revision",
+            "asignados": [
+                "Ariela",
+                "Yanina",
+                "Marcelo"
+            ],
+            "creado_por": "Marcos",
+            "creado": "2026-10-26 16:29",
+            "actualizado": "2026-10-27 12:36",
+            "pasos": [
+                {
+                    "texto": "SEPARADO",
+                    "hecho": true
+                },
+                {
+                    "texto": "CLIENTE AVISADO",
+                    "hecho": true
+                }
+            ],
+            "comentarios": [],
+            "historial": [
+                {
+                    "fecha": "2026-10-26 16:29",
+                    "usuario": "Marcos",
+                    "accion": "creó la tarea y la asignó a Ariela, Yanina, Marcelo"
+                },
+                {
+                    "fecha": "2026-10-27 12:02",
+                    "usuario": "Ariela",
+                    "accion": "estado: Pendiente → Revisión"
+                },
+                {
+                    "fecha": "2026-10-27 12:02",
+                    "usuario": "Ariela",
+                    "accion": "agregó el paso \"SEPARADO\""
+                },
+                {
+                    "fecha": "2026-10-27 12:02",
+                    "usuario": "Ariela",
+                    "accion": "completó el paso \"SEPARADO\""
+                },
+                {
+                    "fecha": "2026-10-27 12:09",
+                    "usuario": "Marcos",
+                    "accion": "estado: Revisión → En proceso"
+                },
+                {
+                    "fecha": "2026-10-27 12:09",
+                    "usuario": "Marcos",
+                    "accion": "estado: En proceso → Pendiente"
+                },
+                {
+                    "fecha": "2026-10-27 12:09",
+                    "usuario": "Marcos",
+                    "accion": "estado: Pendiente → En proceso"
+                },
+                {
+                    "fecha": "2026-10-27 12:09",
+                    "usuario": "Marcos",
+                    "accion": "estado: En proceso → Revisión"
+                },
+                {
+                    "fecha": "2026-10-27 12:36",
+                    "usuario": "Marcelo",
+                    "accion": "agregó el paso \"CLIENTE AVISADO\""
+                },
+                {
+                    "fecha": "2026-10-27 12:36",
+                    "usuario": "Marcelo",
+                    "accion": "completó el paso \"CLIENTE AVISADO\""
+                }
+            ]
+        },
+        {
+            "id": 17,
+            "titulo": "SEPARAR 18 PRO 256GB VIRGINIA SUAREZ",
+            "descripcion": "SEPARAR 18 PRO 256GB PARA VIRGINIA SUAREZ, DEL PEDIDO ENTRANTE. ABONA 1M EN EFE Y RESTO EN 2\/3 VECES., COLOR ICEBLUE +54 9 3364 63-3279 avisarle apenas esté",
+            "categoria": "PREVENTA",
+            "prioridad": "alta",
+            "vence": "2026-10-27",
+            "estado": "pendiente",
+            "asignados": [
+                "Ariela",
+                "Yanina",
+                "Marcelo"
+            ],
+            "creado_por": "Marcos",
+            "creado": "2026-10-26 16:54",
+            "actualizado": "2026-10-26 17:40",
+            "pasos": [],
+            "comentarios": [],
+            "historial": [
+                {
+                    "fecha": "2026-10-26 16:54",
+                    "usuario": "Marcos",
+                    "accion": "creó la tarea y la asignó a Ariela, Yanina, Marcelo"
+                },
+                {
+                    "fecha": "2026-10-26 17:39",
+                    "usuario": "Marcos",
+                    "accion": "cambió descripción"
+                },
+                {
+                    "fecha": "2026-10-26 17:40",
+                    "usuario": "Marcos",
+                    "accion": "cambió descripción"
+                }
+            ]
+        },
+        {
+            "id": 18,
+            "titulo": "Retirar camaras DMA en rosario",
+            "descripcion": "",
+            "categoria": "compras",
+            "prioridad": "media",
+            "vence": "2026-10-27",
+            "estado": "revision",
+            "asignados": [
+                "Ariela"
+            ],
+            "creado_por": "Cristian",
+            "creado": "2026-10-26 21:27",
+            "actualizado": "2026-10-27 12:39",
+            "pasos": [
+                {
+                    "texto": "Pagar",
+                    "hecho": false
+                },
+                {
+                    "texto": "Consultar disponibilidad",
+                    "hecho": false
+                },
+                {
+                    "texto": "Mandar a retirar",
+                    "hecho": true
+                },
+                {
+                    "texto": "LISTO",
+                    "hecho": true
+                }
+            ],
+            "comentarios": [],
+            "historial": [
+                {
+                    "fecha": "2026-10-26 21:27",
+                    "usuario": "Cristian",
+                    "accion": "creó la tarea y la asignó a Ariela"
+                },
+                {
+                    "fecha": "2026-10-27 12:39",
+                    "usuario": "Ariela",
+                    "accion": "completó el paso \"Mandar a retirar\""
+                },
+                {
+                    "fecha": "2026-10-27 12:39",
+                    "usuario": "Ariela",
+                    "accion": "estado: Pendiente → Revisión"
+                },
+                {
+                    "fecha": "2026-10-27 12:39",
+                    "usuario": "Ariela",
+                    "accion": "agregó el paso \"LISTO\""
+                },
+                {
+                    "fecha": "2026-10-27 12:39",
+                    "usuario": "Ariela",
+                    "accion": "completó el paso \"LISTO\""
+                }
+            ]
+        }
+    ]
+}

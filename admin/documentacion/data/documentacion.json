@@ -1,0 +1,139 @@
+{
+    "ultimo_id": 5,
+    "categorias": [
+        {
+            "id": "ventas",
+            "nombre": "Ventas y cobros",
+            "icono": "💰"
+        },
+        {
+            "id": "catalogo",
+            "nombre": "Catálogo de productos",
+            "icono": "🛒"
+        },
+        {
+            "id": "presupuestos",
+            "nombre": "Presupuestos y remitos",
+            "icono": "📄"
+        },
+        {
+            "id": "tareas",
+            "nombre": "Tareas",
+            "icono": "✅"
+        },
+        {
+            "id": "comunicados",
+            "nombre": "Comunicados",
+            "icono": "📣"
+        }
+    ],
+    "docs": [
+        {
+            "id": 1,
+            "titulo": "00 Catalogo de productos",
+            "descripcion": "como cargar y editar productos.",
+            "categoria": "catalogo",
+            "confirmar": true,
+            "archivo": {
+                "original": "00 - Catalogo de productos - como cargar y editar.pdf",
+                "guardado": "1_58864ab62e01.pdf",
+                "ext": "pdf",
+                "tipo": "pdf",
+                "tamano": 1215670
+            },
+            "subido_por": "Cristian",
+            "creado": "2026-10-23 19:57",
+            "actualizado": "2026-10-23 19:57",
+            "reemplazado": null,
+            "lecturas": {
+                "Marcelo": "2026-10-26 15:33"
+            },
+            "versiones": []
+        },
+        {
+            "id": 2,
+            "titulo": "01 Copiar precios para WhatsApp",
+            "descripcion": "Como generar mensaje para enviar desde la web.",
+            "categoria": "ventas",
+            "confirmar": true,
+            "archivo": {
+                "original": "01 - Copiar precios para WhatsApp.pdf",
+                "guardado": "2_12a2b6c13624.pdf",
+                "ext": "pdf",
+                "tipo": "pdf",
+                "tamano": 692364
+            },
+            "subido_por": "Cristian",
+            "creado": "2026-10-23 19:58",
+            "actualizado": "2026-10-23 19:58",
+            "reemplazado": null,
+            "lecturas": {
+                "Marcelo": "2026-10-26 15:33"
+            },
+            "versiones": []
+        },
+        {
+            "id": 3,
+            "titulo": "02 Presupuestos",
+            "descripcion": "Como usar buscador, remito y estados.",
+            "categoria": "presupuestos",
+            "confirmar": true,
+            "archivo": {
+                "original": "02 - Presupuestos - buscador, remito y estados.pdf",
+                "guardado": "3_f81518ec3287.pdf",
+                "ext": "pdf",
+                "tipo": "pdf",
+                "tamano": 725046
+            },
+            "subido_por": "Cristian",
+            "creado": "2026-10-23 19:58",
+            "actualizado": "2026-10-23 19:58",
+            "reemplazado": null,
+            "lecturas": [],
+            "versiones": []
+        },
+        {
+            "id": 4,
+            "titulo": "03 Tareas",
+            "descripcion": "Guia para el uso del panel de tareas.",
+            "categoria": "tareas",
+            "confirmar": true,
+            "archivo": {
+                "original": "03 - Tareas - guia para el equipo.pdf",
+                "guardado": "4_4574a4992b9a.pdf",
+                "ext": "pdf",
+                "tipo": "pdf",
+                "tamano": 807705
+            },
+            "subido_por": "Cristian",
+            "creado": "2026-10-23 19:59",
+            "actualizado": "2026-10-23 19:59",
+            "reemplazado": null,
+            "lecturas": {
+                "Marcelo": "2026-10-26 15:34",
+                "Marcos": "2026-10-27 10:56"
+            },
+            "versiones": []
+        },
+        {
+            "id": 5,
+            "titulo": "04 Documentacion",
+            "descripcion": "Como se usa la documentación.",
+            "categoria": "comunicados",
+            "confirmar": false,
+            "archivo": {
+                "original": "04 - Documentacion - como usarla.pdf",
+                "guardado": "5_b0071d0c69da.pdf",
+                "ext": "pdf",
+                "tipo": "pdf",
+                "tamano": 462722
+            },
+            "subido_por": "Cristian",
+            "creado": "2026-10-23 19:59",
+            "actualizado": "2026-10-23 19:59",
+            "reemplazado": null,
+            "lecturas": [],
+            "versiones": []
+        }
+    ]
+}

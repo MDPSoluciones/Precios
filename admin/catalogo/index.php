@@ -8,8 +8,8 @@ if (empty($_SESSION['catalogo_csrf'])) {
 }
 
 // Dónde está el sitio que muestra estos productos (para el botón "Ver sitio").
-// Mientras esté en prueba es v3/. Al pasarlo a producción: '../../'
-$SITIO_PUBLICO = '../../v3/';
+// Sitio principal (raíz). Para apuntar a una carpeta de prueba: '../../v3/'
+$SITIO_PUBLICO = '../../';
 ?>
 <!DOCTYPE html>
 <html lang="es">

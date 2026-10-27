@@ -711,3 +711,30 @@ textarea:focus {
 .oc-label { display: block; font-weight: bold; font-size: 0.9rem; margin-bottom: 6px; }
 #input-oc { width: 100%; box-sizing: border-box; }
 .oc-acciones { display: flex; justify-content: flex-end; gap: 6px; margin-top: 14px; }
+
+/* Estados: Confirmado / Comprado / Entregado */
+.filtros-estado { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 12px; }
+.chip-estado {
+    margin: 0; padding: 5px 12px; font-size: 0.8rem; border-radius: 999px;
+    background: #fff; color: var(--carbon); border: 1.5px solid var(--humo); box-shadow: none;
+}
+.chip-estado span { opacity: .6; margin-left: 3px; }
+.chip-estado.activo { background: var(--carbon); color: var(--crema); border-color: var(--carbon); }
+
+.historial-estados { display: flex; gap: 4px; flex-shrink: 0; margin-left: auto; }
+.check-estado {
+    margin: 0; padding: 4px 9px; font-size: 0.72rem; font-weight: bold; letter-spacing: .03em;
+    text-transform: uppercase; border-radius: 6px; background: #fff; color: #9a978e;
+    border: 1.5px solid var(--humo); box-shadow: none; display: inline-flex; align-items: center; gap: 5px;
+}
+.check-estado:hover { border-color: var(--oro); color: var(--carbon); }
+.check-caja {
+    width: 13px; height: 13px; border: 1.5px solid currentColor; border-radius: 3px;
+    display: inline-flex; align-items: center; justify-content: center; font-size: 10px; line-height: 1;
+}
+.check-estado.marcado { color: #fff; }
+.check-estado.marcado .check-caja { border-color: #fff; }
+.estado-confirmado.marcado { background: #2f7d4f; border-color: #2f7d4f; }
+.estado-comprado.marcado   { background: #2b6cb0; border-color: #2b6cb0; }
+.estado-entregado.marcado  { background: #6b4fa0; border-color: #6b4fa0; }
+.check-estado:disabled { opacity: .5; cursor: wait; }

@@ -112,5 +112,35 @@
         "cuit": "",
         "direccion": "",
         "mail": ""
+    },
+    {
+        "nombre": "INSTITUTO DE LA VIVIENDA (GOBIERNO DE LA CIUDAD)",
+        "cuit": "",
+        "direccion": "",
+        "mail": ""
+    },
+    {
+        "nombre": "David",
+        "cuit": "",
+        "direccion": "",
+        "mail": ""
+    },
+    {
+        "nombre": "Chemsearch srl",
+        "cuit": "30709447803",
+        "direccion": "",
+        "mail": ""
+    },
+    {
+        "nombre": "DIEXAL S.R.L.",
+        "cuit": "30-70982587-5",
+        "direccion": "Av. Francia 3771, Rosario, Santa Fe",
+        "mail": "ingenier\u00eda@diexal.com.ar"
+    },
+    {
+        "nombre": "FORTUNA GEORGINA",
+        "cuit": "",
+        "direccion": "",
+        "mail": ""
     }
 ]

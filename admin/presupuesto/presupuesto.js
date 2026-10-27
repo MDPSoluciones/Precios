@@ -527,7 +527,88 @@ function cargarHistorial() {
         });
 }
 
+// ─── Estados del presupuesto (Confirmado / Comprado / Entregado) ─────────────
+const ESTADOS = [
+    { clave: "confirmado", texto: "Confirmado" },
+    { clave: "comprado",   texto: "Comprado" },
+    { clave: "entregado",  texto: "Entregado" }
+];
+let filtroEstado = "todos";
+
+// Filtro acumulativo: cada filtro muestra todos los que tienen ese check marcado.
+// "Pendiente" = sin ningún check.
+function cumpleFiltroEstado(h, filtro) {
+    const e = h.estados || {};
+    if (filtro === "todos") return true;
+    if (filtro === "pendiente") return !e.confirmado && !e.comprado && !e.entregado;
+    return !!e[filtro];
+}
+
+function renderFiltrosEstado() {
+    const cont = document.getElementById("filtros_estado");
+    if (!cont) return;
+    const cuenta = {};
+    ["todos", "pendiente", "confirmado", "comprado", "entregado"].forEach(f =>
+        cuenta[f] = historial.filter(h => cumpleFiltroEstado(h, f)).length);
+    const opciones = [
+        ["todos", "Todos"], ["pendiente", "Pendientes"], ["confirmado", "Confirmados"],
+        ["comprado", "Comprados"], ["entregado", "Entregados"]
+    ];
+    cont.innerHTML = opciones.map(([clave, texto]) =>
+        `<button type="button" class="chip-estado ${filtroEstado === clave ? "activo" : ""}" data-filtro="${clave}">` +
+        `${texto} <span>${cuenta[clave]}</span></button>`).join("");
+    cont.querySelectorAll("[data-filtro]").forEach(b => b.onclick = () => {
+        filtroEstado = b.dataset.filtro;
+        mostrarHistorial();
+    });
+}
+
+function crearChecksEstado(h, i) {
+    const cont = document.createElement("span");
+    cont.className = "historial-estados";
+    const e = h.estados || {};
+    ESTADOS.forEach(({ clave, texto }) => {
+        const marcado = !!e[clave];
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = `check-estado estado-${clave} ${marcado ? "marcado" : ""}`;
+        btn.innerHTML = `<span class="check-caja">${marcado ? "✓" : ""}</span>${texto}`;
+        btn.title = marcado
+            ? `${texto} el ${formatearFecha(e[clave].fecha)}${e[clave].usuario ? " por " + e[clave].usuario : ""} — clic para desmarcar`
+            : `Marcar como ${texto.toLowerCase()}`;
+        btn.onclick = () => cambiarEstado(i, clave, !marcado, btn);
+        cont.appendChild(btn);
+    });
+    return cont;
+}
+
+function cambiarEstado(i, clave, valor, btn) {
+    const h = historial[i];
+    const codigo = h.presupuesto.codigo;
+    if (!codigo) { alert("Este presupuesto no tiene código."); return; }
+    if (!valor && !confirm(`¿Desmarcar "${clave.toUpperCase()}" en ${codigo}?`)) return;
+
+    btn.disabled = true;
+    fetch("actualizar_estado.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ codigo, estado: clave, valor })
+    })
+        .then(res => res.json())
+        .then(data => {
+            if (data.status !== "ok") throw new Error(data.mensaje || "Error");
+            h.estados = data.estados || {};
+            guardarEnCache(LS_HISTORIAL, historial);
+            mostrarHistorial();
+        })
+        .catch(err => {
+            btn.disabled = false;
+            alert("No se pudo guardar el estado: " + err.message);
+        });
+}
+
 function mostrarHistorial() {
+    renderFiltrosEstado();
     const palabras = normalizarBusqueda(document.getElementById("filtro_cliente").value)
         .split(/\s+/).filter(Boolean);
     const lista  = document.getElementById("lista_historial");
@@ -544,6 +625,7 @@ function mostrarHistorial() {
             ].join(" "));
             return palabras.every(w => texto.includes(w));
         })
+        .filter(({ h }) => cumpleFiltroEstado(h, filtroEstado))
         .sort((a, b) => {
             const fechaDiff = new Date(b.h.presupuesto.fecha) - new Date(a.h.presupuesto.fecha);
             if (fechaDiff !== 0) return fechaDiff;
@@ -610,7 +692,7 @@ function mostrarHistorial() {
         delBtn.onclick = () => eliminarPresupuesto(i, h.presupuesto.codigo);
 
         acciones.append(verBtn, copiarBtn, pdfBtn, remitoBtn, delBtn);
-        li.append(info, acciones);
+        li.append(info, crearChecksEstado(h, i), acciones);
         lista.appendChild(li);
     });
 }

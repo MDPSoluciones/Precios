@@ -18,6 +18,18 @@ require_login();
     </div>
 
     <div class="tools-grid">
+      <a class="tool-card" href="tareas/">
+        <div class="tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="m8 12.5 2.5 2.5L16 9.5"/><path d="M8 2v4M16 2v4"/></svg></div>
+        <h2>Tareas</h2>
+        <p>Asignación y seguimiento de tareas del equipo.</p>
+      </a>
+
+      <a class="tool-card" href="documentacion/">
+        <div class="tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4.5A1.5 1.5 0 0 1 5.5 3H11v17H5.5A1.5 1.5 0 0 1 4 18.5Z"/><path d="M20 4.5A1.5 1.5 0 0 0 18.5 3H13v17h5.5a1.5 1.5 0 0 0 1.5-1.5Z"/><path d="M7 7h2M15 7h2"/></svg></div>
+        <h2>Documentación</h2>
+        <p>Manuales e instructivos para el equipo.</p>
+      </a>
+
       <a class="tool-card" href="presupuesto/">
         <div class="tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h6"/></svg></div>
         <h2>Presupuesto</h2>
@@ -48,17 +60,10 @@ require_login();
         <p>Registro diario de caja y cuenta recaudadora.</p>
       </a>
 
-      <a class="tool-card" href="productos/">
-        <div class="tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7.5 7.5 12 3l4.5 4.5"/><path d="M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/></svg></div>
-        <h2>Carga de Productos</h2>
-        <p>Formulario para dar de alta un producto nuevo.</p>
-      </a>
-
       <a class="tool-card" href="catalogo/">
         <div class="tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13"/><path d="M3.5 6h.01M3.5 12h.01M3.5 18h.01"/></svg></div>
-        <h2>Catálogo (nuevo)</h2>
+        <h2>Carga de Productos</h2>
         <p>Alta, edición y precios de los productos del sitio.</p>
-        <span class="tool-tag">En prueba</span>
       </a>
 
       <a class="tool-card" href="inventario/">

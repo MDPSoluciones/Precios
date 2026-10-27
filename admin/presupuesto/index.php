@@ -9,7 +9,7 @@ require_login();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Presupuesto - AXENTIA</title>
-    <link rel="stylesheet" href="presupuesto.css?v=3">
+    <link rel="stylesheet" href="presupuesto.css?v=5">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
 </head>
@@ -149,6 +149,7 @@ require_login();
             </div>
         </div>
         <input type="text" id="filtro_cliente" placeholder="Buscar por cliente, código o producto (ej: dahua)..." oninput="mostrarHistorial()">
+        <div id="filtros_estado" class="filtros-estado"></div>
         <ul id="lista_historial"></ul>
     </section>
 
@@ -181,7 +182,7 @@ require_login();
         </div>
     </div>
 
-    <script src="presupuesto.js?v=3"></script>
+    <script src="presupuesto.js?v=5"></script>
 
 </body>
 </html>

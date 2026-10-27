@@ -11,13 +11,22 @@ $items = [
     'etiquetas'   => ['label' => 'Etiquetas',            'href' => 'etiquetas/',              'icon' => 'tag'],
     'cuotas'      => ['label' => 'Simulador de Cuotas',  'href' => 'cuotas/',                 'icon' => 'percent'],
     'caja'        => ['label' => 'Carga de Caja',        'href' => 'caja/',                   'icon' => 'wallet'],
-    'productos'   => ['label' => 'Carga de Productos',   'href' => 'productos/',              'icon' => 'upload'],
-    'catalogo'    => ['label' => 'Catálogo (nuevo)',     'href' => 'catalogo/',               'icon' => 'list'],
+    'productos'   => ['label' => 'Carga de Productos',   'href' => 'catalogo/',               'icon' => 'upload'],
     'inventario'  => ['label' => 'Inventario',           'href' => 'inventario/',             'icon' => 'box'],
+    'tareas'      => ['label' => 'Tareas',               'href' => 'tareas/',                 'icon' => 'check'],
+    'documentacion' => ['label' => 'Documentación',      'href' => 'documentacion/',          'icon' => 'book'],
 ];
+
+// Documentos pendientes de leer (contador rojo en el menú)
+$docPendientes = 0;
+if (is_file(__DIR__ . '/../documentacion/lib.php')) {
+    require_once __DIR__ . '/../documentacion/lib.php';
+    $docPendientes = doc_pendientes(current_user());
+}
 
 if (is_admin()) {
     $items['usuarios'] = ['label' => 'Gestionar usuarios', 'href' => 'gestionar_usuarios.php', 'icon' => 'users'];
+    $items['backup']   = ['label' => 'Backups',            'href' => 'backup/',                'icon' => 'archive'];
 }
 
 // Cada usuario puede reordenar el menú arrastrando; su orden se guarda en su
@@ -46,6 +55,9 @@ function nav_icon($name) {
         'wallet'    => '<path d="M3 7a2 2 0 0 1 2-2h13a1 1 0 0 1 1 1v3"/><path d="M3 7v11a2 2 0 0 0 2 2h14a1 1 0 0 0 1-1v-4"/><path d="M15 13h4v4h-4a2 2 0 0 1 0-4Z"/>',
         'box'       => '<path d="M3 9.5 12 4l9 5.5V19a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1Z"/>',
         'users'     => '<circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="8" r="2.4"/><path d="M23 20c0-2.6-1.7-4.8-4-5.6"/>',
+        'book'      => '<path d="M4 4.5A1.5 1.5 0 0 1 5.5 3H11v17H5.5A1.5 1.5 0 0 1 4 18.5Z"/><path d="M20 4.5A1.5 1.5 0 0 0 18.5 3H13v17h5.5a1.5 1.5 0 0 0 1.5-1.5Z"/><path d="M7 7h2M15 7h2"/>',
+        'check'     => '<rect x="3" y="4" width="18" height="17" rx="2"/><path d="m8 12.5 2.5 2.5L16 9.5"/><path d="M8 2v4M16 2v4"/>',
+        'archive'   => '<rect x="3" y="4" width="18" height="5" rx="1"/><path d="M5 9v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9"/><path d="M10 13h4"/>',
         'list'      => '<path d="M8 6h13M8 12h13M8 18h13"/><path d="M3.5 6h.01M3.5 12h.01M3.5 18h.01"/>',
         'upload'    => '<path d="M12 3v12"/><path d="M7.5 7.5 12 3l4.5 4.5"/><path d="M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/>',
     ];
@@ -76,6 +88,9 @@ $inicial = $usuario ? strtoupper(substr($usuario, 0, 2)) : '--';
          onclick="mdpMarcarActivo(this)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><?= nav_icon($item['icon']) ?></svg>
         <?= htmlspecialchars($item['label']) ?>
+        <?php if ($key === 'documentacion' && $docPendientes > 0): ?>
+          <span class="nav-badge" style="background:#a33;color:#fff;border-radius:99px;font-size:10px;font-weight:700;padding:1px 7px;margin-left:auto"><?= (int)$docPendientes ?></span>
+        <?php endif; ?>
       </a>
     <?php endforeach; ?>
   </nav>
