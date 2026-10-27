@@ -336,6 +336,40 @@ require_login();
     border-left:2px solid transparent;transform:translateX(-1px);
   }
 
+  /* ===== MODO PRODUCTO: 6 etiquetas de 2x2 con nombre + descripcion + codigo (letra Arial) ===== */
+  #sheet.product{
+    display:grid;
+    grid-template-columns:2in 2in;
+    grid-template-rows:2in 2in 2in;
+  }
+  #sheet.product .cut-v,#sheet.product .cut-h{background-origin:border-box}
+  #sheet.product .cut-h{background-image:linear-gradient(90deg,#000 60%, transparent 0)}
+  .prod-label{
+    width:2in;height:2in;box-sizing:border-box;
+    padding:0.13in 0.14in 0.11in;
+    display:flex;flex-direction:column;align-items:center;justify-content:space-between;
+    text-align:center;overflow:hidden;color:#000;
+    font-family:Arial,Helvetica,'Liberation Sans',sans-serif;
+  }
+  .p-top,.p-bot{width:100%;display:flex;flex-direction:column;align-items:center;min-height:0}
+  .p-top{overflow:hidden}
+  .p-name{
+    font-weight:700;font-size:10.5pt;line-height:1.12;text-transform:uppercase;
+    letter-spacing:.01em;overflow-wrap:anywhere;color:#000;
+  }
+  .p-rule{width:85%;border-bottom:1px solid #000;margin:4px 0}
+  .p-desc{font-size:7.5pt;line-height:1.25;white-space:pre-line;overflow-wrap:anywhere;color:#000}
+  .p-bc{width:100%;display:flex;justify-content:center;margin-top:3px}
+  .p-bc svg{width:92%;height:.5in;display:block}
+  .p-code{font-weight:700;font-size:10pt;letter-spacing:.12em;margin-top:3px;line-height:1;color:#000;text-transform:uppercase;white-space:nowrap;max-width:100%;overflow:hidden}
+  .p-err{font-size:7pt;color:#c00}
+  /* Formulario del modo Producto */
+  .prod-item{border:1px solid rgba(190,161,103,.35);border-radius:8px;padding:10px 12px 4px;margin-bottom:10px}
+  .prod-item h3{font-family:var(--sans);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin:0 0 8px}
+  .prod-item .field{margin-bottom:8px}
+  .btn-copiar{background:transparent;color:var(--gold);border:1px dashed var(--gold);border-radius:6px;padding:6px 10px;
+    font-family:var(--sans);font-size:12px;cursor:pointer;width:100%;margin-bottom:12px}
+
   @media print{
     @page{size:4in 6in;margin:0}
     body *{visibility:hidden}
@@ -346,11 +380,14 @@ require_login();
     body.mode-used{min-height:0}
     body.mode-used header.brand,body.mode-used .panel,
     body.mode-used .preview-area > h2,body.mode-used .preview-area > .sub{display:none}
+    body.mode-product{min-height:0}
+    body.mode-product header.brand,body.mode-product .panel,
+    body.mode-product .preview-area > h2,body.mode-product .preview-area > .sub{display:none}
     .sheet-scale{padding:0;background:none}
     /* Forzar negro pleno en impresion */
     .l-company,.l-company small,.l-code,.l-product,.l-specs,
     .m-company,.m-company small,.m-code,.c-num,
-    .u-lbl,.u-val,.u-suf{
+    .u-lbl,.u-val,.u-suf,.p-name,.p-desc,.p-code{
       color:#000 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;
     }
   }
@@ -378,6 +415,7 @@ require_login();
         <button type="button" data-mode="short" class="active">Corta</button>
         <button type="button" data-mode="codes">Solo c&oacute;digos</button>
         <button type="button" data-mode="used">Usados</button>
+        <button type="button" data-mode="product">Producto</button>
       </div>
 
       <div class="seg" id="seg-density" style="display:none">
@@ -460,6 +498,39 @@ UHD GRAPHICS 620</textarea>
       <div id="fields-used" style="display:none">
         <div id="used-list"></div>
         <div class="hint" style="margin-bottom:14px">El orden es izquierda a derecha, arriba a abajo. Los campos que dejes vac&iacute;os salen con el rengl&oacute;n en blanco para completar a mano.</div>
+      </div>
+
+      <!-- ===== Modo Producto: nombre + descripcion + codigo, 6 por hoja ===== -->
+      <div class="toggle-row" id="row-prod" style="display:none">
+        <span class="lbl active" id="lbl-prod-igual">Todas iguales</span>
+        <label class="switch">
+          <input type="checkbox" id="sw-prod">
+          <span class="slider"></span>
+        </label>
+        <span class="lbl" id="lbl-prod-distintas">Una por una</span>
+      </div>
+
+      <div id="fields-prod" style="display:none">
+        <div id="prod-igual">
+          <div class="field">
+            <label for="f-prod-name">Nombre</label>
+            <input id="f-prod-name" type="text" value="NOTEBOOK DELL LATITUDE 3400" placeholder="Ej: NOTEBOOK DELL LATITUDE 3400">
+          </div>
+          <div class="field">
+            <label for="f-prod-desc">Descripci&oacute;n</label>
+            <textarea id="f-prod-desc" placeholder="Hasta 3 renglones">Intel Core i5 8va gen &middot; 16 GB RAM &middot; 256 GB SSD &middot; 14" HD</textarea>
+          </div>
+          <div class="field">
+            <label for="f-prod-code">C&oacute;digo</label>
+            <input id="f-prod-code" type="text" value="NB3400-01" placeholder="Ej: NB3400-01" autocomplete="off">
+            <div class="hint">Se imprimen 6 etiquetas iguales.</div>
+          </div>
+        </div>
+        <div id="prod-distintas" style="display:none">
+          <button type="button" class="btn-copiar" id="btn-prod-copiar">Copiar nombre y descripci&oacute;n de la etiqueta 1 a todas</button>
+          <div id="prod-list"></div>
+          <div class="hint" style="margin-bottom:14px">El orden es izquierda a derecha, arriba a abajo. Una etiqueta sin datos queda en blanco.</div>
+        </div>
       </div>
 
       <button class="btn" id="btn-gen">Actualizar vista previa</button>
@@ -716,6 +787,108 @@ function fitUsedValues(){
   });
 }
 
+// ===== Modo "Producto" =====
+var PROD_COUNT = 6;
+
+// Arma (una sola vez) los 6 bloques de carga del modo "Una por una"
+function ensureProdInputs(){
+  var list = document.getElementById('prod-list');
+  if(list.children.length) return;
+  var html = '';
+  for(var i=0;i<PROD_COUNT;i++){
+    html += '<div class="prod-item"><h3>Etiqueta '+(i+1)+'</h3>' +
+      '<div class="field"><label for="f-p-'+i+'-name">Nombre</label><input type="text" id="f-p-'+i+'-name" class="f-prod" data-idx="'+i+'" data-key="name" autocomplete="off"></div>' +
+      '<div class="field"><label for="f-p-'+i+'-desc">Descripci&oacute;n</label><textarea id="f-p-'+i+'-desc" class="f-prod" data-idx="'+i+'" data-key="desc" rows="2"></textarea></div>' +
+      '<div class="field"><label for="f-p-'+i+'-code">C&oacute;digo</label><input type="text" id="f-p-'+i+'-code" class="f-prod" data-idx="'+i+'" data-key="code" autocomplete="off"></div>' +
+      '</div>';
+  }
+  list.innerHTML = html;
+  list.querySelectorAll('input,textarea').forEach(function(inp){ inp.addEventListener('input', render); });
+}
+
+function getProdData(){
+  if(!document.getElementById('sw-prod').checked){
+    var item = {
+      name: document.getElementById('f-prod-name').value.trim(),
+      desc: document.getElementById('f-prod-desc').value.trim(),
+      code: document.getElementById('f-prod-code').value.trim()
+    };
+    var items = [];
+    for(var i=0;i<PROD_COUNT;i++) items.push(item);
+    return items;
+  }
+  var lista = [];
+  for(var j=0;j<PROD_COUNT;j++) lista.push({name:'',desc:'',code:''});
+  document.querySelectorAll('.f-prod').forEach(function(inp){
+    lista[parseInt(inp.getAttribute('data-idx'),10)][inp.getAttribute('data-key')] = inp.value.trim();
+  });
+  return lista;
+}
+
+function buildProduct(item){
+  var div = document.createElement('div');
+  div.className = 'prod-label';
+  if(!item || (!item.name && !item.desc && !item.code)) return div;   // etiqueta en blanco
+  var top = '';
+  if(item.name) top += '<div class="p-name">'+escapeHtml(item.name)+'</div>';
+  if(item.name && item.desc) top += '<div class="p-rule"></div>';
+  if(item.desc) top += '<div class="p-desc">'+escapeHtml(item.desc)+'</div>';
+  var bot = item.code
+    ? '<div class="p-bc"><svg class="bc-prod" data-code="'+escapeHtml(item.code)+'"></svg></div><div class="p-code">'+escapeHtml(item.code)+'</div>'
+    : '';
+  div.innerHTML = '<div class="p-top">'+top+'</div><div class="p-bot">'+bot+'</div>';
+  return div;
+}
+
+function renderProduct(sheet, data){
+  sheet.className = 'product';
+  sheet.innerHTML =
+    '<div class="cut-v"></div>' +
+    '<div class="cut-h r1"></div>' +
+    '<div class="cut-h r2"></div>';
+  data.prod.forEach(function(item){ sheet.appendChild(buildProduct(item)); });
+
+  document.querySelectorAll('.bc-prod').forEach(function(svg){
+    var code = svg.getAttribute('data-code');
+    try{
+      JsBarcode(svg, code, {format:'CODE128', width:2, height:50, displayValue:false, margin:0, lineColor:'#000'});
+      // El codigo se estira al ancho de la etiqueta (asi entran tambien los codigos largos)
+      var w = parseFloat(svg.getAttribute('width')), h = parseFloat(svg.getAttribute('height'));
+      svg.setAttribute('viewBox', '0 0 '+w+' '+h);
+      svg.setAttribute('preserveAspectRatio', 'none');
+      svg.removeAttribute('width'); svg.removeAttribute('height');
+    }catch(e){
+      svg.outerHTML = '<div class="p-err">C&oacute;digo inv&aacute;lido</div>';
+    }
+  });
+  fitProductTexts();
+}
+
+// Textos largos: se achica la letra (primero la descripcion, despues el nombre) hasta que entren
+function fitProductTexts(){
+  document.querySelectorAll('#sheet .prod-label').forEach(function(lab){
+    var top = lab.querySelector('.p-top');
+    if(!top) return;
+    // Codigo largo: se achica (y se junta el espaciado) hasta que entre en un renglon
+    var code = lab.querySelector('.p-code');
+    if(code){
+      var cs = 10;
+      while(code.scrollWidth > code.clientWidth + 1 && cs > 6){
+        cs -= 0.5; code.style.fontSize = cs+'pt'; code.style.letterSpacing = (cs < 8.5 ? '.04em' : '.12em');
+      }
+    }
+    var name = lab.querySelector('.p-name'), desc = lab.querySelector('.p-desc');
+    var nameSize = 10.5, descSize = 7.5;
+    var sobra = function(){ return top.scrollHeight > top.clientHeight + 1 || lab.scrollHeight > lab.clientHeight + 1; };
+    var guard = 0;
+    while(sobra() && guard++ < 40){
+      if(desc && descSize > 5.5){ descSize -= 0.5; desc.style.fontSize = descSize+'pt'; }
+      else if(name && nameSize > 7){ nameSize -= 0.5; name.style.fontSize = nameSize+'pt'; }
+      else break;
+    }
+  });
+}
+
 // ===== Estado global =====
 function getMode(){
   var btn = document.querySelector('#seg-mode button.active');
@@ -770,13 +943,15 @@ function render(){
     product: document.getElementById('f-product').value.trim(),
     specs: document.getElementById('f-specs').value,
     usedFilled: document.getElementById('sw-used').checked,
-    used: getUsedData()
+    used: getUsedData(),
+    prod: getProdData()
   };
 
   var sheet = document.getElementById('sheet');
   if(mode === 'long') renderLong(sheet, data);
   else if(mode === 'short') renderShort(sheet, data);
   else if(mode === 'used') renderUsed(sheet, data);
+  else if(mode === 'product') renderProduct(sheet, data);
   else renderCodes(sheet, data);
 }
 
@@ -785,15 +960,17 @@ function syncMode(){
   var density = getDensity();
   var useLogo = document.getElementById('sw-mode').checked;
   var isUsed = (mode === 'used');   // etiquetas de usados: sin encabezado ni codigo de barras
+  var isProd = (mode === 'product');
   document.body.classList.toggle('mode-used', isUsed);
+  document.body.classList.toggle('mode-product', isProd);
 
   // Toggle Texto/Logo
-  document.getElementById('field-company').style.display = (useLogo || isUsed) ? 'none' : 'block';
-  document.getElementById('field-logohint').style.display = (useLogo && !isUsed) ? 'block' : 'none';
+  document.getElementById('field-company').style.display = (useLogo || isUsed || isProd) ? 'none' : 'block';
+  document.getElementById('field-logohint').style.display = (useLogo && !isUsed && !isProd) ? 'block' : 'none';
   document.getElementById('lbl-text').classList.toggle('active', !useLogo);
   document.getElementById('lbl-logo').classList.toggle('active', useLogo);
   // El toggle Texto/Logo solo tiene sentido en modos con encabezado (long / short)
-  document.getElementById('row-mode').style.display = (mode === 'codes' || isUsed) ? 'none' : 'flex';
+  document.getElementById('row-mode').style.display = (mode === 'codes' || isUsed || isProd) ? 'none' : 'flex';
 
   // Campos exclusivos de modo largo
   document.getElementById('fields-long').style.display = (mode === 'long') ? 'block' : 'none';
@@ -807,7 +984,7 @@ function syncMode(){
   var diff = document.getElementById('sw-diff').checked && supportsDiff;
   document.getElementById('lbl-igual').classList.toggle('active', !diff);
   document.getElementById('lbl-distintos').classList.toggle('active', diff);
-  document.getElementById('field-code').style.display = (diff || isUsed) ? 'none' : 'block';
+  document.getElementById('field-code').style.display = (diff || isUsed || isProd) ? 'none' : 'block';
   document.getElementById('field-codes-multi').style.display = diff ? 'block' : 'none';
 
   // Modo Usados: toggle En blanco / Con datos y los 6 bloques de carga
@@ -818,6 +995,16 @@ function syncMode(){
   document.getElementById('field-used-blank').style.display = (isUsed && !usedFilled) ? 'block' : 'none';
   document.getElementById('fields-used').style.display = (isUsed && usedFilled) ? 'block' : 'none';
   if(isUsed) ensureUsedInputs();
+
+  // Modo Producto: toggle Todas iguales / Una por una
+  var prodDiff = document.getElementById('sw-prod').checked;
+  document.getElementById('row-prod').style.display = isProd ? 'flex' : 'none';
+  document.getElementById('fields-prod').style.display = isProd ? 'block' : 'none';
+  document.getElementById('lbl-prod-igual').classList.toggle('active', !prodDiff);
+  document.getElementById('lbl-prod-distintas').classList.toggle('active', prodDiff);
+  document.getElementById('prod-igual').style.display = prodDiff ? 'none' : 'block';
+  document.getElementById('prod-distintas').style.display = prodDiff ? 'block' : 'none';
+  if(isProd) ensureProdInputs();
 
   // Regenerar grilla dinamica de inputs segun modo y densidad
   if(diff){
@@ -836,6 +1023,7 @@ function syncMode(){
   if(mode === 'long') sub = 'Etiqueta f&iacute;sica 4&times;6" &middot; 2 copias de 2" &middot; cortar por la l&iacute;nea central';
   else if(mode === 'short') sub = 'Etiqueta f&iacute;sica 4&times;6" &middot; 6 copias de 2&times;2" &middot; cortar por las l&iacute;neas punteadas';
   else if(mode === 'used') sub = 'Etiqueta f&iacute;sica 4&times;6" &middot; 6 etiquetas de 2&times;2" para equipos usados &middot; cortar por las l&iacute;neas punteadas';
+  else if(mode === 'product') sub = 'Etiqueta f&iacute;sica 4&times;6" &middot; 6 etiquetas de producto de 2&times;2" &middot; cortar por las l&iacute;neas punteadas';
   else {
     var cfg2 = CODES_LAYOUT[density] || CODES_LAYOUT[18];
     sub = 'Etiqueta f&iacute;sica 4&times;6" &middot; ' + (cfg2.cols*cfg2.rows) + ' c&oacute;digos (' + cfg2.cols + '&times;' + cfg2.rows + ') &middot; cortar por las l&iacute;neas punteadas';
@@ -858,6 +1046,30 @@ function seedMultiCodes(){
 // ===== Listeners =====
 document.getElementById('sw-mode').addEventListener('change', syncMode);
 document.getElementById('sw-used').addEventListener('change', syncMode);
+document.getElementById('sw-prod').addEventListener('change', function(){
+  // Al pasar a "Una por una" por primera vez, la etiqueta 1 arranca con los datos de "Todas iguales"
+  syncMode();
+  if(this.checked){
+    var n = document.getElementById('f-p-0-name');
+    if(n && !n.value && !document.getElementById('f-p-0-code').value){
+      n.value = document.getElementById('f-prod-name').value;
+      document.getElementById('f-p-0-desc').value = document.getElementById('f-prod-desc').value;
+      document.getElementById('f-p-0-code').value = document.getElementById('f-prod-code').value;
+    }
+    render();
+  }
+});
+['f-prod-name','f-prod-desc','f-prod-code'].forEach(function(id){
+  document.getElementById(id).addEventListener('input', render);
+});
+document.getElementById('btn-prod-copiar').addEventListener('click', function(){
+  var n = document.getElementById('f-p-0-name').value, d = document.getElementById('f-p-0-desc').value;
+  for(var i=1;i<PROD_COUNT;i++){
+    document.getElementById('f-p-'+i+'-name').value = n;
+    document.getElementById('f-p-'+i+'-desc').value = d;
+  }
+  render();
+});
 document.getElementById('sw-diff').addEventListener('change', function(){
   // Cuando se activa Distintos, primero regenerar inputs, después prellenar
   syncMode();
@@ -887,7 +1099,7 @@ document.getElementById('btn-print').addEventListener('click', function(){
 window.addEventListener('load', syncMode);
 // Al terminar de cargar las fuentes se vuelve a medir el ajuste de textos largos
 if(document.fonts && document.fonts.ready){
-  document.fonts.ready.then(function(){ if(getMode() === 'used') render(); });
+  document.fonts.ready.then(function(){ var m = getMode(); if(m === 'used' || m === 'product') render(); });
 }
 </script>
 </body>
