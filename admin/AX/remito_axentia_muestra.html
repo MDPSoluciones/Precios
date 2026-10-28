@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Remito Axentia - Muestra de formato</title>
+<style>
+  :root { --ink:#222; --line:#333; --soft:#777; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:#e8e8e8; font-family: Arial, Helvetica, sans-serif; color:var(--ink); }
+  .toolbar { position:sticky; top:0; background:#fff; border-bottom:1px solid #ccc; padding:10px 16px; display:flex; gap:8px; flex-wrap:wrap; align-items:center; z-index:5; }
+  .toolbar button { padding:8px 14px; border:1px solid #444; background:#fff; border-radius:6px; cursor:pointer; font-size:14px; }
+  .toolbar button.primary { background:#222; color:#fff; }
+  .toolbar span { font-size:12px; color:var(--soft); }
+  .page { width:210mm; min-height:260mm; margin:16px auto; background:#fff; padding:10mm 10mm 8mm; box-shadow:0 2px 10px rgba(0,0,0,.2); position:relative; }
+  input, textarea { font:inherit; color:inherit; border:none; background:transparent; outline:none; width:100%; }
+  input:focus, textarea:focus { background:#fff8d6; }
+  .box { border:1.5px solid var(--line); border-radius:0 18px 18px 0; padding:8px 12px; margin-bottom:8px; }
+  .head { display:grid; grid-template-columns: 1fr 70px 1fr; gap:10px; border:1.5px solid var(--line); border-radius:22px 0 0 22px; padding:10px 12px; margin-bottom:8px; }
+  .head h1 { font-family: Georgia, serif; font-size:26px; margin:6px 0 10px; letter-spacing:1px; text-align:center; }
+  .head .addr { font-size:11px; text-align:center; line-height:1.4; }
+  .iva-tag { display:inline-block; background:#222; color:#fff; font-size:9px; padding:1px 8px; border-radius:8px; margin-top:6px; }
+  .rbox { text-align:center; }
+  .rbox .r { font-family: Georgia, serif; font-size:38px; border:1.5px solid var(--line); border-radius:12px 12px 0 0; line-height:1.1; }
+  .rbox small { font-size:9px; font-weight:bold; }
+  .right .tag { display:flex; justify-content:space-between; align-items:center; font-size:9px; color:var(--soft); }
+  .right .tag b { background:#222; color:#fff; font-size:20px; padding:0 12px; border-radius:12px 12px 0 0; font-weight:normal; }
+  .nro { font-size:16px; margin:8px 0; display:flex; gap:6px; align-items:center; }
+  .nro input { width:150px; font-size:16px; border-bottom:1px solid #bbb; }
+  .fiscal { font-size:9.5px; line-height:1.5; }
+  .fiscal input { width:auto; font-size:9.5px; border-bottom:1px dotted #aaa; }
+  .dates { display:flex; gap:4px; justify-content:flex-end; margin-top:4px; }
+  .dates div { text-align:center; font-size:9px; font-style:italic; }
+  .dates input { width:36px; height:36px; border:1.5px solid var(--line); border-radius:50%; text-align:center; font-size:12px; padding:0; }
+  .row { display:flex; gap:10px; align-items:flex-end; margin:5px 0; font-size:12px; }
+  .row label { white-space:nowrap; font-style:italic; }
+  .row input { border-bottom:1px solid var(--line); flex:1; }
+  .row.cuit { flex:0 0 38%; }
+  .ivas { display:flex; justify-content:space-between; align-items:center; font-size:10.5px; margin:6px 4px 8px; }
+  .ivas b { font-size:22px; font-style:italic; }
+  .ivas label { display:flex; gap:4px; align-items:center; cursor:pointer; }
+  .items { border:1.5px solid var(--line); border-radius:0 18px 18px 0; margin-bottom:8px; min-height:120mm; }
+  .items .th { display:grid; grid-template-columns:22mm 1fr 8mm; font-weight:bold; font-size:11px; padding:3px 6px; border-bottom:1px solid var(--line); }
+  .item { display:grid; grid-template-columns:22mm 1fr 8mm; border-bottom:1px solid #999; }
+  .item input { padding:5px 6px; font-size:12px; }
+  .item input.qty { text-align:center; border-right:1.5px solid var(--line); }
+  .item button { border:none; background:none; color:#b00; cursor:pointer; font-size:14px; }
+  .sign { display:grid; grid-template-columns:1.05fr 1fr; gap:12px; }
+  .sign .s1, .sign .s2 { border:1.5px solid var(--line); height:28mm; padding:6px 12px; font-size:10px; font-style:italic; display:flex; flex-direction:column; }
+  .sign .s1 { border-radius:22px 0 0 22px; justify-content:space-between; }
+  .sign .s1 .top { text-align:center; margin-left:12mm; }
+  .sign .s1 .bot { text-align:center; margin-left:-10mm; }
+  .sign .s2 { border-radius:0 22px 22px 0; justify-content:flex-end; align-items:center; }
+  .foot { margin-top:6px; font-size:10px; display:flex; gap:6px; align-items:baseline; flex-wrap:nowrap; white-space:nowrap; }
+  .foot input { width:auto; border-bottom:1px dotted #aaa; font-size:10px; }
+  .foot .cai { font-size:17px; font-weight:bold; }
+  .foot .venc { font-size:15px; font-weight:bold; }
+  .foot small { font-size:8px; }
+  .imprenta { margin-top:3px; font-size:8px; display:flex; gap:6px; align-items:baseline; }
+  .imprenta input { font-size:8px; border-bottom:1px dotted #aaa; }
+  .items { position:relative; }
+  .vert { position:absolute; left:-7mm; top:0; bottom:0; width:5mm; writing-mode:vertical-rl; transform:rotate(180deg); font-size:9px; text-align:center; letter-spacing:.3px; }
+  .watermark { text-align:center; font-size:10px; color:#a00; font-weight:bold; margin-top:6px; letter-spacing:.5px; }
+  @media print {
+    body { background:#fff; }
+    .toolbar { display:none; }
+    .page { margin:0; box-shadow:none; width:auto; min-height:auto; }
+    input:focus, textarea:focus { background:transparent; }
+    .item button, .noprint { display:none !important; }
+    @page { size:A4; margin:8mm; }
+  }
+  @media (max-width: 800px) { .page { width:100%; margin:0; } }
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <button class="primary" onclick="window.print()">Imprimir / Guardar PDF</button>
+  <button onclick="addRow()">+ Agregar fila</button>
+  <button onclick="addRow(5)">+ 5 filas</button>
+  <button onclick="if(confirm('¿Limpiar todo el remito?')) location.reload()">Limpiar</button>
+  <span>Hacé clic en cualquier campo para completarlo. Muestra de formato, sin validez fiscal.</span>
+</div>
+
+<div class="page">
+  <div class="head">
+    <div>
+      <h1>AXENTIA SRL</h1>
+      <div class="addr">BERNARDO DE IRIGOYEN 574 - PISO 5 - D<br>C1072AAL CABA</div>
+      <div class="iva-tag">IVA ● Responsable Inscripto</div>
+    </div>
+    <div class="rbox"><div class="r">R</div><small>CÓDIGO 091</small></div>
+    <div class="right">
+      <div class="tag"><span>documento no válido<br>como factura</span><b>remito</b></div>
+      <div class="nro">Nº <input id="nro" value="00004-00000001" placeholder="00004-00000000"></div>
+      <div class="fiscal">
+        CUIT: 30-71902891-4<br>
+        I.B.C.Mult.: 901-30-71902891-4<br>
+        Fecha Inicio Actv. 01/10/2026
+      </div>
+      <div class="dates">
+        <div><input id="d" maxlength="2" placeholder="dd"><br>d</div>
+        <div><input id="m" maxlength="2" placeholder="mm"><br>m</div>
+        <div><input id="a" maxlength="4" placeholder="aa"><br>a</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="box">
+    <div class="row"><label>Señor</label><input><div class="row cuit" style="margin:0"><label>CUIT</label><input></div></div>
+    <div class="row"><label>Domicilio</label><input><label>Localidad</label><input style="flex:.7"></div>
+  </div>
+
+  <div class="ivas">
+    <b>iva</b>
+    <label><input type="radio" name="iva" style="width:auto"> Resp. Inscripto</label>
+    <label><input type="radio" name="iva" style="width:auto"> Resp. Monotributo</label>
+    <label><input type="radio" name="iva" style="width:auto"> Consumidor Final</label>
+    <label><input type="radio" name="iva" style="width:auto"> Exento</label>
+  </div>
+
+  <div class="box">
+    <div class="row"><label>Señor (transportista)</label><input><div class="row cuit" style="margin:0"><label>CUIT</label><input></div></div>
+    <div class="row"><label>Domicilio</label><input><label>Localidad</label><input style="flex:.7"></div>
+  </div>
+
+  <div class="items">
+    <div class="vert">Original: BLANCO - Duplicado: ROSA</div>
+    <div class="th"><span>Cantidad</span><span>Detalle</span><span class="noprint"></span></div>
+    <div id="rows"></div>
+  </div>
+
+  <div class="sign">
+    <div class="s1"><div class="top">recibí de conformidad</div><div class="bot">firma</div></div>
+    <div class="s2">aclaración / documento</div>
+  </div>
+
+  <div class="foot">
+    <span>Tiraje</span><input style="width:40mm" value="00004-00000001/50">
+    <span>- F.I.:</span><input style="width:22mm" value="27-10-2026">
+    <small>CAI</small><input class="cai" style="width:48mm" value="52434221099522">
+    <small>Fecha Venc.:</small><input class="venc" style="width:32mm" value="24-10-2027">
+  </div>
+  <div class="imprenta"><input style="width:100%" value="Imprenta Almafuerte de Juan Begino S.A. - Av. Falcón y Almafuerte - B2900DXP San Nicolás - Telefax 0336-4427611 - CUIT: 30-65410057-4 - Mun.: 19945 - imprentaalmafuerte@gmail.com"></div>
+</div>
+
+<script>
+  const rows = document.getElementById('rows');
+  function addRow(n){
+    n = n || 1;
+    for(let i=0;i<n;i++){
+      const r = document.createElement('div');
+      r.className='item';
+      r.innerHTML = '<input class="qty" inputmode="decimal"><input><button title="Quitar fila" onclick="this.parentNode.remove()">✕</button>';
+      rows.appendChild(r);
+    }
+  }
+  addRow(14);
+  const t = new Date();
+  document.getElementById('d').value = String(t.getDate()).padStart(2,'0');
+  document.getElementById('m').value = String(t.getMonth()+1).padStart(2,'0');
+  document.getElementById('a').value = String(t.getFullYear()).slice(-2);
+</script>
+</body>
+</html>
